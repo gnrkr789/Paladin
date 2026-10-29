@@ -117,3 +117,4 @@ Code review: 0 CRITICAL, 0 HIGH. Security review: 0 CRITICAL, 0 HIGH.
 - fixed -> held-out set 1 missed wrapper calls, hg update, built lists and Python 2 (2/6) -> generalized review rule; set 1 6/6 after the fix (development set)
 - fixed -> held-out set 2 first scan 8/10 with one svn false positive -> global options, variadic helpers, foreign executable names; set 2 10/10 after the fix (development set)
 - open -> a new unseen set is needed to measure the current rule honestly
+- fixed -> held-out set 3 first scan 2/5 (attribute executable, shell string, list concatenation in Python 2) -> named hg executables, shell template rule, concatenation in AST and token fallback; sets 1-3 21/21 after the fix (development sets)

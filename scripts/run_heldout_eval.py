@@ -63,7 +63,27 @@ SUBJECTS_2 = [
     ("YosysHQ_oss-cad-suite-build", "YosysHQ/oss-cad-suite-build",
      "1925a330c27653b15beb4bd0bd1d3980d87be24c", "negative", []),
 ]
+# Set 3 was selected and its expectations fixed after the second fix, before any scan.
+SUBJECTS_3 = [
+    ("adblockplus_buildtools", "adblockplus/buildtools", "bc83bb52613a4a491fa2a06216cbf3e65d3313e3",
+     "positive", [("ensure_dependencies.py", 73, "['hg', 'update', '--repository', repo, ..., '--rev', rev]")]),
+    ("mozilla_coverage-crawler", "mozilla/coverage-crawler", "0e9132451834a60147853bc9dec220cd262b1e35",
+     "positive", [("coverage_crawler/latest_cov_build.py", 128, "['hg', 'update', '--rev', revision]")]),
+    ("dirk-thomas_vcstool", "dirk-thomas/vcstool", "daf389377310f7f31b2171f51a79af82c31bf3e2", "positive",
+     [("vcstool/clients/hg.py", 162, "[HgClient._executable, '--noninteractive', 'checkout', command.version]")]),
+    ("brutasse-archive_ci", "brutasse-archive/ci", "4d8c25df950f8bfee3d82882305ab8876306ed3f", "positive",
+     [("ci/vcs.py", 141, "shell string 'hg update -C %s && hg update -r %s'")]),
+    ("androportal_f-droid-fdroidserver", "androportal/f-droid-fdroidserver",
+     "3c59ef1a5be47e8817a598fb606ac461af9b5745", "positive",
+     [("fdroidserver/common.py", 341, "['hg', 'checkout', '-C'] + revargs")]),
+    ("TTimo_es_build", "TTimo/es_build", "b1e596bb36392a6524c63b1dbed0ce75f2f306a0", "negative", []),
+    ("charignon_hooklib", "charignon/hooklib", "ae84117e9895bd00347cc21935f5951845f5b1d2", "negative", []),
+    ("alexbecker_dotlock", "alexbecker/dotlock", "97521f5d40d1632bd2c8db0d6b47c76bbbb02413", "negative", []),
+    ("collective_mrs.developer", "collective/mrs.developer", "dab5af44a9928ed2704edd835efd2d936adc4203",
+     "negative", []),
+]
 SETS = {"1": (ROOT / ".validation-cache" / "heldout-projects", SUBJECTS, "heldout"),
+        "3": (ROOT / ".validation-cache" / "heldout3-projects", SUBJECTS_3, "heldout3"),
         "2": (ROOT / ".validation-cache" / "heldout2-projects", SUBJECTS_2, "heldout2")}
 
 

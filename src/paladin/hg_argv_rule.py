@@ -9,6 +9,7 @@ adapter, so they are never verified or promoted automatically.
 """
 import ast
 import io
+import re
 import tokenize
 
 RULE_ID = "mercurial-argv-option-injection-v1"
@@ -56,10 +57,29 @@ def _exposed(nodes):
     return False
 
 
+def _dotted(node):
+    if isinstance(node, ast.Name):
+        return node.id
+    if isinstance(node, ast.Attribute):
+        inner = _dotted(node.value)
+        return None if inner is None else inner + "." + node.attr
+    return None
+
+
+def _is_hg(node, text):
+    """The constant 'hg', or a name such as HgClient._executable or hg_bin."""
+    if text(node) == "hg":
+        return True
+    if text is not _text:
+        return False
+    name = _dotted(node)
+    return name is not None and bool(re.search(r"(^|[._])(hg|mercurial)", name.lower()))
+
+
 def _split(elements, text=None):
     """Return (cve, arguments after the subcommand) for an hg checkout/update argv."""
     text = text or _text
-    if not elements or text(elements[0]) != "hg":
+    if not elements or not _is_hg(elements[0], text):
         return None, []
     index = 1
     while index < len(elements):
@@ -77,8 +97,45 @@ def _subcommand(elements):
     return _split(elements)[0]
 
 
+# A shell command string: hg [global options] checkout|update ... with a placeholder
+# for a value and no "--" before it.
+_SHELL = re.compile(r"(?:^|[;&|(]\s*)hg(?:\s+-\S+(?:\s+[^-\s]\S*)?)*?\s+(checkout|co|update|up)\b([^;&|]*)")
+_PLACEHOLDER = re.compile(r"%[-#0 +]*[0-9]*(?:\.[0-9]+)?[sdr]|\{[^{}]*\}")
+
+
+def _shell_findings(tree):
+    for node in ast.walk(tree):
+        template = None
+        if isinstance(node, ast.BinOp) and isinstance(node.op, ast.Mod):
+            template = _text(node.left)
+        elif isinstance(node, ast.Call) and isinstance(node.func, ast.Attribute) and node.func.attr == "format":
+            template = _text(node.func.value)
+        elif isinstance(node, ast.JoinedStr):
+            template = "".join(_text(part) or "{}" for part in node.values)
+        elif isinstance(node, ast.BinOp) and isinstance(node.op, ast.Add):
+            left = _text(node.left)
+            template = None if left is None else left + "{}"
+        if not template:
+            continue
+        for match in _SHELL.finditer(template):
+            arguments = match[2]
+            terminator = arguments.find(" -- ")
+            placeholder = _PLACEHOLDER.search(arguments)
+            if placeholder and (terminator < 0 or placeholder.start() < terminator):
+                yield node.lineno, SUBCOMMANDS[match[1]]
+                break
+
+
 def _literal_findings(tree):
     for node in ast.walk(tree):
+        if (isinstance(node, ast.BinOp) and isinstance(node.op, ast.Add)
+                and isinstance(node.left, (ast.List, ast.Tuple))):
+            # ['hg', 'checkout', '-C'] + revargs: the right side is unknown values.
+            cve, rest = _split(node.left.elts)
+            if cve and "--" not in map(_text, rest) and not _exposed(rest):
+                right = node.right.elts if isinstance(node.right, (ast.List, ast.Tuple)) else [node.right]
+                if _exposed(right):
+                    yield node.lineno, cve
         if isinstance(node, (ast.List, ast.Tuple)):
             cve, rest = _split(node.elts)
             if cve and _exposed(rest):
@@ -146,7 +203,7 @@ def _built_findings(tree):
 
 def ast_findings(tree):
     """Sorted unique (line, cve_id) findings for a parsed module."""
-    return sorted(set(_literal_findings(tree)) | set(_built_findings(tree)))
+    return sorted(set(_literal_findings(tree)) | set(_built_findings(tree)) | set(_shell_findings(tree)))
 
 
 def _token_elements(tokens, start):
@@ -192,9 +249,15 @@ def token_findings(data):
     for index, token in enumerate(tokens):
         if token.type != tokenize.OP or token.string != "[":
             continue
-        elements, _ = _token_elements(tokens, index)
+        elements, end = _token_elements(tokens, index)
         cve, rest = _split(elements or [], _token_text)
         if not cve:
+            continue
+        following = tokens[end + 1:end + 3]
+        if (len(following) == 2 and following[0].string == "+" and following[1].type == tokenize.NAME
+                and all(_token_text(element) not in (None, "--") for element in rest)):
+            # ['hg', 'checkout', '-C'] + revargs in a file the parser rejects.
+            findings.add((token.start[0], cve))
             continue
         for element in rest:
             text = _token_text(element)

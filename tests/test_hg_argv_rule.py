@@ -60,6 +60,21 @@ class GeneralizedRuleTests(unittest.TestCase):
             found = [(item["line"], item["rule_id"]) for item in scan_project(root)["candidates"]]
         self.assertEqual(found, [(4, "CVE-2022-24065:mercurial-checkout-v1")])
 
+    def test_named_executables_concatenation_and_shell_strings(self):
+        source = ("def a(self, command):\n"
+                  "    cmd = [HgClient._executable, '--noninteractive', 'checkout', command.version]\n"
+                  "def b(rev):\n    revargs = [rev]\n    call(['hg', 'checkout', '-C'] + revargs)\n"
+                  "def c(branch, revision):\n"
+                  "    Command('hg update -C %s && hg update -r %s' % (branch, revision))\n"
+                  "def d():\n    Command('hg pull && hg update -C')\n"
+                  "def e(rev):\n    Command('hg update -- %s' % rev)\n"
+                  "def f(tag):\n    run([svn_bin, 'checkout', tag])\n")
+        self.assertEqual(lines(source), [2, 5, 7])
+
+    def test_python2_concatenation_uses_the_token_fallback(self):
+        source = b"def f(rev):\n  print 'x'\n  call(['hg', 'checkout', '-C'] + revargs)\n"
+        self.assertEqual(hg_argv_rule.token_findings(source), [(3, 'CVE-2022-24065')])
+
     def test_python2_source_uses_the_token_fallback(self):
         source = b"def f(self, tag):\n  print 'cloning'\n  self.Run([\"hg\", \"checkout\", tag], cwd=self.work)\n"
         with self.assertRaises(SyntaxError):

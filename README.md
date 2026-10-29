@@ -12,11 +12,12 @@
   <img src="https://img.shields.io/badge/python-3.11%2B-3776ab" alt="python 3.11+">
   <img src="https://img.shields.io/badge/MCP-advisory%20tools-7c9cff" alt="MCP advisory tools">
   <img src="https://img.shields.io/badge/sandbox-Docker%20%2B%20strace%20observer-2fbf71" alt="Docker and strace observer">
-  <img src="https://img.shields.io/badge/tests-186%20passing-2fbf71" alt="186 unit tests passing">
+  <img src="https://img.shields.io/badge/tests-188%20passing-2fbf71" alt="188 unit tests passing">
 </p>
 
 <p align="center">
   <a href="#why-paladin">Why</a> |
+  <a href="#evaluation">Evaluation</a> |
   <a href="#how-it-works">How it works</a> |
   <a href="#quick-start">Quick start</a> |
   <a href="#proof-not-similarity">Proof</a> |
@@ -50,6 +51,27 @@ with evidence a human can audit.** It does three things:
 
 Paladin is deliberately honest about what it does not know: unsupported, partial and
 unavailable states are reported as such and never turned into a "safe" verdict.
+
+## Evaluation
+
+<p align="center">
+  <img src="docs/assets/evaluation.svg" alt="Measured results: two real CVEs verified end to end, attacks on the verifier refused, sandbox controls passed, and detection on unseen projects" width="100%">
+</p>
+
+- **Real CVEs end to end.** Cookiecutter 2.1.0 (CVE-2022-24065) and pip 23.2.1
+  (CVE-2023-5752) were scanned from the project root, reproduced in the sandbox,
+  repaired, verified and promoted; their upstream-fixed versions produced no
+  candidates.
+- **Attacks refused.** A Git binary disguised as `hg`, an environment injected into
+  the child `hg`, a checkout outside the cloned fixture and a fake success report
+  printed by target code all failed to produce a passing case; 7 of 7 sandbox
+  boundary controls passed.
+- **Unseen code.** Three sets of public projects (27 in total) that were never used
+  to write the rules, with expected locations fixed before each first scan. First
+  scans found 2/6, 8/10 (one false positive) and 2/5; every gap was then fixed and
+  all 21 instances are found with clean negative controls. The post-fix figure is a
+  development result, not a held-out one.
+- Every number links to evidence in [`docs/evidence/private-alpha`](docs/evidence/private-alpha/final-report.md).
 
 ## How it works
 
@@ -138,7 +160,7 @@ Private-alpha validation (2026-10-29), all on real Docker runs:
 | pip 23.2.1 (CVE-2023-5752) | detected, reproduced, repaired (`--rev=`), verified, promoted, reused |
 | Cookiecutter 2.1.1, pip 23.3 (upstream fixes) | no candidate |
 | Adversarial controls | disguised Git binary, injected child environment, checkout outside the clone and pip 23.3 `-r=` form all rejected |
-| Unseen projects (detection) | first scan of a 10-project held-out set: 8 of 10 expected instances, 1 false positive; both fixed afterwards (now a development set) |
+| Unseen projects (detection) | first scans of three held-out sets: 2/6, 8/10 (1 false positive), 2/5; after fixes 21/21 with clean negatives (development result) |
 | Boundary controls | 7 of 7 passed |
 
 While validating pip, Paladin observed that the upstream `-r=VALUE` form in pip 23.3

@@ -1,0 +1,108 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="620" viewBox="0 0 1200 620" role="img" aria-labelledby="title desc">
+  <title id="title">Paladin evaluation results</title>
+  <desc id="desc">Animated scoreboard of measured results: two real CVEs reproduced, repaired and verified in external projects, adversarial controls rejected, sandbox boundary controls passed, and detection on unseen projects.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0a0f1f"/>
+      <stop offset="1" stop-color="#151c3a"/>
+    </linearGradient>
+    <linearGradient id="bar" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#3451d1"/>
+      <stop offset="1" stop-color="#2fbf71"/>
+    </linearGradient>
+    <style>
+      .sans { font-family: -apple-system, "Segoe UI", Helvetica, Arial, sans-serif; }
+      .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+      .card { fill: #0d1328; stroke: #2a3566; }
+      @keyframes rise { 0% { opacity: 0; transform: translateY(14px); } 100% { opacity: 1; transform: translateY(0); } }
+      .in { opacity: 0; animation: rise 0.7s ease-out forwards; }
+      .d1 { animation-delay: 0.2s; } .d2 { animation-delay: 0.5s; } .d3 { animation-delay: 0.8s; }
+      .d4 { animation-delay: 1.1s; } .d5 { animation-delay: 1.4s; } .d6 { animation-delay: 1.7s; }
+      .d7 { animation-delay: 2.0s; } .d8 { animation-delay: 2.3s; }
+      @keyframes grow80 { 0% { width: 0; } 100% { width: 288px; } }
+      @keyframes grow100 { 0% { width: 0; } 100% { width: 360px; } }
+      @keyframes grow33 { 0% { width: 0; } 100% { width: 120px; } }
+      @keyframes grow40 { 0% { width: 0; } 100% { width: 144px; } }
+      .b40 { animation: grow40 1.3s ease-out 1.2s both; }
+      .b33 { animation: grow33 1.2s ease-out 0.6s both; }
+      .b80 { animation: grow80 1.4s ease-out 1.0s both; }
+      .b100 { animation: grow100 1.6s ease-out 1.4s both; }
+      @keyframes glow { 0%, 100% { opacity: 0.35; } 50% { opacity: 1; } }
+      .live { animation: glow 2.4s ease-in-out infinite; }
+    </style>
+  </defs>
+
+  <rect width="1200" height="620" rx="24" fill="url(#bg)"/>
+  <text x="600" y="50" text-anchor="middle" class="sans" font-size="26" font-weight="800" fill="#ffffff">Measured, not claimed</text>
+  <text x="600" y="78" text-anchor="middle" class="sans" font-size="15" fill="#aab6e0">Every number below comes from real Docker runs with evidence in docs/evidence/private-alpha</text>
+
+  <!-- Card 1: real CVEs end to end -->
+  <g class="in d1">
+    <rect class="card" x="40" y="104" width="540" height="200" rx="16"/>
+    <text x="64" y="140" class="sans" font-size="18" font-weight="700" fill="#c7d3ff">Real CVEs, real projects, end to end</text>
+    <g class="sans" font-size="15" fill="#e6ebff">
+      <g class="in d2"><circle cx="76" cy="176" r="10" fill="#2fbf71"/><path d="M71 176 l4 4 l7 -8" stroke="#06210f" stroke-width="2.5" fill="none"/>
+        <text x="96" y="181">CVE-2022-24065 in Cookiecutter 2.1.0 - reproduced, repaired, verified</text></g>
+      <g class="in d3"><circle cx="76" cy="212" r="10" fill="#2fbf71"/><path d="M71 212 l4 4 l7 -8" stroke="#06210f" stroke-width="2.5" fill="none"/>
+        <text x="96" y="217">CVE-2023-5752 in pip 23.2.1 - reproduced, repaired, verified</text></g>
+      <g class="in d4"><circle cx="76" cy="248" r="10" fill="#2fbf71"/><path d="M71 248 l4 4 l7 -8" stroke="#06210f" stroke-width="2.5" fill="none"/>
+        <text x="96" y="253">Upstream-fixed versions: 0 candidates, no false alarm</text></g>
+      <g class="in d5"><circle cx="76" cy="284" r="10" fill="#2fbf71"/><path d="M71 284 l4 4 l7 -8" stroke="#06210f" stroke-width="2.5" fill="none"/>
+        <text x="96" y="289">Signed cases reused; original sources byte-identical</text></g>
+    </g>
+  </g>
+
+  <!-- Card 2: attacks refused -->
+  <g class="in d2">
+    <rect class="card" x="620" y="104" width="540" height="200" rx="16"/>
+    <text x="644" y="140" class="sans" font-size="18" font-weight="700" fill="#c7d3ff">Attacks on the verifier, refused</text>
+    <g class="mono" font-size="14" fill="#ffb4b4">
+      <text class="in d3" x="644" y="178">x  Git binary disguised as hg</text>
+      <text class="in d4" x="644" y="206">x  PYTHONPATH injected into the child hg</text>
+      <text class="in d5" x="644" y="234">x  checkout outside the cloned fixture</text>
+      <text class="in d6" x="644" y="262">x  fake "success" printed by target code</text>
+    </g>
+    <g class="in d7">
+      <rect x="980" y="160" width="150" height="110" rx="14" fill="#13204a" stroke="#3451d1"/>
+      <text x="1055" y="212" text-anchor="middle" class="sans" font-size="40" font-weight="800" fill="#8ff0b4">7/7</text>
+      <text x="1055" y="240" text-anchor="middle" class="sans" font-size="13" fill="#aab6e0">sandbox boundary</text>
+      <text x="1055" y="257" text-anchor="middle" class="sans" font-size="13" fill="#aab6e0">controls passed</text>
+    </g>
+  </g>
+
+  <!-- Card 3: unseen code -->
+  <g class="in d3">
+    <rect class="card" x="40" y="328" width="1120" height="262" rx="16"/>
+    <text x="64" y="364" class="sans" font-size="18" font-weight="700" fill="#c7d3ff">Detection on projects never used to write the rules</text>
+    <text x="64" y="386" class="sans" font-size="13" fill="#8b96c4">Expected locations fixed by reading the code before each first scan; each gap was then fixed</text>
+    <g class="sans" font-size="14" fill="#aab6e0">
+      <text x="64" y="424">Set 1 (8 projects), first scan</text>
+      <text x="64" y="466">Set 2 (10 projects), first scan</text>
+      <text x="64" y="508">Set 3 (9 projects), first scan</text>
+      <text x="64" y="556" fill="#e6ebff">All 3 sets after fixes</text>
+    </g>
+    <g>
+      <rect x="380" y="410" width="360" height="18" rx="9" fill="#1b2347"/>
+      <rect class="b33" x="380" y="410" width="0" height="18" rx="9" fill="#d1a034"/>
+      <text x="756" y="424" class="sans" font-size="15" font-weight="700" fill="#ffffff">2 / 6</text>
+      <rect x="380" y="452" width="360" height="18" rx="9" fill="#1b2347"/>
+      <rect class="b80" x="380" y="452" width="0" height="18" rx="9" fill="url(#bar)"/>
+      <text x="756" y="466" class="sans" font-size="15" font-weight="700" fill="#ffffff">8 / 10  (1 false positive)</text>
+      <rect x="380" y="494" width="360" height="18" rx="9" fill="#1b2347"/>
+      <rect class="b40" x="380" y="494" width="0" height="18" rx="9" fill="#d1a034"/>
+      <text x="756" y="508" class="sans" font-size="15" font-weight="700" fill="#ffffff">2 / 5  (0 false positives)</text>
+      <rect x="380" y="542" width="360" height="18" rx="9" fill="#1b2347"/>
+      <rect class="b100" x="380" y="542" width="0" height="18" rx="9" fill="url(#bar)"/>
+      <text x="756" y="556" class="sans" font-size="15" font-weight="700" fill="#ffffff">21 / 21  (development sets)</text>
+    </g>
+    <g class="in d8 sans" font-size="13">
+      <circle class="live" cx="980" cy="418" r="6" fill="#2fbf71"/>
+      <text x="994" y="423" fill="#8ff0b4">+1 real instance the</text>
+      <text x="994" y="441" fill="#8ff0b4">expected list missed</text>
+      <text x="968" y="478" fill="#aab6e0">Negative controls: clean</text>
+      <text x="968" y="498" fill="#aab6e0">in all three sets</text>
+      <text x="968" y="530" fill="#aab6e0">Known CVE also found in a</text>
+      <text x="968" y="548" fill="#aab6e0">vendored copy, verified</text>
+    </g>
+  </g>
+</svg>

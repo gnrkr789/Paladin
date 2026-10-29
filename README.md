@@ -21,7 +21,6 @@
   <a href="#quick-start">Quick start</a> |
   <a href="#proof-not-similarity">Proof</a> |
   <a href="#status">Status</a> |
-  <a href="#roadmap">Roadmap</a> |
   <a href="#documentation">Docs</a>
 </p>
 
@@ -144,16 +143,6 @@ Private-alpha validation (2026-10-29), all on real Docker runs:
 While validating pip, Paladin observed that the upstream `-r=VALUE` form in pip 23.3
 makes Mercurial 7.0.1 treat ordinary revisions as `=VALUE`; Paladin's repair uses
 `--rev=VALUE`. Details: [final report](docs/evidence/private-alpha/final-report.md).
-
-## Roadmap
-
-- [x] CVE evidence pack with pinned upstream sources and provenance
-- [x] Local semantic search and bounded MCP advisory tools
-- [x] Isolated, observed before/after verification with signed, reusable cases
-- [ ] More CVE families and adapters (path traversal, SQL injection, SSRF, deserialization)
-- [ ] Change-time checks on agent diffs, then opt-in blocking with reviewed rules
-- [ ] Human review workflow for knowledge and verified cases
-- [ ] Consented knowledge contribution: local -> shared analysis -> reviewed rules -> local
 
 ## Scope and principles
 

@@ -12,7 +12,7 @@
   <img src="https://img.shields.io/badge/python-3.11%2B-3776ab" alt="python 3.11+">
   <img src="https://img.shields.io/badge/MCP-advisory%20tools-7c9cff" alt="MCP advisory tools">
   <img src="https://img.shields.io/badge/sandbox-Docker%20%2B%20strace%20observer-2fbf71" alt="Docker and strace observer">
-  <img src="https://img.shields.io/badge/tests-178%20passing-2fbf71" alt="178 unit tests passing">
+  <img src="https://img.shields.io/badge/tests-186%20passing-2fbf71" alt="186 unit tests passing">
 </p>
 
 <p align="center">
@@ -137,7 +137,8 @@ Private-alpha validation (2026-10-29), all on real Docker runs:
 | Cookiecutter 2.1.0 (CVE-2022-24065) | detected, reproduced, repaired, verified, promoted, reused |
 | pip 23.2.1 (CVE-2023-5752) | detected, reproduced, repaired (`--rev=`), verified, promoted, reused |
 | Cookiecutter 2.1.1, pip 23.3 (upstream fixes) | no candidate |
-| Adversarial controls | disguised Git binary, checkout outside the clone and pip 23.3 `-r=` form all rejected |
+| Adversarial controls | disguised Git binary, injected child environment, checkout outside the clone and pip 23.3 `-r=` form all rejected |
+| Unseen projects (detection) | first scan of a 10-project held-out set: 8 of 10 expected instances, 1 false positive; both fixed afterwards (now a development set) |
 | Boundary controls | 7 of 7 passed |
 
 While validating pip, Paladin observed that the upstream `-r=VALUE` form in pip 23.3

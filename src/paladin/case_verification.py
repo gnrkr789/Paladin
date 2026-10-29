@@ -11,7 +11,7 @@ from paladin.candidate_scan import RULE_ID, scan_project
 from paladin.pip_case_adapter import RULE_ID as PIP_RULE_ID
 from paladin.language import require_english
 
-VERIFIER_ID = "mercurial-isolated-observer-v5"
+VERIFIER_ID = "mercurial-isolated-observer-v6"
 MAX_SOURCE_BYTES = 1_000_000
 PROBE_CASES = (("hg", "--config=alias.checkout=x", "risk"), ("hg", "--debugger", "risk"),
                ("hg", "-rdefault", "risk"), ("hg", "stable", "ordinary"),
@@ -194,8 +194,11 @@ def derive_checks(old, new, adapter="cookiecutter"):
             checkout = [call for call in calls if call["argv"][1:2] in (["checkout"], ["update"])]
             cloned = (len(clones) == 1 and clones[0]["argv"] == clone_argv and clones[0]["exit_code"] == 0
                       and (clone_cwd is None or clones[0]["cwd"] == clone_cwd))
+            # The decisive exec must carry the launcher environment unchanged.
             located = (cloned and len(checkout) == 1
-                       and checkout[0]["cwd"] == CHECKOUT_PARENT + "/" + kind + "source")
+                       and checkout[0]["cwd"] == CHECKOUT_PARENT + "/" + kind + "source"
+                       and checkout[0]["env_sha256"] is not None
+                       and checkout[0]["env_sha256"] == row.get("launcher_env_sha256"))
             args = checkout[0]["argv"] if located else []
             bound = not unexpected and located
             # The functional outcome comes only from the observer's root replay of the

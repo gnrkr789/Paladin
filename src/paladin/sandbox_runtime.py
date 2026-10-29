@@ -14,9 +14,10 @@ import tempfile
 import time
 import uuid
 
-OBSERVER_ID = 'docker-strace-execve-v3'
-# Exceeds the observer's own PID wait (60 s) plus trace limit (18 s) so its reason survives.
-CASE_TIMEOUT_SECONDS = 120
+OBSERVER_ID = 'docker-strace-execve-v4'
+# Exceeds the observer's PID wait (60 s), trace limit (18 s), fixture creation and
+# root replay (up to 3 x 30 s) so the observer's own reason survives.
+CASE_TIMEOUT_SECONDS = 240
 INFRASTRUCTURE_ATTEMPTS = 3
 RETRYABLE = {'sandbox_execution_failed', 'sandbox_docker_unavailable_or_timeout'}
 ASSETS = Path(__file__).parent / 'resources' / 'sandbox'

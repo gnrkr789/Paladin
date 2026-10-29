@@ -4,15 +4,17 @@ import hashlib
 from paladin.sandbox_runtime import trace_grammar
 
 ROOT_PID = 10
+LAUNCHER_ENV = ['HOME=/work', 'PATH=/usr/local/bin:/usr/bin:/bin']
 
 
 def encoded(value):
     return '"' + ''.join('\\x%02x' % byte for byte in value.encode('ascii')) + '"'
 
 
-def exec_line(pid, exec_path, argv):
+def exec_line(pid, exec_path, argv, env=None):
+    env = LAUNCHER_ENV if env is None else env
     return (str(pid) + ' execve(' + encoded(exec_path) + ', [' + ', '.join(map(encoded, argv))
-            + '], 0x7ffd /* 3 vars */) = 0')
+            + '], [' + ', '.join(map(encoded, env)) + ']) = 0')
 
 
 def trace_for(calls, root_exit=0):
@@ -36,7 +38,8 @@ def row_from_trace(case, trace, *, safe_ok, root_cwd='/'):
     replayed = checkout[0] if safe_ok and len(checkout) == 1 else None
     return dict(case, calls=parsed['calls'], target_exit_code=parsed['target_exit_code'],
                 replayed_argv=replayed, replay_branch=case['value'] if replayed else None,
-                target_pid=ROOT_PID, target_cwd=root_cwd, path_alias_created=parsed['path_alias_created'],
+                target_pid=ROOT_PID, target_cwd=root_cwd,
+                launcher_env_sha256=trace_grammar().env_digest(LAUNCHER_ENV), path_alias_created=parsed['path_alias_created'],
                 checkout_directory_real=True, safe_ok=safe_ok, trace=trace,
                 trace_sha256=hashlib.sha256(trace.encode('ascii')).hexdigest())
 

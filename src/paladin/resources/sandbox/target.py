@@ -58,6 +58,12 @@ def install_seccomp():
 
 
 def publish_pid():
+    # The environment is published before the PID and before any project code
+    # loads; the observer reads both before it signals start.
+    environment = Path('/work/target.env.tmp')
+    environment.write_bytes(b'\0'.join(key.encode('ascii') + b'=' + value.encode('ascii')
+                                        for key, value in os.environ.items()))
+    os.replace(environment, '/work/target.env')
     pending = Path('/work/target.pid.tmp')
     pending.write_text(str(os.getpid()), encoding='ascii')
     os.replace(pending, '/work/target.pid')

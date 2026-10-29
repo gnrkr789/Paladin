@@ -7,6 +7,7 @@ trace or unexpected syscalls, rejects the whole trace. The working directory of
 every successful exec is derived from observed chdir calls and process creation;
 when it cannot be derived exactly it is reported as None.
 """
+import hashlib
 import posixpath
 import re
 
@@ -29,8 +30,11 @@ _UNFINISHED = ' <unfinished ...>'
 _RESUMED = re.compile(r'<\.\.\. ([a-z0-9]+) resumed>(.*)\Z', re.S)
 _EXITED = re.compile(r'\+\+\+ (?:exited with ([0-9]{1,3})|killed by SIG[A-Z0-9]+(?: \(core dumped\))?) \+\+\+\Z')
 _SIGNAL = re.compile(r'--- SIG[A-Z0-9]+ \{si_signo=SIG[A-Z0-9]+, [ -~]*\} ---\Z')
-_EXECVE = re.compile(_STRING + r', \[((?:' + _STRING + r'(?:, ' + _STRING + r')*)?)\], '
-                     r'(?:NULL|0x[0-9a-f]+(?: /\* [0-9]+ vars? \*/)?)\Z')
+_ENCODED = r'"(?:\\x[0-9a-f]{2})*"'
+_LIST = r'\[((?:' + _ENCODED + r'(?:, ' + _ENCODED + r')*)?)\]'
+# With strace -v the environment is a full string array; a pointer form has no env.
+_EXECVE = re.compile(_STRING + r', ' + _LIST + r', (?:' + _LIST
+                     + r'|NULL|0x[0-9a-f]+(?: /\* [0-9]+ vars? \*/)?)\Z')
 _ITEM = re.compile(_STRING)
 _CHDIR = re.compile(_STRING + r'\Z')
 _FCHDIR = re.compile(r'[0-9]{1,9}\Z')
@@ -45,6 +49,13 @@ _RENAME = re.compile(r'(?:' + _FD + r', )?' + _STRING + r', (?:' + _FD + r', )?'
 
 class TraceError(ValueError):
     pass
+
+
+def env_digest(entries):
+    """Order-independent digest of NAME=VALUE entries; None when not recorded."""
+    if entries is None:
+        return None
+    return hashlib.sha256('\0'.join(sorted(entries)).encode('ascii')).hexdigest()
 
 
 def _decode(encoded):
@@ -122,10 +133,11 @@ def parse_trace(trace, root_pid, root_cwd):
             if not match:
                 raise TraceError('unsupported_exec_trace_shape')
             argv = [_decode(item) for item in _ITEM.findall(match[2])]
+            env = None if match[3] is None else [_decode(item) for item in _ITEM.findall(match[3])]
             if not argv or len(argv) > MAX_ARGV:
                 raise TraceError('trace_argv_invalid')
             if error is None:
-                events.append((index, pid, 'exec', (_decode(match[1]), argv)))
+                events.append((index, pid, 'exec', (_decode(match[1]), argv, env_digest(env))))
         elif name == 'execveat':
             raise TraceError('unsupported_exec_trace_shape')
         elif name == 'chdir':
@@ -216,7 +228,7 @@ def parse_trace(trace, root_pid, root_cwd):
     calls, latest = [], {}
     for index, pid, kind, payload in events:
         if kind == 'exec':
-            call = {'argv': payload[1], 'exec_path': payload[0], 'pid': pid,
+            call = {'argv': payload[1], 'exec_path': payload[0], 'env_sha256': payload[2], 'pid': pid,
                     'cwd': cwd_at(pid, index), 'exit_code': None}
             calls.append(call)
             latest[pid] = call

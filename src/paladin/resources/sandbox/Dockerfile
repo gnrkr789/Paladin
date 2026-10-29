@@ -4,12 +4,15 @@ FROM python:3.11-slim@sha256:0a19f628b6a9a96b0a0df9e0d3a327e8d51cd857804b04efcf1
 ARG DEBIAN_SNAPSHOT=20261027T000000Z
 RUN rm /etc/apt/sources.list.d/debian.sources \
     && for suite in debian/trixie debian/trixie-updates debian-security/trixie-security; do \
-         echo "deb [check-valid-until=no] http://snapshot.debian.org/archive/${suite%%/*}/$DEBIAN_SNAPSHOT ${suite#*/} main"; \
+         echo "deb [check-valid-until=no] https://snapshot.debian.org/archive/${suite%%/*}/$DEBIAN_SNAPSHOT ${suite#*/} main"; \
        done > /etc/apt/sources.list \
     && apt-get update \
     && apt-get install -y --no-install-recommends strace=6.13+ds-1 git=1:2.47.3-0+deb13u1 mercurial=7.0.1-2 \
     && rm -rf /var/lib/apt/lists/*
-RUN dpkg-query -W strace git mercurial mercurial-common git-man
+# Record and hash the complete installed package set in the build log.
+RUN dpkg-query -W -f '${Package} ${Version}\n' > /opt/paladin-packages.txt \
+    && grep -E '^(strace|git|git-man|mercurial|mercurial-common) ' /opt/paladin-packages.txt \
+    && sha256sum /opt/paladin-packages.txt
 RUN printf 'pip==23.2.1 --hash=sha256:7ccf472345f20d35bdc9d1841ff5f313260c2c33fe417f48c30ac46cccabf5be\n' > /tmp/pip-runtime.txt \
     && python -m pip install --no-cache-dir --no-deps --no-compile --require-hashes --target /opt/pip-runtime -r /tmp/pip-runtime.txt \
     && rm /tmp/pip-runtime.txt && chmod -R a-w /opt/pip-runtime

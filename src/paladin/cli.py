@@ -102,6 +102,11 @@ def main(argv=None):
                 if args.action == "auto":
                     runs = []
                     for candidate in result["candidates"]:
+                        if candidate.get("verifiable") is False:
+                            # Review-level findings have no execution adapter; never run them.
+                            runs.append({"status": "review_only", "candidate_id": candidate["candidate_id"],
+                                         "reason": "no_verification_adapter"})
+                            continue
                         try:
                             runs.append(run_case(args.workspace, args.project, candidate["candidate_id"]))
                         except (ValueError, OSError, TimeoutError) as exc:

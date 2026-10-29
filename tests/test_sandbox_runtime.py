@@ -169,16 +169,16 @@ class ObserverReplayTests(unittest.TestCase):
         with patch.object(observer.subprocess, 'run') as run:
             for calls in ([],  # no checkout observed
                           [{'argv': ['hg', 'update', '--quiet', '-r=stable'], 'exec_path': '/usr/bin/hg',
-                            'cwd': '/work/case/hgsource', 'exit_code': 0}],  # pip 23.3 form
+                            'cwd': '/work/case/hgsource', 'exit_code': 0, 'env_sha256': 'e' * 64}],  # pip 23.3 form
                           [{'argv': ['hg', 'update', '--quiet', '--rev=stable'], 'exec_path': '/usr/bin/git',
-                            'cwd': '/work/case/hgsource', 'exit_code': 0}],  # disguised binary
+                            'cwd': '/work/case/hgsource', 'exit_code': 0, 'env_sha256': 'e' * 64}],  # disguised binary
                           [{'argv': ['hg', 'update', '--quiet', '--rev=stable'], 'exec_path': '/usr/bin/hg',
-                            'cwd': '/tmp', 'exit_code': 0}]):  # wrong directory
-                self.assertEqual(observer.replay_branch('pip-mercurial', case, calls), (None, None))
+                            'cwd': '/tmp', 'exit_code': 0, 'env_sha256': 'e' * 64}]):  # wrong directory
+                self.assertEqual(observer.replay_branch('pip-mercurial', case, calls, 'e' * 64), (None, None))
             risk = dict(case, role='risk')
             calls = [{'argv': ['hg', 'update', '--quiet', '-r', 'stable'], 'exec_path': '/usr/bin/hg',
-                      'cwd': '/work/case/hgsource', 'exit_code': 0}]
-            self.assertEqual(observer.replay_branch('pip-mercurial', risk, calls), (None, None))
+                      'cwd': '/work/case/hgsource', 'exit_code': 0, 'env_sha256': 'e' * 64}]
+            self.assertEqual(observer.replay_branch('pip-mercurial', risk, calls, 'e' * 64), (None, None))
             run.assert_not_called()
         self.assertIn(['hg', 'checkout', '--', '--x'], observer.replayable_argv('cookiecutter', 'hg', '--x'))
         self.assertEqual(observer.replayable_argv('cookiecutter', 'git', 'v'), [['git', 'checkout', 'v']])

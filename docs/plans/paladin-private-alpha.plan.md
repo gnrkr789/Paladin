@@ -101,3 +101,19 @@ Code review: 0 CRITICAL, 0 HIGH. Security review: 0 CRITICAL, 0 HIGH.
 - fixed -> (2026-10-28 security L1) unpinned apt -> snapshot 20261027T000000Z + exact versions; sandbox-v6/build.log
 - scoped -> (replay check MEDIUM) trace proves argv, not the target's own hg/git process behaviour under a target-controlled environment -> limitation stated in case-loop.md and final report; capturing envp of the decisive exec is a follow-up
 - deferred -> (replay check LOW) set TMPDIR for root replay; https snapshot and hashed dpkg list; reap zombies or --init before replay; fixtures() with REPLAY_ENV; resize CASE_TIMEOUT_SECONDS for replay time -> next round, needs image rebuild and full re-evaluation
+
+## Review Decisions (2026-10-29, hardening round)
+
+- fixed -> (replay check MEDIUM) envp of the decisive exec unrecorded -> strace -v, env digest per exec, launcher-published environment, decisive exec must match; verifier v6, observer v4; live control env_injected_before
+- fixed -> (replay check LOW) TMPDIR for root replay -> /observer/replay/tmp (root 0700)
+- fixed -> (replay check LOW) http snapshot, unhashed package list -> https snapshot; full dpkg list hashed in build log
+- fixed -> (replay check LOW) zombies could exhaust pids before replay -> observer reaps orphans before replay
+- fixed -> (replay check LOW) fixtures() inherited container env -> clean fixture env
+- fixed -> (replay check LOW) host timeout below replay budget -> CASE_TIMEOUT_SECONDS 240
+- found -> /proc/<pid>/environ unreadable (0400, no CAP_DAC_OVERRIDE) -> launcher publishes its environment before loading project code (sandbox-v7 build kept as failed attempt)
+
+## Review Decisions (2026-10-29, detection generalization)
+
+- fixed -> held-out set 1 missed wrapper calls, hg update, built lists and Python 2 (2/6) -> generalized review rule; set 1 6/6 after the fix (development set)
+- fixed -> held-out set 2 first scan 8/10 with one svn false positive -> global options, variadic helpers, foreign executable names; set 2 10/10 after the fix (development set)
+- open -> a new unseen set is needed to measure the current rule honestly

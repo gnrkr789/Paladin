@@ -105,6 +105,23 @@ class IsolatedVerificationTests(unittest.TestCase):
             forged['observations'][index].update(replay, safe_ok=True)
             self.assertFalse(derive_checks(observations(False), forged)['safe_after_passed'], replay)
 
+    def test_decisive_exec_with_injected_environment_is_not_bound(self):
+        # PYTHONPATH or HGRCPATH injected into the target's own hg changes what that
+        # process runs without changing argv, so the observation cannot count.
+        from tests.observer_fixtures import LAUNCHER_ENV, exec_line, ROOT_PID
+        index = next(i for i, case in enumerate(probe_cases()) if case['role'] == 'risk')
+        value = probe_cases()[index]['value']
+        before = observations(False)
+        row = before['observations'][index]
+        injected = exec_line(ROOT_PID + 2, '/usr/bin/hg', ['hg', 'checkout', value],
+                             LAUNCHER_ENV + ['PYTHONPATH=/work/shadow'])
+        trace = '\n'.join(injected if ' execve(' in line and '"\\x63\\x68\\x65' in line else line
+                          for line in row['trace'].split('\n'))
+        self.assertNotEqual(trace, row['trace'])
+        before['observations'][index] = row_from_trace({k: row[k] for k in ('kind', 'value', 'role')},
+                                                       trace, safe_ok=False)
+        self.assertFalse(derive_checks(before, observations(True))['before_risk_observed'])
+
     def test_parsed_calls_that_disagree_with_trace_are_rejected(self):
         before, after = observations(False), observations(True)
         after['observations'][0]['calls'][1]['argv'] = checkout_argv('cookiecutter', 'hg', 'x', True)

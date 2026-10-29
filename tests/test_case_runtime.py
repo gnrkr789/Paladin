@@ -25,7 +25,7 @@ class CaseRuntimeTests(unittest.TestCase):
         self.asset_patch = patch("paladin.sandbox_runtime.ASSETS", self.assets)
         self.asset_patch.start()
         self.identity = {"image_id": "sha256:" + "1" * 64,
-                         "observer_id": "docker-strace-execve-v3",
+                         "observer_id": "docker-strace-execve-v4",
                          "build_context_sha256": hashlib.sha256(
                              b"Dockerfile\0FROM fixture\nobserver.py\0# observer fixture\ntarget.py\0# target fixture\n"
                              b"trace_grammar.py\0# grammar fixture\n").hexdigest(),

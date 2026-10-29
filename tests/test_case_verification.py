@@ -28,7 +28,7 @@ def clone(repo_url, checkout=None, clone_to_dir=".", no_input=False):
 '''
 
 
-RUNTIME = {"image_id": "sha256:" + "a" * 64, "observer_id": "docker-strace-execve-v3",
+RUNTIME = {"image_id": "sha256:" + "a" * 64, "observer_id": "docker-strace-execve-v4",
            "build_context_sha256": "b" * 64, "build_log_sha256": "c" * 64}
 
 

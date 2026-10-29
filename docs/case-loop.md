@@ -7,6 +7,17 @@ candidates and unsupported observations; no candidate is a security verdict.
 Unresolved dynamic argv and source parsing limits make coverage partial. Git
 metadata, Paladin state and Python caches are skipped.
 
+A third, generalized rule (`mercurial-argv-option-injection-v1`) reports
+review-level candidates for any `hg checkout`/`co`/`update`/`up` argv where a
+non-constant value can reach Mercurial before `--`: wrapper calls
+(`self.run([...])`), variadic helpers (`run('hg', 'update', rev)`), global
+options before the subcommand (`--cwd`, `-R`), lists grown with
+`append`/`extend`/`+=` inside one function, and a token fallback for files the
+parser rejects (for example Python 2). Values with a fixed non-option prefix
+(`'tip~%d' % n`) or attached options (`'--rev=' + rev`) are not reported. These
+candidates are marked `verifiable: false`; `cases auto` records them as
+`review_only` and never executes them.
+
 ```powershell
 .venv/Scripts/python.exe -B -m paladin.cli cases runtime-build --workspace C:/Paladin --json
 .venv/Scripts/python.exe -B -m paladin.cli cases scan --project C:/projects/example --json
@@ -20,7 +31,7 @@ matched source structure (`--` before the Mercurial checkout target; or
 fingerprints are not required. Unsupported structures fail closed.
 
 Target source executes only inside the explicitly built Docker runtime
-(`mercurial-isolated-observer-v5`, observer `docker-strace-execve-v3`): no
+(`mercurial-isolated-observer-v6`, observer `docker-strace-execve-v4`): no
 network, read-only root filesystem, no host mounts, all capabilities dropped
 except the observer's ptrace, uid 65534 with no-new-privileges, resource and
 time limits. The launcher adds a seccomp filter that denies untraceable process
@@ -60,10 +71,16 @@ environment injection into the target's own hg/git processes therefore cannot
 produce a passing check. Symlink, rename and hard-link creation by target code is
 traced and fails the safe checks.
 
+The observer records the full environment of every exec (`strace -v`). The
+decisive checkout exec counts only when its environment equals the trusted
+launcher's, so variables such as PYTHONPATH, HGRCPATH or LD_PRELOAD injected by
+project code for its own hg/git child invalidate the observation.
+
 Known limits: the verdict covers the recorded argument-injection cases and the
-checkout outcome of the observed argv under clean hg/git, not what the target's
-own hg/git process did with a target-controlled environment, and not
-whole-project security. Observer-side
+checkout outcome of the observed argv under clean hg/git, not whole-project
+security. Detection is intraprocedural and syntactic: values assembled across
+functions, shell command strings and non-Mercurial tools are out of scope. Only
+the Cookiecutter `clone` API and pip's `Mercurial.fetch_new` are executable. Observer-side
 failures are reported by the CLI as `sandbox_observation_failed`. Docker CLI
 timeouts are retried up to three times in fresh containers and counted as
 `infrastructure_retries`.

@@ -12,9 +12,9 @@ import sys
 import time
 
 sys.path.insert(0, '/opt/paladin')
-from trace_grammar import TRACED, parse_trace  # noqa: E402
+from trace_grammar import TRACED, env_digest, parse_trace  # noqa: E402
 
-OBSERVER_ID = 'docker-strace-execve-v3'
+OBSERVER_ID = 'docker-strace-execve-v4'
 PID_TIMEOUT_SECONDS = 60
 TRACE_TIMEOUT_SECONDS = 18
 # -I ignores PYTHONDONTWRITEBYTECODE; -B keeps imports from writing bytecode in /work.
@@ -22,7 +22,8 @@ LAUNCHER = b'python\x00-I\x00-B\x00/opt/paladin/target.py\x00'
 
 
 def checked(argv, cwd=None):
-    return subprocess.run(argv, cwd=cwd, check=True, stdout=subprocess.DEVNULL,
+    env = {key: value for key, value in REPLAY_ENV.items() if key != 'TMPDIR'}
+    return subprocess.run(argv, cwd=cwd, env=env, check=True, stdout=subprocess.DEVNULL,
                           stderr=subprocess.PIPE, timeout=20)
 
 
@@ -56,7 +57,8 @@ def fixtures():
 REPLAY_ROOT = '/observer/replay'
 REPLAY_ENV = {'PATH': '/usr/bin:/bin', 'HOME': '/observer', 'HGRCPATH': '/dev/null',
               'HGRCSKIPREPO': '1', 'HGPLAIN': '1', 'GIT_CONFIG_NOSYSTEM': '1',
-              'GIT_CONFIG_GLOBAL': '/opt/paladin/gitconfig', 'LC_ALL': 'C'}
+              'GIT_CONFIG_GLOBAL': '/opt/paladin/gitconfig', 'LC_ALL': 'C',
+              'TMPDIR': REPLAY_ROOT + '/tmp'}
 
 
 def replayable_argv(adapter, kind, value):
@@ -67,23 +69,37 @@ def replayable_argv(adapter, kind, value):
     return [['hg', 'update', '--quiet', '-r', value], ['hg', 'update', '--quiet', '--rev=' + value]]
 
 
-def decisive_checkout(calls, kind):
+def decisive_checkout(calls, kind, launcher_env):
     checkout = '/work/case/' + kind + 'source'
     found = [call for call in calls if call['argv'][1:2] in (['checkout'], ['update'])]
     if (len(found) != 1 or found[0]['exec_path'] != '/usr/bin/' + kind or found[0]['argv'][0] != kind
-            or found[0]['cwd'] != checkout or found[0]['exit_code'] != 0):
+            or found[0]['cwd'] != checkout or found[0]['exit_code'] != 0
+            or found[0]['env_sha256'] is None or found[0]['env_sha256'] != launcher_env):
         return None
     return found[0]
 
 
-def replay_branch(adapter, case, calls):
+def reap_orphans():
+    # Orphaned target children are re-parented to this PID 1; reap before replay.
+    while True:
+        try:
+            pid, _ = os.waitpid(-1, os.WNOHANG)
+        except ChildProcessError:
+            return
+        if pid == 0:
+            return
+
+
+def replay_branch(adapter, case, calls, launcher_env):
     """Re-run the observed checkout argv in a fresh root clone; return the resulting branch."""
     kind, value = case['kind'], case['value']
-    call = decisive_checkout(calls, kind)
+    call = decisive_checkout(calls, kind, launcher_env)
     if case['role'] == 'risk' or call is None or call['argv'] not in replayable_argv(adapter, kind, value):
         return None, None
     destination = REPLAY_ROOT + '/' + kind + 'source'
+    reap_orphans()
     Path(REPLAY_ROOT).mkdir(mode=0o700)
+    Path(REPLAY_ENV['TMPDIR']).mkdir(mode=0o700)
     clone = ([kind, 'clone', '--noupdate', '--quiet'] if adapter == 'pip-mercurial' else [kind, 'clone', '--quiet'])
     subprocess.run(clone + ['/fixtures/' + kind + 'source', destination], env=REPLAY_ENV, check=True,
                    stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, timeout=30)
@@ -171,8 +187,14 @@ def main():
     pid = wait_for_target()
     credentials = target_credentials(pid)
     root_cwd = os.readlink('/proc/' + str(pid) + '/cwd')
+    # The decisive exec must inherit the launcher environment unchanged; injected
+    # PYTHONPATH, HGRCPATH or LD_* variables would make its argv meaningless.
+    # /proc/<pid>/environ is 0400 for uid 65534 and this observer has no
+    # CAP_DAC_OVERRIDE; the trusted launcher published it before loading project code.
+    entries = Path('/work/target.env').read_bytes().split(b'\0')
+    launcher_env = env_digest([item.decode('ascii') for item in entries if item])
     trace_path = Path('/observer/trace')
-    tracer = subprocess.Popen(['strace', '-f', '-xx', '-s', '65535', '-e', 'trace=' + TRACED,
+    tracer = subprocess.Popen(['strace', '-f', '-v', '-xx', '-s', '65535', '-e', 'trace=' + TRACED,
                                '-o', str(trace_path), '-p', str(pid)],
                               stdout=subprocess.DEVNULL, stderr=subprocess.PIPE)
     # strace confirms attach before the immutable launcher loads source bytes.
@@ -196,10 +218,11 @@ def main():
         raise ValueError('invalid_or_overflow_trace')
     parsed = parse_trace(trace, pid, root_cwd)
     exit_code = parsed['target_exit_code']
-    replayed_argv, branch = replay_branch(adapter, case, parsed['calls'])
+    replayed_argv, branch = replay_branch(adapter, case, parsed['calls'], launcher_env)
     real_checkout = checkout_directory_is_real(case['kind'])
     row = dict(case, calls=parsed['calls'], target_exit_code=exit_code, target_pid=pid,
-               target_cwd=root_cwd, path_alias_created=parsed['path_alias_created'],
+               target_cwd=root_cwd, launcher_env_sha256=launcher_env,
+               path_alias_created=parsed['path_alias_created'],
                checkout_directory_real=real_checkout,
                error=None if exit_code == 0 else 'target_execution_failed',
                safe_ok=bool(exit_code == 0 and branch == case['value'] and real_checkout

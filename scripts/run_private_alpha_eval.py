@@ -35,6 +35,16 @@ def clone(repo_url, checkout=None, clone_to_dir=".", no_input=False):
     subprocess.run(["hg", "checkout", checkout], executable="/usr/bin/git",
                    cwd=clone_to_dir + "/hgsource")
 '''
+# Correct-looking argv, but the child hg gets an injected PYTHONPATH, so its
+# behaviour is target-controlled; the decisive exec must not count.
+ENV_INJECTED = b'''import os, subprocess
+def clone(repo_url, checkout=None, clone_to_dir=".", no_input=False):
+    os.makedirs(clone_to_dir, exist_ok=True)
+    kind = repo_url.split("+", 1)[0]
+    subprocess.check_output([kind, "clone", "/fixtures/" + kind + "source"], cwd=clone_to_dir)
+    env = dict(os.environ, PYTHONPATH="/work/shadow")
+    subprocess.run([kind, "checkout", checkout], cwd=clone_to_dir + "/" + kind + "source", env=env)
+'''
 WRONG_DIRECTORY = b'''import os, subprocess
 def clone(repo_url, checkout=None, clone_to_dir=".", no_input=False):
     os.makedirs(clone_to_dir, exist_ok=True)
@@ -116,6 +126,8 @@ def adversarial(evidence, image_id):
         "checkout_outside_clone_after": derive_checks(observe("cookiecutter-before", real_before),
                                                       observe("wrong-directory", WRONG_DIRECTORY),
                                                       "cookiecutter"),
+        "env_injected_before": derive_checks(observe("env-injected", ENV_INJECTED),
+                                             reference_after, "cookiecutter"),
         "pip_23_3_attached_revision_after": derive_checks(
             observe("pip-before", PIP_AFFECTED.read_bytes(), "pip-mercurial"),
             observe("pip-23.3-upstream", PIP_UPSTREAM_FIX.read_bytes(), "pip-mercurial"),
@@ -125,6 +137,7 @@ def adversarial(evidence, image_id):
         "masquerade_git_as_hg_before": ("before_risk_observed", False),
         "checkout_outside_clone_after": ("safe_after_passed", False),
         "pip_23_3_attached_revision_after": ("safe_after_passed", False),
+        "env_injected_before": ("before_risk_observed", False),
     }
     summary = {label: {"checks": checks, "expected": {expectations[label][0]: expectations[label][1]},
                        "passed": checks[expectations[label][0]] is expectations[label][1]}

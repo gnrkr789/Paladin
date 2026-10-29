@@ -7,9 +7,11 @@ import os
 from pathlib import Path
 import stat
 import tokenize
+import warnings
 
 from .language import require_english
 from .pip_case_adapter import CVE_ID as PIP_CVE_ID, RULE_ID as PIP_RULE_ID, revision_lists
+from . import hg_argv_rule
 
 RULE_ID = "CVE-2022-24065:mercurial-checkout-v1"
 MAX_FILES = 5000
@@ -44,8 +46,21 @@ def _calls(tree):
             yield node
 
 
+def _foreign_executables(tree):
+    """Names bound only to other tools (e.g. svn = shutil.which('svn')) are not Mercurial."""
+    seen = {}
+    for node in ast.walk(tree):
+        if isinstance(node, ast.Assign) and len(node.targets) == 1 and isinstance(node.targets[0], ast.Name):
+            texts = {item.value for item in ast.walk(node.value)
+                     if isinstance(item, ast.Constant) and isinstance(item.value, str)}
+            seen.setdefault(node.targets[0].id, set()).update(texts or {"<dynamic>"})
+    return {name for name, texts in seen.items()
+            if "<dynamic>" not in texts and not texts & {"hg", "mercurial"}}
+
+
 def _analyze(tree):
     lines, unsupported = [], []
+    foreign = _foreign_executables(tree)
     for call in _calls(tree):
         argv = call.args[0] if call.args else next((k.value for k in call.keywords if k.arg == "args"), None)
         if not isinstance(argv, (ast.List, ast.Tuple)):
@@ -67,6 +82,8 @@ def _analyze(tree):
         if executable is None and not isinstance(parts[0], ast.Name):
             unsupported.append("dynamic checkout executable at line %d" % call.lineno)
             continue
+        if executable is None and parts[0].id in foreign:
+            continue
         for arg in parts[2:]:
             if _text(arg) == "--":
                 break
@@ -83,6 +100,13 @@ def _analyze(tree):
     return lines, unsupported
 
 
+def _general(rel, line, cve, digest, detection):
+    identity = "\0".join((hg_argv_rule.RULE_ID, rel, str(line), digest)).encode("ascii")
+    return {"rule_id": hg_argv_rule.RULE_ID, "cve_id": cve, "path": rel, "line": line,
+            "source_sha256": digest, "candidate_id": hashlib.sha256(identity).hexdigest(),
+            "severity": "review", "verifiable": False, "detection": detection}
+
+
 def scan_project(root):
     """Return source candidates, not vulnerability verdicts; never execute target code."""
     root = Path(root).absolute()
@@ -92,7 +116,8 @@ def scan_project(root):
         raise ValueError("Project root must be a non-link directory")
     candidates, unsupported = [], []
     limitations = ["Static local source patterns only; candidates do not prove reachability or a vulnerability.",
-                   "Only the CVE-2022-24065 checkout and CVE-2023-5752 pip revision rules are supported.",
+                   "Exact CVE-2022-24065 checkout and CVE-2023-5752 pip revision rules are verifiable.",
+                   "The generalized Mercurial argv rule reports review-level candidates without verification.",
                    "No interprocedural data flow or runtime behavior is analyzed.",
                    "Concurrent filesystem changes can affect scan coverage."]
     files = total = directories = 0
@@ -154,12 +179,22 @@ def scan_project(root):
                     unsupported.append("source size limit exceeded: " + rel)
                     continue
                 total += len(data)
-                encoding, _ = tokenize.detect_encoding(io.BytesIO(data).readline)
-                tree = ast.parse(data.decode(encoding), filename=rel)
-            except (OSError, UnicodeError, SyntaxError, ValueError, LookupError):
+            except (OSError, ValueError):
                 unsupported.append("source unreadable or unsupported syntax: " + rel)
                 continue
             digest = hashlib.sha256(data).hexdigest()
+            try:
+                encoding, _ = tokenize.detect_encoding(io.BytesIO(data).readline)
+                with warnings.catch_warnings():
+                    # Project source is data; its SyntaxWarnings are not Paladin output.
+                    warnings.simplefilter("ignore")
+                    tree = ast.parse(data.decode(encoding), filename=rel)
+            except (UnicodeError, SyntaxError, ValueError, LookupError):
+                unsupported.append("source unreadable or unsupported syntax: " + rel)
+                # Token fallback keeps the generalized rule working on, e.g., Python 2 files.
+                for line, cve in hg_argv_rule.token_findings(data) or []:
+                    candidates.append(_general(rel, line, cve, digest, "token"))
+                continue
             lines, unknown = _analyze(tree)
             unsupported.extend(rel + ": " + message for message in unknown)
             for line in lines:
@@ -167,6 +202,10 @@ def scan_project(root):
                 candidates.append({"rule_id": RULE_ID, "cve_id": "CVE-2022-24065", "path": rel,
                                    "line": line, "source_sha256": digest,
                                    "candidate_id": hashlib.sha256(identity).hexdigest()})
+            exact = {(rel, line) for line in lines}
+            for line, cve in hg_argv_rule.ast_findings(tree):
+                if (rel, line) not in exact:
+                    candidates.append(_general(rel, line, cve, digest, "ast"))
             for value in revision_lists(tree):
                 line = value.lineno
                 identity = "\0".join((PIP_RULE_ID, rel, str(line), digest)).encode("ascii")

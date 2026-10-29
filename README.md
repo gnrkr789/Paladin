@@ -152,7 +152,11 @@ uv --cache-dir .cache/uv sync --locked
 .\.venv\Scripts\paladin.exe mcp --workspace C:/paladin-workspace
 ```
 
-`model prepare` downloads the pinned embedding model and tokenizer (487 MB); inference
+The package ships the passage vectors of all 30 prevention cards
+(`prevention-vectors.json`), so `patterns index` loads the same vectors on every
+machine without running the model; `patterns export` regenerates them after the
+pack changes. `model prepare` downloads the pinned embedding model and tokenizer
+(487 MB), still needed to embed search queries; inference
 runs locally on CPU. `cases runtime-build` builds the sandbox image explicitly; nothing
 executes project code until you ask for it. See the
 [private-alpha install guide](docs/private-alpha-install.md) for wheel installation.

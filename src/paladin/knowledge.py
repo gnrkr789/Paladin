@@ -1,5 +1,6 @@
 """Source-qualified advisory retrieval. Similarity is not a vulnerability verdict."""
 from contextlib import closing
+import base64
 import hashlib
 from importlib import metadata, resources
 import json
@@ -98,13 +99,63 @@ def _active_manifest(root, pack):
     return state, config, manifest
 
 
+SNAPSHOT = "prevention-vectors.json"
+
+
+def _snapshot_identity(pack):
+    return {"pack_id": pack["pack_id"], "pack_sha256": hashlib.sha256(_resource("prevention-pack.json")).hexdigest(),
+            "encoder_sha256": encoder_identity(), "model_id": model_lock()["model_id"],
+            "model_revision": model_lock()["revision"], "dimension": 384}
+
+
+def snapshot_vectors(pack):
+    """Packaged passage vectors for this exact pack and encoder, or None if they do not apply."""
+    try:
+        snapshot = json.loads(_resource(SNAPSHOT))
+    except (OSError, FileNotFoundError, ValueError):
+        return None
+    if not isinstance(snapshot, dict) or snapshot.get("identity") != _snapshot_identity(pack):
+        return None
+    vectors = []
+    for pattern in pack["patterns"]:
+        encoded = snapshot.get("vectors", {}).get(pattern["pattern_id"])
+        if not isinstance(encoded, str):
+            return None
+        array = np.frombuffer(base64.b64decode(encoded, validate=True), dtype="<f4")
+        if array.shape != (384,) or not np.all(np.isfinite(array)):
+            return None
+        vectors.append(array.astype(np.float32).tolist())
+    return vectors
+
+
+def export_snapshot(root):
+    """Compute passage vectors with the local model and write the packaged snapshot."""
+    pack = load_pack()
+    vectors = LocalEmbedder(root).encode([passage(p) for p in pack["patterns"]], "passage")
+    array = np.asarray(vectors, dtype="<f4")
+    if array.shape != (len(pack["patterns"]), 384) or not np.all(np.isfinite(array)):
+        raise ValueError("invalid semantic embedding matrix")
+    snapshot = {"schema_version": 1, "identity": _snapshot_identity(pack),
+                "note": "Passage vectors of prevention-pack.json; queries still need the local model.",
+                "vectors": {p["pattern_id"]: base64.b64encode(row.tobytes()).decode("ascii")
+                            for p, row in zip(pack["patterns"], array)}}
+    path = Path(__file__).parent / "resources" / SNAPSHOT
+    path.write_bytes((json.dumps(snapshot, indent=1, sort_keys=True) + "\n").encode("ascii"))
+    return {"status": "exported", "path": str(path), "pattern_count": len(pack["patterns"]),
+            "identity": snapshot["identity"]}
+
+
 def build_index(root):
     try:
         state, config = _context(root)
         pack = load_pack()
         manifest = _manifest(root, pack)
-        encoder = LocalEmbedder(root)
-        vectors = encoder.encode([passage(p) for p in pack["patterns"]], "passage")
+        # Packaged vectors make every install index the same bytes without loading the model.
+        vectors = snapshot_vectors(pack)
+        source = "snapshot"
+        if vectors is None:
+            vectors = LocalEmbedder(root).encode([passage(p) for p in pack["patterns"]], "passage")
+            source = "computed"
         store = SemanticStore(config)
         try:
             store.write(manifest, pack["patterns"], vectors)
@@ -119,7 +170,8 @@ def build_index(root):
             raise ValueError("unsafe semantic manifest temporary path")
         temp.write_text(encoded + "\n", encoding="utf-8")
         temp.replace(state / "semantic-index.json")
-        return {"status": "indexed", "manifest": manifest, "security_ready": False, "enforcement_enabled": False}
+        return {"status": "indexed", "manifest": manifest, "vector_source": source,
+                "security_ready": False, "enforcement_enabled": False}
     except Exception as exc:
         return _failure(exc)
 

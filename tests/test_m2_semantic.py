@@ -5,6 +5,7 @@ import json
 from pathlib import Path
 import tempfile
 import unittest
+from unittest.mock import patch
 
 import numpy as np
 
@@ -109,12 +110,14 @@ class M2Contracts(unittest.TestCase):
         result = self.api().search_patterns(ROOT, "anything", family="unknown")
         self.assertEqual(result["status"], "unsupported")
 
-    def test_index_without_prepared_model_is_unavailable(self):
+    def test_index_without_prepared_model_is_unavailable_unless_packaged_vectors_apply(self):
+        # Packaged passage vectors let indexing skip the model; without them it is unavailable.
         from paladin.local import setup
         api = self.api()
         with tempfile.TemporaryDirectory() as root:
             setup(Path(root), start=False)
-            result = api.build_index(Path(root))
+            with patch("paladin.knowledge.snapshot_vectors", return_value=None):
+                result = api.build_index(Path(root))
             self.assertEqual(result["status"], "unavailable")
             self.assertFalse((Path(root) / ".paladin/semantic-index.json").exists())
 

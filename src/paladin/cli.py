@@ -52,7 +52,7 @@ def main(argv=None):
     model = commands.add_parser("model")
     model.add_argument("action", choices=["prepare"])
     patterns = commands.add_parser("patterns")
-    patterns.add_argument("action", choices=["validate", "index", "status"])
+    patterns.add_argument("action", choices=["validate", "index", "status", "export"])
     search = commands.add_parser("search")
     search.add_argument("query", help="English technical text only (printable ASCII)")
     search.add_argument("--limit", type=int, default=5)
@@ -140,6 +140,9 @@ def main(argv=None):
                 pack = load_pack()
                 result = {"status": "valid", "pack_id": pack["pack_id"], "pattern_count": len(pack["patterns"]),
                           "verification_status": "source_observed", "enforcement_enabled": False}
+            elif args.action == "export":
+                from paladin.knowledge import export_snapshot
+                result = export_snapshot(args.workspace)
             else:
                 result = (build_index if args.action == "index" else knowledge_status)(args.workspace)
         else:
@@ -168,7 +171,7 @@ def main(argv=None):
         for case in result.get("case_runs", []):
             print("  case: " + case["status"])
         print(result.get("notice", "Advisory tooling; security prevention and blocking are not ready."))
-    return 0 if result["status"] in {"ready", "configured", "prepared", "indexed", "valid", "complete"} else 1
+    return 0 if result["status"] in {"ready", "configured", "prepared", "indexed", "valid", "complete", "exported"} else 1
 
 
 if __name__ == "__main__":

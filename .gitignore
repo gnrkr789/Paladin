@@ -15,3 +15,6 @@ dist/
 # Web snapshots without a redistribution license (data/external-references.json)
 data/m0/sources/*.advisory.html
 docs/evidence/m2/django-security.html
+
+# Machine-specific agent hook installs (paladin hook install)
+.codex/

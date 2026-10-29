@@ -1,6 +1,7 @@
 """Paladin local command-line entry point."""
 import argparse
 import json
+import sys
 from pathlib import Path
 
 from paladin.local import doctor, setup
@@ -56,6 +57,10 @@ def main(argv=None):
     search.add_argument("query", help="English technical text only (printable ASCII)")
     search.add_argument("--limit", type=int, default=5)
     search.add_argument("--family")
+    hook = commands.add_parser("hook", help="agent hook adapters for change-time checks")
+    hook.add_argument("action", choices=["claude-code", "install"])
+    hook.add_argument("--workspace", type=Path, default=Path.cwd())
+    hook.add_argument("--host", choices=["claude-code"], default="claude-code")
     mcp = commands.add_parser("mcp", help="serve bounded advisory tools over stdio")
     mcp.add_argument("--workspace", type=Path, default=Path.cwd())
     cases = commands.add_parser("cases", help="scan and verify locally supported CVE cases")
@@ -68,6 +73,18 @@ def main(argv=None):
         command.add_argument("--workspace", type=Path, default=Path.cwd())
         command.add_argument("--json", action="store_true")
     args = parser.parse_args(argv)
+    if args.command == "hook":
+        from paladin import agent_hook
+        if args.action == "claude-code":
+            return agent_hook.main(args.workspace, sys.stdin, sys.stdout)
+        try:
+            # -I: isolated mode, so modules in the hooked workspace cannot shadow Paladin.
+            result = agent_hook.install_claude_code(args.workspace, [sys.executable, "-I", "-m", "paladin.cli"])
+        except (OSError, ValueError) as exc:
+            print(json.dumps({"status": "unavailable", "error": str(exc).split(":", 1)[0][:200]}, indent=2))
+            return 1
+        print(json.dumps(result, indent=2))
+        return 0
     if args.command == "mcp":
         from paladin.mcp_server import main as serve_mcp
         serve_mcp(args.workspace)

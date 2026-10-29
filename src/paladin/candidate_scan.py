@@ -107,6 +107,42 @@ def _general(rel, line, cve, digest, detection):
             "severity": "review", "verifiable": False, "detection": detection}
 
 
+def scan_source(rel, data):
+    """Analyze one source file's bytes; return (candidates, unsupported notes)."""
+    candidates, unsupported = [], []
+    digest = hashlib.sha256(data).hexdigest()
+    try:
+        encoding, _ = tokenize.detect_encoding(io.BytesIO(data).readline)
+        with warnings.catch_warnings():
+            # Project source is data; its SyntaxWarnings are not Paladin output.
+            warnings.simplefilter("ignore")
+            tree = ast.parse(data.decode(encoding), filename=rel)
+    except (UnicodeError, SyntaxError, ValueError, LookupError):
+        unsupported.append("source unreadable or unsupported syntax: " + rel)
+        # Token fallback keeps the generalized rule working on, e.g., Python 2 files.
+        for line, cve in hg_argv_rule.token_findings(data) or []:
+            candidates.append(_general(rel, line, cve, digest, "token"))
+        return candidates, unsupported
+    lines, unknown = _analyze(tree)
+    unsupported.extend(rel + ": " + message for message in unknown)
+    for line in lines:
+        identity = "\0".join((RULE_ID, rel, str(line), digest)).encode("ascii")
+        candidates.append({"rule_id": RULE_ID, "cve_id": "CVE-2022-24065", "path": rel,
+                           "line": line, "source_sha256": digest,
+                           "candidate_id": hashlib.sha256(identity).hexdigest()})
+    exact = {line for line in lines}
+    for line, cve in hg_argv_rule.ast_findings(tree):
+        if line not in exact:
+            candidates.append(_general(rel, line, cve, digest, "ast"))
+    for value in revision_lists(tree):
+        line = value.lineno
+        identity = "\0".join((PIP_RULE_ID, rel, str(line), digest)).encode("ascii")
+        candidates.append({"rule_id": PIP_RULE_ID, "cve_id": PIP_CVE_ID, "path": rel,
+                           "line": line, "source_sha256": digest,
+                           "candidate_id": hashlib.sha256(identity).hexdigest()})
+    return candidates, unsupported
+
+
 def scan_project(root):
     """Return source candidates, not vulnerability verdicts; never execute target code."""
     root = Path(root).absolute()
@@ -182,36 +218,9 @@ def scan_project(root):
             except (OSError, ValueError):
                 unsupported.append("source unreadable or unsupported syntax: " + rel)
                 continue
-            digest = hashlib.sha256(data).hexdigest()
-            try:
-                encoding, _ = tokenize.detect_encoding(io.BytesIO(data).readline)
-                with warnings.catch_warnings():
-                    # Project source is data; its SyntaxWarnings are not Paladin output.
-                    warnings.simplefilter("ignore")
-                    tree = ast.parse(data.decode(encoding), filename=rel)
-            except (UnicodeError, SyntaxError, ValueError, LookupError):
-                unsupported.append("source unreadable or unsupported syntax: " + rel)
-                # Token fallback keeps the generalized rule working on, e.g., Python 2 files.
-                for line, cve in hg_argv_rule.token_findings(data) or []:
-                    candidates.append(_general(rel, line, cve, digest, "token"))
-                continue
-            lines, unknown = _analyze(tree)
-            unsupported.extend(rel + ": " + message for message in unknown)
-            for line in lines:
-                identity = "\0".join((RULE_ID, rel, str(line), digest)).encode("ascii")
-                candidates.append({"rule_id": RULE_ID, "cve_id": "CVE-2022-24065", "path": rel,
-                                   "line": line, "source_sha256": digest,
-                                   "candidate_id": hashlib.sha256(identity).hexdigest()})
-            exact = {(rel, line) for line in lines}
-            for line, cve in hg_argv_rule.ast_findings(tree):
-                if (rel, line) not in exact:
-                    candidates.append(_general(rel, line, cve, digest, "ast"))
-            for value in revision_lists(tree):
-                line = value.lineno
-                identity = "\0".join((PIP_RULE_ID, rel, str(line), digest)).encode("ascii")
-                candidates.append({"rule_id": PIP_RULE_ID, "cve_id": PIP_CVE_ID, "path": rel,
-                                   "line": line, "source_sha256": digest,
-                                   "candidate_id": hashlib.sha256(identity).hexdigest()})
+            found, unknown = scan_source(rel, data)
+            candidates.extend(found)
+            unsupported.extend(unknown)
         if stopped:
             break
     return {"status": "partial" if unsupported else "complete", "candidates": candidates,

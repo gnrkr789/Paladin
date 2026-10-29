@@ -51,7 +51,7 @@ class AdvisoryContracts(unittest.TestCase):
             for args in [{"intent": "x", "stack": "ruby"}, {"intent": "x", "family": "other"}]:
                 self.assertEqual(api.dispatch(ROOT, "search_prevention_patterns", args)["status"], "unsupported")
             result = api.dispatch(ROOT, "check_changes", {})
-        self.assertEqual(result["reason"], "rules_not_validated")
+        self.assertEqual(result["reason"], "no_paths_given")  # change-hook plan T4: empty request inspects nothing
         self.assertFalse(result["inspection_performed"])
         self.assertNotIn("receipt", result)
         self.assertNotIn("judgment", result)

@@ -147,6 +147,15 @@ def _literal_findings(tree):
                 yield node.lineno, cve
 
 
+def _growth_target(node):
+    if (isinstance(node, ast.Call) and isinstance(node.func, ast.Attribute)
+            and isinstance(node.func.value, ast.Name) and node.func.attr in GROWTH_METHODS):
+        return node.func.value.id
+    if isinstance(node, ast.AugAssign) and isinstance(node.op, ast.Add) and isinstance(node.target, ast.Name):
+        return node.target.id
+    return None
+
+
 def _growth(node, name):
     """Return the nodes appended to `name` by one statement-level expression, or None."""
     if (isinstance(node, ast.Call) and isinstance(node.func, ast.Attribute)
@@ -179,6 +188,11 @@ def _built_findings(tree):
     for scope in scopes:
         nodes = sorted((node for node in _scope_walk(scope) if hasattr(node, "lineno")),
                        key=lambda node: (node.lineno, node.col_offset))
+        growth = {}
+        for node in nodes:
+            target = _growth_target(node)
+            if target is not None:
+                growth.setdefault(target, []).append(node)
         for start in nodes:
             if not (isinstance(start, ast.Assign) and len(start.targets) == 1
                     and isinstance(start.targets[0], ast.Name)
@@ -188,7 +202,7 @@ def _built_findings(tree):
             if not cve or _exposed(rest) or "--" in map(_text, rest):
                 continue
             name = start.targets[0].id
-            for node in nodes:
+            for node in growth.get(name, []):
                 if node.lineno <= start.lineno:
                     continue
                 added = _growth(node, name)

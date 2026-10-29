@@ -38,7 +38,11 @@ INPUT_SCHEMAS = {
         "max_excerpt_bytes": {"type": "integer", "minimum": 1, "maximum": 16384, "default": 4096},
     }, ["pattern_id", "pack_sha256"]),
     "get_knowledge_status": object_schema(),
-    "check_changes": object_schema(),
+    "check_changes": object_schema({
+        "paths": {"type": "array", "minItems": 1, "maxItems": 20,
+                  "items": {"type": "string", "minLength": 1, "maxLength": 1024},
+                  "description": "Workspace-relative Python files to check statically."},
+    }),
     "scan_cve_candidates": object_schema(),
     "get_prevention_guidance": object_schema({
         "include_patch_context": {"type": "boolean", "default": False,
@@ -311,7 +315,12 @@ def dispatch(root, name, arguments):
         return failure("invalid_arguments", "invalid_request")
     try:
         if name == "check_changes":
-            return {**failure("rules_not_validated", "unsupported"), "inspection_performed": False}
+            if not arguments.get("paths"):
+                return {**failure("no_paths_given", "unsupported"), "inspection_performed": False}
+            from paladin.change_check import check_paths
+            result = check_paths(root, arguments["paths"])
+            result.update(inspection_performed=True, judgment="static_pattern_findings_only")
+            return bounded(result)
         if name == "scan_cve_candidates":
             from paladin.candidate_scan import scan_project
             result = scan_project(root)

@@ -12,7 +12,7 @@
   <img src="https://img.shields.io/badge/python-3.11%2B-3776ab" alt="python 3.11+">
   <img src="https://img.shields.io/badge/MCP-advisory%20tools-7c9cff" alt="MCP advisory tools">
   <img src="https://img.shields.io/badge/sandbox-Docker%20%2B%20strace%20observer-2fbf71" alt="Docker and strace observer">
-  <img src="https://img.shields.io/badge/tests-188%20passing-2fbf71" alt="188 unit tests passing">
+  <img src="https://img.shields.io/badge/tests-206%20passing-2fbf71" alt="206 unit tests passing">
 </p>
 
 <p align="center">
@@ -93,6 +93,22 @@ unavailable states are reported as such and never turned into a "safe" verdict.
 5. **Promote** - Only when every check passes is the case stored, signed with a host
    HMAC key that never enters the container. Every reuse re-validates the signature,
    the trace, the runtime image identity and the repair.
+
+## Fix it while the agent is still writing
+
+Paladin also runs as a Claude Code hook. Every time the agent writes or edits a
+Python file, Paladin checks it statically; an exact CVE match blocks the turn and
+tells the agent the CVE, the line, the cause and the fix, so the agent corrects
+its own code before moving on.
+
+```powershell
+.\.venv\Scripts\paladin.exe hook install --workspace C:/projects/example
+```
+
+In a real session the agent was asked to port legacy code verbatim. It wrote
+`['hg', 'checkout', branch]`, Paladin blocked it with CVE-2022-24065, and the agent
+changed it to `['hg', 'checkout', '--', branch]` on its own. Other agents can call
+the `check_changes` MCP tool. See the [hook guide](docs/hook.md).
 
 ## Proof, not similarity
 
@@ -183,7 +199,7 @@ makes Mercurial 7.0.1 treat ordinary revisions as `=VALUE`; Paladin's repair use
 - [Implementation plan and motivation](docs/plans/paladin-cve-prevention.plan.md)
 - [Private-alpha plan](docs/plans/paladin-private-alpha.plan.md) and
   [final report](docs/evidence/private-alpha/final-report.md)
-- [Local case loop](docs/case-loop.md)
+- [Local case loop](docs/case-loop.md) and [agent hook](docs/hook.md)
 - [Setup](docs/setup.md), [knowledge and search](docs/knowledge.md), [MCP](docs/mcp.md)
 - Evidence reports: [M0](docs/evidence/m0-report.md), [M1](docs/evidence/m1-report.md),
   [M2](docs/evidence/m2-report.md), [M3](docs/evidence/m3-report.md),

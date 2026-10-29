@@ -2,6 +2,8 @@
 import argparse
 import hashlib
 import json
+from pathlib import Path as _Path
+EXTERNAL = {item["path"]: item["sha256"] for item in json.loads((_Path(__file__).resolve().parents[1] / "data" / "external-references.json").read_text(encoding="ascii"))["references"]}
 from pathlib import Path
 
 from jsonschema import Draft202012Validator, FormatChecker
@@ -55,6 +57,10 @@ def validate_dataset(data, *, root, schema_path):
             try:
                 blob = path.read_bytes()
             except OSError:
+                # Snapshots without a redistribution license are listed in
+                # data/external-references.json and are absent by design.
+                if item["path"] in EXTERNAL and EXTERNAL[item["path"]] == item["sha256"]:
+                    continue
                 errors.append(f"snapshot_missing:{eid}")
                 continue
             blobs[eid] = blob

@@ -3,6 +3,7 @@ name = "paladin"
 version = "0.2.0a1"
 description = "Evidence-grounded vulnerability prevention for coding agents"
 requires-python = ">=3.11"
+license = {text = "Apache-2.0"}
 dependencies = [
     "jsonschema>=4.23,<5",
     "mcp==2.3.0",

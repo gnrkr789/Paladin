@@ -1,0 +1,8 @@
+Paladin
+Copyright 2026 Jun Tae Kim
+
+Licensed under the Apache License, Version 2.0 (see LICENSE).
+
+This repository also contains unmodified third-party data (CVE records,
+upstream patches and a CC0 PoC list) under their own licenses. See
+data/THIRD_PARTY.md and the license texts in licenses/.

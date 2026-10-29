@@ -206,6 +206,18 @@ makes Mercurial 7.0.1 treat ordinary revisions as `=VALUE`; Paladin's repair use
   [M4](docs/evidence/m4-report.md), [M5](docs/evidence/m5-report.md)
 - [Future knowledge contribution](docs/design/knowledge-contribution.md)
 
+## License and data
+
+Paladin is licensed under the [Apache License 2.0](LICENSE). The repository also
+ships the base data used in the experiments: CVE records, upstream patches and
+the evidence indexes, so everyone starts from the same pinned base and extends
+it locally. Those files stay under their own licenses (CVE Terms of Use, BSD,
+MIT, PSF, Apache-2.0, CC0); see [data/THIRD_PARTY.md](data/THIRD_PARTY.md) and
+[NOTICE](NOTICE). Web page snapshots without a clear redistribution license are
+listed in [data/external-references.json](data/external-references.json) instead
+of being included. There is no hosted service: the vector index is built on
+each machine, and knowledge stays local unless its owner chooses to share it.
+
 ## Validate
 
 ```powershell

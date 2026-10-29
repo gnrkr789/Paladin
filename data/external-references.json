@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "purpose": "Web page snapshots used during evidence collection that are not redistributed in this repository because their site terms grant no clear redistribution license. Paths, URLs and the sha256 of the bytes retrieved during collection are kept as provenance. Live pages change, so a fresh download will not reproduce these hashes; no runtime feature reads these files.",
+  "references": [
+    {"path": "data/m0/sources/CVE-2021-31542.advisory.html",
+     "url": "https://www.djangoproject.com/weblog/2021/may/04/security-releases/",
+     "sha256": "911588e9623c2c9b58958f5af8c9aac8c0f49192a4c3481235d450e351693a07"},
+    {"path": "data/m0/sources/CVE-2021-35042.advisory.html",
+     "url": "https://www.djangoproject.com/weblog/2021/jul/01/security-releases/",
+     "sha256": "ec1fb874032a22b96b336c9e6e9bf91840b4cb815eda25aa12b43e64e7de6a84"},
+    {"path": "data/m0/sources/CVE-2022-34265.advisory.html",
+     "url": "https://www.djangoproject.com/weblog/2022/jul/04/security-releases/",
+     "sha256": "6b6ce79ac51fe9316a07dba23dfc3232ac73459463d9c8e07d13c55cf3cc2125"},
+    {"path": "data/m0/sources/CVE-2024-49766.advisory.html",
+     "url": "https://github.com/pallets/werkzeug/security/advisories/GHSA-f9vj-2wh5-fj8j",
+     "sha256": "ba32867bd30dfb74c2e4147ec484ebd4dd3a967d8f0d355a1103ef5ad3f4d535"},
+    {"path": "docs/evidence/m2/django-security.html",
+     "url": "https://docs.djangoproject.com/en/stable/releases/security/",
+     "sha256": "27b3e738b81187af7062d8657137872d723f834efa53209aa0a82035660e302f"}
+  ]
+}

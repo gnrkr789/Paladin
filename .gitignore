@@ -11,3 +11,7 @@ build/
 dist/
 .validation-cache/
 .conan/
+
+# Web snapshots without a redistribution license (data/external-references.json)
+data/m0/sources/*.advisory.html
+docs/evidence/m2/django-security.html

@@ -1,0 +1,945 @@
+{
+  "schema_version": "0.1.0",
+  "milestone": "M0",
+  "created_on": "2026-10-23",
+  "stack": "python_web_backend",
+  "agent": "Codex",
+  "cases": [
+    {
+      "cve_id": "CVE-2021-31542",
+      "record_state": "PUBLISHED",
+      "family": "path_traversal",
+      "component": "Django file uploads",
+      "scope": "python_web_backend",
+      "version_status": "source_claims_not_normalized",
+      "raw_affected": [
+        {
+          "vendor": "n/a",
+          "product": "n/a",
+          "versions": [
+            {
+              "version": "n/a",
+              "status": "affected"
+            }
+          ]
+        }
+      ],
+      "description_evidence": "In Django 2.2 before 2.2.21, 3.1 before 3.1.9, and 3.2 before 3.2.1, MultiPartParser, UploadedFile, and FieldFile allowed directory traversal via uploaded files with suitably crafted file names.",
+      "cause": "Uploaded names and generated paths can retain unsafe path components.",
+      "preconditions": [
+        "Attacker controls an uploaded filename or a filename supplied to storage."
+      ],
+      "prevention": "Validate basename and parent path components at the relevant storage and upload boundaries.",
+      "patch_alignment": "aligned",
+      "alignment_note": "Patch has multiple storage/upload safeguards; basename stripping alone is not a complete fix.",
+      "verification_status": "candidate",
+      "rule_enabled": false,
+      "poc_status": "not_found_in_selected_index",
+      "poc_candidates": [],
+      "upstream_tests": {
+        "status": "source_observed_not_run",
+        "locations": [
+          "tests/file_storage/test_generate_filename.py",
+          "tests/file_uploads/tests.py"
+        ]
+      },
+      "planned_checks": {
+        "vulnerable": "Reject parent traversal and empty/dot filenames; retain legitimate filenames.",
+        "safe": "Ordinary upload filename remains accepted.",
+        "status": "specification_only"
+      },
+      "evidence": [
+        {
+          "kind": "cve",
+          "url": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2021/31xxx/CVE-2021-31542.json",
+          "path": "data/m0/sources/CVE-2021-31542.cve.json",
+          "sha256": "e0121e1a915e03043c3f5065f874a117b7ba96288a11f0679d17e652e8fefad7",
+          "retrieved_on": "2026-10-23",
+          "status": "fetched",
+          "evidence_id": "CVE-2021-31542:E1",
+          "redistribution": "not_assessed"
+        },
+        {
+          "kind": "patch",
+          "url": "https://github.com/django/django/commit/04ac1624bdc2fa737188401757cf95ced122d26d.patch",
+          "path": "data/m0/sources/CVE-2021-31542.patch.patch",
+          "sha256": "947febf3f89ba6d407bb897ff6b5a917d794078963057d0f5ec0107b5481ab6e",
+          "retrieved_on": "2026-10-23",
+          "status": "fetched",
+          "evidence_id": "CVE-2021-31542:E2",
+          "redistribution": "not_assessed"
+        },
+        {
+          "kind": "advisory",
+          "url": "https://www.djangoproject.com/weblog/2021/may/04/security-releases/",
+          "path": "data/m0/sources/CVE-2021-31542.advisory.html",
+          "sha256": "911588e9623c2c9b58958f5af8c9aac8c0f49192a4c3481235d450e351693a07",
+          "retrieved_on": "2026-10-23",
+          "status": "fetched",
+          "evidence_id": "CVE-2021-31542:E3",
+          "redistribution": "not_assessed"
+        }
+      ],
+      "patch_anchor": {
+        "evidence_id": "CVE-2021-31542:E2",
+        "start_line": 85,
+        "end_line": 99
+      },
+      "contribution": {
+        "sharing_enabled": false,
+        "scope": "local_only",
+        "consent_record": null
+      }
+    },
+    {
+      "cve_id": "CVE-2024-49766",
+      "record_state": "PUBLISHED",
+      "family": "path_traversal",
+      "component": "Werkzeug safe_join",
+      "scope": "python_web_backend",
+      "version_status": "source_claims_not_normalized",
+      "raw_affected": [
+        {
+          "vendor": "pallets",
+          "product": "werkzeug",
+          "versions": [
+            {
+              "version": "< 3.0.6",
+              "status": "affected"
+            }
+          ]
+        }
+      ],
+      "description_evidence": "Werkzeug is a Web Server Gateway Interface web application library. On Python < 3.11 on Windows, os.path.isabs() does not catch UNC paths like //server/share. Werkzeug's safe_join() relies on this check, and so can produce a path that is not safe, potentially allowing unintended access to data. Applications using Python >= 3.11, or not using Windows, are not vulnerable. Werkzeug version 3.0.6 contains a patch.",
+      "cause": "A Windows absolute-path predicate misses a UNC-like path on older Python.",
+      "preconditions": [
+        "Windows, Python <3.11, Werkzeug <3.0.6, untrusted safe_join path."
+      ],
+      "prevention": "Reject leading slash paths in addition to existing absolute and parent checks.",
+      "patch_alignment": "aligned",
+      "alignment_note": "Do not report this CVE on all platforms solely because safe_join is called.",
+      "verification_status": "candidate",
+      "rule_enabled": false,
+      "poc_status": "not_found_in_selected_index",
+      "poc_candidates": [],
+      "upstream_tests": {
+        "status": "source_observed_not_run",
+        "locations": [
+          "tests/test_security.py::test_safe_join"
+        ]
+      },
+      "planned_checks": {
+        "vulnerable": "UNC-like absolute input is rejected.",
+        "safe": "Ordinary relative child path remains accepted.",
+        "status": "specification_only"
+      },
+      "evidence": [
+        {
+          "kind": "cve",
+          "url": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2024/49xxx/CVE-2024-49766.json",
+          "path": "data/m0/sources/CVE-2024-49766.cve.json",
+          "sha256": "aeeb34927397e676158de94a65f101941d06ff48dc94c0e8c9d75326a9d5dde2",
+          "retrieved_on": "2026-10-23",
+          "status": "fetched",
+          "evidence_id": "CVE-2024-49766:E1",
+          "redistribution": "not_assessed"
+        },
+        {
+          "kind": "patch",
+          "url": "https://github.com/pallets/werkzeug/commit/2767bcb10a7dd1c297d812cc5e6d11a474c1f092.patch",
+          "path": "data/m0/sources/CVE-2024-49766.patch.patch",
+          "sha256": "3a9f56be320b17e27c1b9ff9f8dc2bc9c95df9c74ce60f0b95089c72d54d24d3",
+          "retrieved_on": "2026-10-23",
+          "status": "fetched",
+          "evidence_id": "CVE-2024-49766:E2",
+          "redistribution": "not_assessed"
+        },
+        {
+          "kind": "advisory",
+          "url": "https://github.com/pallets/werkzeug/security/advisories/GHSA-f9vj-2wh5-fj8j",
+          "path": "data/m0/sources/CVE-2024-49766.advisory.html",
+          "sha256": "ba32867bd30dfb74c2e4147ec484ebd4dd3a967d8f0d355a1103ef5ad3f4d535",
+          "retrieved_on": "2026-10-23",
+          "status": "fetched",
+          "evidence_id": "CVE-2024-49766:E3",
+          "redistribution": "not_assessed"
+        }
+      ],
+      "patch_anchor": {
+        "evidence_id": "CVE-2024-49766:E2",
+        "start_line": 30,
+        "end_line": 38
+      },
+      "contribution": {
+        "sharing_enabled": false,
+        "scope": "local_only",
+        "consent_record": null
+      }
+    },
+    {
+      "cve_id": "CVE-2022-34265",
+      "record_state": "PUBLISHED",
+      "family": "sql_injection",
+      "component": "Django Trunc/Extract",
+      "scope": "python_web_backend",
+      "version_status": "source_claims_not_normalized",
+      "raw_affected": [
+        {
+          "vendor": "n/a",
+          "product": "n/a",
+          "versions": [
+            {
+              "version": "n/a",
+              "status": "affected"
+            }
+          ]
+        }
+      ],
+      "description_evidence": "An issue was discovered in Django 3.2 before 3.2.14 and 4.0 before 4.0.6. The Trunc() and Extract() database functions are subject to SQL injection if untrusted data is used as a kind/lookup_name value. Applications that constrain the lookup name and kind choice to a known safe list are unaffected.",
+      "cause": "Untrusted SQL structural arguments reach date/time SQL generation.",
+      "preconditions": [
+        "Untrusted kind/lookup_name on the affected Django branches."
+      ],
+      "prevention": "Constrain structural arguments before SQL generation; application-level safe choices are an additional mitigation.",
+      "patch_alignment": "aligned",
+      "alignment_note": "ORM usage does not make all structural parameters safe; value binding and identifiers differ.",
+      "verification_status": "candidate",
+      "rule_enabled": false,
+      "poc_status": "index_candidate_found",
+      "poc_candidates": [
+        {
+          "url": "https://github.com/aeyesec/CVE-2022-34265",
+          "status": "unverified_link"
+        },
+        {
+          "url": "https://github.com/traumatising/CVE-2022-34265",
+          "status": "unverified_link"
+        },
+        {
+          "url": "https://github.com/ZhaoQi99/CVE-2022-34265",
+          "status": "unverified_link"
+        },
+        {
+          "url": "https://github.com/lnwza0x0a/CTF_Django_CVE-2022-34265",
+          "status": "unverified_link"
+        },
+        {
+          "url": "https://github.com/CyberCTF/vulhub-django-cve-2022-34265",
+          "status": "unverified_link"
+        }
+      ],
+      "upstream_tests": {
+        "status": "source_observed_not_run",
+        "locations": [
+          "tests/db_functions/datetime/test_extract_trunc.py"
+        ]
+      },
+      "planned_checks": {
+        "vulnerable": "Invalid structural date-part argument is rejected before execution.",
+        "safe": "Known permitted date-part choices preserve intended queries.",
+        "status": "specification_only"
+      },
+      "evidence": [
+        {
+          "kind": "cve",
+          "url": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2022/34xxx/CVE-2022-34265.json",
+          "path": "data/m0/sources/CVE-2022-34265.cve.json",
+          "sha256": "2dd28a38c4266115b51b68b4aa354f6248325b565e5176d230c7607216ad113b",
+          "retrieved_on": "2026-10-23",
+          "status": "fetched",
+          "evidence_id": "CVE-2022-34265:E1",
+          "redistribution": "not_assessed"
+        },
+        {
+          "kind": "poc_index",
+          "url": "https://raw.githubusercontent.com/nomi-sec/PoC-in-GitHub/master/2022/CVE-2022-34265.json",
+          "path": "data/m0/sources/CVE-2022-34265.poc_index.json",
+          "sha256": "76b24c1a51fc4e32c082ab3b5828d0666c282f78ac63fcbbd78560dc7f2f1114",
+          "retrieved_on": "2026-10-23",
+          "status": "fetched",
+          "evidence_id": "CVE-2022-34265:E2",
+          "redistribution": "not_assessed"
+        },
+        {
+          "kind": "advisory",
+          "url": "https://www.djangoproject.com/weblog/2022/jul/04/security-releases/",
+          "path": "data/m0/sources/CVE-2022-34265.advisory.html",
+          "sha256": "6b6ce79ac51fe9316a07dba23dfc3232ac73459463d9c8e07d13c55cf3cc2125",
+          "retrieved_on": "2026-10-23",
+          "status": "fetched",
+          "evidence_id": "CVE-2022-34265:E3",
+          "redistribution": "not_assessed"
+        },
+        {
+          "kind": "patch",
+          "url": "https://github.com/django/django/commit/54eb8a374d5d98594b264e8ec22337819b37443c.patch",
+          "path": "data/m0/sources/CVE-2022-34265.patch.patch",
+          "sha256": "9ca02b2739bc8a9d857ed6996562e266f5958a3af4b35f01b53da13c4e5bb1cc",
+          "retrieved_on": "2026-10-23",
+          "status": "fetched",
+          "evidence_id": "CVE-2022-34265:E4",
+          "redistribution": "not_assessed"
+        }
+      ],
+      "patch_anchor": {
+        "evidence_id": "CVE-2022-34265:E4",
+        "start_line": 38,
+        "end_line": 56
+      },
+      "contribution": {
+        "sharing_enabled": false,
+        "scope": "local_only",
+        "consent_record": null
+      }
+    },
+    {
+      "cve_id": "CVE-2021-35042",
+      "record_state": "PUBLISHED",
+      "family": "sql_injection",
+      "component": "Django QuerySet.order_by",
+      "scope": "python_web_backend",
+      "version_status": "source_claims_not_normalized",
+      "raw_affected": [
+        {
+          "product": "n/a",
+          "vendor": "n/a",
+          "versions": [
+            {
+              "status": "affected",
+              "version": "n/a"
+            }
+          ]
+        }
+      ],
+      "description_evidence": "Django 3.1.x before 3.1.13 and 3.2.x before 3.2.5 allows QuerySet.order_by SQL injection if order_by is untrusted input from a client of a web application.",
+      "cause": "A deprecated raw column alias path bypasses intended validation.",
+      "preconditions": [
+        "Untrusted order_by input on affected Django 3.1/3.2 releases."
+      ],
+      "prevention": "Restore strict column-reference checks and reject inputs that do not resolve as allowed fields.",
+      "patch_alignment": "aligned",
+      "alignment_note": "Deprecation warnings are not enforcement; main branch had removed the legacy path.",
+      "verification_status": "candidate",
+      "rule_enabled": false,
+      "poc_status": "index_candidate_found",
+      "poc_candidates": [
+        {
+          "url": "https://github.com/YouGina/CVE-2021-35042",
+          "status": "unverified_link"
+        },
+        {
+          "url": "https://github.com/mrlihd/CVE-2021-35042",
+          "status": "unverified_link"
+        },
+        {
+          "url": "https://github.com/r4vi/CVE-2021-35042",
+          "status": "unverified_link"
+        },
+        {
+          "url": "https://github.com/zer0qs/CVE-2021-35042",
+          "status": "unverified_link"
+        },
+        {
+          "url": "https://github.com/LUUANHDUC/CVE-2021-35042",
+          "status": "unverified_link"
+        },
+        {
+          "url": "https://github.com/vutiendat323/INT14107_CVE-2021-35042",
+          "status": "unverified_link"
+        }
+      ],
+      "upstream_tests": {
+        "status": "source_observed_not_run",
+        "locations": [
+          "tests/queries/tests.py::test_order_by_escape_prevention"
+        ]
+      },
+      "planned_checks": {
+        "vulnerable": "Invalid raw column alias is rejected.",
+        "safe": "Supported field ordering still works.",
+        "status": "specification_only"
+      },
+      "evidence": [
+        {
+          "kind": "cve",
+          "url": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2021/35xxx/CVE-2021-35042.json",
+          "path": "data/m0/sources/CVE-2021-35042.cve.json",
+          "sha256": "58216e7ab98c6201644aeb7b7f119764c330f1a763081f1dd972c0b3d3aa8ba0",
+          "retrieved_on": "2026-10-23",
+          "status": "fetched",
+          "evidence_id": "CVE-2021-35042:E1",
+          "redistribution": "not_assessed"
+        },
+        {
+          "kind": "poc_index",
+          "url": "https://raw.githubusercontent.com/nomi-sec/PoC-in-GitHub/master/2021/CVE-2021-35042.json",
+          "path": "data/m0/sources/CVE-2021-35042.poc_index.json",
+          "sha256": "6d0a408c09c5f5d5d1e494232622672e20c622760973a32a96c2c0132cee33d7",
+          "retrieved_on": "2026-10-23",
+          "status": "fetched",
+          "evidence_id": "CVE-2021-35042:E2",
+          "redistribution": "not_assessed"
+        },
+        {
+          "kind": "advisory",
+          "url": "https://www.djangoproject.com/weblog/2021/jul/01/security-releases/",
+          "path": "data/m0/sources/CVE-2021-35042.advisory.html",
+          "sha256": "ec1fb874032a22b96b336c9e6e9bf91840b4cb815eda25aa12b43e64e7de6a84",
+          "retrieved_on": "2026-10-23",
+          "status": "fetched",
+          "evidence_id": "CVE-2021-35042:E3",
+          "redistribution": "not_assessed"
+        },
+        {
+          "kind": "patch",
+          "url": "https://github.com/django/django/commit/a34a5f724c5d5adb2109374ba3989ebb7b11f81f.patch",
+          "path": "data/m0/sources/CVE-2021-35042.patch.patch",
+          "sha256": "b22adf7444c7dcaf9de1883794119a1dbf1598745d8e6e6e39d8aa5c37f0a206",
+          "retrieved_on": "2026-10-23",
+          "status": "fetched",
+          "evidence_id": "CVE-2021-35042:E4",
+          "redistribution": "not_assessed"
+        }
+      ],
+      "patch_anchor": {
+        "evidence_id": "CVE-2021-35042:E4",
+        "start_line": 57,
+        "end_line": 74
+      },
+      "contribution": {
+        "sharing_enabled": false,
+        "scope": "local_only",
+        "consent_record": null
+      }
+    },
+    {
+      "cve_id": "CVE-2023-24329",
+      "record_state": "PUBLISHED",
+      "family": "ssrf",
+      "component": "CPython urllib.parse",
+      "scope": "python_web_backend",
+      "version_status": "source_claims_not_normalized",
+      "raw_affected": [
+        {
+          "vendor": "n/a",
+          "product": "n/a",
+          "versions": [
+            {
+              "version": "n/a",
+              "status": "affected"
+            }
+          ]
+        }
+      ],
+      "description_evidence": "An issue in the urllib.parse component of Python before 3.11.4 allows attackers to bypass blocklisting methods by supplying a URL that starts with blank characters.",
+      "cause": "CVE describes leading-blank URL validation bypass.",
+      "preconditions": [
+        "Multiple URL consumers or validation and request parsing disagree on leading characters."
+      ],
+      "prevention": "Do not derive a concrete fix from the currently linked PR; patch relationship is unresolved.",
+      "patch_alignment": "mismatch",
+      "alignment_note": "Referenced PR 99421 changes scheme starting characters; it does not implement leading-blank stripping described by the CVE. Exclude from linked-pattern count.",
+      "verification_status": "candidate",
+      "rule_enabled": false,
+      "poc_status": "index_candidate_found",
+      "poc_candidates": [
+        {
+          "url": "https://github.com/H4R335HR/CVE-2023-24329-PoC",
+          "status": "unverified_link"
+        },
+        {
+          "url": "https://github.com/Pandante-Central/CVE-2023-24329-codeql-test",
+          "status": "unverified_link"
+        },
+        {
+          "url": "https://github.com/PenTestMano/CVE-2023-24329-Exploit",
+          "status": "unverified_link"
+        },
+        {
+          "url": "https://github.com/jithinodattu/CVE-2023-24329-lab",
+          "status": "unverified_link"
+        },
+        {
+          "url": "https://github.com/UpWguyy/CVE-2023-24329-PoC",
+          "status": "unverified_link"
+        }
+      ],
+      "upstream_tests": {
+        "status": "source_observed_not_run",
+        "locations": [
+          "Lib/test/test_urlparse.py::test_attributes_bad_scheme"
+        ]
+      },
+      "planned_checks": {
+        "vulnerable": "To specify after aligning the leading-blank fix and supported branches.",
+        "safe": "To specify after aligning the fix.",
+        "status": "specification_only"
+      },
+      "evidence": [
+        {
+          "kind": "cve",
+          "url": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2023/24xxx/CVE-2023-24329.json",
+          "path": "data/m0/sources/CVE-2023-24329.cve.json",
+          "sha256": "0264e1fd4f116fee782a6189abdaa4cfc6f7c78c976ac2f06812d7542c37f2c5",
+          "retrieved_on": "2026-10-23",
+          "status": "fetched",
+          "evidence_id": "CVE-2023-24329:E1",
+          "redistribution": "not_assessed"
+        },
+        {
+          "kind": "poc_index",
+          "url": "https://raw.githubusercontent.com/nomi-sec/PoC-in-GitHub/master/2023/CVE-2023-24329.json",
+          "path": "data/m0/sources/CVE-2023-24329.poc_index.json",
+          "sha256": "ea309616e8fed0805eb797fd251e928259a33f564298d30ac606fa76c8d26536",
+          "retrieved_on": "2026-10-23",
+          "status": "fetched",
+          "evidence_id": "CVE-2023-24329:E2",
+          "redistribution": "not_assessed"
+        },
+        {
+          "kind": "patch",
+          "url": "https://github.com/python/cpython/pull/99421.patch",
+          "path": "data/m0/sources/CVE-2023-24329.patch.patch",
+          "sha256": "538943e8e26b4ba7a17767ed95fab8a71ae310ca819f49b56e92ef202917aeca",
+          "retrieved_on": "2026-10-23",
+          "status": "fetched",
+          "evidence_id": "CVE-2023-24329:E3",
+          "redistribution": "not_assessed"
+        }
+      ],
+      "patch_anchor": {
+        "evidence_id": "CVE-2023-24329:E3",
+        "start_line": 41,
+        "end_line": 53
+      },
+      "contribution": {
+        "sharing_enabled": false,
+        "scope": "local_only",
+        "consent_record": null
+      }
+    },
+    {
+      "cve_id": "CVE-2024-11168",
+      "record_state": "PUBLISHED",
+      "family": "ssrf",
+      "component": "CPython urllib.parse bracketed hosts",
+      "scope": "python_web_backend",
+      "version_status": "source_claims_not_normalized",
+      "raw_affected": [
+        {
+          "defaultStatus": "unaffected",
+          "product": "CPython",
+          "repo": "https://github.com/python/cpython",
+          "vendor": "Python Software Foundation",
+          "versions": [
+            {
+              "version": "0",
+              "lessThan": "3.9.21",
+              "status": "affected",
+              "versionType": "python"
+            },
+            {
+              "version": "3.10.0",
+              "lessThan": "3.10.16",
+              "status": "affected",
+              "versionType": "python"
+            },
+            {
+              "version": "3.11.0",
+              "lessThan": "3.11.4",
+              "status": "affected",
+              "versionType": "python"
+            },
+            {
+              "version": "3.12.0a1",
+              "lessThan": "3.12.0b1",
+              "status": "affected",
+              "versionType": "python"
+            }
+          ]
+        }
+      ],
+      "description_evidence": "The urllib.parse.urlsplit() and urlparse() functions improperly validated bracketed hosts (`[]`), allowing hosts that weren't IPv6 or IPvFuture. This behavior was not conformant to RFC 3986 and potentially enabled SSRF if a URL is processed by more than one URL parser.",
+      "cause": "Bracketed non-IP hosts can be interpreted inconsistently by URL parsers.",
+      "preconditions": [
+        "Untrusted URL reaches multiple parsers with inconsistent host handling; SSRF is conditional."
+      ],
+      "prevention": "Validate bracketed hosts as IPv6/IPvFuture and use consistent validated destinations at request time.",
+      "patch_alignment": "aligned",
+      "alignment_note": "Parser fix alone is not a complete network egress policy; redirects and destination controls remain application concerns.",
+      "verification_status": "candidate",
+      "rule_enabled": false,
+      "poc_status": "not_found_in_selected_index",
+      "poc_candidates": [],
+      "upstream_tests": {
+        "status": "source_observed_not_run",
+        "locations": [
+          "Lib/test/test_urlparse.py::test_invalid_bracketed_hosts",
+          "test_splitting_bracketed_hosts"
+        ]
+      },
+      "planned_checks": {
+        "vulnerable": "Malformed bracketed host is rejected.",
+        "safe": "Valid IPv6/IPvFuture URLs continue parsing.",
+        "status": "specification_only"
+      },
+      "evidence": [
+        {
+          "kind": "cve",
+          "url": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2024/11xxx/CVE-2024-11168.json",
+          "path": "data/m0/sources/CVE-2024-11168.cve.json",
+          "sha256": "b4fd48250909ed457d25ca37de3faf1c10a8155e7b63d21039189d1055817b72",
+          "retrieved_on": "2026-10-23",
+          "status": "fetched",
+          "evidence_id": "CVE-2024-11168:E1",
+          "redistribution": "not_assessed"
+        },
+        {
+          "kind": "patch",
+          "url": "https://github.com/python/cpython/commit/29f348e232e82938ba2165843c448c2b291504c5.patch",
+          "path": "data/m0/sources/CVE-2024-11168.patch.patch",
+          "sha256": "dddac40884d36910a8bf172014e358fefb62c9a8ec2a80fc3064cc3d859b5d6f",
+          "retrieved_on": "2026-10-23",
+          "status": "fetched",
+          "evidence_id": "CVE-2024-11168:E2",
+          "redistribution": "not_assessed"
+        }
+      ],
+      "patch_anchor": {
+        "evidence_id": "CVE-2024-11168:E2",
+        "start_line": 68,
+        "end_line": 99
+      },
+      "contribution": {
+        "sharing_enabled": false,
+        "scope": "local_only",
+        "consent_record": null
+      }
+    },
+    {
+      "cve_id": "CVE-2022-24065",
+      "record_state": "PUBLISHED",
+      "family": "command_injection",
+      "component": "Cookiecutter Mercurial checkout",
+      "scope": "python_web_backend",
+      "version_status": "source_claims_not_normalized",
+      "raw_affected": [
+        {
+          "product": "cookiecutter",
+          "vendor": "n/a",
+          "versions": [
+            {
+              "lessThan": "2.1.1",
+              "status": "affected",
+              "version": "unspecified",
+              "versionType": "custom"
+            }
+          ]
+        }
+      ],
+      "description_evidence": "The package cookiecutter before 2.1.1 are vulnerable to Command Injection via hg argument injection. When calling the cookiecutter function from Python code with the checkout parameter, it is passed to the hg checkout command in a way that additional flags can be set. The additional flags can be used to perform a command injection.",
+      "cause": "An attacker-controlled checkout value is interpreted as a Mercurial option.",
+      "preconditions": [
+        "Application calls Cookiecutter with untrusted checkout and the hg backend."
+      ],
+      "prevention": "Separate the hg option list from the checkout value with its supported end-of-options marker.",
+      "patch_alignment": "aligned",
+      "alignment_note": "Argument-list subprocess invocation without a shell does not prevent target-program option injection. Backend-specific boundary required.",
+      "verification_status": "candidate",
+      "rule_enabled": false,
+      "poc_status": "not_found_in_selected_index",
+      "poc_candidates": [],
+      "upstream_tests": {
+        "status": "source_observed_not_run",
+        "locations": [
+          "tests/vcs/test_clone.py::test_clone_should_invoke_vcs_command"
+        ]
+      },
+      "planned_checks": {
+        "vulnerable": "Option-like checkout is passed as an operand rather than a flag.",
+        "safe": "Ordinary branch selection preserves argument order and behavior.",
+        "status": "specification_only"
+      },
+      "evidence": [
+        {
+          "kind": "cve",
+          "url": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2022/24xxx/CVE-2022-24065.json",
+          "path": "data/m0/sources/CVE-2022-24065.cve.json",
+          "sha256": "2cba5000f4e4374297ae969f8e4f744b4c40023e1f3f9bd26ce30d6104748ced",
+          "retrieved_on": "2026-10-23",
+          "status": "fetched",
+          "evidence_id": "CVE-2022-24065:E1",
+          "redistribution": "not_assessed"
+        },
+        {
+          "kind": "patch",
+          "url": "https://github.com/cookiecutter/cookiecutter/commit/fdffddb31fd2b46344dfa317531ff155e7999f77.patch",
+          "path": "data/m0/sources/CVE-2022-24065.patch.patch",
+          "sha256": "b8b90ff157102705c7859f7ac41f39dc0769870fa04ffc8fe63dd218b407c79b",
+          "retrieved_on": "2026-10-23",
+          "status": "fetched",
+          "evidence_id": "CVE-2022-24065:E2",
+          "redistribution": "not_assessed"
+        }
+      ],
+      "patch_anchor": {
+        "evidence_id": "CVE-2022-24065:E2",
+        "start_line": 31,
+        "end_line": 52
+      },
+      "contribution": {
+        "sharing_enabled": false,
+        "scope": "local_only",
+        "consent_record": null
+      }
+    },
+    {
+      "cve_id": "CVE-2021-23727",
+      "record_state": "PUBLISHED",
+      "family": "command_injection",
+      "component": "Celery result backend exception reconstruction",
+      "scope": "python_web_backend",
+      "version_status": "source_claims_not_normalized",
+      "raw_affected": [
+        {
+          "product": "celery",
+          "vendor": "n/a",
+          "versions": [
+            {
+              "lessThan": "5.2.2",
+              "status": "affected",
+              "version": "unspecified",
+              "versionType": "custom"
+            }
+          ]
+        }
+      ],
+      "description_evidence": "This affects the package celery before 5.2.2. It by default trusts the messages and metadata stored in backends (result stores). When reading task metadata from the backend, the data is deserialized. Given that an attacker can gain access to, or somehow manipulate the metadata within a celery backend, they could trigger a stored command injection vulnerability and potentially gain further access to the system.",
+      "cause": "Result metadata selects a callable that is invoked as an exception constructor.",
+      "preconditions": [
+        "Attacker can manipulate result-backend metadata and a consumer reconstructs the stored failure."
+      ],
+      "prevention": "Require the reconstructed object to be a class derived from BaseException before invoking it.",
+      "patch_alignment": "aligned",
+      "alignment_note": "This is callable reconstruction from stored metadata, not a generic shell=True signature. Backend access is a required precondition.",
+      "verification_status": "candidate",
+      "rule_enabled": false,
+      "poc_status": "not_found_in_selected_index",
+      "poc_candidates": [],
+      "upstream_tests": {
+        "status": "source_observed_not_run",
+        "locations": [
+          "t/unit/backends/test_base.py::test_not_an_exception_but_a_callable"
+        ]
+      },
+      "planned_checks": {
+        "vulnerable": "A non-exception callable selected by metadata is rejected.",
+        "safe": "Legitimate exception classes are still reconstructed.",
+        "status": "specification_only"
+      },
+      "evidence": [
+        {
+          "kind": "cve",
+          "url": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2021/23xxx/CVE-2021-23727.json",
+          "path": "data/m0/sources/CVE-2021-23727.cve.json",
+          "sha256": "409859267ad74105e29349ad4e81b1f560f750d36d3274e9fb7d658502f331a8",
+          "retrieved_on": "2026-10-23",
+          "status": "fetched",
+          "evidence_id": "CVE-2021-23727:E1",
+          "redistribution": "not_assessed"
+        },
+        {
+          "kind": "changelog",
+          "url": "https://raw.githubusercontent.com/celery/celery/v5.2.2/Changelog.rst",
+          "path": "data/m0/sources/CVE-2021-23727.changelog.rst",
+          "sha256": "7e90f5af59c4d53028cb9c5f2adea2b9ddf2ff7a84269bb2ede42ea8c51b6b60",
+          "retrieved_on": "2026-10-23",
+          "status": "fetched",
+          "evidence_id": "CVE-2021-23727:E2",
+          "redistribution": "not_assessed"
+        },
+        {
+          "kind": "release_diff",
+          "url": "https://github.com/celery/celery/compare/v5.2.1...v5.2.2.patch",
+          "path": "data/m0/sources/CVE-2021-23727.release_diff.patch",
+          "sha256": "c58e8c229caf22cd2874103fbdcc6cb0cb60cf8600b0b2addab0d7de02bfe5e3",
+          "retrieved_on": "2026-10-23",
+          "status": "fetched",
+          "evidence_id": "CVE-2021-23727:E3",
+          "redistribution": "not_assessed"
+        },
+        {
+          "kind": "patch",
+          "url": "https://github.com/celery/celery/commit/1f7ad7e6df1e02039b6ab9eec617d283598cad6b.patch",
+          "path": "data/m0/sources/CVE-2021-23727.patch.patch",
+          "sha256": "860ff5b74264d4f5f19abeebbc413c23ab49339fc81dae380781fcfa262e2ad5",
+          "retrieved_on": "2026-10-23",
+          "status": "fetched",
+          "evidence_id": "CVE-2021-23727:E4",
+          "redistribution": "not_assessed"
+        }
+      ],
+      "patch_anchor": {
+        "evidence_id": "CVE-2021-23727:E4",
+        "start_line": 110,
+        "end_line": 160
+      },
+      "contribution": {
+        "sharing_enabled": false,
+        "scope": "local_only",
+        "consent_record": null
+      }
+    },
+    {
+      "cve_id": "CVE-2024-5998",
+      "record_state": "PUBLISHED",
+      "family": "unsafe_deserialization",
+      "component": "LangChain FAISS.deserialize_from_bytes",
+      "scope": "python_web_backend",
+      "version_status": "source_claims_not_normalized",
+      "raw_affected": [
+        {
+          "vendor": "langchain-ai",
+          "product": "langchain-ai/langchain",
+          "versions": [
+            {
+              "version": "unspecified",
+              "lessThan": "0.2.9",
+              "status": "affected",
+              "versionType": "custom"
+            }
+          ]
+        }
+      ],
+      "description_evidence": "A vulnerability in the FAISS.deserialize_from_bytes function of langchain-ai/langchain allows for pickle deserialization of untrusted data. This can lead to the execution of arbitrary commands via the os.system function. The issue affects the latest version of the product.",
+      "cause": "CVE describes untrusted pickle deserialization in FAISS bytes loading.",
+      "preconditions": [
+        "Untrusted serialized bytes reach the described FAISS deserializer."
+      ],
+      "prevention": "No rule derived from the linked commit until a matching deserialization fix is confirmed.",
+      "patch_alignment": "mismatch",
+      "alignment_note": "CVE-linked 604dfe2 changes WebResearchRetriever SSRF opt-in, not FAISS deserialization. Package/version identity also needs normalization.",
+      "verification_status": "candidate",
+      "rule_enabled": false,
+      "poc_status": "not_found_in_selected_index",
+      "poc_candidates": [],
+      "upstream_tests": {
+        "status": "not_found_in_selected_patch",
+        "locations": []
+      },
+      "planned_checks": {
+        "vulnerable": "To specify from a matching FAISS fix.",
+        "safe": "To specify from a matching FAISS fix.",
+        "status": "specification_only"
+      },
+      "evidence": [
+        {
+          "kind": "cve",
+          "url": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2024/5xxx/CVE-2024-5998.json",
+          "path": "data/m0/sources/CVE-2024-5998.cve.json",
+          "sha256": "149ca858b6a99232ec2f4dcae089e5fac81efc88ab52b36a0d2846cd81729abd",
+          "retrieved_on": "2026-10-23",
+          "status": "fetched",
+          "evidence_id": "CVE-2024-5998:E1",
+          "redistribution": "not_assessed"
+        },
+        {
+          "kind": "patch",
+          "url": "https://github.com/langchain-ai/langchain/commit/604dfe2d99246b0c09f047c604f0c63eafba31e7.patch",
+          "path": "data/m0/sources/CVE-2024-5998.patch.patch",
+          "sha256": "86f1aba8d82c2299fa9b224ada20ab99bb30b25ab89b32dff4db7d65630e3a8a",
+          "retrieved_on": "2026-10-23",
+          "status": "fetched",
+          "evidence_id": "CVE-2024-5998:E2",
+          "redistribution": "not_assessed"
+        }
+      ],
+      "patch_anchor": {
+        "evidence_id": "CVE-2024-5998:E2",
+        "start_line": 43,
+        "end_line": 74
+      },
+      "contribution": {
+        "sharing_enabled": false,
+        "scope": "local_only",
+        "consent_record": null
+      }
+    },
+    {
+      "cve_id": "CVE-2024-2912",
+      "record_state": "PUBLISHED",
+      "family": "unsafe_deserialization",
+      "component": "BentoML HTTP entry service",
+      "scope": "python_web_backend",
+      "version_status": "source_claims_not_normalized",
+      "raw_affected": [
+        {
+          "defaultStatus": "unaffected",
+          "product": "bentoml/bentoml",
+          "vendor": "bentoml",
+          "versions": [
+            {
+              "lessThanOrEqual": "1.2.4",
+              "status": "affected",
+              "version": "1.2.0",
+              "versionType": "custom"
+            }
+          ]
+        }
+      ],
+      "description_evidence": "An insecure deserialization vulnerability exists in the BentoML framework, allowing remote code execution (RCE) by sending a specially crafted POST request. By exploiting this vulnerability, attackers can execute arbitrary commands on the server hosting the BentoML application. The vulnerability is triggered when a serialized object, crafted to execute OS commands upon deserialization, is sent to any valid BentoML endpoint. This issue poses a significant security risk, enabling attackers to compromise the server and potentially gain unauthorized access or control.",
+      "cause": "A public endpoint can accept a pickle media type and deserialize unsafe input.",
+      "preconditions": [
+        "Untrusted request reaches the affected entry service; internal and external service boundaries differ."
+      ],
+      "prevention": "Reject the pickle media type at the main service boundary before deserialization.",
+      "patch_alignment": "aligned",
+      "alignment_note": "Patch has an is_main guard, not a global pickle ban. No regression test file was found in this patch; runtime coverage remains pending.",
+      "verification_status": "candidate",
+      "rule_enabled": false,
+      "poc_status": "not_found_in_selected_index",
+      "poc_candidates": [],
+      "upstream_tests": {
+        "status": "not_found_in_selected_patch",
+        "locations": []
+      },
+      "planned_checks": {
+        "vulnerable": "Public entry service rejects pickle media type.",
+        "safe": "Permitted JSON requests still work; internal service use needs separate trust analysis.",
+        "status": "specification_only"
+      },
+      "evidence": [
+        {
+          "kind": "cve",
+          "url": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2024/2xxx/CVE-2024-2912.json",
+          "path": "data/m0/sources/CVE-2024-2912.cve.json",
+          "sha256": "862e0a3c33fd821652e16a5c8c012805b1b4ed66348bb0e9f0ae2d66352e9049",
+          "retrieved_on": "2026-10-23",
+          "status": "fetched",
+          "evidence_id": "CVE-2024-2912:E1",
+          "redistribution": "not_assessed"
+        },
+        {
+          "kind": "patch",
+          "url": "https://github.com/bentoml/bentoml/commit/fd70379733c57c6368cc022ac1f841b7b426db7b.patch",
+          "path": "data/m0/sources/CVE-2024-2912.patch.patch",
+          "sha256": "a1aebb372ccaeec6acfeb28bc28332d64502e593e1052f96835c9301b293658b",
+          "retrieved_on": "2026-10-23",
+          "status": "fetched",
+          "evidence_id": "CVE-2024-2912:E2",
+          "redistribution": "not_assessed"
+        }
+      ],
+      "patch_anchor": {
+        "evidence_id": "CVE-2024-2912:E2",
+        "start_line": 211,
+        "end_line": 220
+      },
+      "contribution": {
+        "sharing_enabled": false,
+        "scope": "local_only",
+        "consent_record": null
+      }
+    }
+  ]
+}

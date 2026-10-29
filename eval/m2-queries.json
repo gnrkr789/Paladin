@@ -1,0 +1,177 @@
+{
+  "purpose": "fixed_english_development_retrieval_check_not_prevention_evaluation",
+  "gate": {
+    "hit_at_5": 0.8,
+    "mrr": 0.6
+  },
+  "queries": [
+    {
+      "id": "en-paraphrase-upload",
+      "language": "en",
+      "query": "How can uploaded names containing parent directory components be prevented from escaping their storage directory?",
+      "relevant": [
+        "CVE-2021-31542",
+        "CVE-2021-28658",
+        "CVE-2024-39330",
+        "CVE-2021-45452"
+      ]
+    },
+    {
+      "id": "en-upload",
+      "language": "en",
+      "query": "How should Django validate an uploaded filename before storage so parent directories cannot escape the upload root?",
+      "relevant": [
+        "CVE-2021-31542",
+        "CVE-2021-28658",
+        "CVE-2024-39330",
+        "CVE-2021-45452"
+      ]
+    },
+    {
+      "id": "en-paraphrase-windows",
+      "language": "en",
+      "query": "How should a Windows network share path be rejected when an older Python absolute-path check misses it?",
+      "relevant": [
+        "CVE-2024-49766"
+      ]
+    },
+    {
+      "id": "en-windows",
+      "language": "en",
+      "query": "Werkzeug safe_join on Windows Python before 3.11 can miss UNC paths. What extra condition is needed?",
+      "relevant": [
+        "CVE-2024-49766"
+      ]
+    },
+    {
+      "id": "en-paraphrase-datepart",
+      "language": "en",
+      "query": "Can user-selected date units in Django date extraction and truncation inject structural SQL arguments?",
+      "relevant": [
+        "CVE-2022-34265"
+      ]
+    },
+    {
+      "id": "en-datepart",
+      "language": "en",
+      "query": "Untrusted kind or lookup_name is passed to Trunc and Extract date functions; how should structural SQL arguments be constrained?",
+      "relevant": [
+        "CVE-2022-34265"
+      ]
+    },
+    {
+      "id": "en-paraphrase-ordering",
+      "language": "en",
+      "query": "How should user-controlled sorting fields be validated when a deprecated Django alias path bypasses checks?",
+      "relevant": [
+        "CVE-2021-35042"
+      ]
+    },
+    {
+      "id": "en-ordering",
+      "language": "en",
+      "query": "A deprecated raw column alias path in QuerySet.order_by bypasses validation despite emitting a warning.",
+      "relevant": [
+        "CVE-2021-35042"
+      ]
+    },
+    {
+      "id": "en-paraphrase-brackets",
+      "language": "en",
+      "query": "How can bracketed URL hosts cause parser disagreement and requests to an internal network?",
+      "relevant": [
+        "CVE-2024-11168"
+      ]
+    },
+    {
+      "id": "en-brackets",
+      "language": "en",
+      "query": "urllib.parse accepts bracketed hosts that are not IPv6 or IPvFuture, causing parser disagreement and conditional SSRF.",
+      "relevant": [
+        "CVE-2024-11168"
+      ]
+    },
+    {
+      "id": "en-paraphrase-options",
+      "language": "en",
+      "query": "Can a user-supplied branch name become a process option even when subprocess uses an argument list without a shell?",
+      "relevant": [
+        "CVE-2022-24065"
+      ]
+    },
+    {
+      "id": "en-options",
+      "language": "en",
+      "query": "Mercurial checkout receives an untrusted branch argument and interprets it as a flag even with shell=False.",
+      "relevant": [
+        "CVE-2022-24065"
+      ]
+    },
+    {
+      "id": "en-paraphrase-exceptions",
+      "language": "en",
+      "query": "How can restoring an exception from stored task queue error metadata invoke an arbitrary function?",
+      "relevant": [
+        "CVE-2021-23727"
+      ]
+    },
+    {
+      "id": "en-exceptions",
+      "language": "en",
+      "query": "Celery result metadata selects a callable as an exception constructor; validate BaseException subclass before invocation.",
+      "relevant": [
+        "CVE-2021-23727"
+      ]
+    },
+    {
+      "id": "en-paraphrase-pickle",
+      "language": "en",
+      "query": "How should a machine learning web service reject pickle data from external HTTP requests before deserialization?",
+      "relevant": [
+        "CVE-2024-2912"
+      ]
+    },
+    {
+      "id": "en-pickle",
+      "language": "en",
+      "query": "BentoML entry service should reject pickle media type at the public request boundary while preserving ordinary JSON requests.",
+      "relevant": [
+        "CVE-2024-2912"
+      ]
+    },
+    {
+      "id": "en-paraphrase-commonprefix",
+      "language": "en",
+      "query": "Can checking only an extraction directory string prefix allow escape into a sibling directory sharing that prefix?",
+      "relevant": [
+        "CVE-2025-59682",
+        "CVE-2021-3281"
+      ]
+    },
+    {
+      "id": "en-tolerance",
+      "language": "en",
+      "query": "Oracle GIS tolerance is supplied by an external user and interpolated into SQL instead of passed as a numeric Value expression.",
+      "relevant": [
+        "CVE-2020-9402"
+      ]
+    },
+    {
+      "id": "en-paraphrase-leadingzero",
+      "language": "en",
+      "query": "How can leading zeros in IPv4 octets cause inconsistent octal interpretation and bypass address validation?",
+      "relevant": [
+        "CVE-2021-33571"
+      ]
+    },
+    {
+      "id": "en-redirect",
+      "language": "en",
+      "query": "An urllib3 PoolManager redirect-disable policy is lost through retry handling; SSRF mitigation must apply at the effective request layer.",
+      "relevant": [
+        "CVE-2025-50181"
+      ]
+    }
+  ],
+  "protocol_revision": "english-only-v1"
+}

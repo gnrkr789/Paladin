@@ -1,0 +1,26 @@
+{
+  "schema_version": "1",
+  "scope": "private_agent_patch_boundary_cases",
+  "cases": [
+    {"id": "PT-A-R1", "family": "path_traversal", "entrypoint": "valid_filename", "input": "!!??", "role": "risk", "vulnerable": "accepted", "fixed": "rejected"},
+    {"id": "PT-A-R2", "family": "path_traversal", "entrypoint": "storage_generate", "input": "drafts/../../secret.txt", "role": "risk", "vulnerable": "accepted", "fixed": "rejected"},
+    {"id": "PT-A-S1", "family": "path_traversal", "entrypoint": "valid_filename", "input": "budget-2025.csv", "role": "safe", "vulnerable": "accepted", "fixed": "accepted"},
+    {"id": "PT-A-S2", "family": "path_traversal", "entrypoint": "storage_generate", "input": "public/budget.csv", "role": "safe", "vulnerable": "accepted", "fixed": "accepted"},
+    {"id": "SQL-A-R1", "family": "sql_injection", "entrypoint": "trunc", "input": "week);--", "role": "risk", "vulnerable": "accepted", "fixed": "rejected"},
+    {"id": "SQL-A-R2", "family": "sql_injection", "entrypoint": "extract", "input": "day) OR 1=1 --", "role": "risk", "vulnerable": "accepted", "fixed": "rejected"},
+    {"id": "SQL-A-S1", "family": "sql_injection", "entrypoint": "trunc", "input": "quarter", "role": "safe", "vulnerable": "accepted", "fixed": "accepted"},
+    {"id": "SQL-A-S2", "family": "sql_injection", "entrypoint": "extract", "input": "hour", "role": "safe", "vulnerable": "accepted", "fixed": "accepted"},
+    {"id": "SSRF-A-R1", "family": "ssrf", "entrypoint": "urlsplit", "input": "https://[172.20.1.2]/check", "role": "risk", "vulnerable": "accepted", "fixed": "rejected"},
+    {"id": "SSRF-A-R2", "family": "ssrf", "entrypoint": "urlsplit", "input": "https://[bad-host]/check", "role": "risk", "vulnerable": "accepted", "fixed": "rejected"},
+    {"id": "SSRF-A-S1", "family": "ssrf", "entrypoint": "urlsplit", "input": "https://[2001:db8::99]/check", "role": "safe", "vulnerable": "accepted", "fixed": "accepted"},
+    {"id": "SSRF-A-S2", "family": "ssrf", "entrypoint": "urlsplit", "input": "https://[v2.host]/check", "role": "safe", "vulnerable": "accepted", "fixed": "accepted"},
+    {"id": "CMD-A-R1", "family": "command_injection", "entrypoint": "hg_checkout", "input": "--verbose", "role": "risk", "vulnerable": "option_exposed", "fixed": "literal_after_terminator"},
+    {"id": "CMD-A-R2", "family": "command_injection", "entrypoint": "hg_checkout", "input": "--config=ui.bar=baz", "role": "risk", "vulnerable": "option_exposed", "fixed": "literal_after_terminator"},
+    {"id": "CMD-A-S1", "family": "command_injection", "entrypoint": "hg_checkout", "input": "main", "role": "safe", "vulnerable": "ordinary_argv", "fixed": "ordinary_argv_with_terminator"},
+    {"id": "CMD-A-S2", "family": "command_injection", "entrypoint": "hg_checkout", "input": "release/1", "role": "safe", "vulnerable": "ordinary_argv", "fixed": "ordinary_argv_with_terminator"},
+    {"id": "DESER-A-R1", "family": "unsafe_deserialization", "entrypoint": "main_http", "input": "application/vnd.bentoml+pickle; q=1", "role": "risk", "vulnerable": "reached_serde", "fixed": "rejected_before_serde"},
+    {"id": "DESER-A-R2", "family": "unsafe_deserialization", "entrypoint": "main_http", "input": "  application/vnd.bentoml+pickle  ", "role": "risk", "vulnerable": "reached_serde", "fixed": "rejected_before_serde"},
+    {"id": "DESER-A-S1", "family": "unsafe_deserialization", "entrypoint": "main_http", "input": "application/json; charset=ascii", "role": "safe", "vulnerable": "reached_serde", "fixed": "reached_serde"},
+    {"id": "DESER-A-S2", "family": "unsafe_deserialization", "entrypoint": "internal_http", "input": "application/vnd.bentoml+pickle; q=1", "role": "safe", "vulnerable": "reached_serde", "fixed": "reached_serde"}
+  ]
+}

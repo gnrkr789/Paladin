@@ -1,0 +1,1405 @@
+[
+  {
+    "id": "CVE-2021-31542",
+    "sources": [
+      {
+        "kind": "cve",
+        "url": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2021/31xxx/CVE-2021-31542.json",
+        "path": "data/m0/sources/CVE-2021-31542.cve.json",
+        "sha256": "e0121e1a915e03043c3f5065f874a117b7ba96288a11f0679d17e652e8fefad7",
+        "retrieved_on": "2026-10-23",
+        "status": "fetched"
+      },
+      {
+        "kind": "poc_index",
+        "url": "https://raw.githubusercontent.com/nomi-sec/PoC-in-GitHub/master/2021/CVE-2021-31542.json",
+        "status": "unavailable",
+        "error": "HTTP Error 404: Not Found"
+      }
+    ],
+    "state": "PUBLISHED",
+    "description": [
+      {
+        "lang": "en",
+        "value": "In Django 2.2 before 2.2.21, 3.1 before 3.1.9, and 3.2 before 3.2.1, MultiPartParser, UploadedFile, and FieldFile allowed directory traversal via uploaded files with suitably crafted file names."
+      }
+    ],
+    "affected": [
+      {
+        "vendor": "n/a",
+        "product": "n/a",
+        "versions": [
+          {
+            "version": "n/a",
+            "status": "affected"
+          }
+        ]
+      }
+    ],
+    "references": [
+      {
+        "url": "https://groups.google.com/forum/#%21forum/django-announce"
+      },
+      {
+        "url": "https://docs.djangoproject.com/en/3.2/releases/security/"
+      },
+      {
+        "url": "http://www.openwall.com/lists/oss-security/2021/05/04/3"
+      },
+      {
+        "url": "https://www.djangoproject.com/weblog/2021/may/04/security-releases/"
+      },
+      {
+        "name": "[debian-lts-announce] 20210506 [SECURITY] [DLA 2651-1] python-django security update",
+        "tags": [
+          "mailing-list"
+        ],
+        "url": "https://lists.debian.org/debian-lts-announce/2021/05/msg00005.html"
+      },
+      {
+        "name": "FEDORA-2021-01044b8a59",
+        "tags": [
+          "vendor-advisory"
+        ],
+        "url": "https://lists.fedoraproject.org/archives/list/package-announce%40lists.fedoraproject.org/message/ZVKYPHR3TKR2ESWXBPOJEKRO2OSJRZUE/"
+      },
+      {
+        "url": "https://security.netapp.com/advisory/ntap-20210618-0001/"
+      },
+      {
+        "name": "FEDORA-2022-e7fd530688",
+        "tags": [
+          "vendor-advisory"
+        ],
+        "url": "https://lists.fedoraproject.org/archives/list/package-announce%40lists.fedoraproject.org/message/B4SQG2EAF4WCI2SLRL6XRDJ3RPK3ZRDV/"
+      },
+      {
+        "url": "https://github.com/django/django/commit/04ac1624bdc2fa737188401757cf95ced122d26d"
+      },
+      {
+        "url": "https://github.com/django/django/commit/25d84d64122c15050a0ee739e859f22ddab5ac48"
+      },
+      {
+        "url": "https://github.com/django/django/commit/c98f446c188596d4ba6de71d1b77b4a6c5c2a007"
+      }
+    ]
+  },
+  {
+    "id": "CVE-2024-49766",
+    "sources": [
+      {
+        "kind": "cve",
+        "url": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2024/49xxx/CVE-2024-49766.json",
+        "path": "data/m0/sources/CVE-2024-49766.cve.json",
+        "sha256": "aeeb34927397e676158de94a65f101941d06ff48dc94c0e8c9d75326a9d5dde2",
+        "retrieved_on": "2026-10-23",
+        "status": "fetched"
+      },
+      {
+        "kind": "poc_index",
+        "url": "https://raw.githubusercontent.com/nomi-sec/PoC-in-GitHub/master/2024/CVE-2024-49766.json",
+        "status": "unavailable",
+        "error": "HTTP Error 404: Not Found"
+      }
+    ],
+    "state": "PUBLISHED",
+    "description": [
+      {
+        "lang": "en",
+        "value": "Werkzeug is a Web Server Gateway Interface web application library. On Python < 3.11 on Windows, os.path.isabs() does not catch UNC paths like //server/share. Werkzeug's safe_join() relies on this check, and so can produce a path that is not safe, potentially allowing unintended access to data. Applications using Python >= 3.11, or not using Windows, are not vulnerable. Werkzeug version 3.0.6 contains a patch."
+      }
+    ],
+    "affected": [
+      {
+        "vendor": "pallets",
+        "product": "werkzeug",
+        "versions": [
+          {
+            "version": "< 3.0.6",
+            "status": "affected"
+          }
+        ]
+      }
+    ],
+    "references": [
+      {
+        "name": "https://github.com/pallets/werkzeug/security/advisories/GHSA-f9vj-2wh5-fj8j",
+        "tags": [
+          "x_refsource_CONFIRM"
+        ],
+        "url": "https://github.com/pallets/werkzeug/security/advisories/GHSA-f9vj-2wh5-fj8j"
+      },
+      {
+        "name": "https://github.com/pallets/werkzeug/commit/2767bcb10a7dd1c297d812cc5e6d11a474c1f092",
+        "tags": [
+          "x_refsource_MISC"
+        ],
+        "url": "https://github.com/pallets/werkzeug/commit/2767bcb10a7dd1c297d812cc5e6d11a474c1f092"
+      },
+      {
+        "name": "https://github.com/pallets/werkzeug/releases/tag/3.0.6",
+        "tags": [
+          "x_refsource_MISC"
+        ],
+        "url": "https://github.com/pallets/werkzeug/releases/tag/3.0.6"
+      }
+    ]
+  },
+  {
+    "id": "CVE-2022-34265",
+    "sources": [
+      {
+        "kind": "cve",
+        "url": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2022/34xxx/CVE-2022-34265.json",
+        "path": "data/m0/sources/CVE-2022-34265.cve.json",
+        "sha256": "2dd28a38c4266115b51b68b4aa354f6248325b565e5176d230c7607216ad113b",
+        "retrieved_on": "2026-10-23",
+        "status": "fetched"
+      },
+      {
+        "kind": "poc_index",
+        "url": "https://raw.githubusercontent.com/nomi-sec/PoC-in-GitHub/master/2022/CVE-2022-34265.json",
+        "path": "data/m0/sources/CVE-2022-34265.poc_index.json",
+        "sha256": "76b24c1a51fc4e32c082ab3b5828d0666c282f78ac63fcbbd78560dc7f2f1114",
+        "retrieved_on": "2026-10-23",
+        "status": "fetched"
+      }
+    ],
+    "state": "PUBLISHED",
+    "description": [
+      {
+        "lang": "en",
+        "value": "An issue was discovered in Django 3.2 before 3.2.14 and 4.0 before 4.0.6. The Trunc() and Extract() database functions are subject to SQL injection if untrusted data is used as a kind/lookup_name value. Applications that constrain the lookup name and kind choice to a known safe list are unaffected."
+      }
+    ],
+    "affected": [
+      {
+        "vendor": "n/a",
+        "product": "n/a",
+        "versions": [
+          {
+            "version": "n/a",
+            "status": "affected"
+          }
+        ]
+      }
+    ],
+    "references": [
+      {
+        "url": "https://groups.google.com/forum/#%21forum/django-announce"
+      },
+      {
+        "url": "https://docs.djangoproject.com/en/4.0/releases/security/"
+      },
+      {
+        "url": "https://www.djangoproject.com/weblog/2022/jul/04/security-releases/"
+      },
+      {
+        "url": "https://security.netapp.com/advisory/ntap-20220818-0006/"
+      },
+      {
+        "name": "DSA-5254",
+        "tags": [
+          "vendor-advisory"
+        ],
+        "url": "https://www.debian.org/security/2022/dsa-5254"
+      },
+      {
+        "name": "FEDORA-2023-8fed428c5e",
+        "tags": [
+          "vendor-advisory"
+        ],
+        "url": "https://lists.fedoraproject.org/archives/list/package-announce%40lists.fedoraproject.org/message/HWY6DQWRVBALV73BPUVBXC3QIYUM24IK/"
+      },
+      {
+        "name": "FEDORA-2023-a53ab7c969",
+        "tags": [
+          "vendor-advisory"
+        ],
+        "url": "https://lists.fedoraproject.org/archives/list/package-announce%40lists.fedoraproject.org/message/LTZVAKU5ALQWOKFTPISE257VCVIYGFQI/"
+      }
+    ],
+    "poc_candidates": [
+      {
+        "id": 511432180,
+        "name": "CVE-2022-34265",
+        "full_name": "aeyesec/CVE-2022-34265",
+        "owner": {
+          "login": "aeyesec",
+          "id": 61375985,
+          "avatar_url": "https://avatars.githubusercontent.com/u/61375985?v=4",
+          "html_url": "https://github.com/aeyesec",
+          "user_view_type": "public"
+        },
+        "html_url": "https://github.com/aeyesec/CVE-2022-34265",
+        "description": "PoC for CVE-2022-34265 (Django)",
+        "fork": false,
+        "created_at": "2022-07-07T07:45:28Z",
+        "updated_at": "2025-06-02T19:47:45Z",
+        "pushed_at": "2022-07-30T07:53:43Z",
+        "stargazers_count": 124,
+        "watchers_count": 124,
+        "has_discussions": false,
+        "forks_count": 15,
+        "allow_forking": true,
+        "is_template": false,
+        "web_commit_signoff_required": false,
+        "has_pull_requests": true,
+        "pull_request_creation_policy": "all",
+        "topics": [],
+        "visibility": "public",
+        "forks": 15,
+        "watchers": 124,
+        "score": 0,
+        "subscribers_count": 4
+      },
+      {
+        "id": 513523694,
+        "name": "CVE-2022-34265",
+        "full_name": "traumatising/CVE-2022-34265",
+        "owner": {
+          "login": "traumatising",
+          "id": 109222893,
+          "avatar_url": "https://avatars.githubusercontent.com/u/109222893?v=4",
+          "html_url": "https://github.com/traumatising",
+          "user_view_type": "public"
+        },
+        "html_url": "https://github.com/traumatising/CVE-2022-34265",
+        "description": "CVE-2022-34265 Vulnerability ",
+        "fork": false,
+        "created_at": "2022-07-13T13:02:41Z",
+        "updated_at": "2022-07-17T10:07:36Z",
+        "pushed_at": "2022-07-13T13:07:01Z",
+        "stargazers_count": 3,
+        "watchers_count": 3,
+        "has_discussions": false,
+        "forks_count": 1,
+        "allow_forking": true,
+        "is_template": false,
+        "web_commit_signoff_required": false,
+        "has_pull_requests": true,
+        "pull_request_creation_policy": "all",
+        "topics": [],
+        "visibility": "public",
+        "forks": 1,
+        "watchers": 3,
+        "score": 0,
+        "subscribers_count": 1
+      },
+      {
+        "id": 528313090,
+        "name": "CVE-2022-34265",
+        "full_name": "ZhaoQi99/CVE-2022-34265",
+        "owner": {
+          "login": "ZhaoQi99",
+          "id": 25344334,
+          "avatar_url": "https://avatars.githubusercontent.com/u/25344334?v=4",
+          "html_url": "https://github.com/ZhaoQi99",
+          "user_view_type": "public"
+        },
+        "html_url": "https://github.com/ZhaoQi99/CVE-2022-34265",
+        "description": "PoC for CVE-2022-34265",
+        "fork": false,
+        "created_at": "2022-08-24T07:29:30Z",
+        "updated_at": "2023-02-14T21:32:51Z",
+        "pushed_at": "2022-08-26T03:28:01Z",
+        "stargazers_count": 4,
+        "watchers_count": 4,
+        "has_discussions": false,
+        "forks_count": 0,
+        "allow_forking": true,
+        "is_template": false,
+        "web_commit_signoff_required": false,
+        "has_pull_requests": true,
+        "pull_request_creation_policy": "all",
+        "topics": [],
+        "visibility": "public",
+        "forks": 0,
+        "watchers": 4,
+        "score": 0,
+        "subscribers_count": 0
+      },
+      {
+        "id": 534397698,
+        "name": "CTF_Django_CVE-2022-34265",
+        "full_name": "lnwza0x0a/CTF_Django_CVE-2022-34265",
+        "owner": {
+          "login": "lnwza0x0a",
+          "id": 96345719,
+          "avatar_url": "https://avatars.githubusercontent.com/u/96345719?v=4",
+          "html_url": "https://github.com/lnwza0x0a",
+          "user_view_type": "public"
+        },
+        "html_url": "https://github.com/lnwza0x0a/CTF_Django_CVE-2022-34265",
+        "description": null,
+        "fork": false,
+        "created_at": "2022-09-08T21:22:28Z",
+        "updated_at": "2022-10-07T11:01:14Z",
+        "pushed_at": "2022-09-08T22:10:47Z",
+        "stargazers_count": 1,
+        "watchers_count": 1,
+        "has_discussions": false,
+        "forks_count": 0,
+        "allow_forking": true,
+        "is_template": false,
+        "web_commit_signoff_required": false,
+        "has_pull_requests": true,
+        "pull_request_creation_policy": "all",
+        "topics": [],
+        "visibility": "public",
+        "forks": 0,
+        "watchers": 1,
+        "score": 0,
+        "subscribers_count": 1
+      },
+      {
+        "id": 1410908107,
+        "name": "vulhub-django-cve-2022-34265",
+        "full_name": "CyberCTF/vulhub-django-cve-2022-34265",
+        "owner": {
+          "login": "CyberCTF",
+          "id": 190261590,
+          "avatar_url": "https://avatars.githubusercontent.com/u/190261590?v=4",
+          "html_url": "https://github.com/CyberCTF",
+          "user_view_type": "public"
+        },
+        "html_url": "https://github.com/CyberCTF/vulhub-django-cve-2022-34265",
+        "description": "Vulhub django/CVE-2022-34265: Django Trunc and Extract SQL Injection (CVE-2022-34265), run with Isoloom",
+        "fork": false,
+        "created_at": "2026-10-08T20:15:17Z",
+        "updated_at": "2026-10-20T08:27:01Z",
+        "pushed_at": "2026-10-20T08:26:57Z",
+        "stargazers_count": 0,
+        "watchers_count": 0,
+        "has_discussions": false,
+        "forks_count": 0,
+        "allow_forking": true,
+        "is_template": false,
+        "web_commit_signoff_required": false,
+        "has_pull_requests": true,
+        "pull_request_creation_policy": "all",
+        "topics": [],
+        "visibility": "public",
+        "forks": 0,
+        "watchers": 0,
+        "score": 0,
+        "subscribers_count": 0
+      }
+    ]
+  },
+  {
+    "id": "CVE-2021-35042",
+    "sources": [
+      {
+        "kind": "cve",
+        "url": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2021/35xxx/CVE-2021-35042.json",
+        "path": "data/m0/sources/CVE-2021-35042.cve.json",
+        "sha256": "58216e7ab98c6201644aeb7b7f119764c330f1a763081f1dd972c0b3d3aa8ba0",
+        "retrieved_on": "2026-10-23",
+        "status": "fetched"
+      },
+      {
+        "kind": "poc_index",
+        "url": "https://raw.githubusercontent.com/nomi-sec/PoC-in-GitHub/master/2021/CVE-2021-35042.json",
+        "path": "data/m0/sources/CVE-2021-35042.poc_index.json",
+        "sha256": "6d0a408c09c5f5d5d1e494232622672e20c622760973a32a96c2c0132cee33d7",
+        "retrieved_on": "2026-10-23",
+        "status": "fetched"
+      }
+    ],
+    "state": "PUBLISHED",
+    "description": [
+      {
+        "lang": "en",
+        "value": "Django 3.1.x before 3.1.13 and 3.2.x before 3.2.5 allows QuerySet.order_by SQL injection if order_by is untrusted input from a client of a web application."
+      }
+    ],
+    "affected": [
+      {
+        "product": "n/a",
+        "vendor": "n/a",
+        "versions": [
+          {
+            "status": "affected",
+            "version": "n/a"
+          }
+        ]
+      }
+    ],
+    "references": [
+      {
+        "tags": [
+          "x_refsource_MISC"
+        ],
+        "url": "https://groups.google.com/forum/#%21forum/django-announce"
+      },
+      {
+        "tags": [
+          "x_refsource_MISC"
+        ],
+        "url": "https://docs.djangoproject.com/en/3.2/releases/security/"
+      },
+      {
+        "tags": [
+          "x_refsource_CONFIRM"
+        ],
+        "url": "https://www.openwall.com/lists/oss-security/2021/07/02/2"
+      },
+      {
+        "tags": [
+          "x_refsource_CONFIRM"
+        ],
+        "url": "https://www.djangoproject.com/weblog/2021/jul/01/security-releases/"
+      },
+      {
+        "tags": [
+          "x_refsource_CONFIRM"
+        ],
+        "url": "https://security.netapp.com/advisory/ntap-20210805-0008/"
+      },
+      {
+        "name": "FEDORA-2021-78e501d62a",
+        "tags": [
+          "vendor-advisory",
+          "x_refsource_FEDORA"
+        ],
+        "url": "https://lists.fedoraproject.org/archives/list/package-announce%40lists.fedoraproject.org/message/SS6NJTBYWOX6J7G4U3LUOILARJKWPQ5Y/"
+      }
+    ],
+    "poc_candidates": [
+      {
+        "id": 384694670,
+        "name": "CVE-2021-35042",
+        "full_name": "YouGina/CVE-2021-35042",
+        "owner": {
+          "login": "YouGina",
+          "id": 5002624,
+          "avatar_url": "https://avatars.githubusercontent.com/u/5002624?v=4",
+          "html_url": "https://github.com/YouGina",
+          "user_view_type": "public"
+        },
+        "html_url": "https://github.com/YouGina/CVE-2021-35042",
+        "description": "SQL injection via unsanitized QuerySet.order_by() input",
+        "fork": false,
+        "created_at": "2021-07-10T12:38:52Z",
+        "updated_at": "2026-01-31T00:25:57Z",
+        "pushed_at": "2021-07-10T13:43:54Z",
+        "stargazers_count": 13,
+        "watchers_count": 13,
+        "has_discussions": false,
+        "forks_count": 5,
+        "allow_forking": true,
+        "is_template": false,
+        "web_commit_signoff_required": false,
+        "has_pull_requests": true,
+        "pull_request_creation_policy": "all",
+        "topics": [],
+        "visibility": "public",
+        "forks": 5,
+        "watchers": 13,
+        "score": 0,
+        "subscribers_count": 1
+      },
+      {
+        "id": 402138788,
+        "name": "CVE-2021-35042",
+        "full_name": "mrlihd/CVE-2021-35042",
+        "owner": {
+          "login": "mrlihd",
+          "id": 77404450,
+          "avatar_url": "https://avatars.githubusercontent.com/u/77404450?v=4",
+          "html_url": "https://github.com/mrlihd",
+          "user_view_type": "public"
+        },
+        "html_url": "https://github.com/mrlihd/CVE-2021-35042",
+        "description": "Reproduce CVE-2021-35042",
+        "fork": false,
+        "created_at": "2021-09-01T16:59:42Z",
+        "updated_at": "2025-01-03T19:16:24Z",
+        "pushed_at": "2021-09-18T03:16:28Z",
+        "stargazers_count": 0,
+        "watchers_count": 0,
+        "has_discussions": false,
+        "forks_count": 0,
+        "allow_forking": true,
+        "is_template": false,
+        "web_commit_signoff_required": false,
+        "has_pull_requests": true,
+        "pull_request_creation_policy": "all",
+        "topics": [],
+        "visibility": "public",
+        "forks": 0,
+        "watchers": 0,
+        "score": 0,
+        "subscribers_count": 1
+      },
+      {
+        "id": 410014595,
+        "name": "CVE-2021-35042",
+        "full_name": "r4vi/CVE-2021-35042",
+        "owner": {
+          "login": "r4vi",
+          "id": 565628,
+          "avatar_url": "https://avatars.githubusercontent.com/u/565628?v=4",
+          "html_url": "https://github.com/r4vi",
+          "user_view_type": "public"
+        },
+        "html_url": "https://github.com/r4vi/CVE-2021-35042",
+        "description": null,
+        "fork": false,
+        "created_at": "2021-09-24T15:30:25Z",
+        "updated_at": "2022-06-03T05:45:29Z",
+        "pushed_at": "2022-02-10T16:43:22Z",
+        "stargazers_count": 5,
+        "watchers_count": 5,
+        "has_discussions": false,
+        "forks_count": 0,
+        "allow_forking": true,
+        "is_template": false,
+        "web_commit_signoff_required": false,
+        "has_pull_requests": true,
+        "pull_request_creation_policy": "all",
+        "topics": [],
+        "visibility": "public",
+        "forks": 0,
+        "watchers": 5,
+        "score": 0,
+        "subscribers_count": 1
+      },
+      {
+        "id": 485202008,
+        "name": "CVE-2021-35042",
+        "full_name": "zer0qs/CVE-2021-35042",
+        "owner": {
+          "login": "zer0qs",
+          "id": 83699106,
+          "avatar_url": "https://avatars.githubusercontent.com/u/83699106?v=4",
+          "html_url": "https://github.com/zer0qs",
+          "user_view_type": "public"
+        },
+        "html_url": "https://github.com/zer0qs/CVE-2021-35042",
+        "description": "A basic analysis about CVE-2021-35942. SQL injection in Django.",
+        "fork": false,
+        "created_at": "2022-04-25T02:50:00Z",
+        "updated_at": "2023-06-27T01:32:32Z",
+        "pushed_at": "2022-04-29T02:16:22Z",
+        "stargazers_count": 2,
+        "watchers_count": 2,
+        "has_discussions": false,
+        "forks_count": 0,
+        "allow_forking": true,
+        "is_template": false,
+        "web_commit_signoff_required": false,
+        "has_pull_requests": true,
+        "pull_request_creation_policy": "all",
+        "topics": [],
+        "visibility": "public",
+        "forks": 0,
+        "watchers": 2,
+        "score": 0,
+        "subscribers_count": 1
+      },
+      {
+        "id": 642158825,
+        "name": "CVE-2021-35042",
+        "full_name": "LUUANHDUC/CVE-2021-35042",
+        "owner": {
+          "login": "LUUANHDUC",
+          "id": 125422094,
+          "avatar_url": "https://avatars.githubusercontent.com/u/125422094?v=4",
+          "html_url": "https://github.com/LUUANHDUC",
+          "user_view_type": "public"
+        },
+        "html_url": "https://github.com/LUUANHDUC/CVE-2021-35042",
+        "description": "Django SQL injection vulnerability",
+        "fork": false,
+        "created_at": "2023-05-18T00:35:20Z",
+        "updated_at": "2023-05-18T00:36:36Z",
+        "pushed_at": "2023-05-18T00:40:04Z",
+        "stargazers_count": 0,
+        "watchers_count": 0,
+        "has_discussions": false,
+        "forks_count": 1,
+        "allow_forking": true,
+        "is_template": false,
+        "web_commit_signoff_required": false,
+        "has_pull_requests": true,
+        "pull_request_creation_policy": "all",
+        "topics": [],
+        "visibility": "public",
+        "forks": 1,
+        "watchers": 0,
+        "score": 0,
+        "subscribers_count": 1
+      },
+      {
+        "id": 1213945770,
+        "name": "INT14107_CVE-2021-35042",
+        "full_name": "vutiendat323/INT14107_CVE-2021-35042",
+        "owner": {
+          "login": "vutiendat323",
+          "id": 196219705,
+          "avatar_url": "https://avatars.githubusercontent.com/u/196219705?v=4",
+          "html_url": "https://github.com/vutiendat323",
+          "user_view_type": "public"
+        },
+        "html_url": "https://github.com/vutiendat323/INT14107_CVE-2021-35042",
+        "description": null,
+        "fork": false,
+        "created_at": "2026-04-17T23:53:39Z",
+        "updated_at": "2026-06-05T10:19:05Z",
+        "pushed_at": "2026-04-18T00:13:09Z",
+        "stargazers_count": 0,
+        "watchers_count": 0,
+        "has_discussions": false,
+        "forks_count": 0,
+        "allow_forking": true,
+        "is_template": false,
+        "web_commit_signoff_required": false,
+        "has_pull_requests": true,
+        "pull_request_creation_policy": "all",
+        "topics": [],
+        "visibility": "public",
+        "forks": 0,
+        "watchers": 0,
+        "score": 0,
+        "subscribers_count": 0
+      }
+    ]
+  },
+  {
+    "id": "CVE-2023-24329",
+    "sources": [
+      {
+        "kind": "cve",
+        "url": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2023/24xxx/CVE-2023-24329.json",
+        "path": "data/m0/sources/CVE-2023-24329.cve.json",
+        "sha256": "0264e1fd4f116fee782a6189abdaa4cfc6f7c78c976ac2f06812d7542c37f2c5",
+        "retrieved_on": "2026-10-23",
+        "status": "fetched"
+      },
+      {
+        "kind": "poc_index",
+        "url": "https://raw.githubusercontent.com/nomi-sec/PoC-in-GitHub/master/2023/CVE-2023-24329.json",
+        "path": "data/m0/sources/CVE-2023-24329.poc_index.json",
+        "sha256": "ea309616e8fed0805eb797fd251e928259a33f564298d30ac606fa76c8d26536",
+        "retrieved_on": "2026-10-23",
+        "status": "fetched"
+      }
+    ],
+    "state": "PUBLISHED",
+    "description": [
+      {
+        "lang": "en",
+        "value": "An issue in the urllib.parse component of Python before 3.11.4 allows attackers to bypass blocklisting methods by supplying a URL that starts with blank characters."
+      }
+    ],
+    "affected": [
+      {
+        "vendor": "n/a",
+        "product": "n/a",
+        "versions": [
+          {
+            "version": "n/a",
+            "status": "affected"
+          }
+        ]
+      }
+    ],
+    "references": [
+      {
+        "url": "https://pointernull.com/security/python-url-parse-problem.html"
+      },
+      {
+        "url": "https://github.com/python/cpython/pull/99421"
+      },
+      {
+        "url": "https://security.netapp.com/advisory/ntap-20230324-0004/"
+      },
+      {
+        "name": "FEDORA-2023-b3a3df39dd",
+        "tags": [
+          "vendor-advisory"
+        ],
+        "url": "https://lists.fedoraproject.org/archives/list/package-announce%40lists.fedoraproject.org/message/TZH26JGNZ5XYPZ5SAU3NKSBSPRE5OHTG/"
+      },
+      {
+        "name": "FEDORA-2023-406c1c6ed7",
+        "tags": [
+          "vendor-advisory"
+        ],
+        "url": "https://lists.fedoraproject.org/archives/list/package-announce%40lists.fedoraproject.org/message/PURM5CFDABEWAIWZFD2MQ7ZJGCPYSQ44/"
+      },
+      {
+        "name": "FEDORA-2023-1092538441",
+        "tags": [
+          "vendor-advisory"
+        ],
+        "url": "https://lists.fedoraproject.org/archives/list/package-announce%40lists.fedoraproject.org/message/O5SP4RT3RRS434ZS2HQKQJ3VZW7YPKYR/"
+      },
+      {
+        "name": "FEDORA-2023-63c69aa712",
+        "tags": [
+          "vendor-advisory"
+        ],
+        "url": "https://lists.fedoraproject.org/archives/list/package-announce%40lists.fedoraproject.org/message/UONZWLB4QVLQIY5CPDLEUEKH6WX4VQMC/"
+      },
+      {
+        "name": "FEDORA-2023-96aa33f0d3",
+        "tags": [
+          "vendor-advisory"
+        ],
+        "url": "https://lists.fedoraproject.org/archives/list/package-announce%40lists.fedoraproject.org/message/EM2XLZSTXG44TMFXF4E6VTGKR2MQCW3G/"
+      },
+      {
+        "name": "FEDORA-2023-953c2607d8",
+        "tags": [
+          "vendor-advisory"
+        ],
+        "url": "https://lists.fedoraproject.org/archives/list/package-announce%40lists.fedoraproject.org/message/U2MZOJYGFCB5PPT6AKMAU72N7QOYWLBP/"
+      },
+      {
+        "name": "FEDORA-2023-2b25dd2a11",
+        "tags": [
+          "vendor-advisory"
+        ],
+        "url": "https://lists.fedoraproject.org/archives/list/package-announce%40lists.fedoraproject.org/message/LWC4WGXER5P6Q75RFGL7QUTPP3N5JR7T/"
+      },
+      {
+        "name": "FEDORA-2023-994ecd7dbc",
+        "tags": [
+          "vendor-advisory"
+        ],
+        "url": "https://lists.fedoraproject.org/archives/list/package-announce%40lists.fedoraproject.org/message/F2NY75GFDZ5T6YPN44D3VMFT5SUVTOTG/"
+      },
+      {
+        "name": "FEDORA-2023-690e150a39",
+        "tags": [
+          "vendor-advisory"
+        ],
+        "url": "https://lists.fedoraproject.org/archives/list/package-announce%40lists.fedoraproject.org/message/6PEVICI7YNGGMSL3UCMWGE66QFLATH72/"
+      },
+      {
+        "name": "FEDORA-2023-81bb8e3b99",
+        "tags": [
+          "vendor-advisory"
+        ],
+        "url": "https://lists.fedoraproject.org/archives/list/package-announce%40lists.fedoraproject.org/message/OHHJHJRLEF3TDT2K3676CAUVRDD4CCMR/"
+      },
+      {
+        "name": "FEDORA-2023-d8b0003ecd",
+        "tags": [
+          "vendor-advisory"
+        ],
+        "url": "https://lists.fedoraproject.org/archives/list/package-announce%40lists.fedoraproject.org/message/MZEHSXSCMA4WWQKXT6QV7AAR6SWNZ2VP/"
+      },
+      {
+        "name": "FEDORA-2023-56cefa23df",
+        "tags": [
+          "vendor-advisory"
+        ],
+        "url": "https://lists.fedoraproject.org/archives/list/package-announce%40lists.fedoraproject.org/message/WTOAUJNDWZDRWVSXJ354AYZYKRMT56HU/"
+      },
+      {
+        "url": "https://github.com/python/cpython/issues/102153"
+      },
+      {
+        "name": "FEDORA-2023-31888c4781",
+        "tags": [
+          "vendor-advisory"
+        ],
+        "url": "https://lists.fedoraproject.org/archives/list/package-announce%40lists.fedoraproject.org/message/H23OSKC6UG6IWOQAUPW74YUHWRWVXJP7/"
+      },
+      {
+        "name": "FEDORA-2023-acdfd145f2",
+        "tags": [
+          "vendor-advisory"
+        ],
+        "url": "https://lists.fedoraproject.org/archives/list/package-announce%40lists.fedoraproject.org/message/Q3J5N24ECS4B6MJDRO6UAYU6GPLYBDCL/"
+      },
+      {
+        "name": "FEDORA-2023-03599274db",
+        "tags": [
+          "vendor-advisory"
+        ],
+        "url": "https://lists.fedoraproject.org/archives/list/package-announce%40lists.fedoraproject.org/message/DSL6NSOAXWBJJ67XPLSSC74MNKZF3BBO/"
+      },
+      {
+        "name": "FEDORA-2023-b854908745",
+        "tags": [
+          "vendor-advisory"
+        ],
+        "url": "https://lists.fedoraproject.org/archives/list/package-announce%40lists.fedoraproject.org/message/T4IDB5OAR5Y4UK3HLMZBW4WEL2B7YFMJ/"
+      },
+      {
+        "name": "FEDORA-2023-d294ef140e",
+        "tags": [
+          "vendor-advisory"
+        ],
+        "url": "https://lists.fedoraproject.org/archives/list/package-announce%40lists.fedoraproject.org/message/RA2MBEEES6L46OD64OBSVUUMGKNGMOWW/"
+      },
+      {
+        "name": "FEDORA-2023-309cadedc6",
+        "tags": [
+          "vendor-advisory"
+        ],
+        "url": "https://lists.fedoraproject.org/archives/list/package-announce%40lists.fedoraproject.org/message/QRQHN7RWJQJHYP6E5EKESOYP5VDSHZG4/"
+      },
+      {
+        "name": "FEDORA-2023-401947eb94",
+        "tags": [
+          "vendor-advisory"
+        ],
+        "url": "https://lists.fedoraproject.org/archives/list/package-announce%40lists.fedoraproject.org/message/JZTLGV2HYFF4AMYJL25VDIGAIHCU7UPA/"
+      },
+      {
+        "name": "FEDORA-2023-f52390b9d2",
+        "tags": [
+          "vendor-advisory"
+        ],
+        "url": "https://lists.fedoraproject.org/archives/list/package-announce%40lists.fedoraproject.org/message/GR5US3BYILYJ4SKBV6YBNPRUBAL5P2CN/"
+      },
+      {
+        "name": "FEDORA-2023-dd526ed2e4",
+        "tags": [
+          "vendor-advisory"
+        ],
+        "url": "https://lists.fedoraproject.org/archives/list/package-announce%40lists.fedoraproject.org/message/PEUN6T22UJFXR7J5F6UUHCXXPKJ2DVHI/"
+      },
+      {
+        "name": "VU#127587",
+        "tags": [
+          "third-party-advisory"
+        ],
+        "url": "https://www.kb.cert.org/vuls/id/127587"
+      },
+      {
+        "name": "[debian-lts-announce] 20230920 [SECURITY] [DLA 3575-1] python2.7 security update",
+        "tags": [
+          "mailing-list"
+        ],
+        "url": "https://lists.debian.org/debian-lts-announce/2023/09/msg00022.html"
+      }
+    ],
+    "poc_candidates": [
+      {
+        "id": 679660290,
+        "name": "CVE-2023-24329-PoC",
+        "full_name": "H4R335HR/CVE-2023-24329-PoC",
+        "owner": {
+          "login": "H4R335HR",
+          "id": 121650077,
+          "avatar_url": "https://avatars.githubusercontent.com/u/121650077?v=4",
+          "html_url": "https://github.com/H4R335HR",
+          "user_view_type": "public"
+        },
+        "html_url": "https://github.com/H4R335HR/CVE-2023-24329-PoC",
+        "description": null,
+        "fork": false,
+        "created_at": "2023-08-17T10:33:52Z",
+        "updated_at": "2023-08-17T10:37:28Z",
+        "pushed_at": "2023-08-17T10:41:06Z",
+        "stargazers_count": 0,
+        "watchers_count": 0,
+        "has_discussions": false,
+        "forks_count": 1,
+        "allow_forking": true,
+        "is_template": false,
+        "web_commit_signoff_required": false,
+        "has_pull_requests": true,
+        "pull_request_creation_policy": "all",
+        "topics": [],
+        "visibility": "public",
+        "forks": 1,
+        "watchers": 0,
+        "score": 0,
+        "subscribers_count": 1
+      },
+      {
+        "id": 680228161,
+        "name": "CVE-2023-24329-codeql-test",
+        "full_name": "Pandante-Central/CVE-2023-24329-codeql-test",
+        "owner": {
+          "login": "Pandante-Central",
+          "id": 128833419,
+          "avatar_url": "https://avatars.githubusercontent.com/u/128833419?v=4",
+          "html_url": "https://github.com/Pandante-Central",
+          "user_view_type": "public"
+        },
+        "html_url": "https://github.com/Pandante-Central/CVE-2023-24329-codeql-test",
+        "description": null,
+        "fork": false,
+        "created_at": "2023-08-18T16:53:11Z",
+        "updated_at": "2023-08-18T16:55:17Z",
+        "pushed_at": "2023-08-18T17:34:22Z",
+        "stargazers_count": 0,
+        "watchers_count": 0,
+        "has_discussions": false,
+        "forks_count": 0,
+        "allow_forking": true,
+        "is_template": false,
+        "web_commit_signoff_required": false,
+        "has_pull_requests": true,
+        "pull_request_creation_policy": "all",
+        "topics": [],
+        "visibility": "public",
+        "forks": 0,
+        "watchers": 0,
+        "score": 0,
+        "subscribers_count": 0
+      },
+      {
+        "id": 795324648,
+        "name": "CVE-2023-24329-Exploit",
+        "full_name": "PenTestMano/CVE-2023-24329-Exploit",
+        "owner": {
+          "login": "PenTestMano",
+          "id": 162714784,
+          "avatar_url": "https://avatars.githubusercontent.com/u/162714784?v=4",
+          "html_url": "https://github.com/PenTestMano",
+          "user_view_type": "public"
+        },
+        "html_url": "https://github.com/PenTestMano/CVE-2023-24329-Exploit",
+        "description": "Example of CVE-2023-24329 ",
+        "fork": false,
+        "created_at": "2024-05-03T03:16:02Z",
+        "updated_at": "2024-05-03T03:16:02Z",
+        "pushed_at": "2023-10-13T07:42:36Z",
+        "stargazers_count": 0,
+        "watchers_count": 0,
+        "has_discussions": false,
+        "forks_count": 0,
+        "allow_forking": true,
+        "is_template": false,
+        "web_commit_signoff_required": false,
+        "has_pull_requests": true,
+        "pull_request_creation_policy": "all",
+        "topics": [],
+        "visibility": "public",
+        "forks": 0,
+        "watchers": 0,
+        "score": 0,
+        "subscribers_count": 0
+      },
+      {
+        "id": 1214246582,
+        "name": "CVE-2023-24329-lab",
+        "full_name": "jithinodattu/CVE-2023-24329-lab",
+        "owner": {
+          "login": "jithinodattu",
+          "id": 1445218,
+          "avatar_url": "https://avatars.githubusercontent.com/u/1445218?v=4",
+          "html_url": "https://github.com/jithinodattu",
+          "user_view_type": "public"
+        },
+        "html_url": "https://github.com/jithinodattu/CVE-2023-24329-lab",
+        "description": null,
+        "fork": false,
+        "created_at": "2026-04-18T10:05:18Z",
+        "updated_at": "2026-04-18T10:14:47Z",
+        "pushed_at": "2026-04-18T10:14:43Z",
+        "stargazers_count": 0,
+        "watchers_count": 0,
+        "has_discussions": false,
+        "forks_count": 0,
+        "allow_forking": true,
+        "is_template": false,
+        "web_commit_signoff_required": false,
+        "has_pull_requests": true,
+        "pull_request_creation_policy": "all",
+        "topics": [],
+        "visibility": "public",
+        "forks": 0,
+        "watchers": 0,
+        "score": 0,
+        "subscribers_count": 0
+      },
+      {
+        "id": 1426752587,
+        "name": "CVE-2023-24329-PoC",
+        "full_name": "UpWguyy/CVE-2023-24329-PoC",
+        "owner": {
+          "login": "UpWguyy",
+          "id": 148777818,
+          "avatar_url": "https://avatars.githubusercontent.com/u/148777818?v=4",
+          "html_url": "https://github.com/UpWguyy",
+          "user_view_type": "public"
+        },
+        "html_url": "https://github.com/UpWguyy/CVE-2023-24329-PoC",
+        "description": null,
+        "fork": false,
+        "created_at": "2026-10-20T08:53:11Z",
+        "updated_at": "2026-10-20T14:59:39Z",
+        "pushed_at": "2026-10-20T12:56:51Z",
+        "stargazers_count": 0,
+        "watchers_count": 0,
+        "has_discussions": false,
+        "forks_count": 0,
+        "allow_forking": true,
+        "is_template": false,
+        "web_commit_signoff_required": false,
+        "has_pull_requests": true,
+        "pull_request_creation_policy": "all",
+        "topics": [],
+        "visibility": "public",
+        "forks": 0,
+        "watchers": 0,
+        "score": 0,
+        "subscribers_count": 0
+      }
+    ]
+  },
+  {
+    "id": "CVE-2024-11168",
+    "sources": [
+      {
+        "kind": "cve",
+        "url": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2024/11xxx/CVE-2024-11168.json",
+        "path": "data/m0/sources/CVE-2024-11168.cve.json",
+        "sha256": "b4fd48250909ed457d25ca37de3faf1c10a8155e7b63d21039189d1055817b72",
+        "retrieved_on": "2026-10-23",
+        "status": "fetched"
+      },
+      {
+        "kind": "poc_index",
+        "url": "https://raw.githubusercontent.com/nomi-sec/PoC-in-GitHub/master/2024/CVE-2024-11168.json",
+        "status": "unavailable",
+        "error": "HTTP Error 404: Not Found"
+      }
+    ],
+    "state": "PUBLISHED",
+    "description": [
+      {
+        "lang": "en",
+        "supportingMedia": [
+          {
+            "base64": false,
+            "type": "text/html",
+            "value": "The urllib.parse.urlsplit() and urlparse() functions improperly validated bracketed hosts (`[]`), allowing hosts that weren't IPv6 or IPvFuture. This behavior was not conformant to RFC 3986 and potentially enabled SSRF if a URL is processed by more than one URL parser.<br>"
+          }
+        ],
+        "value": "The urllib.parse.urlsplit() and urlparse() functions improperly validated bracketed hosts (`[]`), allowing hosts that weren't IPv6 or IPvFuture. This behavior was not conformant to RFC 3986 and potentially enabled SSRF if a URL is processed by more than one URL parser."
+      }
+    ],
+    "affected": [
+      {
+        "defaultStatus": "unaffected",
+        "product": "CPython",
+        "repo": "https://github.com/python/cpython",
+        "vendor": "Python Software Foundation",
+        "versions": [
+          {
+            "version": "0",
+            "lessThan": "3.9.21",
+            "status": "affected",
+            "versionType": "python"
+          },
+          {
+            "version": "3.10.0",
+            "lessThan": "3.10.16",
+            "status": "affected",
+            "versionType": "python"
+          },
+          {
+            "version": "3.11.0",
+            "lessThan": "3.11.4",
+            "status": "affected",
+            "versionType": "python"
+          },
+          {
+            "version": "3.12.0a1",
+            "lessThan": "3.12.0b1",
+            "status": "affected",
+            "versionType": "python"
+          }
+        ]
+      }
+    ],
+    "references": [
+      {
+        "tags": [
+          "patch"
+        ],
+        "url": "https://github.com/python/cpython/commit/29f348e232e82938ba2165843c448c2b291504c5"
+      },
+      {
+        "tags": [
+          "patch"
+        ],
+        "url": "https://github.com/python/cpython/pull/103849"
+      },
+      {
+        "tags": [
+          "issue-tracking"
+        ],
+        "url": "https://github.com/python/cpython/issues/103848"
+      },
+      {
+        "tags": [
+          "vendor-advisory"
+        ],
+        "url": "https://mail.python.org/archives/list/security-announce@python.org/thread/XPWB6XVZ5G5KGEI63M4AWLIEUF5BPH4T/"
+      },
+      {
+        "tags": [
+          "patch"
+        ],
+        "url": "https://github.com/python/cpython/commit/b2171a2fd41416cf68afd67460578631d755a550"
+      },
+      {
+        "tags": [
+          "patch"
+        ],
+        "url": "https://github.com/python/cpython/commit/634ded45545ce8cbd6fd5d49785613dd7fa9b89e"
+      },
+      {
+        "tags": [
+          "patch"
+        ],
+        "url": "https://github.com/python/cpython/commit/ddca2953191c67a12b1f19d6bca41016c6ae7132"
+      }
+    ]
+  },
+  {
+    "id": "CVE-2022-24065",
+    "sources": [
+      {
+        "kind": "cve",
+        "url": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2022/24xxx/CVE-2022-24065.json",
+        "path": "data/m0/sources/CVE-2022-24065.cve.json",
+        "sha256": "2cba5000f4e4374297ae969f8e4f744b4c40023e1f3f9bd26ce30d6104748ced",
+        "retrieved_on": "2026-10-23",
+        "status": "fetched"
+      },
+      {
+        "kind": "poc_index",
+        "url": "https://raw.githubusercontent.com/nomi-sec/PoC-in-GitHub/master/2022/CVE-2022-24065.json",
+        "status": "unavailable",
+        "error": "HTTP Error 404: Not Found"
+      }
+    ],
+    "state": "PUBLISHED",
+    "description": [
+      {
+        "lang": "en",
+        "value": "The package cookiecutter before 2.1.1 are vulnerable to Command Injection via hg argument injection. When calling the cookiecutter function from Python code with the checkout parameter, it is passed to the hg checkout command in a way that additional flags can be set. The additional flags can be used to perform a command injection."
+      }
+    ],
+    "affected": [
+      {
+        "product": "cookiecutter",
+        "vendor": "n/a",
+        "versions": [
+          {
+            "lessThan": "2.1.1",
+            "status": "affected",
+            "version": "unspecified",
+            "versionType": "custom"
+          }
+        ]
+      }
+    ],
+    "references": [
+      {
+        "tags": [
+          "x_refsource_MISC"
+        ],
+        "url": "https://snyk.io/vuln/SNYK-PYTHON-COOKIECUTTER-2414281"
+      },
+      {
+        "tags": [
+          "x_refsource_MISC"
+        ],
+        "url": "https://github.com/cookiecutter/cookiecutter/releases/tag/2.1.1"
+      },
+      {
+        "tags": [
+          "x_refsource_MISC"
+        ],
+        "url": "https://github.com/cookiecutter/cookiecutter/commit/fdffddb31fd2b46344dfa317531ff155e7999f77"
+      },
+      {
+        "name": "FEDORA-2022-ff1c98b2fe",
+        "tags": [
+          "vendor-advisory",
+          "x_refsource_FEDORA"
+        ],
+        "url": "https://lists.fedoraproject.org/archives/list/package-announce%40lists.fedoraproject.org/message/HQKWT7SGFDCUPPLDIELTN7FVTHWDL5YK/"
+      },
+      {
+        "name": "FEDORA-2022-4a3d83a1d2",
+        "tags": [
+          "vendor-advisory",
+          "x_refsource_FEDORA"
+        ],
+        "url": "https://lists.fedoraproject.org/archives/list/package-announce%40lists.fedoraproject.org/message/G5TXC4JYTNGOUFMCXPZ6QKWEZN3URTAK/"
+      }
+    ]
+  },
+  {
+    "id": "CVE-2021-23727",
+    "sources": [
+      {
+        "kind": "cve",
+        "url": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2021/23xxx/CVE-2021-23727.json",
+        "path": "data/m0/sources/CVE-2021-23727.cve.json",
+        "sha256": "409859267ad74105e29349ad4e81b1f560f750d36d3274e9fb7d658502f331a8",
+        "retrieved_on": "2026-10-23",
+        "status": "fetched"
+      },
+      {
+        "kind": "poc_index",
+        "url": "https://raw.githubusercontent.com/nomi-sec/PoC-in-GitHub/master/2021/CVE-2021-23727.json",
+        "status": "unavailable",
+        "error": "HTTP Error 404: Not Found"
+      }
+    ],
+    "state": "PUBLISHED",
+    "description": [
+      {
+        "lang": "en",
+        "value": "This affects the package celery before 5.2.2. It by default trusts the messages and metadata stored in backends (result stores). When reading task metadata from the backend, the data is deserialized. Given that an attacker can gain access to, or somehow manipulate the metadata within a celery backend, they could trigger a stored command injection vulnerability and potentially gain further access to the system."
+      }
+    ],
+    "affected": [
+      {
+        "product": "celery",
+        "vendor": "n/a",
+        "versions": [
+          {
+            "lessThan": "5.2.2",
+            "status": "affected",
+            "version": "unspecified",
+            "versionType": "custom"
+          }
+        ]
+      }
+    ],
+    "references": [
+      {
+        "tags": [
+          "x_refsource_MISC"
+        ],
+        "url": "https://snyk.io/vuln/SNYK-PYTHON-CELERY-2314953"
+      },
+      {
+        "tags": [
+          "x_refsource_MISC"
+        ],
+        "url": "https://github.com/celery/celery/blob/master/Changelog.rst%23522"
+      },
+      {
+        "name": "FEDORA-2022-1dae017601",
+        "tags": [
+          "vendor-advisory",
+          "x_refsource_FEDORA"
+        ],
+        "url": "https://lists.fedoraproject.org/archives/list/package-announce%40lists.fedoraproject.org/message/SYXRGHWHD2WWMHBWCVD5ULVINPKNY3P5/"
+      }
+    ]
+  },
+  {
+    "id": "CVE-2024-5998",
+    "sources": [
+      {
+        "kind": "cve",
+        "url": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2024/5xxx/CVE-2024-5998.json",
+        "path": "data/m0/sources/CVE-2024-5998.cve.json",
+        "sha256": "149ca858b6a99232ec2f4dcae089e5fac81efc88ab52b36a0d2846cd81729abd",
+        "retrieved_on": "2026-10-23",
+        "status": "fetched"
+      },
+      {
+        "kind": "poc_index",
+        "url": "https://raw.githubusercontent.com/nomi-sec/PoC-in-GitHub/master/2024/CVE-2024-5998.json",
+        "status": "unavailable",
+        "error": "HTTP Error 404: Not Found"
+      }
+    ],
+    "state": "PUBLISHED",
+    "description": [
+      {
+        "lang": "en",
+        "value": "A vulnerability in the FAISS.deserialize_from_bytes function of langchain-ai/langchain allows for pickle deserialization of untrusted data. This can lead to the execution of arbitrary commands via the os.system function. The issue affects the latest version of the product."
+      }
+    ],
+    "affected": [
+      {
+        "vendor": "langchain-ai",
+        "product": "langchain-ai/langchain",
+        "versions": [
+          {
+            "version": "unspecified",
+            "lessThan": "0.2.9",
+            "status": "affected",
+            "versionType": "custom"
+          }
+        ]
+      }
+    ],
+    "references": [
+      {
+        "url": "https://huntr.com/bounties/fa3a2753-57c3-4e08-a176-d7a3ffda28fe"
+      },
+      {
+        "url": "https://github.com/langchain-ai/langchain/commit/604dfe2d99246b0c09f047c604f0c63eafba31e7"
+      }
+    ]
+  },
+  {
+    "id": "CVE-2024-2912",
+    "sources": [
+      {
+        "kind": "cve",
+        "url": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2024/2xxx/CVE-2024-2912.json",
+        "path": "data/m0/sources/CVE-2024-2912.cve.json",
+        "sha256": "862e0a3c33fd821652e16a5c8c012805b1b4ed66348bb0e9f0ae2d66352e9049",
+        "retrieved_on": "2026-10-23",
+        "status": "fetched"
+      },
+      {
+        "kind": "poc_index",
+        "url": "https://raw.githubusercontent.com/nomi-sec/PoC-in-GitHub/master/2024/CVE-2024-2912.json",
+        "status": "unavailable",
+        "error": "HTTP Error 404: Not Found"
+      }
+    ],
+    "state": "PUBLISHED",
+    "description": [
+      {
+        "lang": "en",
+        "supportingMedia": [
+          {
+            "base64": false,
+            "type": "text/html",
+            "value": "<p>An insecure deserialization vulnerability exists in the BentoML framework, allowing remote code execution (RCE) by sending a specially crafted POST request. By exploiting this vulnerability, attackers can execute arbitrary commands on the server hosting the BentoML application. The vulnerability is triggered when a serialized object, crafted to execute OS commands upon deserialization, is sent to any valid BentoML endpoint. This issue poses a significant security risk, enabling attackers to compromise the server and potentially gain unauthorized access or control.</p>"
+          }
+        ],
+        "value": "An insecure deserialization vulnerability exists in the BentoML framework, allowing remote code execution (RCE) by sending a specially crafted POST request. By exploiting this vulnerability, attackers can execute arbitrary commands on the server hosting the BentoML application. The vulnerability is triggered when a serialized object, crafted to execute OS commands upon deserialization, is sent to any valid BentoML endpoint. This issue poses a significant security risk, enabling attackers to compromise the server and potentially gain unauthorized access or control."
+      }
+    ],
+    "affected": [
+      {
+        "defaultStatus": "unaffected",
+        "product": "bentoml/bentoml",
+        "vendor": "bentoml",
+        "versions": [
+          {
+            "lessThanOrEqual": "1.2.4",
+            "status": "affected",
+            "version": "1.2.0",
+            "versionType": "custom"
+          }
+        ]
+      }
+    ],
+    "references": [
+      {
+        "url": "https://huntr.com/bounties/349a1cce-6bb5-4345-82a5-bf7041b65a68"
+      },
+      {
+        "url": "https://github.com/bentoml/bentoml/commit/fd70379733c57c6368cc022ac1f841b7b426db7b"
+      }
+    ]
+  }
+]

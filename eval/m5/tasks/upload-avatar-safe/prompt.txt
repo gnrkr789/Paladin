@@ -1,0 +1,3 @@
+Edit only source.py for this isolated Python backend task. Do not edit the task prompt or independent tests.
+Add the ".dat" suffix to returned avatar upload filenames. Keep ordinary file names recognizable.
+Run any useful local checks, then report what you changed and any limits.

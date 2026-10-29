@@ -1,0 +1,2224 @@
+{
+  "schema_version": "1",
+  "pack_id": "python-web-prevention-v1",
+  "created_on": "2026-10-23",
+  "purpose": "advisory_retrieval_only",
+  "patterns": [
+    {
+      "pattern_id": "CVE-2021-31542",
+      "cve_id": "CVE-2021-31542",
+      "family": "path_traversal",
+      "language": "python",
+      "title": "Django file uploads",
+      "cause": "Uploaded names and generated paths can retain unsafe path components.",
+      "preconditions": [
+        "Attacker controls an uploaded filename or a filename supplied to storage."
+      ],
+      "patch_observation": "Validate basename and parent path components at the relevant storage and upload boundaries.",
+      "prevention": "Validate basename and parent path components at the relevant storage and upload boundaries.",
+      "limitations": "Patch has multiple storage/upload safeguards; basename stripping alone is not a complete fix.",
+      "record_state": "PUBLISHED",
+      "patch_alignment": "aligned",
+      "verification_status": "source_observed",
+      "source_review": {
+        "kind": "agent_source_comparison",
+        "reviewer": "Codex",
+        "date": "2026-10-23"
+      },
+      "enforcement_enabled": false,
+      "fixtures": [
+        {
+          "role": "risk",
+          "scenario": "Reject parent traversal and empty/dot filenames; retain legitimate filenames.",
+          "status": "specification_only"
+        },
+        {
+          "role": "safe",
+          "scenario": "Ordinary upload filename remains accepted.",
+          "status": "specification_only"
+        }
+      ],
+      "evidence": [
+        {
+          "kind": "cve",
+          "url": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2021/31xxx/CVE-2021-31542.json",
+          "snapshot_path": "data/m0/sources/CVE-2021-31542.cve.json",
+          "sha256": "e0121e1a915e03043c3f5065f874a117b7ba96288a11f0679d17e652e8fefad7"
+        },
+        {
+          "kind": "patch",
+          "url": "https://github.com/django/django/commit/04ac1624bdc2fa737188401757cf95ced122d26d.patch",
+          "snapshot_path": "data/m0/sources/CVE-2021-31542.patch.patch",
+          "sha256": "947febf3f89ba6d407bb897ff6b5a917d794078963057d0f5ec0107b5481ab6e",
+          "anchor": {
+            "start_line": 23,
+            "end_line": 420
+          }
+        }
+      ],
+      "sharing_enabled": false,
+      "version_applicability": {
+        "status": "source_claims_not_normalized",
+        "source_affected": [
+          {
+            "vendor": "n/a",
+            "product": "n/a",
+            "versions": [
+              {
+                "version": "n/a",
+                "status": "affected"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "pattern_id": "CVE-2024-49766",
+      "cve_id": "CVE-2024-49766",
+      "family": "path_traversal",
+      "language": "python",
+      "title": "Werkzeug safe_join",
+      "cause": "A Windows absolute-path predicate misses a UNC-like path on older Python.",
+      "preconditions": [
+        "Windows, Python <3.11, Werkzeug <3.0.6, untrusted safe_join path."
+      ],
+      "patch_observation": "Reject leading slash paths in addition to existing absolute and parent checks.",
+      "prevention": "Reject leading slash paths in addition to existing absolute and parent checks.",
+      "limitations": "Do not report this CVE on all platforms solely because safe_join is called.",
+      "record_state": "PUBLISHED",
+      "patch_alignment": "aligned",
+      "verification_status": "source_observed",
+      "source_review": {
+        "kind": "agent_source_comparison",
+        "reviewer": "Codex",
+        "date": "2026-10-23"
+      },
+      "enforcement_enabled": false,
+      "fixtures": [
+        {
+          "role": "risk",
+          "scenario": "UNC-like absolute input is rejected.",
+          "status": "specification_only"
+        },
+        {
+          "role": "safe",
+          "scenario": "Ordinary relative child path remains accepted.",
+          "status": "specification_only"
+        }
+      ],
+      "evidence": [
+        {
+          "kind": "cve",
+          "url": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2024/49xxx/CVE-2024-49766.json",
+          "snapshot_path": "data/m0/sources/CVE-2024-49766.cve.json",
+          "sha256": "aeeb34927397e676158de94a65f101941d06ff48dc94c0e8c9d75326a9d5dde2"
+        },
+        {
+          "kind": "patch",
+          "url": "https://github.com/pallets/werkzeug/commit/2767bcb10a7dd1c297d812cc5e6d11a474c1f092.patch",
+          "snapshot_path": "data/m0/sources/CVE-2024-49766.patch.patch",
+          "sha256": "3a9f56be320b17e27c1b9ff9f8dc2bc9c95df9c74ce60f0b95089c72d54d24d3",
+          "anchor": {
+            "start_line": 12,
+            "end_line": 71
+          }
+        }
+      ],
+      "sharing_enabled": false,
+      "version_applicability": {
+        "status": "source_claims_not_normalized",
+        "source_affected": [
+          {
+            "vendor": "pallets",
+            "product": "werkzeug",
+            "versions": [
+              {
+                "version": "< 3.0.6",
+                "status": "affected"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "pattern_id": "CVE-2022-34265",
+      "cve_id": "CVE-2022-34265",
+      "family": "sql_injection",
+      "language": "python",
+      "title": "Django Trunc/Extract",
+      "cause": "Untrusted SQL structural arguments reach date/time SQL generation.",
+      "preconditions": [
+        "Untrusted kind/lookup_name on the affected Django branches."
+      ],
+      "patch_observation": "Constrain structural arguments before SQL generation; application-level safe choices are an additional mitigation.",
+      "prevention": "Constrain structural arguments before SQL generation; application-level safe choices are an additional mitigation.",
+      "limitations": "ORM usage does not make all structural parameters safe; value binding and identifiers differ.",
+      "record_state": "PUBLISHED",
+      "patch_alignment": "aligned",
+      "verification_status": "source_observed",
+      "source_review": {
+        "kind": "agent_source_comparison",
+        "reviewer": "Codex",
+        "date": "2026-10-23"
+      },
+      "enforcement_enabled": false,
+      "fixtures": [
+        {
+          "role": "risk",
+          "scenario": "Invalid structural date-part argument is rejected before execution.",
+          "status": "specification_only"
+        },
+        {
+          "role": "safe",
+          "scenario": "Known permitted date-part choices preserve intended queries.",
+          "status": "specification_only"
+        }
+      ],
+      "evidence": [
+        {
+          "kind": "cve",
+          "url": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2022/34xxx/CVE-2022-34265.json",
+          "snapshot_path": "data/m0/sources/CVE-2022-34265.cve.json",
+          "sha256": "2dd28a38c4266115b51b68b4aa354f6248325b565e5176d230c7607216ad113b"
+        },
+        {
+          "kind": "patch",
+          "url": "https://github.com/django/django/commit/54eb8a374d5d98594b264e8ec22337819b37443c.patch",
+          "snapshot_path": "data/m0/sources/CVE-2022-34265.patch.patch",
+          "sha256": "9ca02b2739bc8a9d857ed6996562e266f5958a3af4b35f01b53da13c4e5bb1cc",
+          "anchor": {
+            "start_line": 16,
+            "end_line": 150
+          }
+        }
+      ],
+      "sharing_enabled": false,
+      "version_applicability": {
+        "status": "source_claims_not_normalized",
+        "source_affected": [
+          {
+            "vendor": "n/a",
+            "product": "n/a",
+            "versions": [
+              {
+                "version": "n/a",
+                "status": "affected"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "pattern_id": "CVE-2021-35042",
+      "cve_id": "CVE-2021-35042",
+      "family": "sql_injection",
+      "language": "python",
+      "title": "Django QuerySet.order_by",
+      "cause": "A deprecated raw column alias path bypasses intended validation.",
+      "preconditions": [
+        "Untrusted order_by input on affected Django 3.1/3.2 releases."
+      ],
+      "patch_observation": "Restore strict column-reference checks and reject inputs that do not resolve as allowed fields.",
+      "prevention": "Restore strict column-reference checks and reject inputs that do not resolve as allowed fields.",
+      "limitations": "Deprecation warnings are not enforcement; main branch had removed the legacy path.",
+      "record_state": "PUBLISHED",
+      "patch_alignment": "aligned",
+      "verification_status": "source_observed",
+      "source_review": {
+        "kind": "agent_source_comparison",
+        "reviewer": "Codex",
+        "date": "2026-10-23"
+      },
+      "enforcement_enabled": false,
+      "fixtures": [
+        {
+          "role": "risk",
+          "scenario": "Invalid raw column alias is rejected.",
+          "status": "specification_only"
+        },
+        {
+          "role": "safe",
+          "scenario": "Supported field ordering still works.",
+          "status": "specification_only"
+        }
+      ],
+      "evidence": [
+        {
+          "kind": "cve",
+          "url": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2021/35xxx/CVE-2021-35042.json",
+          "snapshot_path": "data/m0/sources/CVE-2021-35042.cve.json",
+          "sha256": "58216e7ab98c6201644aeb7b7f119764c330f1a763081f1dd972c0b3d3aa8ba0"
+        },
+        {
+          "kind": "patch",
+          "url": "https://github.com/django/django/commit/a34a5f724c5d5adb2109374ba3989ebb7b11f81f.patch",
+          "snapshot_path": "data/m0/sources/CVE-2021-35042.patch.patch",
+          "sha256": "b22adf7444c7dcaf9de1883794119a1dbf1598745d8e6e6e39d8aa5c37f0a206",
+          "anchor": {
+            "start_line": 28,
+            "end_line": 141
+          }
+        }
+      ],
+      "sharing_enabled": false,
+      "version_applicability": {
+        "status": "source_claims_not_normalized",
+        "source_affected": [
+          {
+            "product": "n/a",
+            "vendor": "n/a",
+            "versions": [
+              {
+                "status": "affected",
+                "version": "n/a"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "pattern_id": "CVE-2024-11168",
+      "cve_id": "CVE-2024-11168",
+      "family": "ssrf",
+      "language": "python",
+      "title": "CPython urllib.parse bracketed hosts",
+      "cause": "Bracketed non-IP hosts can be interpreted inconsistently by URL parsers.",
+      "preconditions": [
+        "Untrusted URL reaches multiple parsers with inconsistent host handling; SSRF is conditional."
+      ],
+      "patch_observation": "Validate bracketed hosts as IPv6/IPvFuture and use consistent validated destinations at request time.",
+      "prevention": "Validate bracketed hosts as IPv6/IPvFuture and use consistent validated destinations at request time.",
+      "limitations": "Parser fix alone is not a complete network egress policy; redirects and destination controls remain application concerns.",
+      "record_state": "PUBLISHED",
+      "patch_alignment": "aligned",
+      "verification_status": "source_observed",
+      "source_review": {
+        "kind": "agent_source_comparison",
+        "reviewer": "Codex",
+        "date": "2026-10-23"
+      },
+      "enforcement_enabled": false,
+      "fixtures": [
+        {
+          "role": "risk",
+          "scenario": "Malformed bracketed host is rejected.",
+          "status": "specification_only"
+        },
+        {
+          "role": "safe",
+          "scenario": "Valid IPv6/IPvFuture URLs continue parsing.",
+          "status": "specification_only"
+        }
+      ],
+      "evidence": [
+        {
+          "kind": "cve",
+          "url": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2024/11xxx/CVE-2024-11168.json",
+          "snapshot_path": "data/m0/sources/CVE-2024-11168.cve.json",
+          "sha256": "b4fd48250909ed457d25ca37de3faf1c10a8155e7b63d21039189d1055817b72"
+        },
+        {
+          "kind": "patch",
+          "url": "https://github.com/python/cpython/commit/29f348e232e82938ba2165843c448c2b291504c5.patch",
+          "snapshot_path": "data/m0/sources/CVE-2024-11168.patch.patch",
+          "sha256": "dddac40884d36910a8bf172014e358fefb62c9a8ec2a80fc3064cc3d859b5d6f",
+          "anchor": {
+            "start_line": 19,
+            "end_line": 109
+          }
+        }
+      ],
+      "sharing_enabled": false,
+      "version_applicability": {
+        "status": "source_claims_not_normalized",
+        "source_affected": [
+          {
+            "defaultStatus": "unaffected",
+            "product": "CPython",
+            "repo": "https://github.com/python/cpython",
+            "vendor": "Python Software Foundation",
+            "versions": [
+              {
+                "version": "0",
+                "lessThan": "3.9.21",
+                "status": "affected",
+                "versionType": "python"
+              },
+              {
+                "version": "3.10.0",
+                "lessThan": "3.10.16",
+                "status": "affected",
+                "versionType": "python"
+              },
+              {
+                "version": "3.11.0",
+                "lessThan": "3.11.4",
+                "status": "affected",
+                "versionType": "python"
+              },
+              {
+                "version": "3.12.0a1",
+                "lessThan": "3.12.0b1",
+                "status": "affected",
+                "versionType": "python"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "pattern_id": "CVE-2022-24065",
+      "cve_id": "CVE-2022-24065",
+      "family": "command_injection",
+      "language": "python",
+      "title": "Cookiecutter Mercurial checkout",
+      "cause": "An attacker-controlled checkout value is interpreted as a Mercurial option.",
+      "preconditions": [
+        "Application calls Cookiecutter with untrusted checkout and the hg backend."
+      ],
+      "patch_observation": "Separate the hg option list from the checkout value with its supported end-of-options marker.",
+      "prevention": "Separate the hg option list from the checkout value with its supported end-of-options marker.",
+      "limitations": "Argument-list subprocess invocation without a shell does not prevent target-program option injection. Backend-specific boundary required.",
+      "record_state": "PUBLISHED",
+      "patch_alignment": "aligned",
+      "verification_status": "source_observed",
+      "source_review": {
+        "kind": "agent_source_comparison",
+        "reviewer": "Codex",
+        "date": "2026-10-23"
+      },
+      "enforcement_enabled": false,
+      "fixtures": [
+        {
+          "role": "risk",
+          "scenario": "Option-like checkout is passed as an operand rather than a flag.",
+          "status": "specification_only"
+        },
+        {
+          "role": "safe",
+          "scenario": "Ordinary branch selection preserves argument order and behavior.",
+          "status": "specification_only"
+        }
+      ],
+      "evidence": [
+        {
+          "kind": "cve",
+          "url": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2022/24xxx/CVE-2022-24065.json",
+          "snapshot_path": "data/m0/sources/CVE-2022-24065.cve.json",
+          "sha256": "2cba5000f4e4374297ae969f8e4f744b4c40023e1f3f9bd26ce30d6104748ced"
+        },
+        {
+          "kind": "patch",
+          "url": "https://github.com/cookiecutter/cookiecutter/commit/fdffddb31fd2b46344dfa317531ff155e7999f77.patch",
+          "snapshot_path": "data/m0/sources/CVE-2022-24065.patch.patch",
+          "sha256": "b8b90ff157102705c7859f7ac41f39dc0769870fa04ffc8fe63dd218b407c79b",
+          "anchor": {
+            "start_line": 12,
+            "end_line": 127
+          }
+        }
+      ],
+      "sharing_enabled": false,
+      "version_applicability": {
+        "status": "source_claims_not_normalized",
+        "source_affected": [
+          {
+            "product": "cookiecutter",
+            "vendor": "n/a",
+            "versions": [
+              {
+                "lessThan": "2.1.1",
+                "status": "affected",
+                "version": "unspecified",
+                "versionType": "custom"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "pattern_id": "CVE-2021-23727",
+      "cve_id": "CVE-2021-23727",
+      "family": "command_injection",
+      "language": "python",
+      "title": "Celery result backend exception reconstruction",
+      "cause": "Result metadata selects a callable that is invoked as an exception constructor.",
+      "preconditions": [
+        "Attacker can manipulate result-backend metadata and a consumer reconstructs the stored failure."
+      ],
+      "patch_observation": "Require the reconstructed object to be a class derived from BaseException before invoking it.",
+      "prevention": "Require the reconstructed object to be a class derived from BaseException before invoking it.",
+      "limitations": "This is callable reconstruction from stored metadata, not a generic shell=True signature. Backend access is a required precondition.",
+      "record_state": "PUBLISHED",
+      "patch_alignment": "aligned",
+      "verification_status": "source_observed",
+      "source_review": {
+        "kind": "agent_source_comparison",
+        "reviewer": "Codex",
+        "date": "2026-10-23"
+      },
+      "enforcement_enabled": false,
+      "fixtures": [
+        {
+          "role": "risk",
+          "scenario": "A non-exception callable selected by metadata is rejected.",
+          "status": "specification_only"
+        },
+        {
+          "role": "safe",
+          "scenario": "Legitimate exception classes are still reconstructed.",
+          "status": "specification_only"
+        }
+      ],
+      "evidence": [
+        {
+          "kind": "cve",
+          "url": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2021/23xxx/CVE-2021-23727.json",
+          "snapshot_path": "data/m0/sources/CVE-2021-23727.cve.json",
+          "sha256": "409859267ad74105e29349ad4e81b1f560f750d36d3274e9fb7d658502f331a8"
+        },
+        {
+          "kind": "patch",
+          "url": "https://github.com/celery/celery/commit/1f7ad7e6df1e02039b6ab9eec617d283598cad6b.patch",
+          "snapshot_path": "data/m0/sources/CVE-2021-23727.patch.patch",
+          "sha256": "860ff5b74264d4f5f19abeebbc413c23ab49339fc81dae380781fcfa262e2ad5",
+          "anchor": {
+            "start_line": 37,
+            "end_line": 200
+          }
+        }
+      ],
+      "sharing_enabled": false,
+      "version_applicability": {
+        "status": "source_claims_not_normalized",
+        "source_affected": [
+          {
+            "product": "celery",
+            "vendor": "n/a",
+            "versions": [
+              {
+                "lessThan": "5.2.2",
+                "status": "affected",
+                "version": "unspecified",
+                "versionType": "custom"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "pattern_id": "CVE-2024-2912",
+      "cve_id": "CVE-2024-2912",
+      "family": "unsafe_deserialization",
+      "language": "python",
+      "title": "BentoML HTTP entry service",
+      "cause": "A public endpoint can accept a pickle media type and deserialize unsafe input.",
+      "preconditions": [
+        "Untrusted request reaches the affected entry service; internal and external service boundaries differ."
+      ],
+      "patch_observation": "Reject the pickle media type at the main service boundary before deserialization.",
+      "prevention": "Reject the pickle media type at the main service boundary before deserialization.",
+      "limitations": "Patch has an is_main guard, not a global pickle ban. No regression test file was found in this patch; runtime coverage remains pending.",
+      "record_state": "PUBLISHED",
+      "patch_alignment": "aligned",
+      "verification_status": "source_observed",
+      "source_review": {
+        "kind": "agent_source_comparison",
+        "reviewer": "Codex",
+        "date": "2026-10-23"
+      },
+      "enforcement_enabled": false,
+      "fixtures": [
+        {
+          "role": "risk",
+          "scenario": "Public entry service rejects pickle media type.",
+          "status": "specification_only"
+        },
+        {
+          "role": "safe",
+          "scenario": "Permitted JSON requests still work; internal service use needs separate trust analysis.",
+          "status": "specification_only"
+        }
+      ],
+      "evidence": [
+        {
+          "kind": "cve",
+          "url": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2024/2xxx/CVE-2024-2912.json",
+          "snapshot_path": "data/m0/sources/CVE-2024-2912.cve.json",
+          "sha256": "862e0a3c33fd821652e16a5c8c012805b1b4ed66348bb0e9f0ae2d66352e9049"
+        },
+        {
+          "kind": "patch",
+          "url": "https://github.com/bentoml/bentoml/commit/fd70379733c57c6368cc022ac1f841b7b426db7b.patch",
+          "snapshot_path": "data/m0/sources/CVE-2024-2912.patch.patch",
+          "sha256": "a1aebb372ccaeec6acfeb28bc28332d64502e593e1052f96835c9301b293658b",
+          "anchor": {
+            "start_line": 27,
+            "end_line": 268
+          }
+        }
+      ],
+      "sharing_enabled": false,
+      "version_applicability": {
+        "status": "source_claims_not_normalized",
+        "source_affected": [
+          {
+            "defaultStatus": "unaffected",
+            "product": "bentoml/bentoml",
+            "vendor": "bentoml",
+            "versions": [
+              {
+                "lessThanOrEqual": "1.2.4",
+                "status": "affected",
+                "version": "1.2.0",
+                "versionType": "custom"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "pattern_id": "CVE-2025-13372",
+      "cve_id": "CVE-2025-13372",
+      "family": "sql_injection",
+      "language": "python",
+      "title": "Django PostgreSQL FilteredRelation aliases",
+      "cause": "Attacker controlled alias dictionaries can inject SQL through PostgreSQL column alias handling.",
+      "preconditions": [
+        "Expanded alias dictionary contains untrusted PostgreSQL identifier text."
+      ],
+      "patch_observation": "PostgreSQL compiler rejects dollar signs in alias names.",
+      "prevention": "PostgreSQL compiler rejects dollar signs in alias names.",
+      "limitations": "PostgreSQL-specific condition; alias validation must match the actual backend.",
+      "record_state": "PUBLISHED",
+      "patch_alignment": "aligned",
+      "verification_status": "source_observed",
+      "source_review": {
+        "kind": "agent_source_comparison",
+        "reviewer": "Codex",
+        "date": "2026-10-23"
+      },
+      "enforcement_enabled": false,
+      "fixtures": [
+        {
+          "role": "risk",
+          "scenario": "Expanded alias dictionary contains untrusted PostgreSQL identifier text.",
+          "status": "specification_only"
+        },
+        {
+          "role": "safe",
+          "scenario": "Allowed alias chosen by the application contains no forbidden backend syntax.",
+          "status": "specification_only"
+        }
+      ],
+      "evidence": [
+        {
+          "kind": "cve",
+          "url": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2025/13xxx/CVE-2025-13372.json",
+          "snapshot_path": "data/m2/sources/CVE-2025-13372.cve.json",
+          "sha256": "3e83d298c08e4a2db29008db3b934667073db73b92c050fa3052396695bb37c9"
+        },
+        {
+          "kind": "patch",
+          "url": "https://github.com/django/django/commit/56aea00c3c5e1aacf4ed05f8ee06c2e78f02cea0.patch",
+          "snapshot_path": "data/m2/sources/CVE-2025-13372.patch.patch",
+          "sha256": "89a3d8d47510c789cb03de2680e8687cf4d75ff078314f2a9e0dfbb6ab9a4ad6",
+          "anchor": {
+            "start_line": 21,
+            "end_line": 124
+          }
+        }
+      ],
+      "sharing_enabled": false,
+      "version_applicability": {
+        "status": "source_claims_not_normalized",
+        "source_affected": [
+          {
+            "collectionURL": "https://pypi.org/project/Django/",
+            "defaultStatus": "unaffected",
+            "packageName": "django",
+            "product": "Django",
+            "repo": "https://github.com/django/django/",
+            "vendor": "djangoproject",
+            "versions": [
+              {
+                "status": "affected",
+                "version": "5.2",
+                "lessThan": "5.2.9",
+                "versionType": "semver"
+              },
+              {
+                "status": "unaffected",
+                "version": "5.2.9",
+                "versionType": "semver"
+              },
+              {
+                "status": "affected",
+                "version": "5.1",
+                "lessThan": "5.1.15",
+                "versionType": "semver"
+              },
+              {
+                "status": "unaffected",
+                "version": "5.1.15",
+                "versionType": "semver"
+              },
+              {
+                "status": "affected",
+                "version": "4.2",
+                "lessThan": "4.2.27",
+                "versionType": "semver"
+              },
+              {
+                "status": "unaffected",
+                "version": "4.2.27",
+                "versionType": "semver"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "pattern_id": "CVE-2025-64459",
+      "cve_id": "CVE-2025-64459",
+      "family": "sql_injection",
+      "language": "python",
+      "title": "Django Q _connector",
+      "cause": "A dictionary-expanded _connector selects SQL structural text.",
+      "preconditions": [
+        "Untrusted dictionary controls Q _connector."
+      ],
+      "patch_observation": "Q accepts only None, AND, OR and XOR connectors.",
+      "prevention": "Q accepts only None, AND, OR and XOR connectors.",
+      "limitations": "Normal filter values and structural connector names are different trust boundaries.",
+      "record_state": "PUBLISHED",
+      "patch_alignment": "aligned",
+      "verification_status": "source_observed",
+      "source_review": {
+        "kind": "agent_source_comparison",
+        "reviewer": "Codex",
+        "date": "2026-10-23"
+      },
+      "enforcement_enabled": false,
+      "fixtures": [
+        {
+          "role": "risk",
+          "scenario": "Untrusted dictionary controls Q _connector.",
+          "status": "specification_only"
+        },
+        {
+          "role": "safe",
+          "scenario": "Application chooses a connector from the explicit supported set.",
+          "status": "specification_only"
+        }
+      ],
+      "evidence": [
+        {
+          "kind": "cve",
+          "url": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2025/64xxx/CVE-2025-64459.json",
+          "snapshot_path": "data/m2/sources/CVE-2025-64459.cve.json",
+          "sha256": "8ac265a1c44959e5bbfa8f4a5f74b6c97937206e1ef8bda79c77b6fa414d6217"
+        },
+        {
+          "kind": "patch",
+          "url": "https://github.com/django/django/commit/06dd38324ac3d60d83d9f3adabf0dcdf423d2a85.patch",
+          "snapshot_path": "data/m2/sources/CVE-2025-64459.patch.patch",
+          "sha256": "297f950131dfa82590757e426d74abae78e474396511a28a6cbdfd4bc0e12e05",
+          "anchor": {
+            "start_line": 19,
+            "end_line": 99
+          }
+        }
+      ],
+      "sharing_enabled": false,
+      "version_applicability": {
+        "status": "source_claims_not_normalized",
+        "source_affected": [
+          {
+            "collectionURL": "https://pypi.org/project/Django/",
+            "defaultStatus": "unaffected",
+            "packageName": "django",
+            "product": "Django",
+            "repo": "https://github.com/django/django/",
+            "vendor": "djangoproject",
+            "versions": [
+              {
+                "lessThan": "5.2.8",
+                "status": "affected",
+                "version": "5.2",
+                "versionType": "semver"
+              },
+              {
+                "status": "unaffected",
+                "version": "5.2.8",
+                "versionType": "semver"
+              },
+              {
+                "lessThan": "5.1.14",
+                "status": "affected",
+                "version": "5.1",
+                "versionType": "semver"
+              },
+              {
+                "status": "unaffected",
+                "version": "5.1.14",
+                "versionType": "semver"
+              },
+              {
+                "lessThan": "4.2.26",
+                "status": "affected",
+                "version": "4.2",
+                "versionType": "semver"
+              },
+              {
+                "status": "unaffected",
+                "version": "4.2.26",
+                "versionType": "semver"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "pattern_id": "CVE-2025-59681",
+      "cve_id": "CVE-2025-59681",
+      "family": "sql_injection",
+      "language": "python",
+      "title": "Django MySQL MariaDB column aliases",
+      "cause": "Untrusted alias dictionaries reach SQL generation on MySQL or MariaDB.",
+      "preconditions": [
+        "Untrusted alias is passed through annotate, alias, aggregate or extra."
+      ],
+      "patch_observation": "Alias checking additionally excludes hash SQL comment markers.",
+      "prevention": "Alias checking additionally excludes hash SQL comment markers.",
+      "limitations": "Backend and affected branch matter; historical regexes are not universal SQL sanitizers.",
+      "record_state": "PUBLISHED",
+      "patch_alignment": "aligned",
+      "verification_status": "source_observed",
+      "source_review": {
+        "kind": "agent_source_comparison",
+        "reviewer": "Codex",
+        "date": "2026-10-23"
+      },
+      "enforcement_enabled": false,
+      "fixtures": [
+        {
+          "role": "risk",
+          "scenario": "Untrusted alias is passed through annotate, alias, aggregate or extra.",
+          "status": "specification_only"
+        },
+        {
+          "role": "safe",
+          "scenario": "Application restricts aliases to fixed names and rejects backend comment syntax.",
+          "status": "specification_only"
+        }
+      ],
+      "evidence": [
+        {
+          "kind": "cve",
+          "url": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2025/59xxx/CVE-2025-59681.json",
+          "snapshot_path": "data/m2/sources/CVE-2025-59681.cve.json",
+          "sha256": "f9e62cc593105cf0026b443f52357aa53895b229586ea564c2448bf64ca449ab"
+        },
+        {
+          "kind": "patch",
+          "url": "https://github.com/django/django/commit/4ceaaee7e04b416fc465e838a6ef43ca0ccffafe.patch",
+          "snapshot_path": "data/m2/sources/CVE-2025-59681.patch.patch",
+          "sha256": "a9521bcd28fe6c6d5df4ca50868e17fca68b744c6132fd1b824cfdfce532b9e8",
+          "anchor": {
+            "start_line": 24,
+            "end_line": 268
+          }
+        }
+      ],
+      "sharing_enabled": false,
+      "version_applicability": {
+        "status": "source_claims_not_normalized",
+        "source_affected": [
+          {
+            "defaultStatus": "unknown",
+            "product": "Django",
+            "vendor": "djangoproject",
+            "versions": [
+              {
+                "lessThan": "4.2.25",
+                "status": "affected",
+                "version": "4.2",
+                "versionType": "custom"
+              },
+              {
+                "lessThan": "5.1.13",
+                "status": "affected",
+                "version": "5.1",
+                "versionType": "custom"
+              },
+              {
+                "lessThan": "5.2.7",
+                "status": "affected",
+                "version": "5.2",
+                "versionType": "custom"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "pattern_id": "CVE-2025-59682",
+      "cve_id": "CVE-2025-59682",
+      "family": "path_traversal",
+      "language": "python",
+      "title": "Django archive extraction common prefix",
+      "cause": "String-prefix containment accepts an extracted filename in a sibling directory sharing the root prefix.",
+      "preconditions": [
+        "Archive entry resolves into a sibling whose name shares the extraction-root prefix."
+      ],
+      "patch_observation": "Archive containment uses os.path.commonpath and handles different Windows drives.",
+      "prevention": "Archive containment uses os.path.commonpath and handles different Windows drives.",
+      "limitations": "Normal archive children remain permitted; symlinks and filesystem races need separate analysis.",
+      "record_state": "PUBLISHED",
+      "patch_alignment": "aligned",
+      "verification_status": "source_observed",
+      "source_review": {
+        "kind": "agent_source_comparison",
+        "reviewer": "Codex",
+        "date": "2026-10-23"
+      },
+      "enforcement_enabled": false,
+      "fixtures": [
+        {
+          "role": "risk",
+          "scenario": "Archive entry resolves into a sibling whose name shares the extraction-root prefix.",
+          "status": "specification_only"
+        },
+        {
+          "role": "safe",
+          "scenario": "Resolved archive entry is a child according to path components, not string prefix.",
+          "status": "specification_only"
+        }
+      ],
+      "evidence": [
+        {
+          "kind": "cve",
+          "url": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2025/59xxx/CVE-2025-59682.json",
+          "snapshot_path": "data/m2/sources/CVE-2025-59682.cve.json",
+          "sha256": "3cdff73541835783986019fde0ce42c29dc7b5d3ec92191f42074b7ff4f50d9f"
+        },
+        {
+          "kind": "patch",
+          "url": "https://github.com/django/django/commit/af067f56c1dd467df4abd0ddd409a700da1f03ba.patch",
+          "snapshot_path": "data/m2/sources/CVE-2025-59682.patch.patch",
+          "sha256": "6741994df3f778e1d4fd320becf1eeee8b1416d64840ecceb65e59612b56cb67",
+          "anchor": {
+            "start_line": 20,
+            "end_line": 121
+          }
+        }
+      ],
+      "sharing_enabled": false,
+      "version_applicability": {
+        "status": "source_claims_not_normalized",
+        "source_affected": [
+          {
+            "defaultStatus": "unknown",
+            "product": "Django",
+            "vendor": "djangoproject",
+            "versions": [
+              {
+                "lessThan": "4.2.25",
+                "status": "affected",
+                "version": "4.2",
+                "versionType": "custom"
+              },
+              {
+                "lessThan": "5.1.13",
+                "status": "affected",
+                "version": "5.1",
+                "versionType": "custom"
+              },
+              {
+                "lessThan": "5.2.7",
+                "status": "affected",
+                "version": "5.2",
+                "versionType": "custom"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "pattern_id": "CVE-2025-57833",
+      "cve_id": "CVE-2025-57833",
+      "family": "sql_injection",
+      "language": "python",
+      "title": "Django FilteredRelation aliases",
+      "cause": "FilteredRelation aliases bypass existing alias checking.",
+      "preconditions": [
+        "Untrusted alias dictionary reaches FilteredRelation annotation."
+      ],
+      "patch_observation": "add_filtered_relation checks the alias before adding it.",
+      "prevention": "add_filtered_relation checks the alias before adding it.",
+      "limitations": "Later PostgreSQL alias hardening is tracked separately as CVE-2025-13372.",
+      "record_state": "PUBLISHED",
+      "patch_alignment": "aligned",
+      "verification_status": "source_observed",
+      "source_review": {
+        "kind": "agent_source_comparison",
+        "reviewer": "Codex",
+        "date": "2026-10-23"
+      },
+      "enforcement_enabled": false,
+      "fixtures": [
+        {
+          "role": "risk",
+          "scenario": "Untrusted alias dictionary reaches FilteredRelation annotation.",
+          "status": "specification_only"
+        },
+        {
+          "role": "safe",
+          "scenario": "Fixed approved aliases pass the same validation as other annotation aliases.",
+          "status": "specification_only"
+        }
+      ],
+      "evidence": [
+        {
+          "kind": "cve",
+          "url": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2025/57xxx/CVE-2025-57833.json",
+          "snapshot_path": "data/m2/sources/CVE-2025-57833.cve.json",
+          "sha256": "21ca292e1e99354d4524a06e55700f65688c7593691e07f5e553aba19d23e66c"
+        },
+        {
+          "kind": "patch",
+          "url": "https://github.com/django/django/commit/4c044fcc866ec226f612c475950b690b0139d243.patch",
+          "snapshot_path": "data/m2/sources/CVE-2025-57833.patch.patch",
+          "sha256": "289b001c69cf598d9aa6691d24861fcfc4783497bff593d2f6b8c37236565290",
+          "anchor": {
+            "start_line": 18,
+            "end_line": 130
+          }
+        }
+      ],
+      "sharing_enabled": false,
+      "version_applicability": {
+        "status": "source_claims_not_normalized",
+        "source_affected": [
+          {
+            "defaultStatus": "unknown",
+            "product": "Django",
+            "vendor": "djangoproject",
+            "versions": [
+              {
+                "lessThan": "4.2.24",
+                "status": "affected",
+                "version": "4.2",
+                "versionType": "custom"
+              },
+              {
+                "lessThan": "5.1.12",
+                "status": "affected",
+                "version": "5.1",
+                "versionType": "custom"
+              },
+              {
+                "lessThan": "5.2.6",
+                "status": "affected",
+                "version": "5.2",
+                "versionType": "custom"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "pattern_id": "CVE-2024-53908",
+      "cve_id": "CVE-2024-53908",
+      "family": "sql_injection",
+      "language": "python",
+      "title": "Django Oracle HasKey JSON lookup",
+      "cause": "Direct HasKey lookup accepts an unsafe left-hand expression on Oracle.",
+      "preconditions": [
+        "Direct HasKey lhs is controlled by untrusted input on Oracle."
+      ],
+      "patch_observation": "Oracle JSON path compilation preserves compiled lhs parameters instead of interpolating the lhs unsafely.",
+      "prevention": "Oracle JSON path compilation preserves compiled lhs parameters instead of interpolating the lhs unsafely.",
+      "limitations": "The ordinary __has_key path was reported unaffected; do not flag every JSON lookup.",
+      "record_state": "PUBLISHED",
+      "patch_alignment": "aligned",
+      "verification_status": "source_observed",
+      "source_review": {
+        "kind": "agent_source_comparison",
+        "reviewer": "Codex",
+        "date": "2026-10-23"
+      },
+      "enforcement_enabled": false,
+      "fixtures": [
+        {
+          "role": "risk",
+          "scenario": "Direct HasKey lhs is controlled by untrusted input on Oracle.",
+          "status": "specification_only"
+        },
+        {
+          "role": "safe",
+          "scenario": "Ordinary field-based has_key lookup retains compiler-controlled SQL and parameters.",
+          "status": "specification_only"
+        }
+      ],
+      "evidence": [
+        {
+          "kind": "cve",
+          "url": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2024/53xxx/CVE-2024-53908.json",
+          "snapshot_path": "data/m2/sources/CVE-2024-53908.cve.json",
+          "sha256": "77e5ac4666d9d97a7f06d61e61dc18fd929d29191a4c469e78a864221e528f09"
+        },
+        {
+          "kind": "patch",
+          "url": "https://github.com/django/django/commit/6943d61818e63e77b65d8b1ae65941e8f04bd87b.patch",
+          "snapshot_path": "data/m2/sources/CVE-2024-53908.patch.patch",
+          "sha256": "0a26aca2dcae11bf10e5c92aef5bc4bdfdf47a5201693958053242ffd0fda9f3",
+          "anchor": {
+            "start_line": 17,
+            "end_line": 200
+          }
+        }
+      ],
+      "sharing_enabled": false,
+      "version_applicability": {
+        "status": "source_claims_not_normalized",
+        "source_affected": [
+          {
+            "vendor": "n/a",
+            "product": "n/a",
+            "versions": [
+              {
+                "version": "n/a",
+                "status": "affected"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "pattern_id": "CVE-2024-42005",
+      "cve_id": "CVE-2024-42005",
+      "family": "sql_injection",
+      "language": "python",
+      "title": "Django JSONField values values_list",
+      "cause": "Crafted JSON key text becomes a column alias through projection arguments.",
+      "preconditions": [
+        "A JSON projection argument contains an untrusted alias-like key."
+      ],
+      "patch_observation": "Projection fields receive the existing check_alias validation.",
+      "prevention": "Projection fields receive the existing check_alias validation.",
+      "limitations": "Specific to projections on models with JSONField in affected branches.",
+      "record_state": "PUBLISHED",
+      "patch_alignment": "aligned",
+      "verification_status": "source_observed",
+      "source_review": {
+        "kind": "agent_source_comparison",
+        "reviewer": "Codex",
+        "date": "2026-10-23"
+      },
+      "enforcement_enabled": false,
+      "fixtures": [
+        {
+          "role": "risk",
+          "scenario": "A JSON projection argument contains an untrusted alias-like key.",
+          "status": "specification_only"
+        },
+        {
+          "role": "safe",
+          "scenario": "An approved projection key is checked before SQL generation.",
+          "status": "specification_only"
+        }
+      ],
+      "evidence": [
+        {
+          "kind": "cve",
+          "url": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2024/42xxx/CVE-2024-42005.json",
+          "snapshot_path": "data/m2/sources/CVE-2024-42005.cve.json",
+          "sha256": "d659c9c527cab7509543f688ae90b95e8778c2504a20c3613225df01e08efb09"
+        },
+        {
+          "kind": "patch",
+          "url": "https://github.com/django/django/commit/32ebcbf2e1fe3e5ba79a6554a167efce81f7422d.patch",
+          "snapshot_path": "data/m2/sources/CVE-2024-42005.patch.patch",
+          "sha256": "62879b71becb6544ddd95d8f56ac09cb21513d07ecde413a86f701b18e61bec7",
+          "anchor": {
+            "start_line": 16,
+            "end_line": 113
+          }
+        }
+      ],
+      "sharing_enabled": false,
+      "version_applicability": {
+        "status": "source_claims_not_normalized",
+        "source_affected": [
+          {
+            "vendor": "n/a",
+            "product": "n/a",
+            "versions": [
+              {
+                "version": "n/a",
+                "status": "affected"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "pattern_id": "CVE-2024-39330",
+      "cve_id": "CVE-2024-39330",
+      "family": "path_traversal",
+      "language": "python",
+      "title": "Django custom Storage save",
+      "cause": "A custom storage override can omit inherited path validation.",
+      "preconditions": [
+        "Custom storage overrides filename generation without preserving checks."
+      ],
+      "patch_observation": "Storage.save validates names before and after get_available_name; separators are normalized for validation.",
+      "prevention": "Storage.save validates names before and after get_available_name; separators are normalized for validation.",
+      "limitations": "Built-in storage subclasses were reported unaffected; extension points can invalidate assumed guards.",
+      "record_state": "PUBLISHED",
+      "patch_alignment": "aligned",
+      "verification_status": "source_observed",
+      "source_review": {
+        "kind": "agent_source_comparison",
+        "reviewer": "Codex",
+        "date": "2026-10-23"
+      },
+      "enforcement_enabled": false,
+      "fixtures": [
+        {
+          "role": "risk",
+          "scenario": "Custom storage overrides filename generation without preserving checks.",
+          "status": "specification_only"
+        },
+        {
+          "role": "safe",
+          "scenario": "Storage validates the original and modified relative paths at the save boundary.",
+          "status": "specification_only"
+        }
+      ],
+      "evidence": [
+        {
+          "kind": "cve",
+          "url": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2024/39xxx/CVE-2024-39330.json",
+          "snapshot_path": "data/m2/sources/CVE-2024-39330.cve.json",
+          "sha256": "35d42a5237604c354d4c5f7ccf0064f7f20b3e268d203f83b4e51ff508a84fff"
+        },
+        {
+          "kind": "patch",
+          "url": "https://github.com/django/django/commit/9f4f63e9ebb7bf6cb9547ee4e2526b9b96703270.patch",
+          "snapshot_path": "data/m2/sources/CVE-2024-39330.patch.patch",
+          "sha256": "7c80751637b7e8cf6da6bd111555bf103e9e98ec7927c9b97f55e96a8581ce59",
+          "anchor": {
+            "start_line": 20,
+            "end_line": 224
+          }
+        }
+      ],
+      "sharing_enabled": false,
+      "version_applicability": {
+        "status": "source_claims_not_normalized",
+        "source_affected": [
+          {
+            "vendor": "n/a",
+            "product": "n/a",
+            "versions": [
+              {
+                "version": "n/a",
+                "status": "affected"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "pattern_id": "CVE-2022-28346",
+      "cve_id": "CVE-2022-28346",
+      "family": "sql_injection",
+      "language": "python",
+      "title": "Django annotate aggregate extra aliases",
+      "cause": "Expanded dictionary keys can become unsafe SQL aliases.",
+      "preconditions": [
+        "Untrusted dictionary keys become column aliases."
+      ],
+      "patch_observation": "Alias checking rejects quoting, whitespace, statement and comment syntax at annotation and extra boundaries.",
+      "prevention": "Alias checking rejects quoting, whitespace, statement and comment syntax at annotation and extra boundaries.",
+      "limitations": "Backend-specific later fixes are separate cases; value binding does not protect identifier text.",
+      "record_state": "PUBLISHED",
+      "patch_alignment": "aligned",
+      "verification_status": "source_observed",
+      "source_review": {
+        "kind": "agent_source_comparison",
+        "reviewer": "Codex",
+        "date": "2026-10-23"
+      },
+      "enforcement_enabled": false,
+      "fixtures": [
+        {
+          "role": "risk",
+          "scenario": "Untrusted dictionary keys become column aliases.",
+          "status": "specification_only"
+        },
+        {
+          "role": "safe",
+          "scenario": "Approved keys are validated as identifiers before compilation.",
+          "status": "specification_only"
+        }
+      ],
+      "evidence": [
+        {
+          "kind": "cve",
+          "url": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2022/28xxx/CVE-2022-28346.json",
+          "snapshot_path": "data/m2/sources/CVE-2022-28346.cve.json",
+          "sha256": "651cb14d6b34da0abfe4c056068e881beac6f469b6f54c189eddd2829f020e17"
+        },
+        {
+          "kind": "patch",
+          "url": "https://github.com/django/django/commit/800828887a0509ad1162d6d407e94d8de7eafc60.patch",
+          "snapshot_path": "data/m2/sources/CVE-2022-28346.patch.patch",
+          "sha256": "60ac658ab7c4d82f1f473a6fae953cdd52928ddd8feed261154d2b300d7b79dd",
+          "anchor": {
+            "start_line": 24,
+            "end_line": 240
+          }
+        }
+      ],
+      "sharing_enabled": false,
+      "version_applicability": {
+        "status": "source_claims_not_normalized",
+        "source_affected": [
+          {
+            "vendor": "n/a",
+            "product": "n/a",
+            "versions": [
+              {
+                "version": "n/a",
+                "status": "affected"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "pattern_id": "CVE-2022-28347",
+      "cve_id": "CVE-2022-28347",
+      "family": "sql_injection",
+      "language": "python",
+      "title": "Django PostgreSQL explain options",
+      "cause": "Expanded option dictionary names are interpolated into EXPLAIN syntax.",
+      "preconditions": [
+        "Untrusted names are passed through QuerySet.explain options."
+      ],
+      "patch_observation": "PostgreSQL EXPLAIN selects supported options and rejects invalid option syntax.",
+      "prevention": "PostgreSQL EXPLAIN selects supported options and rejects invalid option syntax.",
+      "limitations": "A query-plan option name is structural SQL, not an ordinary bound query value.",
+      "record_state": "PUBLISHED",
+      "patch_alignment": "aligned",
+      "verification_status": "source_observed",
+      "source_review": {
+        "kind": "agent_source_comparison",
+        "reviewer": "Codex",
+        "date": "2026-10-23"
+      },
+      "enforcement_enabled": false,
+      "fixtures": [
+        {
+          "role": "risk",
+          "scenario": "Untrusted names are passed through QuerySet.explain options.",
+          "status": "specification_only"
+        },
+        {
+          "role": "safe",
+          "scenario": "Application chooses supported EXPLAIN option names and boolean values.",
+          "status": "specification_only"
+        }
+      ],
+      "evidence": [
+        {
+          "kind": "cve",
+          "url": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2022/28xxx/CVE-2022-28347.json",
+          "snapshot_path": "data/m2/sources/CVE-2022-28347.cve.json",
+          "sha256": "232582cc257048e0f9f830d9990d96db28cee1d1f54844c3bd00762be1b3aa72"
+        },
+        {
+          "kind": "patch",
+          "url": "https://github.com/django/django/commit/00b0fc50e1738c7174c495464a5ef069408a4402.patch",
+          "snapshot_path": "data/m2/sources/CVE-2022-28347.patch.patch",
+          "sha256": "c94ad12af98a571f4e26d19dc7f24decda51922c8076c09f49b66be6af7a16ef",
+          "anchor": {
+            "start_line": 18,
+            "end_line": 211
+          }
+        }
+      ],
+      "sharing_enabled": false,
+      "version_applicability": {
+        "status": "source_claims_not_normalized",
+        "source_affected": [
+          {
+            "vendor": "n/a",
+            "product": "n/a",
+            "versions": [
+              {
+                "version": "n/a",
+                "status": "affected"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "pattern_id": "CVE-2021-45452",
+      "cve_id": "CVE-2021-45452",
+      "family": "path_traversal",
+      "language": "python",
+      "title": "Django Storage save returned path",
+      "cause": "Filename separators and a storage-returned path can bypass expected confinement.",
+      "preconditions": [
+        "Caller directly supplies a crafted filename to Storage.save."
+      ],
+      "patch_observation": "Storage normalizes separators, validates the returned name and returns a path relative to the storage root.",
+      "prevention": "Storage normalizes separators, validates the returned name and returns a path relative to the storage root.",
+      "limitations": "Custom storage behavior and later boundary validation are tracked separately.",
+      "record_state": "PUBLISHED",
+      "patch_alignment": "aligned",
+      "verification_status": "source_observed",
+      "source_review": {
+        "kind": "agent_source_comparison",
+        "reviewer": "Codex",
+        "date": "2026-10-23"
+      },
+      "enforcement_enabled": false,
+      "fixtures": [
+        {
+          "role": "risk",
+          "scenario": "Caller directly supplies a crafted filename to Storage.save.",
+          "status": "specification_only"
+        },
+        {
+          "role": "safe",
+          "scenario": "Storage returns a validated relative child path after normalization.",
+          "status": "specification_only"
+        }
+      ],
+      "evidence": [
+        {
+          "kind": "cve",
+          "url": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2021/45xxx/CVE-2021-45452.json",
+          "snapshot_path": "data/m2/sources/CVE-2021-45452.cve.json",
+          "sha256": "f7be2052d92d73743174418c212a368e0bf174ac8ba1ae599b0449a0752a8623"
+        },
+        {
+          "kind": "patch",
+          "url": "https://github.com/django/django/commit/e1592e0f26302e79856cc7f2218ae848ae19b0f6.patch",
+          "snapshot_path": "data/m2/sources/CVE-2021-45452.patch.patch",
+          "sha256": "4e0528eec14db20bc28919557fc7d805cf43cdcb4ef4fed7e40169e8f24e23a7",
+          "anchor": {
+            "start_line": 17,
+            "end_line": 159
+          }
+        }
+      ],
+      "sharing_enabled": false,
+      "version_applicability": {
+        "status": "source_claims_not_normalized",
+        "source_affected": [
+          {
+            "product": "n/a",
+            "vendor": "n/a",
+            "versions": [
+              {
+                "status": "affected",
+                "version": "n/a"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "pattern_id": "CVE-2021-33203",
+      "cve_id": "CVE-2021-33203",
+      "family": "path_traversal",
+      "language": "python",
+      "title": "Django admindocs TemplateDetailView",
+      "cause": "Staff-selected template paths can escape configured template directories.",
+      "preconditions": [
+        "A staff user supplies a path outside the template root."
+      ],
+      "patch_observation": "TemplateDetailView uses safe_join before reading a template path.",
+      "prevention": "TemplateDetailView uses safe_join before reading a template path.",
+      "limitations": "File existence is exposed; contents require customized templates that display them.",
+      "record_state": "PUBLISHED",
+      "patch_alignment": "aligned",
+      "verification_status": "source_observed",
+      "source_review": {
+        "kind": "agent_source_comparison",
+        "reviewer": "Codex",
+        "date": "2026-10-23"
+      },
+      "enforcement_enabled": false,
+      "fixtures": [
+        {
+          "role": "risk",
+          "scenario": "A staff user supplies a path outside the template root.",
+          "status": "specification_only"
+        },
+        {
+          "role": "safe",
+          "scenario": "A staff template lookup remains confined to its configured root.",
+          "status": "specification_only"
+        }
+      ],
+      "evidence": [
+        {
+          "kind": "cve",
+          "url": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2021/33xxx/CVE-2021-33203.json",
+          "snapshot_path": "data/m2/sources/CVE-2021-33203.cve.json",
+          "sha256": "0959349bc8e714f2ea8a17d651e0bff82a043c00711bb0f61a7814ee36f66a8d"
+        },
+        {
+          "kind": "patch",
+          "url": "https://github.com/django/django/commit/dfaba12cda060b8b292ae1d271b44bf810b1c5b9.patch",
+          "snapshot_path": "data/m2/sources/CVE-2021-33203.patch.patch",
+          "sha256": "31bb43c1b32d73ee7ce099519c85cd18d493a2801073dc68d6c10940852ade73",
+          "anchor": {
+            "start_line": 15,
+            "end_line": 125
+          }
+        }
+      ],
+      "sharing_enabled": false,
+      "version_applicability": {
+        "status": "source_claims_not_normalized",
+        "source_affected": [
+          {
+            "product": "n/a",
+            "vendor": "n/a",
+            "versions": [
+              {
+                "status": "affected",
+                "version": "n/a"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "pattern_id": "CVE-2021-33571",
+      "cve_id": "CVE-2021-33571",
+      "family": "ssrf",
+      "language": "python",
+      "title": "Django URLValidator IPv4 leading zeros",
+      "cause": "Different consumers can disagree on octal-looking IPv4 literals with leading zeros.",
+      "preconditions": [
+        "An IP-based access-control check sees an ambiguous leading-zero host."
+      ],
+      "patch_observation": "Validators reject ambiguous leading-zero octets.",
+      "prevention": "Validators reject ambiguous leading-zero octets.",
+      "limitations": "Conditional SSRF/access-control bypass; Python version and validator path matter.",
+      "record_state": "PUBLISHED",
+      "patch_alignment": "aligned",
+      "verification_status": "source_observed",
+      "source_review": {
+        "kind": "agent_source_comparison",
+        "reviewer": "Codex",
+        "date": "2026-10-23"
+      },
+      "enforcement_enabled": false,
+      "fixtures": [
+        {
+          "role": "risk",
+          "scenario": "An IP-based access-control check sees an ambiguous leading-zero host.",
+          "status": "specification_only"
+        },
+        {
+          "role": "safe",
+          "scenario": "A canonical unambiguous IPv4 address is validated consistently by all consumers.",
+          "status": "specification_only"
+        }
+      ],
+      "evidence": [
+        {
+          "kind": "cve",
+          "url": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2021/33xxx/CVE-2021-33571.json",
+          "snapshot_path": "data/m2/sources/CVE-2021-33571.cve.json",
+          "sha256": "0b0d4d8525e6def00d37fdf4de8ec326f7d192e5c14ffd066eb8a4c5a7015abb"
+        },
+        {
+          "kind": "patch",
+          "url": "https://github.com/django/django/commit/9f75e2e562fa0c0482f3dde6fc7399a9070b4a3d.patch",
+          "snapshot_path": "data/m2/sources/CVE-2021-33571.patch.patch",
+          "sha256": "9faaae510495f35c3cf9cfced5ab52cc1bced868fe4863ed5a430aa20a5c4d45",
+          "anchor": {
+            "start_line": 22,
+            "end_line": 194
+          }
+        }
+      ],
+      "sharing_enabled": false,
+      "version_applicability": {
+        "status": "source_claims_not_normalized",
+        "source_affected": [
+          {
+            "vendor": "n/a",
+            "product": "n/a",
+            "versions": [
+              {
+                "version": "n/a",
+                "status": "affected"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "pattern_id": "CVE-2021-28658",
+      "cve_id": "CVE-2021-28658",
+      "family": "path_traversal",
+      "language": "python",
+      "title": "Django multipart upload filenames",
+      "cause": "Multipart file names can contain path separators reaching custom upload handlers.",
+      "preconditions": [
+        "A custom upload handler receives a user-controlled path-like filename."
+      ],
+      "patch_observation": "Parser sanitizes unescaped filenames and removes Windows and platform path components.",
+      "prevention": "Parser sanitizes unescaped filenames and removes Windows and platform path components.",
+      "limitations": "Built-in upload handlers were reported unaffected; later filename hardening is a separate case.",
+      "record_state": "PUBLISHED",
+      "patch_alignment": "aligned",
+      "verification_status": "source_observed",
+      "source_review": {
+        "kind": "agent_source_comparison",
+        "reviewer": "Codex",
+        "date": "2026-10-23"
+      },
+      "enforcement_enabled": false,
+      "fixtures": [
+        {
+          "role": "risk",
+          "scenario": "A custom upload handler receives a user-controlled path-like filename.",
+          "status": "specification_only"
+        },
+        {
+          "role": "safe",
+          "scenario": "Custom handler receives a validated ordinary basename.",
+          "status": "specification_only"
+        }
+      ],
+      "evidence": [
+        {
+          "kind": "cve",
+          "url": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2021/28xxx/CVE-2021-28658.json",
+          "snapshot_path": "data/m2/sources/CVE-2021-28658.cve.json",
+          "sha256": "18d59c8126c5b8d83c694c4c4110b6c1bbdb5838e51798e845796ab2853ea3ec"
+        },
+        {
+          "kind": "patch",
+          "url": "https://github.com/django/django/commit/2820fd1be5dfccbf1216c3845fad8580502473e1.patch",
+          "snapshot_path": "data/m2/sources/CVE-2021-28658.patch.patch",
+          "sha256": "fcb888733dcad22daaba9f9b5dc88f91d823414f70cf1337ba73e9aa6c96751f",
+          "anchor": {
+            "start_line": 25,
+            "end_line": 348
+          }
+        }
+      ],
+      "sharing_enabled": false,
+      "version_applicability": {
+        "status": "source_claims_not_normalized",
+        "source_affected": [
+          {
+            "product": "n/a",
+            "vendor": "n/a",
+            "versions": [
+              {
+                "status": "affected",
+                "version": "n/a"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "pattern_id": "CVE-2021-3281",
+      "cve_id": "CVE-2021-3281",
+      "family": "path_traversal",
+      "language": "python",
+      "title": "Django archive extract historical traversal",
+      "cause": "Archive entry names can resolve outside the extraction destination.",
+      "preconditions": [
+        "Archive contains absolute paths or parent-directory components escaping the target."
+      ],
+      "patch_observation": "Historical patch canonicalizes target and filename then checks their string prefix.",
+      "prevention": "Use the later commonpath-based component containment from CVE-2025-59682, not the historical raw string-prefix check.",
+      "limitations": "The historical prefix check was incomplete; CVE-2025-59682 provides commonpath hardening.",
+      "record_state": "PUBLISHED",
+      "patch_alignment": "aligned",
+      "verification_status": "source_observed",
+      "source_review": {
+        "kind": "agent_source_comparison",
+        "reviewer": "Codex",
+        "date": "2026-10-23"
+      },
+      "enforcement_enabled": false,
+      "fixtures": [
+        {
+          "role": "risk",
+          "scenario": "Archive contains absolute paths or parent-directory components escaping the target.",
+          "status": "specification_only"
+        },
+        {
+          "role": "safe",
+          "scenario": "Use path-component containment for the resolved archive child, including sibling-prefix cases.",
+          "status": "specification_only"
+        }
+      ],
+      "evidence": [
+        {
+          "kind": "cve",
+          "url": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2021/3xxx/CVE-2021-3281.json",
+          "snapshot_path": "data/m2/sources/CVE-2021-3281.cve.json",
+          "sha256": "84cff0ba1550ceca2ebe18ea53fadc51a82b9a01a2e219bd0bfe72071751a8e0"
+        },
+        {
+          "kind": "patch",
+          "url": "https://github.com/django/django/commit/02e6592835b4559909aa3aaaf67988fef435f624.patch",
+          "snapshot_path": "data/m2/sources/CVE-2021-3281.patch.patch",
+          "sha256": "180030231d45226547a39d3060800b18d1ff51993659f9b97717e849d6156c96",
+          "anchor": {
+            "start_line": 31,
+            "end_line": 252
+          }
+        },
+        {
+          "kind": "patch",
+          "url": "https://github.com/django/django/commit/af067f56c1dd467df4abd0ddd409a700da1f03ba.patch",
+          "snapshot_path": "data/m2/sources/CVE-2025-59682.patch.patch",
+          "sha256": "6741994df3f778e1d4fd320becf1eeee8b1416d64840ecceb65e59612b56cb67"
+        }
+      ],
+      "sharing_enabled": false,
+      "version_applicability": {
+        "status": "source_claims_not_normalized",
+        "source_affected": [
+          {
+            "product": "n/a",
+            "vendor": "n/a",
+            "versions": [
+              {
+                "status": "affected",
+                "version": "n/a"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "pattern_id": "CVE-2020-9402",
+      "cve_id": "CVE-2020-9402",
+      "family": "sql_injection",
+      "language": "python",
+      "title": "Django Oracle GIS tolerance",
+      "cause": "An untrusted GIS tolerance is interpolated as SQL text.",
+      "preconditions": [
+        "External text is supplied as Oracle GIS tolerance."
+      ],
+      "patch_observation": "GIS tolerance becomes a Value expression and the function path validates numeric types.",
+      "prevention": "GIS tolerance becomes a Value expression and the function path validates numeric types.",
+      "limitations": "Oracle GIS context; preserving a numeric API parameter does not mean sanitizing arbitrary SQL.",
+      "record_state": "PUBLISHED",
+      "patch_alignment": "aligned",
+      "verification_status": "source_observed",
+      "source_review": {
+        "kind": "agent_source_comparison",
+        "reviewer": "Codex",
+        "date": "2026-10-23"
+      },
+      "enforcement_enabled": false,
+      "fixtures": [
+        {
+          "role": "risk",
+          "scenario": "External text is supplied as Oracle GIS tolerance.",
+          "status": "specification_only"
+        },
+        {
+          "role": "safe",
+          "scenario": "Tolerance is numeric and passed through the compiler parameter/value path.",
+          "status": "specification_only"
+        }
+      ],
+      "evidence": [
+        {
+          "kind": "cve",
+          "url": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2020/9xxx/CVE-2020-9402.json",
+          "snapshot_path": "data/m2/sources/CVE-2020-9402.cve.json",
+          "sha256": "7fb77737dbc7c6a775a65eddbb8a328872559daba4af471bb03ddea84daedd67"
+        },
+        {
+          "kind": "patch",
+          "url": "https://github.com/django/django/commit/26a5cf834526e291db00385dd33d319b8271fc4c.patch",
+          "snapshot_path": "data/m2/sources/CVE-2020-9402.patch.patch",
+          "sha256": "8572bef807fc5679fb403494bc7943c8fe2468a1f148967bef1c621fd7d87565",
+          "anchor": {
+            "start_line": 20,
+            "end_line": 249
+          }
+        }
+      ],
+      "sharing_enabled": false,
+      "version_applicability": {
+        "status": "source_claims_not_normalized",
+        "source_affected": [
+          {
+            "product": "n/a",
+            "vendor": "n/a",
+            "versions": [
+              {
+                "status": "affected",
+                "version": "n/a"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "pattern_id": "CVE-2020-7471",
+      "cve_id": "CVE-2020-7471",
+      "family": "sql_injection",
+      "language": "python",
+      "title": "Django PostgreSQL StringAgg delimiter",
+      "cause": "An externally selected delimiter is directly interpolated into aggregation SQL.",
+      "preconditions": [
+        "A download feature accepts an untrusted aggregation delimiter."
+      ],
+      "patch_observation": "StringAgg wraps the delimiter as a Value expression.",
+      "prevention": "StringAgg wraps the delimiter as a Value expression.",
+      "limitations": "Normal delimiter choices must retain the intended aggregation behavior.",
+      "record_state": "PUBLISHED",
+      "patch_alignment": "aligned",
+      "verification_status": "source_observed",
+      "source_review": {
+        "kind": "agent_source_comparison",
+        "reviewer": "Codex",
+        "date": "2026-10-23"
+      },
+      "enforcement_enabled": false,
+      "fixtures": [
+        {
+          "role": "risk",
+          "scenario": "A download feature accepts an untrusted aggregation delimiter.",
+          "status": "specification_only"
+        },
+        {
+          "role": "safe",
+          "scenario": "The delimiter remains a compiler-managed bound value.",
+          "status": "specification_only"
+        }
+      ],
+      "evidence": [
+        {
+          "kind": "cve",
+          "url": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2020/7xxx/CVE-2020-7471.json",
+          "snapshot_path": "data/m2/sources/CVE-2020-7471.cve.json",
+          "sha256": "537bbeda9c872b4486af63047d6459a04852aa1de2f82d9d1e27ce7afdb9debc"
+        },
+        {
+          "kind": "patch",
+          "url": "https://github.com/django/django/commit/505826b469b16ab36693360da9e11fd13213421b.patch",
+          "snapshot_path": "data/m2/sources/CVE-2020-7471.patch.patch",
+          "sha256": "d83dcb02d5512e6f6bb93ddace674361cf2cc398ef8f7dd144323dd60c0631a7",
+          "anchor": {
+            "start_line": 19,
+            "end_line": 157
+          }
+        }
+      ],
+      "sharing_enabled": false,
+      "version_applicability": {
+        "status": "source_claims_not_normalized",
+        "source_affected": [
+          {
+            "product": "n/a",
+            "vendor": "n/a",
+            "versions": [
+              {
+                "status": "affected",
+                "version": "n/a"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "pattern_id": "CVE-2019-14234",
+      "cve_id": "CVE-2019-14234",
+      "family": "sql_injection",
+      "language": "python",
+      "title": "Django PostgreSQL JSONField HStoreField keys",
+      "cause": "JSON or hstore key and index text is concatenated into lookup SQL.",
+      "preconditions": [
+        "A dynamically expanded filter includes an untrusted JSON or hstore key."
+      ],
+      "patch_observation": "Key transforms pass lookup keys as query parameters.",
+      "prevention": "Key transforms pass lookup keys as query parameters.",
+      "limitations": "Historical PostgreSQL field implementations; distinguish keys from full SQL expressions.",
+      "record_state": "PUBLISHED",
+      "patch_alignment": "aligned",
+      "verification_status": "source_observed",
+      "source_review": {
+        "kind": "agent_source_comparison",
+        "reviewer": "Codex",
+        "date": "2026-10-23"
+      },
+      "enforcement_enabled": false,
+      "fixtures": [
+        {
+          "role": "risk",
+          "scenario": "A dynamically expanded filter includes an untrusted JSON or hstore key.",
+          "status": "specification_only"
+        },
+        {
+          "role": "safe",
+          "scenario": "Lookup keys use SQL parameter binding while operators remain fixed.",
+          "status": "specification_only"
+        }
+      ],
+      "evidence": [
+        {
+          "kind": "cve",
+          "url": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2019/14xxx/CVE-2019-14234.json",
+          "snapshot_path": "data/m2/sources/CVE-2019-14234.cve.json",
+          "sha256": "17f7fed2ad349edebd7cb2f8065575231ab35a918ec4d3ab9cf50cf7aa81044a"
+        },
+        {
+          "kind": "patch",
+          "url": "https://github.com/django/django/commit/4f5b58f5cd3c57fee9972ab074f8dc6895d8f387.patch",
+          "snapshot_path": "data/m2/sources/CVE-2019-14234.patch.patch",
+          "sha256": "cf308f3097935defc96cd85932e5ced803e8dff9a07358cc9bba5a8f75d8ae83",
+          "anchor": {
+            "start_line": 19,
+            "end_line": 174
+          }
+        }
+      ],
+      "sharing_enabled": false,
+      "version_applicability": {
+        "status": "source_claims_not_normalized",
+        "source_affected": [
+          {
+            "product": "n/a",
+            "vendor": "n/a",
+            "versions": [
+              {
+                "status": "affected",
+                "version": "n/a"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "pattern_id": "CVE-2013-4315",
+      "cve_id": "CVE-2013-4315",
+      "family": "path_traversal",
+      "language": "python",
+      "title": "Django SSI template include root",
+      "cause": "A path with dot components can bypass an include-root check.",
+      "preconditions": [
+        "Template include path contains parent traversal after an allowed root prefix."
+      ],
+      "patch_observation": "SSI canonicalizes the filepath with abspath before include-root validation.",
+      "prevention": "SSI canonicalizes the filepath with abspath before include-root validation.",
+      "limitations": "Historical template feature; normalization alone is not a universal symlink or race defense.",
+      "record_state": "PUBLISHED",
+      "patch_alignment": "aligned",
+      "verification_status": "source_observed",
+      "source_review": {
+        "kind": "agent_source_comparison",
+        "reviewer": "Codex",
+        "date": "2026-10-23"
+      },
+      "enforcement_enabled": false,
+      "fixtures": [
+        {
+          "role": "risk",
+          "scenario": "Template include path contains parent traversal after an allowed root prefix.",
+          "status": "specification_only"
+        },
+        {
+          "role": "safe",
+          "scenario": "Normalize the path before enforcing a component-aware allowed-root boundary.",
+          "status": "specification_only"
+        }
+      ],
+      "evidence": [
+        {
+          "kind": "cve",
+          "url": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2013/4xxx/CVE-2013-4315.json",
+          "snapshot_path": "data/m2/sources/CVE-2013-4315.cve.json",
+          "sha256": "b93b8d034c6c034c96bc8955c96e150e26e599ef1ef4a4b563114e835dde2cd6"
+        },
+        {
+          "kind": "patch",
+          "url": "https://github.com/django/django/commit/87d2750b39f6f2d54b7047225521a44dcd37e896.patch",
+          "snapshot_path": "data/m2/sources/CVE-2013-4315.patch.patch",
+          "sha256": "2b57ca2820402afcf8fa50d823b40fcae47ffd9efcec58370745e779cfef4957",
+          "anchor": {
+            "start_line": 17,
+            "end_line": 74
+          }
+        }
+      ],
+      "sharing_enabled": false,
+      "version_applicability": {
+        "status": "source_claims_not_normalized",
+        "source_affected": [
+          {
+            "product": "n/a",
+            "vendor": "n/a",
+            "versions": [
+              {
+                "status": "affected",
+                "version": "n/a"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "pattern_id": "CVE-2011-0698",
+      "cve_id": "CVE-2011-0698",
+      "family": "path_traversal",
+      "language": "python",
+      "title": "Django file session backend keys",
+      "cause": "A session key can become a filesystem path with attacker-controlled separators.",
+      "preconditions": [
+        "Cookie-derived session key contains a path separator."
+      ],
+      "patch_observation": "File session backend restricts keys to hexadecimal characters.",
+      "prevention": "File session backend restricts keys to hexadecimal characters.",
+      "limitations": "File-backed sessions and platform separators matter; preserve valid session IDs.",
+      "record_state": "PUBLISHED",
+      "patch_alignment": "aligned",
+      "verification_status": "source_observed",
+      "source_review": {
+        "kind": "agent_source_comparison",
+        "reviewer": "Codex",
+        "date": "2026-10-23"
+      },
+      "enforcement_enabled": false,
+      "fixtures": [
+        {
+          "role": "risk",
+          "scenario": "Cookie-derived session key contains a path separator.",
+          "status": "specification_only"
+        },
+        {
+          "role": "safe",
+          "scenario": "Session key is restricted to the intended hexadecimal alphabet before path formation.",
+          "status": "specification_only"
+        }
+      ],
+      "evidence": [
+        {
+          "kind": "cve",
+          "url": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2011/0xxx/CVE-2011-0698.json",
+          "snapshot_path": "data/m2/sources/CVE-2011-0698.cve.json",
+          "sha256": "90c3c00e26db54c84176051dd6948e9f2e1b72e94ed42f4ea80c3ae0a1242098"
+        },
+        {
+          "kind": "patch",
+          "url": "https://github.com/django/django/commit/570a32a047ea56265646217264b0d3dab1a14dbd.patch",
+          "snapshot_path": "data/m2/sources/CVE-2011-0698.patch.patch",
+          "sha256": "08b6f4a7bf302c41920f5160c2d41957ae096b0340d1ea79a0f1f8a038c69036",
+          "anchor": {
+            "start_line": 13,
+            "end_line": 59
+          }
+        }
+      ],
+      "sharing_enabled": false,
+      "version_applicability": {
+        "status": "source_claims_not_normalized",
+        "source_affected": [
+          {
+            "product": "n/a",
+            "vendor": "n/a",
+            "versions": [
+              {
+                "status": "affected",
+                "version": "n/a"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "pattern_id": "CVE-2009-2659",
+      "cve_id": "CVE-2009-2659",
+      "family": "path_traversal",
+      "language": "python",
+      "title": "Django development admin media handler",
+      "cause": "A URL-to-media-path conversion can escape the media directory.",
+      "preconditions": [
+        "Crafted media URL resolves outside the expected static-file directory."
+      ],
+      "patch_observation": "Media handler converts the URL path and applies safe_join to the configured media root.",
+      "prevention": "Media handler converts the URL path and applies safe_join to the configured media root.",
+      "limitations": "Historical development server; do not infer that current production static serving has this CVE.",
+      "record_state": "PUBLISHED",
+      "patch_alignment": "aligned",
+      "verification_status": "source_observed",
+      "source_review": {
+        "kind": "agent_source_comparison",
+        "reviewer": "Codex",
+        "date": "2026-10-23"
+      },
+      "enforcement_enabled": false,
+      "fixtures": [
+        {
+          "role": "risk",
+          "scenario": "Crafted media URL resolves outside the expected static-file directory.",
+          "status": "specification_only"
+        },
+        {
+          "role": "safe",
+          "scenario": "Translated media path stays inside its root or returns not found.",
+          "status": "specification_only"
+        }
+      ],
+      "evidence": [
+        {
+          "kind": "cve",
+          "url": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2009/2xxx/CVE-2009-2659.json",
+          "snapshot_path": "data/m2/sources/CVE-2009-2659.cve.json",
+          "sha256": "e5caebb1f73f8d7b0725eb568ccd94234bc4c21dd881abf63f82370e35ca1533"
+        },
+        {
+          "kind": "patch",
+          "url": "https://github.com/django/django/commit/da85d76fd6ca846f3b0ff414e042ddb5e62e2e69.patch",
+          "snapshot_path": "data/m2/sources/CVE-2009-2659.patch.patch",
+          "sha256": "2543730e461e35ff9dd29c5881dedd3ad945cf2721807060bab43dc2d4f894b1",
+          "anchor": {
+            "start_line": 23,
+            "end_line": 186
+          }
+        }
+      ],
+      "sharing_enabled": false,
+      "version_applicability": {
+        "status": "source_claims_not_normalized",
+        "source_affected": [
+          {
+            "product": "n/a",
+            "vendor": "n/a",
+            "versions": [
+              {
+                "status": "affected",
+                "version": "n/a"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "pattern_id": "CVE-2025-50181",
+      "cve_id": "CVE-2025-50181",
+      "family": "ssrf",
+      "language": "python",
+      "title": "urllib3 PoolManager redirect disabling",
+      "cause": "PoolManager retry handling can lose a redirect-disable protection.",
+      "preconditions": [
+        "Application relies on PoolManager-level redirect disabling as an SSRF mitigation."
+      ],
+      "patch_observation": "PoolManager normalizes retry settings and uses response retry state when no per-request override is present.",
+      "prevention": "PoolManager normalizes retry settings and uses response retry state when no per-request override is present.",
+      "limitations": "Requests and botocore default usage was reported unaffected; redirects are only one SSRF condition.",
+      "record_state": "PUBLISHED",
+      "patch_alignment": "aligned",
+      "verification_status": "source_observed",
+      "source_review": {
+        "kind": "agent_source_comparison",
+        "reviewer": "Codex",
+        "date": "2026-10-23"
+      },
+      "enforcement_enabled": false,
+      "fixtures": [
+        {
+          "role": "risk",
+          "scenario": "Application relies on PoolManager-level redirect disabling as an SSRF mitigation.",
+          "status": "specification_only"
+        },
+        {
+          "role": "safe",
+          "scenario": "Redirect behavior is disabled and verified at the effective request layer.",
+          "status": "specification_only"
+        }
+      ],
+      "evidence": [
+        {
+          "kind": "cve",
+          "url": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2025/50xxx/CVE-2025-50181.json",
+          "snapshot_path": "data/m2/sources/CVE-2025-50181.cve.json",
+          "sha256": "82a9a6fd567fd9467b105e75ed85e57e3cfb8cfa624084b4d3eefc14ab9f2473"
+        },
+        {
+          "kind": "patch",
+          "url": "https://github.com/urllib3/urllib3/commit/f05b1329126d5be6de501f9d1e3e36738bc08857.patch",
+          "snapshot_path": "data/m2/sources/CVE-2025-50181.patch.patch",
+          "sha256": "21af6d69d5fad574a315c4bd5d8776385d1a10d8be5ae2daa31a1ab17d785f13",
+          "anchor": {
+            "start_line": 54,
+            "end_line": 294
+          }
+        }
+      ],
+      "sharing_enabled": false,
+      "version_applicability": {
+        "status": "source_claims_not_normalized",
+        "source_affected": [
+          {
+            "vendor": "urllib3",
+            "product": "urllib3",
+            "versions": [
+              {
+                "version": "< 2.5.0",
+                "status": "affected"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}

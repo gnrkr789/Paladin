@@ -1,0 +1,2 @@
+# Preserve exact bytes: evidence, pinned sources and hashed fixtures must not be normalized.
+* -text

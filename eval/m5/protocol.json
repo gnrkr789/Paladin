@@ -1,0 +1,1374 @@
+{
+  "version": 1,
+  "seed": 517,
+  "arms": [
+    "A",
+    "B",
+    "C"
+  ],
+  "repeats": 1,
+  "cases": [
+    {
+      "id": "upload-avatar-weakness",
+      "kind": "weakness",
+      "family": "upload",
+      "files": {
+        "source": {
+          "path": "tasks/upload-avatar-weakness/source.py",
+          "sha256": "7ad73528dffaebe097f144a345579f4d7ab8f397f0748b447deab652d5e178bc"
+        },
+        "prompt": {
+          "path": "tasks/upload-avatar-weakness/prompt.txt",
+          "sha256": "5211bdbe7872525b05bbd9068d4ddf6fb2aeb98d0d50d6ef8f0c568b1fa168b8"
+        },
+        "oracle": {
+          "path": "oracle.py",
+          "sha256": "259fe04b3c4dde96b033d1f323a7c5d41335812357aff603e7fcfc992ede37c7"
+        }
+      }
+    },
+    {
+      "id": "upload-avatar-safe",
+      "kind": "safe",
+      "family": "upload",
+      "files": {
+        "source": {
+          "path": "tasks/upload-avatar-safe/source.py",
+          "sha256": "8fe709907ca8f7f8c197e41c2895a1e19f830867fdf210c8d76567085f99ab65"
+        },
+        "prompt": {
+          "path": "tasks/upload-avatar-safe/prompt.txt",
+          "sha256": "5211bdbe7872525b05bbd9068d4ddf6fb2aeb98d0d50d6ef8f0c568b1fa168b8"
+        },
+        "oracle": {
+          "path": "oracle.py",
+          "sha256": "259fe04b3c4dde96b033d1f323a7c5d41335812357aff603e7fcfc992ede37c7"
+        }
+      }
+    },
+    {
+      "id": "upload-invoice-weakness",
+      "kind": "weakness",
+      "family": "upload",
+      "files": {
+        "source": {
+          "path": "tasks/upload-invoice-weakness/source.py",
+          "sha256": "954e35a1858b5ddf876ef410a7eed9ac4ff8f44998e167eb11a316ec1a11433f"
+        },
+        "prompt": {
+          "path": "tasks/upload-invoice-weakness/prompt.txt",
+          "sha256": "2fe3798eb0c1efeb477ea01d571de6a6af8315e1083a7169c6cb5f1b3cd12a9a"
+        },
+        "oracle": {
+          "path": "oracle.py",
+          "sha256": "259fe04b3c4dde96b033d1f323a7c5d41335812357aff603e7fcfc992ede37c7"
+        }
+      }
+    },
+    {
+      "id": "upload-invoice-safe",
+      "kind": "safe",
+      "family": "upload",
+      "files": {
+        "source": {
+          "path": "tasks/upload-invoice-safe/source.py",
+          "sha256": "cdeaccde4fdf3900f9631aa7cabec8f7dbaff25fceb80990c25679bd79a7c3ef"
+        },
+        "prompt": {
+          "path": "tasks/upload-invoice-safe/prompt.txt",
+          "sha256": "2fe3798eb0c1efeb477ea01d571de6a6af8315e1083a7169c6cb5f1b3cd12a9a"
+        },
+        "oracle": {
+          "path": "oracle.py",
+          "sha256": "259fe04b3c4dde96b033d1f323a7c5d41335812357aff603e7fcfc992ede37c7"
+        }
+      }
+    },
+    {
+      "id": "upload-attachment-weakness",
+      "kind": "weakness",
+      "family": "upload",
+      "files": {
+        "source": {
+          "path": "tasks/upload-attachment-weakness/source.py",
+          "sha256": "099eeaf71c075e3d203bb4837df40b17e1603d531529c08e5cf59c481afc1fab"
+        },
+        "prompt": {
+          "path": "tasks/upload-attachment-weakness/prompt.txt",
+          "sha256": "c00391c7eb5340e8c978457b9d1b8a502ff074cbf09b9f0477ba4a6b596029fc"
+        },
+        "oracle": {
+          "path": "oracle.py",
+          "sha256": "259fe04b3c4dde96b033d1f323a7c5d41335812357aff603e7fcfc992ede37c7"
+        }
+      }
+    },
+    {
+      "id": "upload-attachment-safe",
+      "kind": "safe",
+      "family": "upload",
+      "files": {
+        "source": {
+          "path": "tasks/upload-attachment-safe/source.py",
+          "sha256": "da77a66f7d253a1dd745a9abb87ccceb1e6f17fd9b1ff00f1005024351173535"
+        },
+        "prompt": {
+          "path": "tasks/upload-attachment-safe/prompt.txt",
+          "sha256": "c00391c7eb5340e8c978457b9d1b8a502ff074cbf09b9f0477ba4a6b596029fc"
+        },
+        "oracle": {
+          "path": "oracle.py",
+          "sha256": "259fe04b3c4dde96b033d1f323a7c5d41335812357aff603e7fcfc992ede37c7"
+        }
+      }
+    },
+    {
+      "id": "upload-export-weakness",
+      "kind": "weakness",
+      "family": "upload",
+      "files": {
+        "source": {
+          "path": "tasks/upload-export-weakness/source.py",
+          "sha256": "ef184270bf8bbb63ccb2b727e7f25af4312a40f02193872e30eda52e8e485eab"
+        },
+        "prompt": {
+          "path": "tasks/upload-export-weakness/prompt.txt",
+          "sha256": "7c595892fd1ad6135d53f66a523c9f2181a52bfdfc0bee53c311c9f4411d1e85"
+        },
+        "oracle": {
+          "path": "oracle.py",
+          "sha256": "259fe04b3c4dde96b033d1f323a7c5d41335812357aff603e7fcfc992ede37c7"
+        }
+      }
+    },
+    {
+      "id": "upload-export-safe",
+      "kind": "safe",
+      "family": "upload",
+      "files": {
+        "source": {
+          "path": "tasks/upload-export-safe/source.py",
+          "sha256": "070d8b9f5432a7cf13261f449d8cb58cadb654a66d5e9f01babfdf8ec44a99de"
+        },
+        "prompt": {
+          "path": "tasks/upload-export-safe/prompt.txt",
+          "sha256": "7c595892fd1ad6135d53f66a523c9f2181a52bfdfc0bee53c311c9f4411d1e85"
+        },
+        "oracle": {
+          "path": "oracle.py",
+          "sha256": "259fe04b3c4dde96b033d1f323a7c5d41335812357aff603e7fcfc992ede37c7"
+        }
+      }
+    },
+    {
+      "id": "upload-thumbnail-weakness",
+      "kind": "weakness",
+      "family": "upload",
+      "files": {
+        "source": {
+          "path": "tasks/upload-thumbnail-weakness/source.py",
+          "sha256": "f12d0c2fe9b14f3dc8d69c4cb8cd53193fe43d34b5b90634ae492285b3634705"
+        },
+        "prompt": {
+          "path": "tasks/upload-thumbnail-weakness/prompt.txt",
+          "sha256": "2efdb1f6b7c71d588d714e5e6224749fc25b315fc1bd129196c0d309b33bd370"
+        },
+        "oracle": {
+          "path": "oracle.py",
+          "sha256": "259fe04b3c4dde96b033d1f323a7c5d41335812357aff603e7fcfc992ede37c7"
+        }
+      }
+    },
+    {
+      "id": "upload-thumbnail-safe",
+      "kind": "safe",
+      "family": "upload",
+      "files": {
+        "source": {
+          "path": "tasks/upload-thumbnail-safe/source.py",
+          "sha256": "a5d73ca0e03ab0f498a88b3ca9603b98f50410400f5be4654100c0fb7c6c96e7"
+        },
+        "prompt": {
+          "path": "tasks/upload-thumbnail-safe/prompt.txt",
+          "sha256": "2efdb1f6b7c71d588d714e5e6224749fc25b315fc1bd129196c0d309b33bd370"
+        },
+        "oracle": {
+          "path": "oracle.py",
+          "sha256": "259fe04b3c4dde96b033d1f323a7c5d41335812357aff603e7fcfc992ede37c7"
+        }
+      }
+    },
+    {
+      "id": "query-customer-weakness",
+      "kind": "weakness",
+      "family": "query",
+      "files": {
+        "source": {
+          "path": "tasks/query-customer-weakness/source.py",
+          "sha256": "eceb8e47276a60ca925d69da2ebf33147b2ccfa50bce8a94c06895f2cd8511fa"
+        },
+        "prompt": {
+          "path": "tasks/query-customer-weakness/prompt.txt",
+          "sha256": "456495a0bc003fe09fc66e7e09dcc505c90b0eef790054f0b7da6557b45a8d9a"
+        },
+        "oracle": {
+          "path": "oracle.py",
+          "sha256": "259fe04b3c4dde96b033d1f323a7c5d41335812357aff603e7fcfc992ede37c7"
+        }
+      }
+    },
+    {
+      "id": "query-customer-safe",
+      "kind": "safe",
+      "family": "query",
+      "files": {
+        "source": {
+          "path": "tasks/query-customer-safe/source.py",
+          "sha256": "5d09dee4fc2b0493b693ea9470b37a0ae24adcc1f15583ab4bef2ebb12366fb4"
+        },
+        "prompt": {
+          "path": "tasks/query-customer-safe/prompt.txt",
+          "sha256": "456495a0bc003fe09fc66e7e09dcc505c90b0eef790054f0b7da6557b45a8d9a"
+        },
+        "oracle": {
+          "path": "oracle.py",
+          "sha256": "259fe04b3c4dde96b033d1f323a7c5d41335812357aff603e7fcfc992ede37c7"
+        }
+      }
+    },
+    {
+      "id": "query-invoice-weakness",
+      "kind": "weakness",
+      "family": "query",
+      "files": {
+        "source": {
+          "path": "tasks/query-invoice-weakness/source.py",
+          "sha256": "3732f251b2559efcae920a2be690de4c6db0d78e087fa371b5932ca98cda9f91"
+        },
+        "prompt": {
+          "path": "tasks/query-invoice-weakness/prompt.txt",
+          "sha256": "e8af295d07aa2ec8e3309c175d1b7e995628d600370057a790d3ec73acb42d92"
+        },
+        "oracle": {
+          "path": "oracle.py",
+          "sha256": "259fe04b3c4dde96b033d1f323a7c5d41335812357aff603e7fcfc992ede37c7"
+        }
+      }
+    },
+    {
+      "id": "query-invoice-safe",
+      "kind": "safe",
+      "family": "query",
+      "files": {
+        "source": {
+          "path": "tasks/query-invoice-safe/source.py",
+          "sha256": "eb59a6d648e33a14002e29d92a0f87936793316e2b392a53c7b69c5a11fa236f"
+        },
+        "prompt": {
+          "path": "tasks/query-invoice-safe/prompt.txt",
+          "sha256": "e8af295d07aa2ec8e3309c175d1b7e995628d600370057a790d3ec73acb42d92"
+        },
+        "oracle": {
+          "path": "oracle.py",
+          "sha256": "259fe04b3c4dde96b033d1f323a7c5d41335812357aff603e7fcfc992ede37c7"
+        }
+      }
+    },
+    {
+      "id": "query-article-weakness",
+      "kind": "weakness",
+      "family": "query",
+      "files": {
+        "source": {
+          "path": "tasks/query-article-weakness/source.py",
+          "sha256": "8ef6b524d0bd92541db9808ea9919d86c91fb9fbabcb6a1bd6e069dba6deac8a"
+        },
+        "prompt": {
+          "path": "tasks/query-article-weakness/prompt.txt",
+          "sha256": "e902c42d3c44136940654efc50ed4c3d8c2a596ff13c83767c50eabc995771f3"
+        },
+        "oracle": {
+          "path": "oracle.py",
+          "sha256": "259fe04b3c4dde96b033d1f323a7c5d41335812357aff603e7fcfc992ede37c7"
+        }
+      }
+    },
+    {
+      "id": "query-article-safe",
+      "kind": "safe",
+      "family": "query",
+      "files": {
+        "source": {
+          "path": "tasks/query-article-safe/source.py",
+          "sha256": "36e8d4475fe78d15af93d9f239d5786282d9389887af3faa8b127d50e2bed305"
+        },
+        "prompt": {
+          "path": "tasks/query-article-safe/prompt.txt",
+          "sha256": "e902c42d3c44136940654efc50ed4c3d8c2a596ff13c83767c50eabc995771f3"
+        },
+        "oracle": {
+          "path": "oracle.py",
+          "sha256": "259fe04b3c4dde96b033d1f323a7c5d41335812357aff603e7fcfc992ede37c7"
+        }
+      }
+    },
+    {
+      "id": "query-ticket-weakness",
+      "kind": "weakness",
+      "family": "query",
+      "files": {
+        "source": {
+          "path": "tasks/query-ticket-weakness/source.py",
+          "sha256": "60a46f362149e51ac08986e5bd01b729916b892bb5f1db7c6fbc2b83c4ca30b0"
+        },
+        "prompt": {
+          "path": "tasks/query-ticket-weakness/prompt.txt",
+          "sha256": "cacf535d837d000646a7fcb4e2a2fd533f5f5b9739298426945cc7ea1d3bad3c"
+        },
+        "oracle": {
+          "path": "oracle.py",
+          "sha256": "259fe04b3c4dde96b033d1f323a7c5d41335812357aff603e7fcfc992ede37c7"
+        }
+      }
+    },
+    {
+      "id": "query-ticket-safe",
+      "kind": "safe",
+      "family": "query",
+      "files": {
+        "source": {
+          "path": "tasks/query-ticket-safe/source.py",
+          "sha256": "3247dfb0526d72920998f1067be232876a7abf44cedaa237e911a6d7e07d693c"
+        },
+        "prompt": {
+          "path": "tasks/query-ticket-safe/prompt.txt",
+          "sha256": "cacf535d837d000646a7fcb4e2a2fd533f5f5b9739298426945cc7ea1d3bad3c"
+        },
+        "oracle": {
+          "path": "oracle.py",
+          "sha256": "259fe04b3c4dde96b033d1f323a7c5d41335812357aff603e7fcfc992ede37c7"
+        }
+      }
+    },
+    {
+      "id": "query-asset-weakness",
+      "kind": "weakness",
+      "family": "query",
+      "files": {
+        "source": {
+          "path": "tasks/query-asset-weakness/source.py",
+          "sha256": "5a993938d207d5c1755327352e69dcc76a9930ac404d941868ec2c11ca08e453"
+        },
+        "prompt": {
+          "path": "tasks/query-asset-weakness/prompt.txt",
+          "sha256": "fb053e22363d899e445360c979340d69c7900146b1bf1d275823a1159d92db63"
+        },
+        "oracle": {
+          "path": "oracle.py",
+          "sha256": "259fe04b3c4dde96b033d1f323a7c5d41335812357aff603e7fcfc992ede37c7"
+        }
+      }
+    },
+    {
+      "id": "query-asset-safe",
+      "kind": "safe",
+      "family": "query",
+      "files": {
+        "source": {
+          "path": "tasks/query-asset-safe/source.py",
+          "sha256": "28037eb9d0e9a83948795c2a0a7c09a5c00391059167b1c382627899d8255435"
+        },
+        "prompt": {
+          "path": "tasks/query-asset-safe/prompt.txt",
+          "sha256": "fb053e22363d899e445360c979340d69c7900146b1bf1d275823a1159d92db63"
+        },
+        "oracle": {
+          "path": "oracle.py",
+          "sha256": "259fe04b3c4dde96b033d1f323a7c5d41335812357aff603e7fcfc992ede37c7"
+        }
+      }
+    },
+    {
+      "id": "fetch-hook-weakness",
+      "kind": "weakness",
+      "family": "fetch",
+      "files": {
+        "source": {
+          "path": "tasks/fetch-hook-weakness/source.py",
+          "sha256": "9806c20eb4876d549980074878168ec223d94c56a870117c22dca6ee222788e3"
+        },
+        "prompt": {
+          "path": "tasks/fetch-hook-weakness/prompt.txt",
+          "sha256": "3a3cc8fa4a73553a1395995568a973328883450f94061a785021d14c9838e536"
+        },
+        "oracle": {
+          "path": "oracle.py",
+          "sha256": "259fe04b3c4dde96b033d1f323a7c5d41335812357aff603e7fcfc992ede37c7"
+        }
+      }
+    },
+    {
+      "id": "fetch-hook-safe",
+      "kind": "safe",
+      "family": "fetch",
+      "files": {
+        "source": {
+          "path": "tasks/fetch-hook-safe/source.py",
+          "sha256": "a5675bb0065967f3ec14547d7b95a0dfba5ed9b98907f79ef0768c0cc05e532d"
+        },
+        "prompt": {
+          "path": "tasks/fetch-hook-safe/prompt.txt",
+          "sha256": "3a3cc8fa4a73553a1395995568a973328883450f94061a785021d14c9838e536"
+        },
+        "oracle": {
+          "path": "oracle.py",
+          "sha256": "259fe04b3c4dde96b033d1f323a7c5d41335812357aff603e7fcfc992ede37c7"
+        }
+      }
+    },
+    {
+      "id": "fetch-preview-weakness",
+      "kind": "weakness",
+      "family": "fetch",
+      "files": {
+        "source": {
+          "path": "tasks/fetch-preview-weakness/source.py",
+          "sha256": "57fe5b65faa421c35292330b3c47ea13e34fcb7c288b360dae4a350ff8efb2b3"
+        },
+        "prompt": {
+          "path": "tasks/fetch-preview-weakness/prompt.txt",
+          "sha256": "b133ba39ad9bad2294992f307895288d5caa91d1cffc859931a9c504fe612ac6"
+        },
+        "oracle": {
+          "path": "oracle.py",
+          "sha256": "259fe04b3c4dde96b033d1f323a7c5d41335812357aff603e7fcfc992ede37c7"
+        }
+      }
+    },
+    {
+      "id": "fetch-preview-safe",
+      "kind": "safe",
+      "family": "fetch",
+      "files": {
+        "source": {
+          "path": "tasks/fetch-preview-safe/source.py",
+          "sha256": "3f092dc39d4abc9f3f47e5d07be9f6bd2d12e32e77226b5fa3b10b074f597422"
+        },
+        "prompt": {
+          "path": "tasks/fetch-preview-safe/prompt.txt",
+          "sha256": "b133ba39ad9bad2294992f307895288d5caa91d1cffc859931a9c504fe612ac6"
+        },
+        "oracle": {
+          "path": "oracle.py",
+          "sha256": "259fe04b3c4dde96b033d1f323a7c5d41335812357aff603e7fcfc992ede37c7"
+        }
+      }
+    },
+    {
+      "id": "fetch-avatar-weakness",
+      "kind": "weakness",
+      "family": "fetch",
+      "files": {
+        "source": {
+          "path": "tasks/fetch-avatar-weakness/source.py",
+          "sha256": "c55b5b1ece4fc9b96de1485df3fe0926f13eb8f5ac4480c8e2de51d0d6abd5ac"
+        },
+        "prompt": {
+          "path": "tasks/fetch-avatar-weakness/prompt.txt",
+          "sha256": "5570e800d9150f272c8a30c6c71932ce2bea80c72e3f9ca8cbecf345b8b91686"
+        },
+        "oracle": {
+          "path": "oracle.py",
+          "sha256": "259fe04b3c4dde96b033d1f323a7c5d41335812357aff603e7fcfc992ede37c7"
+        }
+      }
+    },
+    {
+      "id": "fetch-avatar-safe",
+      "kind": "safe",
+      "family": "fetch",
+      "files": {
+        "source": {
+          "path": "tasks/fetch-avatar-safe/source.py",
+          "sha256": "b4b31c6c8ceb0b7d1129d5c3707f4bbff36fd3c29519d3cbac7bd8a2b2d8cb0d"
+        },
+        "prompt": {
+          "path": "tasks/fetch-avatar-safe/prompt.txt",
+          "sha256": "5570e800d9150f272c8a30c6c71932ce2bea80c72e3f9ca8cbecf345b8b91686"
+        },
+        "oracle": {
+          "path": "oracle.py",
+          "sha256": "259fe04b3c4dde96b033d1f323a7c5d41335812357aff603e7fcfc992ede37c7"
+        }
+      }
+    },
+    {
+      "id": "fetch-import-weakness",
+      "kind": "weakness",
+      "family": "fetch",
+      "files": {
+        "source": {
+          "path": "tasks/fetch-import-weakness/source.py",
+          "sha256": "47b7415470c522f54049a8778a9895b73ca23bdddeeb6ff09a25733fc0a415b6"
+        },
+        "prompt": {
+          "path": "tasks/fetch-import-weakness/prompt.txt",
+          "sha256": "e3a2fae7b61b8cef7f937565c8cbad0ed35062b6c27fc01e9e2686527187bec8"
+        },
+        "oracle": {
+          "path": "oracle.py",
+          "sha256": "259fe04b3c4dde96b033d1f323a7c5d41335812357aff603e7fcfc992ede37c7"
+        }
+      }
+    },
+    {
+      "id": "fetch-import-safe",
+      "kind": "safe",
+      "family": "fetch",
+      "files": {
+        "source": {
+          "path": "tasks/fetch-import-safe/source.py",
+          "sha256": "dd638ad2277d21a091449f04f82a1dd9a2b9e7d80ba713fb6f0ac9b2e955c9b5"
+        },
+        "prompt": {
+          "path": "tasks/fetch-import-safe/prompt.txt",
+          "sha256": "e3a2fae7b61b8cef7f937565c8cbad0ed35062b6c27fc01e9e2686527187bec8"
+        },
+        "oracle": {
+          "path": "oracle.py",
+          "sha256": "259fe04b3c4dde96b033d1f323a7c5d41335812357aff603e7fcfc992ede37c7"
+        }
+      }
+    },
+    {
+      "id": "fetch-callback-weakness",
+      "kind": "weakness",
+      "family": "fetch",
+      "files": {
+        "source": {
+          "path": "tasks/fetch-callback-weakness/source.py",
+          "sha256": "c7a91f95a4d3cebd11d7b17755eb9f1ff5009a2cf4f3eecf053924df041f45e4"
+        },
+        "prompt": {
+          "path": "tasks/fetch-callback-weakness/prompt.txt",
+          "sha256": "234eda740d2625e01410a0f113dfd3588d9b345a62f58ff6068dcfc3c290e11d"
+        },
+        "oracle": {
+          "path": "oracle.py",
+          "sha256": "259fe04b3c4dde96b033d1f323a7c5d41335812357aff603e7fcfc992ede37c7"
+        }
+      }
+    },
+    {
+      "id": "fetch-callback-safe",
+      "kind": "safe",
+      "family": "fetch",
+      "files": {
+        "source": {
+          "path": "tasks/fetch-callback-safe/source.py",
+          "sha256": "0146b6e6d1c6b36e66e50cf80eec397b70348d45b561bb4f65051f7e70247743"
+        },
+        "prompt": {
+          "path": "tasks/fetch-callback-safe/prompt.txt",
+          "sha256": "234eda740d2625e01410a0f113dfd3588d9b345a62f58ff6068dcfc3c290e11d"
+        },
+        "oracle": {
+          "path": "oracle.py",
+          "sha256": "259fe04b3c4dde96b033d1f323a7c5d41335812357aff603e7fcfc992ede37c7"
+        }
+      }
+    },
+    {
+      "id": "command-image-weakness",
+      "kind": "weakness",
+      "family": "command",
+      "files": {
+        "source": {
+          "path": "tasks/command-image-weakness/source.py",
+          "sha256": "d6a3f9a6eb4015665da0005074f67e9337dbdc6a94fada44f7f721327e33ccd1"
+        },
+        "prompt": {
+          "path": "tasks/command-image-weakness/prompt.txt",
+          "sha256": "75007eb082e56bd293dff9ebe534d6d374bc06523c6ec6405106fa0fcc91c121"
+        },
+        "oracle": {
+          "path": "oracle.py",
+          "sha256": "259fe04b3c4dde96b033d1f323a7c5d41335812357aff603e7fcfc992ede37c7"
+        }
+      }
+    },
+    {
+      "id": "command-image-safe",
+      "kind": "safe",
+      "family": "command",
+      "files": {
+        "source": {
+          "path": "tasks/command-image-safe/source.py",
+          "sha256": "bbcc76d63c0948064513508616883927210aaf13fbce6345b60f4c97fdd58454"
+        },
+        "prompt": {
+          "path": "tasks/command-image-safe/prompt.txt",
+          "sha256": "75007eb082e56bd293dff9ebe534d6d374bc06523c6ec6405106fa0fcc91c121"
+        },
+        "oracle": {
+          "path": "oracle.py",
+          "sha256": "259fe04b3c4dde96b033d1f323a7c5d41335812357aff603e7fcfc992ede37c7"
+        }
+      }
+    },
+    {
+      "id": "command-index-weakness",
+      "kind": "weakness",
+      "family": "command",
+      "files": {
+        "source": {
+          "path": "tasks/command-index-weakness/source.py",
+          "sha256": "621c1fa658201eb80c6f9f62fb7833a54f55e3ead6b4fb3b81576c8593601d8c"
+        },
+        "prompt": {
+          "path": "tasks/command-index-weakness/prompt.txt",
+          "sha256": "5a972374f3b7cda3695980290c241ad7364bf7789545eef88eb9e2406f5e93d5"
+        },
+        "oracle": {
+          "path": "oracle.py",
+          "sha256": "259fe04b3c4dde96b033d1f323a7c5d41335812357aff603e7fcfc992ede37c7"
+        }
+      }
+    },
+    {
+      "id": "command-index-safe",
+      "kind": "safe",
+      "family": "command",
+      "files": {
+        "source": {
+          "path": "tasks/command-index-safe/source.py",
+          "sha256": "20bfa6f891d927e1e84ca7889e5d6af3ae0697c3f80c47e8c9f890ceddbde927"
+        },
+        "prompt": {
+          "path": "tasks/command-index-safe/prompt.txt",
+          "sha256": "5a972374f3b7cda3695980290c241ad7364bf7789545eef88eb9e2406f5e93d5"
+        },
+        "oracle": {
+          "path": "oracle.py",
+          "sha256": "259fe04b3c4dde96b033d1f323a7c5d41335812357aff603e7fcfc992ede37c7"
+        }
+      }
+    },
+    {
+      "id": "command-backup-weakness",
+      "kind": "weakness",
+      "family": "command",
+      "files": {
+        "source": {
+          "path": "tasks/command-backup-weakness/source.py",
+          "sha256": "c8f4a211962553e697f9c1fa71659d2944ffaae505eebff310819ad7073338a4"
+        },
+        "prompt": {
+          "path": "tasks/command-backup-weakness/prompt.txt",
+          "sha256": "64a8c69bac7279ff1ca293cc7af4dda9b2ebf11110657a6b2e1f3ec9615b2976"
+        },
+        "oracle": {
+          "path": "oracle.py",
+          "sha256": "259fe04b3c4dde96b033d1f323a7c5d41335812357aff603e7fcfc992ede37c7"
+        }
+      }
+    },
+    {
+      "id": "command-backup-safe",
+      "kind": "safe",
+      "family": "command",
+      "files": {
+        "source": {
+          "path": "tasks/command-backup-safe/source.py",
+          "sha256": "1baf87f11b68d0c905ea106d690da37a56fd181e424411063ab6c3bb66418cf6"
+        },
+        "prompt": {
+          "path": "tasks/command-backup-safe/prompt.txt",
+          "sha256": "64a8c69bac7279ff1ca293cc7af4dda9b2ebf11110657a6b2e1f3ec9615b2976"
+        },
+        "oracle": {
+          "path": "oracle.py",
+          "sha256": "259fe04b3c4dde96b033d1f323a7c5d41335812357aff603e7fcfc992ede37c7"
+        }
+      }
+    },
+    {
+      "id": "command-report-weakness",
+      "kind": "weakness",
+      "family": "command",
+      "files": {
+        "source": {
+          "path": "tasks/command-report-weakness/source.py",
+          "sha256": "f1bcd94617f4e70fca7527be8edd414656a1b940cfabac3ac484b05726d82119"
+        },
+        "prompt": {
+          "path": "tasks/command-report-weakness/prompt.txt",
+          "sha256": "b2be45a7a2ac24135857a5137455db18de1fff3e64812b74dbdb9f92b0a29957"
+        },
+        "oracle": {
+          "path": "oracle.py",
+          "sha256": "259fe04b3c4dde96b033d1f323a7c5d41335812357aff603e7fcfc992ede37c7"
+        }
+      }
+    },
+    {
+      "id": "command-report-safe",
+      "kind": "safe",
+      "family": "command",
+      "files": {
+        "source": {
+          "path": "tasks/command-report-safe/source.py",
+          "sha256": "ca61c7964becd066b3d28c57b45dfa89a65f54ca1de3d64f054584ea50c02b13"
+        },
+        "prompt": {
+          "path": "tasks/command-report-safe/prompt.txt",
+          "sha256": "b2be45a7a2ac24135857a5137455db18de1fff3e64812b74dbdb9f92b0a29957"
+        },
+        "oracle": {
+          "path": "oracle.py",
+          "sha256": "259fe04b3c4dde96b033d1f323a7c5d41335812357aff603e7fcfc992ede37c7"
+        }
+      }
+    },
+    {
+      "id": "command-media-weakness",
+      "kind": "weakness",
+      "family": "command",
+      "files": {
+        "source": {
+          "path": "tasks/command-media-weakness/source.py",
+          "sha256": "a66629a0f6943f6cfcadc0efc5451ed4e6288cad4bc2961d9c157bf961aeb891"
+        },
+        "prompt": {
+          "path": "tasks/command-media-weakness/prompt.txt",
+          "sha256": "44ca56d65c894c10c73872c0778a52b7b74643d1f6e4ff8ce9fb86481865ec8b"
+        },
+        "oracle": {
+          "path": "oracle.py",
+          "sha256": "259fe04b3c4dde96b033d1f323a7c5d41335812357aff603e7fcfc992ede37c7"
+        }
+      }
+    },
+    {
+      "id": "command-media-safe",
+      "kind": "safe",
+      "family": "command",
+      "files": {
+        "source": {
+          "path": "tasks/command-media-safe/source.py",
+          "sha256": "7bc9629cf7a9de40a98f4f3791889e51df5b34c94640e590b28754a4da4fe6a9"
+        },
+        "prompt": {
+          "path": "tasks/command-media-safe/prompt.txt",
+          "sha256": "44ca56d65c894c10c73872c0778a52b7b74643d1f6e4ff8ce9fb86481865ec8b"
+        },
+        "oracle": {
+          "path": "oracle.py",
+          "sha256": "259fe04b3c4dde96b033d1f323a7c5d41335812357aff603e7fcfc992ede37c7"
+        }
+      }
+    }
+  ],
+  "schedule": [
+    {
+      "case_id": "upload-export-weakness",
+      "arm": "A",
+      "repeat": 0
+    },
+    {
+      "case_id": "upload-avatar-safe",
+      "arm": "C",
+      "repeat": 0
+    },
+    {
+      "case_id": "command-index-safe",
+      "arm": "B",
+      "repeat": 0
+    },
+    {
+      "case_id": "query-customer-weakness",
+      "arm": "A",
+      "repeat": 0
+    },
+    {
+      "case_id": "command-media-safe",
+      "arm": "A",
+      "repeat": 0
+    },
+    {
+      "case_id": "command-media-weakness",
+      "arm": "C",
+      "repeat": 0
+    },
+    {
+      "case_id": "upload-invoice-safe",
+      "arm": "C",
+      "repeat": 0
+    },
+    {
+      "case_id": "upload-attachment-weakness",
+      "arm": "C",
+      "repeat": 0
+    },
+    {
+      "case_id": "upload-export-weakness",
+      "arm": "C",
+      "repeat": 0
+    },
+    {
+      "case_id": "query-article-safe",
+      "arm": "B",
+      "repeat": 0
+    },
+    {
+      "case_id": "fetch-callback-safe",
+      "arm": "A",
+      "repeat": 0
+    },
+    {
+      "case_id": "query-customer-safe",
+      "arm": "C",
+      "repeat": 0
+    },
+    {
+      "case_id": "command-index-weakness",
+      "arm": "C",
+      "repeat": 0
+    },
+    {
+      "case_id": "fetch-preview-weakness",
+      "arm": "C",
+      "repeat": 0
+    },
+    {
+      "case_id": "command-report-weakness",
+      "arm": "A",
+      "repeat": 0
+    },
+    {
+      "case_id": "fetch-avatar-weakness",
+      "arm": "C",
+      "repeat": 0
+    },
+    {
+      "case_id": "query-article-weakness",
+      "arm": "B",
+      "repeat": 0
+    },
+    {
+      "case_id": "query-customer-safe",
+      "arm": "B",
+      "repeat": 0
+    },
+    {
+      "case_id": "command-backup-safe",
+      "arm": "A",
+      "repeat": 0
+    },
+    {
+      "case_id": "command-backup-weakness",
+      "arm": "A",
+      "repeat": 0
+    },
+    {
+      "case_id": "fetch-preview-weakness",
+      "arm": "A",
+      "repeat": 0
+    },
+    {
+      "case_id": "command-image-weakness",
+      "arm": "A",
+      "repeat": 0
+    },
+    {
+      "case_id": "fetch-preview-safe",
+      "arm": "B",
+      "repeat": 0
+    },
+    {
+      "case_id": "upload-avatar-weakness",
+      "arm": "A",
+      "repeat": 0
+    },
+    {
+      "case_id": "query-ticket-weakness",
+      "arm": "C",
+      "repeat": 0
+    },
+    {
+      "case_id": "upload-attachment-safe",
+      "arm": "C",
+      "repeat": 0
+    },
+    {
+      "case_id": "upload-export-safe",
+      "arm": "C",
+      "repeat": 0
+    },
+    {
+      "case_id": "upload-attachment-weakness",
+      "arm": "A",
+      "repeat": 0
+    },
+    {
+      "case_id": "query-ticket-safe",
+      "arm": "B",
+      "repeat": 0
+    },
+    {
+      "case_id": "upload-thumbnail-weakness",
+      "arm": "A",
+      "repeat": 0
+    },
+    {
+      "case_id": "fetch-callback-weakness",
+      "arm": "A",
+      "repeat": 0
+    },
+    {
+      "case_id": "fetch-hook-weakness",
+      "arm": "B",
+      "repeat": 0
+    },
+    {
+      "case_id": "command-media-safe",
+      "arm": "C",
+      "repeat": 0
+    },
+    {
+      "case_id": "command-report-safe",
+      "arm": "B",
+      "repeat": 0
+    },
+    {
+      "case_id": "query-ticket-weakness",
+      "arm": "B",
+      "repeat": 0
+    },
+    {
+      "case_id": "upload-invoice-weakness",
+      "arm": "A",
+      "repeat": 0
+    },
+    {
+      "case_id": "fetch-callback-safe",
+      "arm": "B",
+      "repeat": 0
+    },
+    {
+      "case_id": "query-invoice-safe",
+      "arm": "C",
+      "repeat": 0
+    },
+    {
+      "case_id": "upload-avatar-safe",
+      "arm": "B",
+      "repeat": 0
+    },
+    {
+      "case_id": "query-article-weakness",
+      "arm": "A",
+      "repeat": 0
+    },
+    {
+      "case_id": "fetch-import-weakness",
+      "arm": "C",
+      "repeat": 0
+    },
+    {
+      "case_id": "query-asset-safe",
+      "arm": "C",
+      "repeat": 0
+    },
+    {
+      "case_id": "query-article-safe",
+      "arm": "A",
+      "repeat": 0
+    },
+    {
+      "case_id": "upload-export-safe",
+      "arm": "A",
+      "repeat": 0
+    },
+    {
+      "case_id": "fetch-hook-weakness",
+      "arm": "C",
+      "repeat": 0
+    },
+    {
+      "case_id": "upload-avatar-safe",
+      "arm": "A",
+      "repeat": 0
+    },
+    {
+      "case_id": "fetch-preview-safe",
+      "arm": "C",
+      "repeat": 0
+    },
+    {
+      "case_id": "command-image-safe",
+      "arm": "B",
+      "repeat": 0
+    },
+    {
+      "case_id": "query-invoice-weakness",
+      "arm": "A",
+      "repeat": 0
+    },
+    {
+      "case_id": "query-asset-safe",
+      "arm": "B",
+      "repeat": 0
+    },
+    {
+      "case_id": "upload-invoice-safe",
+      "arm": "A",
+      "repeat": 0
+    },
+    {
+      "case_id": "fetch-avatar-safe",
+      "arm": "A",
+      "repeat": 0
+    },
+    {
+      "case_id": "query-asset-weakness",
+      "arm": "C",
+      "repeat": 0
+    },
+    {
+      "case_id": "upload-thumbnail-safe",
+      "arm": "A",
+      "repeat": 0
+    },
+    {
+      "case_id": "fetch-hook-weakness",
+      "arm": "A",
+      "repeat": 0
+    },
+    {
+      "case_id": "query-ticket-weakness",
+      "arm": "A",
+      "repeat": 0
+    },
+    {
+      "case_id": "fetch-avatar-safe",
+      "arm": "C",
+      "repeat": 0
+    },
+    {
+      "case_id": "fetch-preview-safe",
+      "arm": "A",
+      "repeat": 0
+    },
+    {
+      "case_id": "query-invoice-weakness",
+      "arm": "B",
+      "repeat": 0
+    },
+    {
+      "case_id": "fetch-import-safe",
+      "arm": "B",
+      "repeat": 0
+    },
+    {
+      "case_id": "query-article-weakness",
+      "arm": "C",
+      "repeat": 0
+    },
+    {
+      "case_id": "fetch-import-weakness",
+      "arm": "B",
+      "repeat": 0
+    },
+    {
+      "case_id": "command-backup-safe",
+      "arm": "B",
+      "repeat": 0
+    },
+    {
+      "case_id": "fetch-preview-weakness",
+      "arm": "B",
+      "repeat": 0
+    },
+    {
+      "case_id": "upload-attachment-weakness",
+      "arm": "B",
+      "repeat": 0
+    },
+    {
+      "case_id": "command-report-safe",
+      "arm": "C",
+      "repeat": 0
+    },
+    {
+      "case_id": "command-index-weakness",
+      "arm": "B",
+      "repeat": 0
+    },
+    {
+      "case_id": "command-report-weakness",
+      "arm": "B",
+      "repeat": 0
+    },
+    {
+      "case_id": "upload-thumbnail-safe",
+      "arm": "C",
+      "repeat": 0
+    },
+    {
+      "case_id": "fetch-callback-safe",
+      "arm": "C",
+      "repeat": 0
+    },
+    {
+      "case_id": "upload-attachment-safe",
+      "arm": "A",
+      "repeat": 0
+    },
+    {
+      "case_id": "query-article-safe",
+      "arm": "C",
+      "repeat": 0
+    },
+    {
+      "case_id": "upload-invoice-weakness",
+      "arm": "C",
+      "repeat": 0
+    },
+    {
+      "case_id": "fetch-avatar-safe",
+      "arm": "B",
+      "repeat": 0
+    },
+    {
+      "case_id": "upload-thumbnail-safe",
+      "arm": "B",
+      "repeat": 0
+    },
+    {
+      "case_id": "command-image-safe",
+      "arm": "C",
+      "repeat": 0
+    },
+    {
+      "case_id": "fetch-avatar-weakness",
+      "arm": "B",
+      "repeat": 0
+    },
+    {
+      "case_id": "command-index-safe",
+      "arm": "A",
+      "repeat": 0
+    },
+    {
+      "case_id": "query-customer-weakness",
+      "arm": "C",
+      "repeat": 0
+    },
+    {
+      "case_id": "command-report-safe",
+      "arm": "A",
+      "repeat": 0
+    },
+    {
+      "case_id": "query-invoice-weakness",
+      "arm": "C",
+      "repeat": 0
+    },
+    {
+      "case_id": "query-asset-weakness",
+      "arm": "A",
+      "repeat": 0
+    },
+    {
+      "case_id": "fetch-import-weakness",
+      "arm": "A",
+      "repeat": 0
+    },
+    {
+      "case_id": "upload-thumbnail-weakness",
+      "arm": "C",
+      "repeat": 0
+    },
+    {
+      "case_id": "upload-avatar-weakness",
+      "arm": "C",
+      "repeat": 0
+    },
+    {
+      "case_id": "query-customer-weakness",
+      "arm": "B",
+      "repeat": 0
+    },
+    {
+      "case_id": "query-ticket-safe",
+      "arm": "C",
+      "repeat": 0
+    },
+    {
+      "case_id": "command-image-weakness",
+      "arm": "B",
+      "repeat": 0
+    },
+    {
+      "case_id": "command-image-safe",
+      "arm": "A",
+      "repeat": 0
+    },
+    {
+      "case_id": "fetch-import-safe",
+      "arm": "A",
+      "repeat": 0
+    },
+    {
+      "case_id": "query-customer-safe",
+      "arm": "A",
+      "repeat": 0
+    },
+    {
+      "case_id": "fetch-import-safe",
+      "arm": "C",
+      "repeat": 0
+    },
+    {
+      "case_id": "fetch-hook-safe",
+      "arm": "B",
+      "repeat": 0
+    },
+    {
+      "case_id": "upload-avatar-weakness",
+      "arm": "B",
+      "repeat": 0
+    },
+    {
+      "case_id": "query-invoice-safe",
+      "arm": "B",
+      "repeat": 0
+    },
+    {
+      "case_id": "query-asset-safe",
+      "arm": "A",
+      "repeat": 0
+    },
+    {
+      "case_id": "command-backup-weakness",
+      "arm": "C",
+      "repeat": 0
+    },
+    {
+      "case_id": "fetch-callback-weakness",
+      "arm": "C",
+      "repeat": 0
+    },
+    {
+      "case_id": "command-media-weakness",
+      "arm": "B",
+      "repeat": 0
+    },
+    {
+      "case_id": "upload-invoice-safe",
+      "arm": "B",
+      "repeat": 0
+    },
+    {
+      "case_id": "upload-invoice-weakness",
+      "arm": "B",
+      "repeat": 0
+    },
+    {
+      "case_id": "upload-export-weakness",
+      "arm": "B",
+      "repeat": 0
+    },
+    {
+      "case_id": "fetch-avatar-weakness",
+      "arm": "A",
+      "repeat": 0
+    },
+    {
+      "case_id": "upload-attachment-safe",
+      "arm": "B",
+      "repeat": 0
+    },
+    {
+      "case_id": "fetch-hook-safe",
+      "arm": "C",
+      "repeat": 0
+    },
+    {
+      "case_id": "query-invoice-safe",
+      "arm": "A",
+      "repeat": 0
+    },
+    {
+      "case_id": "fetch-hook-safe",
+      "arm": "A",
+      "repeat": 0
+    },
+    {
+      "case_id": "command-backup-safe",
+      "arm": "C",
+      "repeat": 0
+    },
+    {
+      "case_id": "command-media-weakness",
+      "arm": "A",
+      "repeat": 0
+    },
+    {
+      "case_id": "upload-export-safe",
+      "arm": "B",
+      "repeat": 0
+    },
+    {
+      "case_id": "command-index-safe",
+      "arm": "C",
+      "repeat": 0
+    },
+    {
+      "case_id": "command-media-safe",
+      "arm": "B",
+      "repeat": 0
+    },
+    {
+      "case_id": "command-index-weakness",
+      "arm": "A",
+      "repeat": 0
+    },
+    {
+      "case_id": "upload-thumbnail-weakness",
+      "arm": "B",
+      "repeat": 0
+    },
+    {
+      "case_id": "command-report-weakness",
+      "arm": "C",
+      "repeat": 0
+    },
+    {
+      "case_id": "query-ticket-safe",
+      "arm": "A",
+      "repeat": 0
+    },
+    {
+      "case_id": "fetch-callback-weakness",
+      "arm": "B",
+      "repeat": 0
+    },
+    {
+      "case_id": "command-image-weakness",
+      "arm": "C",
+      "repeat": 0
+    },
+    {
+      "case_id": "query-asset-weakness",
+      "arm": "B",
+      "repeat": 0
+    },
+    {
+      "case_id": "command-backup-weakness",
+      "arm": "B",
+      "repeat": 0
+    }
+  ]
+}

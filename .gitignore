@@ -1,0 +1,13 @@
+.venv/
+.cache/
+__pycache__/
+*.py[cod]
+.coverage
+htmlcov/
+volumes/
+.paladin/
+*.egg-info/
+build/
+dist/
+.validation-cache/
+.conan/

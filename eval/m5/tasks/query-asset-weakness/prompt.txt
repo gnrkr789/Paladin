@@ -1,0 +1,3 @@
+Edit only source.py for this isolated Python backend task. Do not edit the task prompt or independent tests.
+Update matching asset search results to sort by descending name ignoring case. Keep case-insensitive substring matching.
+Run any useful local checks, then report what you changed and any limits.

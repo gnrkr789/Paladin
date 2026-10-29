@@ -1,0 +1,469 @@
+[
+  {
+    "cve_id": "CVE-2025-13372",
+    "title": "December 2, 2025 - CVE 2025-13372 ¶ Potential SQL injection in FilteredRelation column aliases on PostgreSQL. Full description",
+    "patch_url": "https://github.com/django/django/commit/56aea00c3c5e1aacf4ed05f8ee06c2e78f02cea0",
+    "evidence": [
+      {
+        "kind": "cve",
+        "url": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2025/13xxx/CVE-2025-13372.json",
+        "path": "data/m2/sources/CVE-2025-13372.cve.json",
+        "sha256": "3e83d298c08e4a2db29008db3b934667073db73b92c050fa3052396695bb37c9"
+      },
+      {
+        "kind": "patch",
+        "url": "https://github.com/django/django/commit/56aea00c3c5e1aacf4ed05f8ee06c2e78f02cea0.patch",
+        "path": "data/m2/sources/CVE-2025-13372.patch.patch",
+        "sha256": "89a3d8d47510c789cb03de2680e8687cf4d75ff078314f2a9e0dfbb6ab9a4ad6"
+      }
+    ],
+    "description": "An issue was discovered in 5.2 before 5.2.9, 5.1 before 5.1.15, and 4.2 before 4.2.27.\n`FilteredRelation` is subject to SQL injection in column aliases, using a suitably crafted dictionary, with dictionary expansion, as the `**kwargs` passed to `QuerySet.annotate()` or `QuerySet.alias()` on PostgreSQL.\nEarlier, unsupported Django series (such as 5.0.x, 4.1.x, and 3.2.x) were not evaluated and may also be affected.\nDjango would like to thank Stackered for reporting this issue.",
+    "state": "PUBLISHED"
+  },
+  {
+    "cve_id": "CVE-2025-64459",
+    "title": "November 5, 2025 - CVE 2025-64459 ¶ Potential SQL injection via _connector keyword argument in QuerySet and Q objects. Full description",
+    "patch_url": "https://github.com/django/django/commit/06dd38324ac3d60d83d9f3adabf0dcdf423d2a85",
+    "evidence": [
+      {
+        "kind": "cve",
+        "url": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2025/64xxx/CVE-2025-64459.json",
+        "path": "data/m2/sources/CVE-2025-64459.cve.json",
+        "sha256": "8ac265a1c44959e5bbfa8f4a5f74b6c97937206e1ef8bda79c77b6fa414d6217"
+      },
+      {
+        "kind": "patch",
+        "url": "https://github.com/django/django/commit/06dd38324ac3d60d83d9f3adabf0dcdf423d2a85.patch",
+        "path": "data/m2/sources/CVE-2025-64459.patch.patch",
+        "sha256": "297f950131dfa82590757e426d74abae78e474396511a28a6cbdfd4bc0e12e05"
+      }
+    ],
+    "description": "An issue was discovered in 5.1 before 5.1.14, 4.2 before 4.2.26, and 5.2 before 5.2.8.\nThe methods `QuerySet.filter()`, `QuerySet.exclude()`, and `QuerySet.get()`, and the class `Q()`, are subject to SQL injection when using a suitably crafted dictionary, with dictionary expansion, as the `_connector` argument.\nEarlier, unsupported Django series (such as 5.0.x, 4.1.x, and 3.2.x) were not evaluated and may also be affected.\nDjango would like to thank cyberstan for reporting this issue.",
+    "state": "PUBLISHED"
+  },
+  {
+    "cve_id": "CVE-2025-59681",
+    "title": "October 1, 2025 - CVE 2025-59681 ¶ Potential SQL injection in QuerySet.annotate() , alias() , aggregate() , and extra() on MySQL and MariaDB. Full description",
+    "patch_url": "https://github.com/django/django/commit/4ceaaee7e04b416fc465e838a6ef43ca0ccffafe",
+    "evidence": [
+      {
+        "kind": "cve",
+        "url": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2025/59xxx/CVE-2025-59681.json",
+        "path": "data/m2/sources/CVE-2025-59681.cve.json",
+        "sha256": "f9e62cc593105cf0026b443f52357aa53895b229586ea564c2448bf64ca449ab"
+      },
+      {
+        "kind": "patch",
+        "url": "https://github.com/django/django/commit/4ceaaee7e04b416fc465e838a6ef43ca0ccffafe.patch",
+        "path": "data/m2/sources/CVE-2025-59681.patch.patch",
+        "sha256": "a9521bcd28fe6c6d5df4ca50868e17fca68b744c6132fd1b824cfdfce532b9e8"
+      }
+    ],
+    "description": "An issue was discovered in Django 4.2 before 4.2.25, 5.1 before 5.1.13, and 5.2 before 5.2.7. QuerySet.annotate(), QuerySet.alias(), QuerySet.aggregate(), and QuerySet.extra() are subject to SQL injection in column aliases, when using a suitably crafted dictionary, with dictionary expansion, as the **kwargs passed to these methods (on MySQL and MariaDB).",
+    "state": "PUBLISHED"
+  },
+  {
+    "cve_id": "CVE-2025-59682",
+    "title": "October 1, 2025 - CVE 2025-59682 ¶ Potential partial directory-traversal via archive.extract() . Full description",
+    "patch_url": "https://github.com/django/django/commit/af067f56c1dd467df4abd0ddd409a700da1f03ba",
+    "evidence": [
+      {
+        "kind": "cve",
+        "url": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2025/59xxx/CVE-2025-59682.json",
+        "path": "data/m2/sources/CVE-2025-59682.cve.json",
+        "sha256": "3cdff73541835783986019fde0ce42c29dc7b5d3ec92191f42074b7ff4f50d9f"
+      },
+      {
+        "kind": "patch",
+        "url": "https://github.com/django/django/commit/af067f56c1dd467df4abd0ddd409a700da1f03ba.patch",
+        "path": "data/m2/sources/CVE-2025-59682.patch.patch",
+        "sha256": "6741994df3f778e1d4fd320becf1eeee8b1416d64840ecceb65e59612b56cb67"
+      }
+    ],
+    "description": "An issue was discovered in Django 4.2 before 4.2.25, 5.1 before 5.1.13, and 5.2 before 5.2.7. The django.utils.archive.extract() function, used by the \"startapp --template\" and \"startproject --template\" commands, allows partial directory traversal via an archive with file paths sharing a common prefix with the target directory.",
+    "state": "PUBLISHED"
+  },
+  {
+    "cve_id": "CVE-2025-57833",
+    "title": "September 3, 2025 - CVE 2025-57833 ¶ Potential SQL injection in FilteredRelation column aliases. Full description",
+    "patch_url": "https://github.com/django/django/commit/4c044fcc866ec226f612c475950b690b0139d243",
+    "evidence": [
+      {
+        "kind": "cve",
+        "url": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2025/57xxx/CVE-2025-57833.json",
+        "path": "data/m2/sources/CVE-2025-57833.cve.json",
+        "sha256": "21ca292e1e99354d4524a06e55700f65688c7593691e07f5e553aba19d23e66c"
+      },
+      {
+        "kind": "patch",
+        "url": "https://github.com/django/django/commit/4c044fcc866ec226f612c475950b690b0139d243.patch",
+        "path": "data/m2/sources/CVE-2025-57833.patch.patch",
+        "sha256": "289b001c69cf598d9aa6691d24861fcfc4783497bff593d2f6b8c37236565290"
+      }
+    ],
+    "description": "An issue was discovered in Django 4.2 before 4.2.24, 5.1 before 5.1.12, and 5.2 before 5.2.6. FilteredRelation is subject to SQL injection in column aliases, using a suitably crafted dictionary, with dictionary expansion, as the **kwargs passed QuerySet.annotate() or QuerySet.alias().",
+    "state": "PUBLISHED"
+  },
+  {
+    "cve_id": "CVE-2024-53908",
+    "title": "December 4, 2024 - CVE 2024-53908 ¶ Potential SQL injection in HasKey(lhs, rhs) on Oracle. Full description",
+    "patch_url": "https://github.com/django/django/commit/6943d61818e63e77b65d8b1ae65941e8f04bd87b",
+    "evidence": [
+      {
+        "kind": "cve",
+        "url": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2024/53xxx/CVE-2024-53908.json",
+        "path": "data/m2/sources/CVE-2024-53908.cve.json",
+        "sha256": "77e5ac4666d9d97a7f06d61e61dc18fd929d29191a4c469e78a864221e528f09"
+      },
+      {
+        "kind": "patch",
+        "url": "https://github.com/django/django/commit/6943d61818e63e77b65d8b1ae65941e8f04bd87b.patch",
+        "path": "data/m2/sources/CVE-2024-53908.patch.patch",
+        "sha256": "0a26aca2dcae11bf10e5c92aef5bc4bdfdf47a5201693958053242ffd0fda9f3"
+      }
+    ],
+    "description": "An issue was discovered in Django 5.1 before 5.1.4, 5.0 before 5.0.10, and 4.2 before 4.2.17. Direct usage of the django.db.models.fields.json.HasKey lookup, when an Oracle database is used, is subject to SQL injection if untrusted data is used as an lhs value. (Applications that use the jsonfield.has_key lookup via __ are unaffected.)",
+    "state": "PUBLISHED"
+  },
+  {
+    "cve_id": "CVE-2024-42005",
+    "title": "August 6, 2024 - CVE 2024-42005 ¶ Potential SQL injection in QuerySet.values() and values_list() . Full description",
+    "patch_url": "https://github.com/django/django/commit/32ebcbf2e1fe3e5ba79a6554a167efce81f7422d",
+    "evidence": [
+      {
+        "kind": "cve",
+        "url": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2024/42xxx/CVE-2024-42005.json",
+        "path": "data/m2/sources/CVE-2024-42005.cve.json",
+        "sha256": "d659c9c527cab7509543f688ae90b95e8778c2504a20c3613225df01e08efb09"
+      },
+      {
+        "kind": "patch",
+        "url": "https://github.com/django/django/commit/32ebcbf2e1fe3e5ba79a6554a167efce81f7422d.patch",
+        "path": "data/m2/sources/CVE-2024-42005.patch.patch",
+        "sha256": "62879b71becb6544ddd95d8f56ac09cb21513d07ecde413a86f701b18e61bec7"
+      }
+    ],
+    "description": "An issue was discovered in Django 5.0 before 5.0.8 and 4.2 before 4.2.15. QuerySet.values() and values_list() methods on models with a JSONField are subject to SQL injection in column aliases via a crafted JSON object key as a passed *arg.",
+    "state": "PUBLISHED"
+  },
+  {
+    "cve_id": "CVE-2024-39330",
+    "title": "July 9, 2024 - CVE 2024-39330 ¶ Potential directory-traversal in django.core.files.storage.Storage.save() . Full description",
+    "patch_url": "https://github.com/django/django/commit/9f4f63e9ebb7bf6cb9547ee4e2526b9b96703270",
+    "evidence": [
+      {
+        "kind": "cve",
+        "url": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2024/39xxx/CVE-2024-39330.json",
+        "path": "data/m2/sources/CVE-2024-39330.cve.json",
+        "sha256": "35d42a5237604c354d4c5f7ccf0064f7f20b3e268d203f83b4e51ff508a84fff"
+      },
+      {
+        "kind": "patch",
+        "url": "https://github.com/django/django/commit/9f4f63e9ebb7bf6cb9547ee4e2526b9b96703270.patch",
+        "path": "data/m2/sources/CVE-2024-39330.patch.patch",
+        "sha256": "7c80751637b7e8cf6da6bd111555bf103e9e98ec7927c9b97f55e96a8581ce59"
+      }
+    ],
+    "description": "An issue was discovered in Django 5.0 before 5.0.7 and 4.2 before 4.2.14. Derived classes of the django.core.files.storage.Storage base class, when they override generate_filename() without replicating the file-path validations from the parent class, potentially allow directory traversal via certain inputs during a save() call. (Built-in Storage sub-classes are unaffected.)",
+    "state": "PUBLISHED"
+  },
+  {
+    "cve_id": "CVE-2022-28346",
+    "title": "April 11, 2022 - CVE 2022-28346 ¶ Potential SQL injection in QuerySet.annotate() , aggregate() , and extra() . Full description",
+    "patch_url": "https://github.com/django/django/commit/800828887a0509ad1162d6d407e94d8de7eafc60",
+    "evidence": [
+      {
+        "kind": "cve",
+        "url": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2022/28xxx/CVE-2022-28346.json",
+        "path": "data/m2/sources/CVE-2022-28346.cve.json",
+        "sha256": "651cb14d6b34da0abfe4c056068e881beac6f469b6f54c189eddd2829f020e17"
+      },
+      {
+        "kind": "patch",
+        "url": "https://github.com/django/django/commit/800828887a0509ad1162d6d407e94d8de7eafc60.patch",
+        "path": "data/m2/sources/CVE-2022-28346.patch.patch",
+        "sha256": "60ac658ab7c4d82f1f473a6fae953cdd52928ddd8feed261154d2b300d7b79dd"
+      }
+    ],
+    "description": "An issue was discovered in Django 2.2 before 2.2.28, 3.2 before 3.2.13, and 4.0 before 4.0.4. QuerySet.annotate(), aggregate(), and extra() methods are subject to SQL injection in column aliases via a crafted dictionary (with dictionary expansion) as the passed **kwargs.",
+    "state": "PUBLISHED"
+  },
+  {
+    "cve_id": "CVE-2022-28347",
+    "title": "April 11, 2022 - CVE 2022-28347 ¶ Potential SQL injection via QuerySet.explain(**options) on PostgreSQL. Full description",
+    "patch_url": "https://github.com/django/django/commit/00b0fc50e1738c7174c495464a5ef069408a4402",
+    "evidence": [
+      {
+        "kind": "cve",
+        "url": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2022/28xxx/CVE-2022-28347.json",
+        "path": "data/m2/sources/CVE-2022-28347.cve.json",
+        "sha256": "232582cc257048e0f9f830d9990d96db28cee1d1f54844c3bd00762be1b3aa72"
+      },
+      {
+        "kind": "patch",
+        "url": "https://github.com/django/django/commit/00b0fc50e1738c7174c495464a5ef069408a4402.patch",
+        "path": "data/m2/sources/CVE-2022-28347.patch.patch",
+        "sha256": "c94ad12af98a571f4e26d19dc7f24decda51922c8076c09f49b66be6af7a16ef"
+      }
+    ],
+    "description": "A SQL injection issue was discovered in QuerySet.explain() in Django 2.2 before 2.2.28, 3.2 before 3.2.13, and 4.0 before 4.0.4. This occurs by passing a crafted dictionary (with dictionary expansion) as the **options argument, and placing the injection payload in an option name.",
+    "state": "PUBLISHED"
+  },
+  {
+    "cve_id": "CVE-2021-45452",
+    "title": "January 4, 2022 - CVE 2021-45452 ¶ Potential directory-traversal via Storage.save() . Full description Versions affected ¶",
+    "patch_url": "https://github.com/django/django/commit/e1592e0f26302e79856cc7f2218ae848ae19b0f6",
+    "evidence": [
+      {
+        "kind": "cve",
+        "url": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2021/45xxx/CVE-2021-45452.json",
+        "path": "data/m2/sources/CVE-2021-45452.cve.json",
+        "sha256": "f7be2052d92d73743174418c212a368e0bf174ac8ba1ae599b0449a0752a8623"
+      },
+      {
+        "kind": "patch",
+        "url": "https://github.com/django/django/commit/e1592e0f26302e79856cc7f2218ae848ae19b0f6.patch",
+        "path": "data/m2/sources/CVE-2021-45452.patch.patch",
+        "sha256": "4e0528eec14db20bc28919557fc7d805cf43cdcb4ef4fed7e40169e8f24e23a7"
+      }
+    ],
+    "description": "Storage.save in Django 2.2 before 2.2.26, 3.2 before 3.2.11, and 4.0 before 4.0.1 allows directory traversal if crafted filenames are directly passed to it.",
+    "state": "PUBLISHED"
+  },
+  {
+    "cve_id": "CVE-2021-33203",
+    "title": "June 2, 2021 - CVE 2021-33203 ¶ Potential directory traversal via admindocs . Full description Versions affected ¶",
+    "patch_url": "https://github.com/django/django/commit/dfaba12cda060b8b292ae1d271b44bf810b1c5b9",
+    "evidence": [
+      {
+        "kind": "cve",
+        "url": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2021/33xxx/CVE-2021-33203.json",
+        "path": "data/m2/sources/CVE-2021-33203.cve.json",
+        "sha256": "0959349bc8e714f2ea8a17d651e0bff82a043c00711bb0f61a7814ee36f66a8d"
+      },
+      {
+        "kind": "patch",
+        "url": "https://github.com/django/django/commit/dfaba12cda060b8b292ae1d271b44bf810b1c5b9.patch",
+        "path": "data/m2/sources/CVE-2021-33203.patch.patch",
+        "sha256": "31bb43c1b32d73ee7ce099519c85cd18d493a2801073dc68d6c10940852ade73"
+      }
+    ],
+    "description": "Django before 2.2.24, 3.x before 3.1.12, and 3.2.x before 3.2.4 has a potential directory traversal via django.contrib.admindocs. Staff members could use the TemplateDetailView view to check the existence of arbitrary files. Additionally, if (and only if) the default admindocs templates have been customized by application developers to also show file contents, then not only the existence but also the file contents would have been exposed. In other words, there is directory traversal outside of the template root directories.",
+    "state": "PUBLISHED"
+  },
+  {
+    "cve_id": "CVE-2021-33571",
+    "title": "June 2, 2021 - CVE 2021-33571 ¶ Possible indeterminate SSRF, RFI, and LFI attacks since validators accepted leading zeros in IPv4 addresses. Full description Versions affected ¶",
+    "patch_url": "https://github.com/django/django/commit/9f75e2e562fa0c0482f3dde6fc7399a9070b4a3d",
+    "evidence": [
+      {
+        "kind": "cve",
+        "url": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2021/33xxx/CVE-2021-33571.json",
+        "path": "data/m2/sources/CVE-2021-33571.cve.json",
+        "sha256": "0b0d4d8525e6def00d37fdf4de8ec326f7d192e5c14ffd066eb8a4c5a7015abb"
+      },
+      {
+        "kind": "patch",
+        "url": "https://github.com/django/django/commit/9f75e2e562fa0c0482f3dde6fc7399a9070b4a3d.patch",
+        "path": "data/m2/sources/CVE-2021-33571.patch.patch",
+        "sha256": "9faaae510495f35c3cf9cfced5ab52cc1bced868fe4863ed5a430aa20a5c4d45"
+      }
+    ],
+    "description": "In Django 2.2 before 2.2.24, 3.x before 3.1.12, and 3.2 before 3.2.4, URLValidator, validate_ipv4_address, and validate_ipv46_address do not prohibit leading zero characters in octal literals. This may allow a bypass of access control that is based on IP addresses. (validate_ipv4_address and validate_ipv46_address are unaffected with Python 3.9.5+..) .",
+    "state": "PUBLISHED"
+  },
+  {
+    "cve_id": "CVE-2021-28658",
+    "title": "April 6, 2021 - CVE 2021-28658 ¶ Potential directory-traversal via uploaded files. Full description Versions affected ¶",
+    "patch_url": "https://github.com/django/django/commit/2820fd1be5dfccbf1216c3845fad8580502473e1",
+    "evidence": [
+      {
+        "kind": "cve",
+        "url": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2021/28xxx/CVE-2021-28658.json",
+        "path": "data/m2/sources/CVE-2021-28658.cve.json",
+        "sha256": "18d59c8126c5b8d83c694c4c4110b6c1bbdb5838e51798e845796ab2853ea3ec"
+      },
+      {
+        "kind": "patch",
+        "url": "https://github.com/django/django/commit/2820fd1be5dfccbf1216c3845fad8580502473e1.patch",
+        "path": "data/m2/sources/CVE-2021-28658.patch.patch",
+        "sha256": "fcb888733dcad22daaba9f9b5dc88f91d823414f70cf1337ba73e9aa6c96751f"
+      }
+    ],
+    "description": "In Django 2.2 before 2.2.20, 3.0 before 3.0.14, and 3.1 before 3.1.8, MultiPartParser allowed directory traversal via uploaded files with suitably crafted file names. Built-in upload handlers were not affected by this vulnerability.",
+    "state": "PUBLISHED"
+  },
+  {
+    "cve_id": "CVE-2021-3281",
+    "title": "February 1, 2021 - CVE 2021-3281 ¶ Potential directory-traversal via archive.extract() . Full description Versions affected ¶",
+    "patch_url": "https://github.com/django/django/commit/02e6592835b4559909aa3aaaf67988fef435f624",
+    "evidence": [
+      {
+        "kind": "cve",
+        "url": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2021/3xxx/CVE-2021-3281.json",
+        "path": "data/m2/sources/CVE-2021-3281.cve.json",
+        "sha256": "84cff0ba1550ceca2ebe18ea53fadc51a82b9a01a2e219bd0bfe72071751a8e0"
+      },
+      {
+        "kind": "patch",
+        "url": "https://github.com/django/django/commit/02e6592835b4559909aa3aaaf67988fef435f624.patch",
+        "path": "data/m2/sources/CVE-2021-3281.patch.patch",
+        "sha256": "180030231d45226547a39d3060800b18d1ff51993659f9b97717e849d6156c96"
+      }
+    ],
+    "description": "In Django 2.2 before 2.2.18, 3.0 before 3.0.12, and 3.1 before 3.1.6, the django.utils.archive.extract method (used by \"startapp --template\" and \"startproject --template\") allows directory traversal via an archive with absolute paths or relative paths with dot segments.",
+    "state": "PUBLISHED"
+  },
+  {
+    "cve_id": "CVE-2020-9402",
+    "title": "March 4, 2020 - CVE 2020-9402 ¶ Potential SQL injection via tolerance parameter in GIS functions and aggregates on Oracle. Full description Versions affected ¶",
+    "patch_url": "https://github.com/django/django/commit/26a5cf834526e291db00385dd33d319b8271fc4c",
+    "evidence": [
+      {
+        "kind": "cve",
+        "url": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2020/9xxx/CVE-2020-9402.json",
+        "path": "data/m2/sources/CVE-2020-9402.cve.json",
+        "sha256": "7fb77737dbc7c6a775a65eddbb8a328872559daba4af471bb03ddea84daedd67"
+      },
+      {
+        "kind": "patch",
+        "url": "https://github.com/django/django/commit/26a5cf834526e291db00385dd33d319b8271fc4c.patch",
+        "path": "data/m2/sources/CVE-2020-9402.patch.patch",
+        "sha256": "8572bef807fc5679fb403494bc7943c8fe2468a1f148967bef1c621fd7d87565"
+      }
+    ],
+    "description": "Django 1.11 before 1.11.29, 2.2 before 2.2.11, and 3.0 before 3.0.4 allows SQL Injection if untrusted data is used as a tolerance parameter in GIS functions and aggregates on Oracle. By passing a suitably crafted tolerance to GIS functions and aggregates on Oracle, it was possible to break escaping and inject malicious SQL.",
+    "state": "PUBLISHED"
+  },
+  {
+    "cve_id": "CVE-2020-7471",
+    "title": "February 3, 2020 - CVE 2020-7471 ¶ Potential SQL injection via StringAgg(delimiter) . Full description Versions affected ¶",
+    "patch_url": "https://github.com/django/django/commit/505826b469b16ab36693360da9e11fd13213421b",
+    "evidence": [
+      {
+        "kind": "cve",
+        "url": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2020/7xxx/CVE-2020-7471.json",
+        "path": "data/m2/sources/CVE-2020-7471.cve.json",
+        "sha256": "537bbeda9c872b4486af63047d6459a04852aa1de2f82d9d1e27ce7afdb9debc"
+      },
+      {
+        "kind": "patch",
+        "url": "https://github.com/django/django/commit/505826b469b16ab36693360da9e11fd13213421b.patch",
+        "path": "data/m2/sources/CVE-2020-7471.patch.patch",
+        "sha256": "d83dcb02d5512e6f6bb93ddace674361cf2cc398ef8f7dd144323dd60c0631a7"
+      }
+    ],
+    "description": "Django 1.11 before 1.11.28, 2.2 before 2.2.10, and 3.0 before 3.0.3 allows SQL Injection if untrusted data is used as a StringAgg delimiter (e.g., in Django applications that offer downloads of data as a series of rows with a user-specified column delimiter). By passing a suitably crafted delimiter to a contrib.postgres.aggregates.StringAgg instance, it was possible to break escaping and inject malicious SQL.",
+    "state": "PUBLISHED"
+  },
+  {
+    "cve_id": "CVE-2019-14234",
+    "title": "August 1, 2019 - CVE 2019-14234 ¶ SQL injection possibility in key and index lookups for JSONField / HStoreField . Full description Versions affected ¶",
+    "patch_url": "https://github.com/django/django/commit/4f5b58f5cd3c57fee9972ab074f8dc6895d8f387",
+    "evidence": [
+      {
+        "kind": "cve",
+        "url": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2019/14xxx/CVE-2019-14234.json",
+        "path": "data/m2/sources/CVE-2019-14234.cve.json",
+        "sha256": "17f7fed2ad349edebd7cb2f8065575231ab35a918ec4d3ab9cf50cf7aa81044a"
+      },
+      {
+        "kind": "patch",
+        "url": "https://github.com/django/django/commit/4f5b58f5cd3c57fee9972ab074f8dc6895d8f387.patch",
+        "path": "data/m2/sources/CVE-2019-14234.patch.patch",
+        "sha256": "cf308f3097935defc96cd85932e5ced803e8dff9a07358cc9bba5a8f75d8ae83"
+      }
+    ],
+    "description": "An issue was discovered in Django 1.11.x before 1.11.23, 2.1.x before 2.1.11, and 2.2.x before 2.2.4. Due to an error in shallow key transformation, key and index lookups for django.contrib.postgres.fields.JSONField, and key lookups for django.contrib.postgres.fields.HStoreField, were subject to SQL injection. This could, for example, be exploited via crafted use of \"OR 1=1\" in a key or index name to return all records, using a suitably crafted dictionary, with dictionary expansion, as the **kwargs passed to the QuerySet.filter() function.",
+    "state": "PUBLISHED"
+  },
+  {
+    "cve_id": "CVE-2013-4315",
+    "title": "September 10, 2013 - CVE 2013-4315 ¶ Directory-traversal via ssi template tag. Full description Versions affected ¶",
+    "patch_url": "https://github.com/django/django/commit/87d2750b39f6f2d54b7047225521a44dcd37e896",
+    "evidence": [
+      {
+        "kind": "cve",
+        "url": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2013/4xxx/CVE-2013-4315.json",
+        "path": "data/m2/sources/CVE-2013-4315.cve.json",
+        "sha256": "b93b8d034c6c034c96bc8955c96e150e26e599ef1ef4a4b563114e835dde2cd6"
+      },
+      {
+        "kind": "patch",
+        "url": "https://github.com/django/django/commit/87d2750b39f6f2d54b7047225521a44dcd37e896.patch",
+        "path": "data/m2/sources/CVE-2013-4315.patch.patch",
+        "sha256": "2b57ca2820402afcf8fa50d823b40fcae47ffd9efcec58370745e779cfef4957"
+      }
+    ],
+    "description": "Directory traversal vulnerability in Django 1.4.x before 1.4.7, 1.5.x before 1.5.3, and 1.6.x before 1.6 beta 3 allows remote attackers to read arbitrary files via a file path in the ALLOWED_INCLUDE_ROOTS setting followed by a .. (dot dot) in a ssi template tag.",
+    "state": "PUBLISHED"
+  },
+  {
+    "cve_id": "CVE-2011-0698",
+    "title": "February 8, 2011 - CVE 2011-0698 ¶ Directory-traversal on Windows via incorrect path-separator handling. Full description Versions affected ¶",
+    "patch_url": "https://github.com/django/django/commit/570a32a047ea56265646217264b0d3dab1a14dbd",
+    "evidence": [
+      {
+        "kind": "cve",
+        "url": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2011/0xxx/CVE-2011-0698.json",
+        "path": "data/m2/sources/CVE-2011-0698.cve.json",
+        "sha256": "90c3c00e26db54c84176051dd6948e9f2e1b72e94ed42f4ea80c3ae0a1242098"
+      },
+      {
+        "kind": "patch",
+        "url": "https://github.com/django/django/commit/570a32a047ea56265646217264b0d3dab1a14dbd.patch",
+        "path": "data/m2/sources/CVE-2011-0698.patch.patch",
+        "sha256": "08b6f4a7bf302c41920f5160c2d41957ae096b0340d1ea79a0f1f8a038c69036"
+      }
+    ],
+    "description": "Directory traversal vulnerability in Django 1.1.x before 1.1.4 and 1.2.x before 1.2.5 on Windows might allow remote attackers to read or execute files via a / (slash) character in a key in a session cookie, related to session replays.",
+    "state": "PUBLISHED"
+  },
+  {
+    "cve_id": "CVE-2009-2659",
+    "title": "July 28, 2009 - CVE 2009-2659 ¶ Directory-traversal in development server media handler. Full description Versions affected ¶",
+    "patch_url": "https://github.com/django/django/commit/da85d76fd6ca846f3b0ff414e042ddb5e62e2e69",
+    "evidence": [
+      {
+        "kind": "cve",
+        "url": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2009/2xxx/CVE-2009-2659.json",
+        "path": "data/m2/sources/CVE-2009-2659.cve.json",
+        "sha256": "e5caebb1f73f8d7b0725eb568ccd94234bc4c21dd881abf63f82370e35ca1533"
+      },
+      {
+        "kind": "patch",
+        "url": "https://github.com/django/django/commit/da85d76fd6ca846f3b0ff414e042ddb5e62e2e69.patch",
+        "path": "data/m2/sources/CVE-2009-2659.patch.patch",
+        "sha256": "2543730e461e35ff9dd29c5881dedd3ad945cf2721807060bab43dc2d4f894b1"
+      }
+    ],
+    "description": "The Admin media handler in core/servers/basehttp.py in Django 1.0 and 0.96 does not properly map URL requests to expected \"static media files,\" which allows remote attackers to conduct directory traversal attacks and read arbitrary files via a crafted URL.",
+    "state": "PUBLISHED"
+  },
+  {
+    "cve_id": "CVE-2025-50181",
+    "title": "urllib3 redirects",
+    "patch_url": "https://github.com/urllib3/urllib3/commit/f05b1329126d5be6de501f9d1e3e36738bc08857",
+    "evidence": [
+      {
+        "kind": "cve",
+        "url": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2025/50xxx/CVE-2025-50181.json",
+        "path": "data/m2/sources/CVE-2025-50181.cve.json",
+        "sha256": "82a9a6fd567fd9467b105e75ed85e57e3cfb8cfa624084b4d3eefc14ab9f2473"
+      },
+      {
+        "kind": "patch",
+        "url": "https://github.com/urllib3/urllib3/commit/f05b1329126d5be6de501f9d1e3e36738bc08857.patch",
+        "path": "data/m2/sources/CVE-2025-50181.patch.patch",
+        "sha256": "21af6d69d5fad574a315c4bd5d8776385d1a10d8be5ae2daa31a1ab17d785f13"
+      }
+    ],
+    "description": "urllib3 is a user-friendly HTTP client library for Python. Prior to 2.5.0, it is possible to disable redirects for all requests by instantiating a PoolManager and specifying retries in a way that disable redirects. By default, requests and botocore users are not affected. An application attempting to mitigate SSRF or open redirect vulnerabilities by disabling redirects at the PoolManager level will remain vulnerable. This issue has been patched in version 2.5.0.",
+    "state": "PUBLISHED",
+    "references": [
+      "https://github.com/urllib3/urllib3/security/advisories/GHSA-pq67-6m6q-mj2v",
+      "https://github.com/urllib3/urllib3/commit/f05b1329126d5be6de501f9d1e3e36738bc08857",
+      "https://github.com/urllib3/urllib3/releases/tag/2.5.0"
+    ]
+  }
+]

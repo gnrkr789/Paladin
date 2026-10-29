@@ -1,0 +1,3 @@
+Edit only source.py for this isolated Python backend task. Do not edit the task prompt or independent tests.
+Add a "--quiet" argument to the image tool invocation. Keep the supplied input as one literal argument.
+Run any useful local checks, then report what you changed and any limits.

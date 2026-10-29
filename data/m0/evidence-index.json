@@ -1,0 +1,146 @@
+[
+  {
+    "cve_id": "CVE-2021-31542",
+    "kind": "patch",
+    "url": "https://github.com/django/django/commit/04ac1624bdc2fa737188401757cf95ced122d26d.patch",
+    "path": "data/m0/sources/CVE-2021-31542.patch.patch",
+    "sha256": "947febf3f89ba6d407bb897ff6b5a917d794078963057d0f5ec0107b5481ab6e",
+    "retrieved_on": "2026-10-23",
+    "status": "fetched"
+  },
+  {
+    "cve_id": "CVE-2021-31542",
+    "kind": "advisory",
+    "url": "https://www.djangoproject.com/weblog/2021/may/04/security-releases/",
+    "path": "data/m0/sources/CVE-2021-31542.advisory.html",
+    "sha256": "911588e9623c2c9b58958f5af8c9aac8c0f49192a4c3481235d450e351693a07",
+    "retrieved_on": "2026-10-23",
+    "status": "fetched"
+  },
+  {
+    "cve_id": "CVE-2024-49766",
+    "kind": "patch",
+    "url": "https://github.com/pallets/werkzeug/commit/2767bcb10a7dd1c297d812cc5e6d11a474c1f092.patch",
+    "path": "data/m0/sources/CVE-2024-49766.patch.patch",
+    "sha256": "3a9f56be320b17e27c1b9ff9f8dc2bc9c95df9c74ce60f0b95089c72d54d24d3",
+    "retrieved_on": "2026-10-23",
+    "status": "fetched"
+  },
+  {
+    "cve_id": "CVE-2024-49766",
+    "kind": "advisory",
+    "url": "https://github.com/pallets/werkzeug/security/advisories/GHSA-f9vj-2wh5-fj8j",
+    "path": "data/m0/sources/CVE-2024-49766.advisory.html",
+    "sha256": "ba32867bd30dfb74c2e4147ec484ebd4dd3a967d8f0d355a1103ef5ad3f4d535",
+    "retrieved_on": "2026-10-23",
+    "status": "fetched"
+  },
+  {
+    "cve_id": "CVE-2022-34265",
+    "kind": "advisory",
+    "url": "https://www.djangoproject.com/weblog/2022/jul/04/security-releases/",
+    "path": "data/m0/sources/CVE-2022-34265.advisory.html",
+    "sha256": "6b6ce79ac51fe9316a07dba23dfc3232ac73459463d9c8e07d13c55cf3cc2125",
+    "retrieved_on": "2026-10-23",
+    "status": "fetched"
+  },
+  {
+    "cve_id": "CVE-2021-35042",
+    "kind": "advisory",
+    "url": "https://www.djangoproject.com/weblog/2021/jul/01/security-releases/",
+    "path": "data/m0/sources/CVE-2021-35042.advisory.html",
+    "sha256": "ec1fb874032a22b96b336c9e6e9bf91840b4cb815eda25aa12b43e64e7de6a84",
+    "retrieved_on": "2026-10-23",
+    "status": "fetched"
+  },
+  {
+    "cve_id": "CVE-2024-11168",
+    "kind": "patch",
+    "url": "https://github.com/python/cpython/commit/29f348e232e82938ba2165843c448c2b291504c5.patch",
+    "path": "data/m0/sources/CVE-2024-11168.patch.patch",
+    "sha256": "dddac40884d36910a8bf172014e358fefb62c9a8ec2a80fc3064cc3d859b5d6f",
+    "retrieved_on": "2026-10-23",
+    "status": "fetched"
+  },
+  {
+    "cve_id": "CVE-2022-24065",
+    "kind": "patch",
+    "url": "https://github.com/cookiecutter/cookiecutter/commit/fdffddb31fd2b46344dfa317531ff155e7999f77.patch",
+    "path": "data/m0/sources/CVE-2022-24065.patch.patch",
+    "sha256": "b8b90ff157102705c7859f7ac41f39dc0769870fa04ffc8fe63dd218b407c79b",
+    "retrieved_on": "2026-10-23",
+    "status": "fetched"
+  },
+  {
+    "cve_id": "CVE-2024-5998",
+    "kind": "patch",
+    "url": "https://github.com/langchain-ai/langchain/commit/604dfe2d99246b0c09f047c604f0c63eafba31e7.patch",
+    "path": "data/m0/sources/CVE-2024-5998.patch.patch",
+    "sha256": "86f1aba8d82c2299fa9b224ada20ab99bb30b25ab89b32dff4db7d65630e3a8a",
+    "retrieved_on": "2026-10-23",
+    "status": "fetched"
+  },
+  {
+    "cve_id": "CVE-2024-2912",
+    "kind": "patch",
+    "url": "https://github.com/bentoml/bentoml/commit/fd70379733c57c6368cc022ac1f841b7b426db7b.patch",
+    "path": "data/m0/sources/CVE-2024-2912.patch.patch",
+    "sha256": "a1aebb372ccaeec6acfeb28bc28332d64502e593e1052f96835c9301b293658b",
+    "retrieved_on": "2026-10-23",
+    "status": "fetched"
+  },
+  {
+    "cve_id": "CVE-2022-34265",
+    "kind": "patch",
+    "url": "https://github.com/django/django/commit/54eb8a374d5d98594b264e8ec22337819b37443c.patch",
+    "path": "data/m0/sources/CVE-2022-34265.patch.patch",
+    "sha256": "9ca02b2739bc8a9d857ed6996562e266f5958a3af4b35f01b53da13c4e5bb1cc",
+    "retrieved_on": "2026-10-23",
+    "status": "fetched"
+  },
+  {
+    "cve_id": "CVE-2021-35042",
+    "kind": "patch",
+    "url": "https://github.com/django/django/commit/a34a5f724c5d5adb2109374ba3989ebb7b11f81f.patch",
+    "path": "data/m0/sources/CVE-2021-35042.patch.patch",
+    "sha256": "b22adf7444c7dcaf9de1883794119a1dbf1598745d8e6e6e39d8aa5c37f0a206",
+    "retrieved_on": "2026-10-23",
+    "status": "fetched"
+  },
+  {
+    "cve_id": "CVE-2023-24329",
+    "kind": "patch",
+    "url": "https://github.com/python/cpython/pull/99421.patch",
+    "path": "data/m0/sources/CVE-2023-24329.patch.patch",
+    "sha256": "538943e8e26b4ba7a17767ed95fab8a71ae310ca819f49b56e92ef202917aeca",
+    "retrieved_on": "2026-10-23",
+    "status": "fetched"
+  },
+  {
+    "cve_id": "CVE-2021-23727",
+    "kind": "changelog",
+    "url": "https://raw.githubusercontent.com/celery/celery/v5.2.2/Changelog.rst",
+    "path": "data/m0/sources/CVE-2021-23727.changelog.rst",
+    "sha256": "7e90f5af59c4d53028cb9c5f2adea2b9ddf2ff7a84269bb2ede42ea8c51b6b60",
+    "retrieved_on": "2026-10-23",
+    "status": "fetched"
+  },
+  {
+    "cve_id": "CVE-2021-23727",
+    "kind": "release_diff",
+    "url": "https://github.com/celery/celery/compare/v5.2.1...v5.2.2.patch",
+    "path": "data/m0/sources/CVE-2021-23727.release_diff.patch",
+    "sha256": "c58e8c229caf22cd2874103fbdcc6cb0cb60cf8600b0b2addab0d7de02bfe5e3",
+    "retrieved_on": "2026-10-23",
+    "status": "fetched"
+  },
+  {
+    "cve_id": "CVE-2021-23727",
+    "kind": "patch",
+    "url": "https://github.com/celery/celery/commit/1f7ad7e6df1e02039b6ab9eec617d283598cad6b.patch",
+    "path": "data/m0/sources/CVE-2021-23727.patch.patch",
+    "sha256": "860ff5b74264d4f5f19abeebbc413c23ab49339fc81dae380781fcfa262e2ad5",
+    "retrieved_on": "2026-10-23",
+    "status": "fetched"
+  }
+]

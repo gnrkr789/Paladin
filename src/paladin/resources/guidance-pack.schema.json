@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": ["schema_version", "guidance_id", "text_policy", "review_state", "claims"],
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {"const": "1"},
+    "guidance_id": {"const": "python-web-guidance-candidates-v1"},
+    "text_policy": {"const": "english-ascii-v1"},
+    "review_state": {"const": "candidate"},
+    "claims": {"type": "array", "minItems": 5, "maxItems": 5, "items": {"$ref": "#/$defs/claim"}}
+  },
+  "$defs": {
+    "text_list": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}},
+    "support_refs": {"type": "array", "minItems": 1, "items": {"type": "string", "pattern": "^((cve|patch):[0-9]+-[0-9]+|(process|inference):[a-z_]+)$"}},
+    "support_items": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/support_refs"}},
+    "claim": {
+      "type": "object",
+      "required": ["pattern_id", "target_facts", "fix_steps", "preserve", "checks", "limitations", "patch_lines", "support"],
+      "additionalProperties": false,
+      "properties": {
+        "pattern_id": {"type": "string", "pattern": "^CVE-[0-9]{4}-[0-9]{4,}$"},
+        "target_facts": {"$ref": "#/$defs/text_list"},
+        "fix_steps": {"$ref": "#/$defs/text_list"},
+        "preserve": {"$ref": "#/$defs/text_list"},
+        "checks": {"$ref": "#/$defs/text_list"},
+        "limitations": {"$ref": "#/$defs/text_list"},
+        "patch_lines": {"type": "object", "required": ["start_line", "end_line"], "additionalProperties": false,
+          "properties": {"start_line": {"type": "integer", "minimum": 1}, "end_line": {"type": "integer", "minimum": 1}}},
+        "support": {"type": "object", "required": ["cause", "target_facts", "fix_steps", "preserve", "checks", "limitations"], "additionalProperties": false,
+          "properties": {
+            "cause": {"$ref": "#/$defs/support_refs"},
+            "target_facts": {"$ref": "#/$defs/support_items"},
+            "fix_steps": {"$ref": "#/$defs/support_items"},
+            "preserve": {"$ref": "#/$defs/support_items"},
+            "checks": {"$ref": "#/$defs/support_items"},
+            "limitations": {"$ref": "#/$defs/support_items"}
+          }}
+      }
+    }
+  }
+}

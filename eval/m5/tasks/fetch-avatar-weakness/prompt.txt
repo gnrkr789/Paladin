@@ -1,0 +1,3 @@
+Edit only source.py for this isolated Python backend task. Do not edit the task prompt or independent tests.
+Update the avatar response to strip whitespace and uppercase the response text. Continue accepting ordinary HTTPS URLs.
+Run any useful local checks, then report what you changed and any limits.

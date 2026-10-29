@@ -1,0 +1,35 @@
+[project]
+name = "paladin"
+version = "0.2.0a1"
+description = "Evidence-grounded vulnerability prevention for coding agents"
+requires-python = ">=3.11"
+dependencies = [
+    "jsonschema>=4.23,<5",
+    "mcp==2.3.0",
+    "numpy>=1.26,<3",
+    "onnxruntime>=1.20,<2",
+    "pymilvus==2.6.17",
+    "tokenizers>=0.21,<1",
+]
+
+[project.scripts]
+paladin = "paladin.cli:main"
+
+[build-system]
+requires = ["setuptools>=75"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+paladin = ["resources/*.yaml", "resources/*.json", "resources/sandbox/*"]
+
+[dependency-groups]
+dev = [
+    "coverage>=7,<8",
+    "jsonschema>=4.23,<5",
+]
+
+[tool.uv]
+package = true

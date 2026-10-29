@@ -1,0 +1,85 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="420" viewBox="0 0 1200 420" role="img" aria-labelledby="title desc">
+  <title id="title">Paladin case loop</title>
+  <desc id="desc">Animated pipeline: scan, reproduce, repair, verify and promote. Target code runs only inside an isolated Docker boundary watched by a root observer.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0a0f1f"/>
+      <stop offset="1" stop-color="#151c3a"/>
+    </linearGradient>
+    <linearGradient id="rail" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#3451d1"/>
+      <stop offset="1" stop-color="#2fbf71"/>
+    </linearGradient>
+    <style>
+      .sans { font-family: -apple-system, "Segoe UI", Helvetica, Arial, sans-serif; }
+      .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+      @keyframes lit {
+        0%, 4% { fill: #1b2347; stroke: #2a3566; }
+        8%, 18% { fill: #3451d1; stroke: #a9bbff; }
+        26%, 100% { fill: #1b2347; stroke: #2a3566; }
+      }
+      .node { animation: lit 7.5s linear infinite; }
+      .n1 { animation-delay: 0s; } .n2 { animation-delay: 1.5s; } .n3 { animation-delay: 3s; }
+      .n4 { animation-delay: 4.5s; } .n5 { animation-delay: 6s; }
+      @keyframes dash { to { stroke-dashoffset: -28; } }
+      .boundary { stroke-dasharray: 10 4; animation: dash 1.2s linear infinite; }
+      @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.2; } }
+      .live { animation: blink 1.4s ease-in-out infinite; }
+      @keyframes stamp { 0%, 78% { opacity: 0; transform: scale(0.6); } 86%, 100% { opacity: 1; transform: scale(1); } }
+      .stamp { transform-origin: 1080px 64px; animation: stamp 7.5s ease-out infinite; }
+    </style>
+  </defs>
+
+  <rect width="1200" height="420" rx="24" fill="url(#bg)"/>
+  <text x="600" y="44" text-anchor="middle" class="sans" font-size="22" font-weight="700" fill="#ffffff">From a candidate to a proven, signed case</text>
+
+  <path id="track" d="M120 130 H1080" stroke="url(#rail)" stroke-width="4" stroke-linecap="round" opacity="0.7"/>
+  <circle r="9" fill="#ffffff">
+    <animateMotion dur="7.5s" repeatCount="indefinite" keyPoints="0;1" keyTimes="0;1" calcMode="linear">
+      <mpath href="#track"/>
+    </animateMotion>
+  </circle>
+
+  <g class="sans" text-anchor="middle">
+    <circle class="node n1" cx="120" cy="130" r="40" fill="#1b2347" stroke="#2a3566" stroke-width="3"/>
+    <text x="120" y="137" font-size="16" font-weight="700" fill="#ffffff">SCAN</text>
+    <text x="120" y="200" font-size="14" fill="#aab6e0">project root only</text>
+    <text x="120" y="220" font-size="14" fill="#aab6e0">static AST match</text>
+
+    <circle class="node n2" cx="360" cy="130" r="40" fill="#1b2347" stroke="#2a3566" stroke-width="3"/>
+    <text x="360" y="137" font-size="14" font-weight="700" fill="#ffffff">REPRODUCE</text>
+    <text x="360" y="200" font-size="14" fill="#aab6e0">original code runs</text>
+    <text x="360" y="220" font-size="14" fill="#aab6e0">risk argv observed</text>
+
+    <circle class="node n3" cx="600" cy="130" r="40" fill="#1b2347" stroke="#2a3566" stroke-width="3"/>
+    <text x="600" y="137" font-size="16" font-weight="700" fill="#ffffff">REPAIR</text>
+    <text x="600" y="200" font-size="14" fill="#aab6e0">byte-range fix on a copy</text>
+    <text x="600" y="220" font-size="14" fill="#aab6e0">original never touched</text>
+
+    <circle class="node n4" cx="840" cy="130" r="40" fill="#1b2347" stroke="#2a3566" stroke-width="3"/>
+    <text x="840" y="137" font-size="16" font-weight="700" fill="#ffffff">VERIFY</text>
+    <text x="840" y="200" font-size="14" fill="#aab6e0">risk blocked, checkout works</text>
+    <text x="840" y="220" font-size="14" fill="#aab6e0">root replay in a clean clone</text>
+
+    <circle class="node n5" cx="1080" cy="130" r="40" fill="#1b2347" stroke="#2a3566" stroke-width="3"/>
+    <text x="1080" y="137" font-size="15" font-weight="700" fill="#ffffff">PROMOTE</text>
+    <text x="1080" y="200" font-size="14" fill="#aab6e0">HMAC-signed evidence</text>
+    <text x="1080" y="220" font-size="14" fill="#aab6e0">rechecked on reuse</text>
+    <g class="stamp">
+      <rect x="1030" y="50" width="100" height="28" rx="14" fill="#2fbf71"/>
+      <text x="1080" y="69" font-size="14" font-weight="700" fill="#06210f">VERIFIED</text>
+    </g>
+  </g>
+
+  <rect class="boundary" x="250" y="250" width="700" height="140" rx="16" fill="#0d1328" fill-opacity="0.6"
+        stroke="#7c9cff" stroke-width="2"/>
+  <text x="270" y="280" class="sans" font-size="15" font-weight="700" fill="#c7d3ff">Docker boundary (target code runs only here)</text>
+  <g class="mono" font-size="13" fill="#aab6e0">
+    <text x="270" y="308">--network=none   --read-only   no host mounts   uid 65534 + no-new-privs</text>
+    <text x="270" y="330">seccomp: clone(CLONE_UNTRACED) EPERM, clone3 ENOSYS   strict trace grammar</text>
+    <text x="270" y="352">root strace observer: execve, chdir, clone, symlink, rename, link</text>
+    <text x="270" y="374">target stdout is never evidence   no host execution fallback</text>
+  </g>
+  <circle class="live" cx="924" cy="275" r="6" fill="#2fbf71"/>
+  <text x="912" y="280" text-anchor="end" class="sans" font-size="12" fill="#8ff0b4">observer</text>
+</svg>

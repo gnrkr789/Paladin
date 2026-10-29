@@ -1,0 +1,93 @@
+{
+  "schema_version": "1",
+  "guidance_id": "python-web-guidance-candidates-v1",
+  "text_policy": "english-ascii-v1",
+  "review_state": "candidate",
+  "claims": [
+    {
+      "pattern_id": "CVE-2021-31542",
+      "target_facts": ["Confirm the application accepts an attacker-controlled upload or storage filename.", "Locate every upload and storage boundary that combines parent paths and basenames.", "Locate filename normalization that can turn an accepted input into an empty, dot, or dot-dot name."],
+      "fix_steps": ["Reject empty, dot, dot-dot, and path-bearing filenames at the relevant boundary.", "Validate parent path components before joining or saving; apply the safeguard across upload and storage paths.", "Validate the resulting filename again after normalization or sanitization."],
+      "preserve": ["Keep ordinary single-component filenames and valid parent paths usable."],
+      "checks": ["Exercise traversal, empty, dot, and dot-dot filenames at each affected boundary.", "Exercise an ordinary filename and valid nested storage path.", "Reject names such as ??? and $.$.$ that sanitize to empty or dot-dot."],
+      "limitations": ["Basename stripping alone does not cover the multiple boundaries in the observed patch.", "The target code and deployment version have not been inspected."],
+      "patch_lines": {"start_line": 45, "end_line": 295},
+      "support": {
+        "cause": ["cve:23-23"],
+        "target_facts": [["cve:23-23"], ["patch:45-56", "patch:117-123", "patch:149-172"], ["patch:203-207"]],
+        "fix_steps": [["patch:91-99", "patch:149-172"], ["patch:45-56", "patch:117-123"], ["patch:203-207"]],
+        "preserve": [["patch:95-99", "patch:166-172"]],
+        "checks": [["patch:91-99", "patch:149-172"], ["patch:45-56", "patch:117-123"], ["patch:288-295"]],
+        "limitations": [["patch:45-56", "patch:91-99", "patch:117-123", "patch:149-172"], ["process:target_not_inspected"]]
+      }
+    },
+    {
+      "pattern_id": "CVE-2022-34265",
+      "target_facts": ["Confirm untrusted input reaches Trunc or Extract kind or lookup_name.", "Identify which values are SQL structure and which are bound data values."],
+      "fix_steps": ["Restrict structural kind and lookup_name arguments to the supported identifier shape or a safe-choice list.", "Keep ordinary data values parameterized separately from structural validation."],
+      "preserve": ["Keep valid fixed kinds and lookup names accepted."],
+      "checks": ["Reject a crafted structural argument containing SQL syntax.", "Accept supported date-part and lookup choices and preserve bound-value behavior."],
+      "limitations": ["SQL value binding alone does not validate structural arguments.", "The target code and deployment version have not been inspected."],
+      "patch_lines": {"start_line": 32, "end_line": 77},
+      "support": {
+        "cause": ["cve:23-23"],
+        "target_facts": [["patch:71-77"], ["patch:32-55"]],
+        "fix_steps": [["patch:32-55", "patch:76-77"], ["patch:47-56"]],
+        "preserve": [["patch:76-77"]],
+        "checks": [["patch:45-55"], ["patch:76-77"]],
+        "limitations": [["patch:32-55"], ["process:target_not_inspected"]]
+      }
+    },
+    {
+      "pattern_id": "CVE-2024-11168",
+      "target_facts": ["Confirm untrusted URLs reach urllib.parse bracketed-host parsing before an outbound request.", "Identify the actual Python runtime and any separate egress controls."],
+      "fix_steps": ["Validate bracketed hosts as IPv6 or IPvFuture before accepting a parsed URL; reject bracketed IPv4 and invalid bracket syntax.", "Apply a separate destination and egress policy where the application needs SSRF protection."],
+      "preserve": ["Keep valid bracketed IPv6 and IPvFuture URLs parseable."],
+      "checks": ["Reject bracketed IPv4 and malformed bracketed hosts.", "Accept valid bracketed IPv6 and IPvFuture hosts."],
+      "limitations": ["A parser correction does not by itself enforce network destination policy.", "The target code and deployment version have not been inspected."],
+      "patch_lines": {"start_line": 26, "end_line": 98},
+      "support": {
+        "cause": ["cve:66-66"],
+        "target_facts": [["cve:66-66"], ["patch:74-81", "process:target_not_inspected"]],
+        "fix_steps": [["patch:74-81", "patch:96-98"], ["patch:74-98", "inference:patch_scope"]],
+        "preserve": [["patch:39-45"]],
+        "checks": [["patch:26-37"], ["patch:39-45"]],
+        "limitations": [["patch:74-98", "inference:patch_scope"], ["process:target_not_inspected"]]
+      }
+    },
+    {
+      "pattern_id": "CVE-2022-24065",
+      "target_facts": ["Confirm an untrusted checkout branch or revision value reaches Mercurial checkout as an argv token.", "Confirm the invoked command supports an option terminator at this position."],
+      "fix_steps": ["Insert the supported -- option terminator before the untrusted Mercurial checkout target.", "Keep the process invocation shell-free and avoid treating argv separation alone as option protection."],
+      "preserve": ["Keep ordinary Mercurial repository checkouts working."],
+      "checks": ["Reject or neutralize a checkout target that begins with a command option.", "Complete a checkout with a normal target."],
+      "limitations": ["The observed patch is specific to the Mercurial branch; other commands may not support --.", "The target code and deployment version have not been inspected."],
+      "patch_lines": {"start_line": 29, "end_line": 77},
+      "support": {
+        "cause": ["cve:28-28"],
+        "target_facts": [["patch:29-39"], ["patch:35-39"]],
+        "fix_steps": [["patch:32-39"], ["patch:37-39"]],
+        "preserve": [["patch:70-77"]],
+        "checks": [["patch:32-39"], ["patch:70-77"]],
+        "limitations": [["patch:35-39"], ["process:target_not_inspected"]]
+      }
+    },
+    {
+      "pattern_id": "CVE-2024-2912",
+      "target_facts": ["Confirm the endpoint is the BentoML main HTTP service and can receive the pickle media type.", "Identify internal service routes separately from the main HTTP service."],
+      "fix_steps": ["Reject application/vnd.bentoml+pickle on the main HTTP service before request dispatch.", "Keep the restriction scoped to the main service boundary shown in the patch."],
+      "preserve": ["Keep accepted non-pickle media types working on the main service.", "Avoid assuming that the patch removed every internal pickle use."],
+      "checks": ["Reject a pickle media-type request on the main HTTP service before deserialization.", "Accept a supported non-pickle request on the main service."],
+      "limitations": ["The patch is not a global pickle ban and did not add a regression test.", "The target code and deployment version have not been inspected."],
+      "patch_lines": {"start_line": 181, "end_line": 220},
+      "support": {
+        "cause": ["cve:40-40"],
+        "target_facts": [["patch:181-220"], ["patch:181-189", "patch:215-220"]],
+        "fix_steps": [["patch:211-220"], ["patch:181-220"]],
+        "preserve": [["patch:213-220"], ["patch:181-220"]],
+        "checks": [["patch:213-220"], ["patch:213-220"]],
+        "limitations": [["patch:181-220", "process:source_audit"], ["process:target_not_inspected"]]
+      }
+    }
+  ]
+}

@@ -58,9 +58,9 @@ def main(argv=None):
     search.add_argument("--limit", type=int, default=5)
     search.add_argument("--family")
     hook = commands.add_parser("hook", help="agent hook adapters for change-time checks")
-    hook.add_argument("action", choices=["claude-code", "install"])
+    hook.add_argument("action", choices=["claude-code", "codex", "install"])
     hook.add_argument("--workspace", type=Path, default=Path.cwd())
-    hook.add_argument("--host", choices=["claude-code"], default="claude-code")
+    hook.add_argument("--host", choices=["claude-code", "codex"], default="claude-code")
     mcp = commands.add_parser("mcp", help="serve bounded advisory tools over stdio")
     mcp.add_argument("--workspace", type=Path, default=Path.cwd())
     cases = commands.add_parser("cases", help="scan and verify locally supported CVE cases")
@@ -75,11 +75,11 @@ def main(argv=None):
     args = parser.parse_args(argv)
     if args.command == "hook":
         from paladin import agent_hook
-        if args.action == "claude-code":
-            return agent_hook.main(args.workspace, sys.stdin, sys.stdout)
+        if args.action in agent_hook.HOSTS:
+            return agent_hook.main(args.workspace, sys.stdin, sys.stdout, host=args.action)
         try:
             # -I: isolated mode, so modules in the hooked workspace cannot shadow Paladin.
-            result = agent_hook.install_claude_code(args.workspace, [sys.executable, "-I", "-m", "paladin.cli"])
+            result = agent_hook.install_hook(args.workspace, [sys.executable, "-I", "-m", "paladin.cli"], args.host)
         except (OSError, ValueError) as exc:
             print(json.dumps({"status": "unavailable", "error": str(exc).split(":", 1)[0][:200]}, indent=2))
             return 1

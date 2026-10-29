@@ -38,6 +38,23 @@ The message contains fixed Paladin text, paths and line numbers only; project
 code is never echoed back into the agent's context. The next edit re-runs the
 check, so a fixed file passes and an unfixed one is reported again.
 
+## Codex CLI
+
+```powershell
+.venv/Scripts/paladin.exe hook install --host codex --workspace C:/projects/example
+```
+
+This writes `C:/projects/example/.codex/hooks.json` with a `PostToolUse` hook for
+`apply_patch`. Codex runs project hooks only after you review and trust them
+(`/hooks` in Codex); trust is bound to the hook's hash, so re-run the trust step
+after reinstalling. The hook reads the file names from the patch in
+`tool_input.command` (`*** Add File:`, `*** Update File:`, `*** Move to:`) and
+checks up to 20 Python files. The output contract is the same as for Claude
+Code. Verified with real-shaped payloads under bash, PowerShell and cmd; a real
+Codex session has not been run yet. Absolute paths are written with forward
+slashes so the command needs no quoting; a workspace path containing spaces is
+quoted POSIX-style, which only bash accepts.
+
 ## Other agents (MCP)
 
 `check_changes` takes workspace-relative paths and returns the same findings:
@@ -46,10 +63,7 @@ check, so a fixed file passes and an unfixed one is reported again.
 {"paths": ["tools.py", "src/vcs.py"]}
 ```
 
-An empty request returns `unsupported` without inspecting anything. Codex CLI
-0.163 has a stable hooks feature that requires persisted hook trust; a Codex
-hook adapter is not implemented or verified yet, so Codex should call
-`check_changes` through MCP.
+An empty request returns `unsupported` without inspecting anything.
 
 ## Real host check
 

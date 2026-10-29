@@ -160,6 +160,34 @@ class ChangeHookTests(unittest.TestCase):
             install_claude_code(self.root, ["python", "-I", "-m", "paladin.cli"])
         self.assertFalse((target / "settings.json").exists())
 
+    def test_codex_apply_patch_payload_is_checked_per_named_file(self):
+        self.write("vcs.py", EXPOSED)
+        self.write("tools.py", WRAPPER)
+        self.write("notes.md", "hg checkout x")
+        patch = ("*** Begin Patch\n*** Update File: vcs.py\n@@\n-x\n+y\n"
+                 "*** Add File: tools.py\n+z\n*** Update File: notes.md\n*** End Patch\n")
+        output = agent_hook.codex_hook({"hook_event_name": "PostToolUse", "tool_name": "apply_patch",
+                                        "cwd": str(self.root), "tool_input": {"command": patch}}, self.root)
+        self.assertEqual(output["decision"], "block")
+        self.assertIn("vcs.py:3 CVE-2022-24065", output["reason"])
+        self.assertIn("tools.py:2", output["reason"])
+        self.write("vcs.py", PROTECTED)
+        clean = agent_hook.codex_hook({"tool_name": "apply_patch", "cwd": str(self.root),
+                                       "tool_input": {"command": "*** Update File: vcs.py\n"}}, self.root)
+        self.assertIsNone(clean)
+        self.assertIsNone(agent_hook.codex_hook({"tool_name": "Bash", "tool_input": {"command": "ls"}}, self.root))
+        odd = agent_hook.codex_hook({"tool_name": "apply_patch", "tool_input": {"command": 3}}, self.root)
+        self.assertIn("unavailable", odd["hookSpecificOutput"]["additionalContext"])
+
+    def test_codex_install_writes_project_hooks_json(self):
+        result = agent_hook.install_hook(self.root, ["python", "-I", "-m", "paladin.cli"], "codex")
+        data = json.loads((self.root / ".codex" / "hooks.json").read_text(encoding="utf-8"))
+        group = data["hooks"]["PostToolUse"][0]
+        self.assertEqual(group["matcher"], "apply_patch")
+        self.assertIn(" hook codex --workspace ", group["hooks"][0]["command"])
+        self.assertIn("/hooks", result["next_step"])
+        self.assertFalse((self.root / ".claude").exists())
+
     def test_s8_findings_report_the_hash_of_the_bytes_read(self):
         path = self.write("vcs.py", EXPOSED)
         result = check_paths(self.root, [str(path)])

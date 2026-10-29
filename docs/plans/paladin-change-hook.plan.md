@@ -87,3 +87,11 @@ Code review: 0 CRITICAL, 0 HIGH, 3 MEDIUM. Security review: 1 CRITICAL, 1 HIGH, 
 - deferred -> (security L2) POSIX-only quoting (documented); (security L3) no fstat-after-open identity check in the hook read; (security L4, code LOW) junction or 8.3 workspace aliases may report "outside workspace"
 - note -> host runs 2 and 3 used the earlier command line without -I; behaviour of the check is unchanged
 - result -> host run 2: agent fixed the code after the block; host run 3: agent reported the CVE and the fix but kept the file verbatim as the prompt demanded
+
+## Review Decisions (2026-10-29, follow-up)
+
+- done -> Codex adapter: `paladin hook codex` reads apply_patch file names from tool_input.command; `hook install --host codex` writes .codex/hooks.json (matcher apply_patch); format from the official Codex hooks documentation; tests test_codex_apply_patch_payload_is_checked_per_named_file, test_codex_install_writes_project_hooks_json; dry run under bash, PowerShell and cmd blocks correctly; a real Codex session waits for the user to trust the hook
+- fixed -> (security L2) POSIX-only quoting -> absolute paths written with forward slashes and no quotes; works in bash, PowerShell and cmd (paths with spaces still bash-only, documented)
+- fixed -> (security L3) lstat/open race -> O_NOFOLLOW open plus st_dev/st_ino identity check
+- fixed -> (security L4, code LOW) junction or 8.3 workspace aliases -> real-path comparison fallback; links leaving the workspace are still rejected
+- note -> test_m3_mcp protocol tests are timing-sensitive under machine load (failed once in a 237 s run, passed alone and in the next full run: 208 tests OK)

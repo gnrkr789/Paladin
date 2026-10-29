@@ -71,8 +71,13 @@ def _resolve(root, raw):
             raise ValueError("path outside workspace")
         candidate = root / raw
     absolute = Path(os.path.abspath(candidate))
-    # The workspace may be given through a junction while the host reports the real path.
-    root, relative = _relative([root, root.resolve()], absolute)
+    # The workspace or the reported file path may use a junction or 8.3 alias; compare
+    # real paths too. A link inside the workspace that leaves it is still rejected.
+    try:
+        root, relative = _relative([root, root.resolve()], absolute)
+    except ValueError:
+        absolute = Path(os.path.realpath(absolute))
+        root, relative = _relative([root.resolve()], absolute)
     current = root
     for part in relative.parts:
         current = current / part
@@ -96,7 +101,11 @@ def check_file(root, raw):
         info = path.lstat()
         if not stat.S_ISREG(info.st_mode) or info.st_size > MAX_FILE_BYTES:
             return _entry(rel, "unsupported", ["not a regular file or larger than the size limit"])
-        with path.open("rb") as stream:
+        flags = os.O_RDONLY | getattr(os, "O_BINARY", 0) | getattr(os, "O_NOFOLLOW", 0)
+        with os.fdopen(os.open(path, flags), "rb") as stream:
+            opened = os.fstat(stream.fileno())
+            if (opened.st_dev, opened.st_ino) != (info.st_dev, info.st_ino):
+                return _entry(rel, "unsupported", ["file changed while it was opened"])
             data = stream.read(MAX_FILE_BYTES + 1)
     except OSError:
         return _entry(rel, "unsupported", ["file unreadable"])

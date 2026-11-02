@@ -1,0 +1,69 @@
+{
+  "schema_version": "1.4.0",
+  "id": "GHSA-69w3-r845-3855",
+  "modified": "2026-04-08T00:17:56Z",
+  "published": "2026-04-07T06:30:28Z",
+  "aliases": [
+    "CVE-2026-1839"
+  ],
+  "summary": "HuggingFace Transformers allows for arbitrary code execution in the `Trainer` class",
+  "details": "A vulnerability in the HuggingFace Transformers library, specifically in the `Trainer` class, allows for arbitrary code execution. The `_load_rng_state()` method in `src/transformers/trainer.py` at line 3059 calls `torch.load()` without the `weights_only=True` parameter. This issue affects all versions of the library supporting `torch>=2.2` when used with PyTorch versions below 2.6, as the `safe_globals()` context manager provides no protection in these versions. An attacker can exploit this vulnerability by supplying a malicious checkpoint file, such as `rng_state.pth`, which can execute arbitrary code when loaded. The issue is resolved in version v5.0.0rc3.",
+  "severity": [
+    {
+      "type": "CVSS_V3",
+      "score": "CVSS:3.0/AV:L/AC:H/PR:N/UI:R/S:U/C:H/I:L/A:H"
+    }
+  ],
+  "affected": [
+    {
+      "package": {
+        "ecosystem": "PyPI",
+        "name": "transformers"
+      },
+      "ranges": [
+        {
+          "type": "ECOSYSTEM",
+          "events": [
+            {
+              "introduced": "0"
+            },
+            {
+              "fixed": "5.0.0rc3"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "references": [
+    {
+      "type": "ADVISORY",
+      "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-1839"
+    },
+    {
+      "type": "WEB",
+      "url": "https://github.com/huggingface/transformers/commit/03c8082ba4594c9b8d6fe190ca9bed0e5f8ca396"
+    },
+    {
+      "type": "PACKAGE",
+      "url": "https://github.com/huggingface/transformers"
+    },
+    {
+      "type": "WEB",
+      "url": "https://github.com/huggingface/transformers/releases/tag/v5.0.0rc3"
+    },
+    {
+      "type": "WEB",
+      "url": "https://huntr.com/bounties/3c77bb97-e493-493d-9a88-c57f5c536485"
+    }
+  ],
+  "database_specific": {
+    "cwe_ids": [
+      "CWE-502"
+    ],
+    "severity": "MODERATE",
+    "github_reviewed": true,
+    "github_reviewed_at": "2026-04-08T00:17:56Z",
+    "nvd_published_at": "2026-04-07T06:16:41Z"
+  }
+}

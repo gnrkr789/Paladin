@@ -1,0 +1,77 @@
+{
+  "schema_version": "1.4.0",
+  "id": "GHSA-2g59-m95p-pgfq",
+  "modified": "2026-02-02T22:22:24Z",
+  "published": "2026-01-20T00:30:28Z",
+  "aliases": [
+    "CVE-2026-22219"
+  ],
+  "summary": "Chainlit contain a server-side request forgery (SSRF) vulnerability",
+  "details": "Chainlit versions prior to 2.9.4 contain a server-side request forgery (SSRF) vulnerability in the /project/element update flow when configured with the SQLAlchemy data layer backend. An authenticated client can provide a user-controlled url value in an Element, which is fetched by the SQLAlchemy element creation logic using an outbound HTTP GET request. This allows an attacker to make arbitrary HTTP requests from the Chainlit server to internal network services or cloud metadata endpoints and store the retrieved responses via the configured storage provider.",
+  "severity": [
+    {
+      "type": "CVSS_V3",
+      "score": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:C/C:H/I:N/A:N"
+    },
+    {
+      "type": "CVSS_V4",
+      "score": "CVSS:4.0/AV:N/AC:L/AT:N/PR:L/UI:N/VC:H/VI:N/VA:N/SC:H/SI:N/SA:N"
+    }
+  ],
+  "affected": [
+    {
+      "package": {
+        "ecosystem": "PyPI",
+        "name": "chainlit"
+      },
+      "ranges": [
+        {
+          "type": "ECOSYSTEM",
+          "events": [
+            {
+              "introduced": "0"
+            },
+            {
+              "fixed": "2.9.4"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "references": [
+    {
+      "type": "ADVISORY",
+      "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-22219"
+    },
+    {
+      "type": "WEB",
+      "url": "https://github.com/Chainlit/chainlit/commit/ffc3cce648b343b933e10e85ee5805c7e02ab3bf"
+    },
+    {
+      "type": "PACKAGE",
+      "url": "https://github.com/Chainlit/chainlit"
+    },
+    {
+      "type": "WEB",
+      "url": "https://github.com/Chainlit/chainlit/releases/tag/2.9.4"
+    },
+    {
+      "type": "WEB",
+      "url": "https://www.vulncheck.com/advisories/chainlit-sqlalchemy-data-layer-ssrf-via-project-element"
+    },
+    {
+      "type": "WEB",
+      "url": "https://www.zafran.io/resources/chainleak-critical-ai-framework-vulnerabilities-expose-data-enable-cloud-takeover"
+    }
+  ],
+  "database_specific": {
+    "cwe_ids": [
+      "CWE-918"
+    ],
+    "severity": "HIGH",
+    "github_reviewed": true,
+    "github_reviewed_at": "2026-01-21T01:07:02Z",
+    "nvd_published_at": "2026-01-20T00:15:49Z"
+  }
+}

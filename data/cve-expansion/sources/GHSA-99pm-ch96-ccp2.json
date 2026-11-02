@@ -1,0 +1,65 @@
+{
+  "schema_version": "1.4.0",
+  "id": "GHSA-99pm-ch96-ccp2",
+  "modified": "2025-05-16T17:28:25Z",
+  "published": "2025-05-16T17:28:25Z",
+  "aliases": [
+    "CVE-2025-32962"
+  ],
+  "summary": "Flask-AppBuilder open redirect vulnerability using HTTP host injection",
+  "details": "### Impact\nFlask-AppBuilder prior to 4.6.2 would allow for a malicious unauthenticated actor to perform an open redirect by manipulating the Host header in HTTP requests.\n \n### Patches\nFlask-AppBuilder 4.6.2 introduced the `FAB_SAFE_REDIRECT_HOSTS` configuration variable, which allows administrators to explicitly define which domains are considered safe for redirection.\n\nExamples:\n```\nFAB_SAFE_REDIRECT_HOSTS = [\"yourdomain.com\", \"sub.yourdomain.com\", \"*.yourcompany.com\"]\n```\n\n### Workarounds\nUse a Reverse Proxy to Enforce Trusted Host Headers\n\n### References\n_Are there any links users can visit to find out more?_",
+  "severity": [
+    {
+      "type": "CVSS_V3",
+      "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:L/I:N/A:N"
+    }
+  ],
+  "affected": [
+    {
+      "package": {
+        "ecosystem": "PyPI",
+        "name": "flask-appbuilder"
+      },
+      "ranges": [
+        {
+          "type": "ECOSYSTEM",
+          "events": [
+            {
+              "introduced": "0"
+            },
+            {
+              "fixed": "4.6.2"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "references": [
+    {
+      "type": "WEB",
+      "url": "https://github.com/dpgaspar/Flask-AppBuilder/security/advisories/GHSA-99pm-ch96-ccp2"
+    },
+    {
+      "type": "ADVISORY",
+      "url": "https://nvd.nist.gov/vuln/detail/CVE-2025-32962"
+    },
+    {
+      "type": "WEB",
+      "url": "https://github.com/dpgaspar/Flask-AppBuilder/commit/32eedbbb5cb483a3e782c5f2732de4a6a650d9b6"
+    },
+    {
+      "type": "PACKAGE",
+      "url": "https://github.com/dpgaspar/Flask-AppBuilder"
+    }
+  ],
+  "database_specific": {
+    "cwe_ids": [
+      "CWE-601"
+    ],
+    "severity": "MODERATE",
+    "github_reviewed": true,
+    "github_reviewed_at": "2025-05-16T17:28:25Z",
+    "nvd_published_at": "2025-05-16T14:15:31Z"
+  }
+}

@@ -1,0 +1,96 @@
+{
+  "schema_version": "1.4.0",
+  "id": "GHSA-wxj7-3fx5-pp9m",
+  "modified": "2025-09-12T14:23:38Z",
+  "published": "2025-06-23T15:31:43Z",
+  "aliases": [
+    "CVE-2025-52967"
+  ],
+  "summary": "MLFlow SSRF via gateway_proxy_handler",
+  "details": "gateway_proxy_handler in MLflow before 3.1.0 lacks gateway_path validation.",
+  "severity": [
+    {
+      "type": "CVSS_V3",
+      "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:N/I:L/A:N"
+    }
+  ],
+  "affected": [
+    {
+      "package": {
+        "ecosystem": "PyPI",
+        "name": "mlflow"
+      },
+      "ranges": [
+        {
+          "type": "ECOSYSTEM",
+          "events": [
+            {
+              "introduced": "3.0.0rc0"
+            },
+            {
+              "fixed": "3.1.0"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "package": {
+        "ecosystem": "PyPI",
+        "name": "mlflow"
+      },
+      "ranges": [
+        {
+          "type": "ECOSYSTEM",
+          "events": [
+            {
+              "introduced": "0"
+            },
+            {
+              "fixed": "2.22.2"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "references": [
+    {
+      "type": "ADVISORY",
+      "url": "https://nvd.nist.gov/vuln/detail/CVE-2025-52967"
+    },
+    {
+      "type": "WEB",
+      "url": "https://github.com/mlflow/mlflow/issues/15944"
+    },
+    {
+      "type": "WEB",
+      "url": "https://github.com/mlflow/mlflow/pull/15970"
+    },
+    {
+      "type": "PACKAGE",
+      "url": "https://github.com/mlflow/mlflow"
+    },
+    {
+      "type": "WEB",
+      "url": "https://github.com/mlflow/mlflow/releases/tag/v2.22.2"
+    },
+    {
+      "type": "WEB",
+      "url": "https://github.com/mlflow/mlflow/releases/tag/v3.1.0"
+    },
+    {
+      "type": "WEB",
+      "url": "https://github.com/pypa/advisory-database/tree/main/vulns/mlflow/PYSEC-2025-52.yaml"
+    }
+  ],
+  "database_specific": {
+    "cwe_ids": [
+      "CWE-918"
+    ],
+    "severity": "MODERATE",
+    "github_reviewed": true,
+    "github_reviewed_at": "2025-06-23T21:22:08Z",
+    "nvd_published_at": "2025-06-23T15:15:29Z"
+  }
+}

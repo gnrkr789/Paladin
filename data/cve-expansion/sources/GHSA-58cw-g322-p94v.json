@@ -1,0 +1,76 @@
+{
+  "schema_version": "1.4.0",
+  "id": "GHSA-58cw-g322-p94v",
+  "modified": "2026-06-08T23:34:18Z",
+  "published": "2026-05-08T23:43:12Z",
+  "aliases": [
+    "CVE-2026-44896"
+  ],
+  "summary": "Mistune has XSS via unescaped figclass/figwidth in Figure directive",
+  "details": "In `src/mistune/directives/image.py`, the `render_figure()` function concatenates `figclass` and `figwidth` options directly into HTML attributes without escaping (lines 152-168).\n\nThis allows attribute injection and XSS even when `HTMLRenderer(escape=True)` is used, because these values bypass the inline renderer.\n\nOther attributes in the same file (src, alt, style) are properly escaped; figclass/figwidth were missed.",
+  "severity": [
+    {
+      "type": "CVSS_V3",
+      "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N"
+    },
+    {
+      "type": "CVSS_V4",
+      "score": "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:P/VC:N/VI:N/VA:N/SC:L/SI:L/SA:N"
+    }
+  ],
+  "affected": [
+    {
+      "package": {
+        "ecosystem": "PyPI",
+        "name": "mistune"
+      },
+      "ranges": [
+        {
+          "type": "ECOSYSTEM",
+          "events": [
+            {
+              "introduced": "0"
+            },
+            {
+              "fixed": "3.2.1"
+            }
+          ]
+        }
+      ],
+      "database_specific": {
+        "last_known_affected_version_range": "<= 3.2.0"
+      }
+    }
+  ],
+  "references": [
+    {
+      "type": "WEB",
+      "url": "https://github.com/lepture/mistune/security/advisories/GHSA-58cw-g322-p94v"
+    },
+    {
+      "type": "ADVISORY",
+      "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-44896"
+    },
+    {
+      "type": "WEB",
+      "url": "https://github.com/lepture/mistune/commit/a3cb6e5655308797e8be021d6c7b5bab13cbace2"
+    },
+    {
+      "type": "PACKAGE",
+      "url": "https://github.com/lepture/mistune"
+    },
+    {
+      "type": "WEB",
+      "url": "https://github.com/pypa/advisory-database/tree/main/vulns/mistune/PYSEC-2026-168.yaml"
+    }
+  ],
+  "database_specific": {
+    "cwe_ids": [
+      "CWE-79"
+    ],
+    "severity": "MODERATE",
+    "github_reviewed": true,
+    "github_reviewed_at": "2026-05-08T23:43:12Z",
+    "nvd_published_at": "2026-05-26T21:16:39Z"
+  }
+}

@@ -1,0 +1,71 @@
+{
+  "schema_version": "1.4.0",
+  "id": "GHSA-h7ww-273w-6cm8",
+  "modified": "2026-10-23T20:46:48Z",
+  "published": "2026-10-23T20:46:47Z",
+  "aliases": [
+    "CVE-2026-115355"
+  ],
+  "summary": "Mistune: Path Traversal and XSS in Include directive",
+  "details": "The Include directive in `src/mistune/directives/include.py` does not validate that the resolved file path stays within the source directory, allowing path traversal via `../` sequences to read arbitrary files.\n\nAdditionally, error messages and included file contents are rendered without HTML escaping, leading to XSS even when `escape=True`.\n\nAffected functions:\n- Path resolution (lines 27-31)\n- `block_error()` in html.py (line 140)\n- `render_html_include()` (line 72)\n\nThe Include plugin must be explicitly enabled via the plugins parameter.",
+  "severity": [],
+  "affected": [
+    {
+      "package": {
+        "ecosystem": "PyPI",
+        "name": "mistune"
+      },
+      "ranges": [
+        {
+          "type": "ECOSYSTEM",
+          "events": [
+            {
+              "introduced": "0"
+            },
+            {
+              "fixed": "3.3.0"
+            }
+          ]
+        }
+      ],
+      "database_specific": {
+        "last_known_affected_version_range": "<= 3.2.0"
+      }
+    }
+  ],
+  "references": [
+    {
+      "type": "WEB",
+      "url": "https://github.com/lepture/mistune/security/advisories/GHSA-h7ww-273w-6cm8"
+    },
+    {
+      "type": "ADVISORY",
+      "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-115355"
+    },
+    {
+      "type": "WEB",
+      "url": "https://github.com/lepture/mistune/commit/1bef343ade163fc3bb95572b15be720084cdb993"
+    },
+    {
+      "type": "PACKAGE",
+      "url": "https://github.com/lepture/mistune"
+    },
+    {
+      "type": "WEB",
+      "url": "https://github.com/lepture/mistune/releases/tag/v3.3.0"
+    },
+    {
+      "type": "WEB",
+      "url": "https://www.vulncheck.com/advisories/mistune-before-3.3.0-path-traversal-and-xss-via-include-directive"
+    }
+  ],
+  "database_specific": {
+    "cwe_ids": [
+      "CWE-22"
+    ],
+    "severity": "HIGH",
+    "github_reviewed": true,
+    "github_reviewed_at": "2026-10-23T20:46:47Z",
+    "nvd_published_at": null
+  }
+}

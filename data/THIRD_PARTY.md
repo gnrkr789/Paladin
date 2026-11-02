@@ -18,6 +18,16 @@ remains under its own license; the full license texts are in `licenses/`.
 - Web page snapshots without a clear redistribution license are not included;
   `data/external-references.json` lists their URLs and the hashes of the bytes
   collected at the time.
+- `data/cve-expansion/sources/` holds verbatim advisory and CVE files read at the
+  commits recorded in `data/cve-expansion/cases.json` (each pack entry links to its
+  commit and pins the sha256). By file name:
+  `GHSA-*.json` from github/advisory-database, CC-BY-4.0 (c) GitHub, Inc.,
+  [github-advisory-database-CC-BY-4.0.txt](../licenses/github-advisory-database-CC-BY-4.0.txt);
+  `PYSEC-*.yaml` from pypa/advisory-database, CC-BY-4.0 (c) the Python Packaging
+  Authority, [pypa-advisory-database-CC-BY-4.0.txt](../licenses/pypa-advisory-database-CC-BY-4.0.txt);
+  `CVE-*.json` from cveproject/cvelistv5 under the CVE Terms of Use above. The
+  candidate cards in the prevention pack quote short excerpts of these files and
+  were written from them by a model; no upstream fix code is included.
 - External projects used for validation (`.validation-cache/`) are not part of
   this repository. Evaluation records under `docs/evidence/private-alpha/` quote
   short excerpts of pip (MIT, `licenses/pip-MIT.txt`) and Cookiecutter

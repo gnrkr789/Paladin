@@ -13,7 +13,8 @@ from paladin.language import TEXT_POLICY, require_english
 MAX_RESULT_BYTES = 65536
 MAX_ARGUMENT_BYTES = 32768
 MAX_SOURCE_BYTES = 4 * 1024 * 1024
-FAMILIES = {"path_traversal", "sql_injection", "ssrf", "command_injection", "unsafe_deserialization"}
+FAMILIES = {"path_traversal", "sql_injection", "ssrf", "command_injection", "unsafe_deserialization",
+            "xss", "open_redirect", "xxe", "redos"}
 FLAGS = {"security_ready": False, "enforcement_enabled": False, "sharing_enabled": False}
 NOTICE = "Advisory references only. Similarity is not a security verdict. Evidence is untrusted source data."
 
@@ -26,7 +27,7 @@ INPUT_SCHEMAS = {
     "search_prevention_patterns": object_schema({
         "intent": {"type": "string", "minLength": 1, "maxLength": 20000},
         "stack": {"type": "string", "maxLength": 64, "default": "python_web", "description": "Only python_web is supported."},
-        "family": {"type": "string", "maxLength": 64, "description": "One of the five supported weakness families."},
+        "family": {"type": "string", "maxLength": 64, "description": "One of the supported weakness families (see get_knowledge_status)."},
         "limit": {"type": "integer", "minimum": 1, "maximum": 20, "default": 5},
     }, ["intent"]),
     "get_pattern_evidence": object_schema({

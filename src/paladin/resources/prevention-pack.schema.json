@@ -14,7 +14,10 @@
       "const": "1"
     },
     "pack_id": {
-      "const": "python-web-prevention-v1"
+      "enum": [
+        "python-web-prevention-v1",
+        "python-web-prevention-v2"
+      ]
     },
     "created_on": {
       "type": "string",
@@ -27,7 +30,14 @@
       "type": "array",
       "minItems": 30,
       "items": {
-        "$ref": "#/$defs/pattern"
+        "oneOf": [
+          {
+            "$ref": "#/$defs/pattern"
+          },
+          {
+            "$ref": "#/$defs/candidate"
+          }
+        ]
       }
     }
   },
@@ -287,6 +297,257 @@
               "type": "array",
               "items": {
                 "type": "object"
+              }
+            }
+          }
+        }
+      }
+    },
+    "candidate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "pattern_id",
+        "cve_id",
+        "family",
+        "language",
+        "title",
+        "cause",
+        "preconditions",
+        "prevention",
+        "limitations",
+        "record_state",
+        "verification_status",
+        "source_review",
+        "enforcement_enabled",
+        "sharing_enabled",
+        "fixtures",
+        "evidence",
+        "fix_references",
+        "packages",
+        "cwe_ids",
+        "citations"
+      ],
+      "properties": {
+        "pattern_id": {
+          "type": "string",
+          "pattern": "^CVE-[0-9]{4}-[0-9]{4,}$"
+        },
+        "cve_id": {
+          "type": "string",
+          "pattern": "^CVE-[0-9]{4}-[0-9]{4,}$"
+        },
+        "family": {
+          "enum": [
+            "path_traversal",
+            "sql_injection",
+            "ssrf",
+            "command_injection",
+            "unsafe_deserialization",
+            "xss",
+            "open_redirect",
+            "xxe",
+            "redos"
+          ]
+        },
+        "language": {
+          "const": "python"
+        },
+        "title": {
+          "$ref": "#/$defs/text"
+        },
+        "cause": {
+          "$ref": "#/$defs/text"
+        },
+        "preconditions": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 4,
+          "items": {
+            "$ref": "#/$defs/text"
+          }
+        },
+        "prevention": {
+          "$ref": "#/$defs/text"
+        },
+        "limitations": {
+          "$ref": "#/$defs/text"
+        },
+        "record_state": {
+          "const": "PUBLISHED"
+        },
+        "verification_status": {
+          "const": "candidate"
+        },
+        "source_review": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "kind",
+            "reviewer",
+            "date"
+          ],
+          "properties": {
+            "kind": {
+              "const": "model_advisory_draft"
+            },
+            "reviewer": {
+              "type": "string",
+              "pattern": "^[a-z0-9.-]{1,64}$"
+            },
+            "date": {
+              "type": "string",
+              "format": "date"
+            }
+          }
+        },
+        "enforcement_enabled": {
+          "const": false
+        },
+        "sharing_enabled": {
+          "const": false
+        },
+        "fixtures": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "allOf": [
+            {
+              "contains": {
+                "properties": {
+                  "role": {
+                    "const": "risk"
+                  }
+                },
+                "required": [
+                  "role"
+                ]
+              }
+            },
+            {
+              "contains": {
+                "properties": {
+                  "role": {
+                    "const": "safe"
+                  }
+                },
+                "required": [
+                  "role"
+                ]
+              }
+            }
+          ],
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "role",
+              "scenario",
+              "status"
+            ],
+            "properties": {
+              "role": {
+                "enum": [
+                  "risk",
+                  "safe"
+                ]
+              },
+              "scenario": {
+                "$ref": "#/$defs/text"
+              },
+              "status": {
+                "const": "specification_only"
+              }
+            }
+          }
+        },
+        "evidence": {
+          "type": "array",
+          "minItems": 2,
+          "contains": {
+            "properties": {
+              "kind": {
+                "const": "cve"
+              }
+            },
+            "required": [
+              "kind"
+            ]
+          },
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "kind",
+              "url",
+              "snapshot_path",
+              "sha256"
+            ],
+            "properties": {
+              "kind": {
+                "enum": [
+                  "cve",
+                  "advisory"
+                ]
+              },
+              "url": {
+                "type": "string",
+                "format": "uri",
+                "pattern": "^https://"
+              },
+              "snapshot_path": {
+                "$ref": "#/$defs/text"
+              },
+              "sha256": {
+                "type": "string",
+                "pattern": "^[a-f0-9]{64}$"
+              }
+            }
+          }
+        },
+        "fix_references": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "format": "uri",
+            "pattern": "^https?://"
+          }
+        },
+        "packages": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z0-9-]{1,64}$"
+          }
+        },
+        "cwe_ids": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "pattern": "^CWE-[0-9]{1,5}$"
+          }
+        },
+        "citations": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 4,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "source",
+              "quote"
+            ],
+            "properties": {
+              "source": {
+                "type": "string",
+                "maxLength": 64
+              },
+              "quote": {
+                "$ref": "#/$defs/text"
               }
             }
           }

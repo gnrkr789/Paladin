@@ -1,0 +1,110 @@
+{
+  "schema_version": "1.4.0",
+  "id": "GHSA-6wgj-66m2-xxp2",
+  "modified": "2025-12-20T05:01:40Z",
+  "published": "2023-11-28T09:30:26Z",
+  "aliases": [
+    "CVE-2023-48022"
+  ],
+  "summary": "Ray has arbitrary code execution via jobs submission API",
+  "details": "Anyscale Ray allows a remote attacker to execute arbitrary code via the job submission API. NOTE: the vendor's position is that this report is irrelevant because Ray, as stated in its documentation, is not intended for use outside of a strictly controlled network environment.",
+  "severity": [
+    {
+      "type": "CVSS_V3",
+      "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H"
+    }
+  ],
+  "affected": [
+    {
+      "package": {
+        "ecosystem": "PyPI",
+        "name": "ray"
+      },
+      "ranges": [
+        {
+          "type": "ECOSYSTEM",
+          "events": [
+            {
+              "introduced": "0"
+            },
+            {
+              "last_affected": "2.49.2"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "references": [
+    {
+      "type": "ADVISORY",
+      "url": "https://nvd.nist.gov/vuln/detail/CVE-2023-48022"
+    },
+    {
+      "type": "WEB",
+      "url": "https://github.com/ray-project/ray/commit/978947083b1e192dba61ef653c863b11d56b0936"
+    },
+    {
+      "type": "WEB",
+      "url": "https://atlas.mitre.org/studies/AML.CS0023"
+    },
+    {
+      "type": "WEB",
+      "url": "https://bishopfox.com/blog/ray-versions-2-6-3-2-8-0"
+    },
+    {
+      "type": "WEB",
+      "url": "https://console.vulncheck.com/cve/CVE-2023-48022"
+    },
+    {
+      "type": "WEB",
+      "url": "https://docs.ray.io/en/latest/ray-security/index.html"
+    },
+    {
+      "type": "WEB",
+      "url": "https://docs.ray.io/en/latest/ray-security/token-auth.html"
+    },
+    {
+      "type": "ADVISORY",
+      "url": "https://github.com/advisories/GHSA-xg2h-7cxj-3gvh"
+    },
+    {
+      "type": "WEB",
+      "url": "https://github.com/honysyang/Ray"
+    },
+    {
+      "type": "PACKAGE",
+      "url": "https://github.com/ray-project/ray"
+    },
+    {
+      "type": "WEB",
+      "url": "https://www.anyscale.com/blog/update-on-ray-cve-2023-48022-new-verification-tooling-available"
+    },
+    {
+      "type": "WEB",
+      "url": "https://www.oligo.security/blog/shadowray-attack-ai-workloads-actively-exploited-in-the-wild"
+    },
+    {
+      "type": "WEB",
+      "url": "https://www.vicarius.io/vsociety/posts/shadowray-cve-2023-48022-exploit"
+    },
+    {
+      "type": "WEB",
+      "url": "https://www.vicarius.io/vsociety/posts/the-story-of-shadowray-cve-2023-48022"
+    },
+    {
+      "type": "WEB",
+      "url": "https://www.vulncheck.com/blog/initial-access-intelligence-august-2024"
+    }
+  ],
+  "database_specific": {
+    "cwe_ids": [
+      "CWE-829",
+      "CWE-918"
+    ],
+    "severity": "CRITICAL",
+    "github_reviewed": true,
+    "github_reviewed_at": "2025-09-30T18:19:55Z",
+    "nvd_published_at": "2023-11-28T08:15:06Z"
+  }
+}

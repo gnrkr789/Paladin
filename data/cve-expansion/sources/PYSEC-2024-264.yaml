@@ -1,0 +1,37 @@
+id: PYSEC-2024-264
+published: "2024-05-14T16:17:01.970Z"
+modified: "2025-03-27T20:15:26.090Z"
+aliases:
+- CVE-2024-32077
+- GHSA-52gm-qmg3-r4qp
+details: |-
+  Apache Airflow version 2.9.0 has a vulnerability that allows an authenticated attacker to inject malicious data into the task instance logs. 
+  Users are recommended to upgrade to version 2.9.1, which fixes this issue.
+affected:
+- package:
+    name: apache-airflow
+    ecosystem: PyPI
+    purl: pkg:pypi/apache-airflow
+  ranges:
+  - type: ECOSYSTEM
+    events:
+    - introduced: "0"
+    - last_affected: 2.9.0-NA
+    - last_affected: 2.9.0-beta1
+    - last_affected: 2.9.0-beta2
+    - last_affected: 2.9.0-rc1
+    - last_affected: 2.9.0-rc2
+    - last_affected: 2.9.0-rc3
+  ecosystem_specific: {}
+references:
+- type: ADVISORY
+  url: http://www.openwall.com/lists/oss-security/2024/05/14/1
+- type: ADVISORY
+  url: https://lists.apache.org/thread/gsjmnrqb3m5fzp0vgpty1jxcywo91v77
+- type: FIX
+  url: https://github.com/apache/airflow/pull/38882
+- type: ADVISORY
+  url: https://github.com/advisories/GHSA-52gm-qmg3-r4qp
+severity:
+- type: CVSS_V3
+  score: CVSS:3.1/AV:N/AC:L/PR:L/UI:R/S:C/C:L/I:L/A:N

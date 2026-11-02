@@ -1,0 +1,81 @@
+{
+  "schema_version": "1.4.0",
+  "id": "GHSA-hj3f-6gcp-jg8j",
+  "modified": "2025-11-04T16:44:12Z",
+  "published": "2023-05-25T12:30:16Z",
+  "aliases": [
+    "CVE-2023-28370"
+  ],
+  "summary": "Open redirect in Tornado",
+  "details": "Open redirect vulnerability in Tornado versions 6.3.1 and earlier allows a remote unauthenticated attacker to redirect a user to an arbitrary web site and conduct a phishing attack by having user access a specially crafted URL.",
+  "severity": [
+    {
+      "type": "CVSS_V3",
+      "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N"
+    },
+    {
+      "type": "CVSS_V4",
+      "score": "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:P/VC:N/VI:N/VA:N/SC:L/SI:L/SA:N"
+    }
+  ],
+  "affected": [
+    {
+      "package": {
+        "ecosystem": "PyPI",
+        "name": "tornado"
+      },
+      "ranges": [
+        {
+          "type": "ECOSYSTEM",
+          "events": [
+            {
+              "introduced": "0"
+            },
+            {
+              "fixed": "6.3.2"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "references": [
+    {
+      "type": "ADVISORY",
+      "url": "https://nvd.nist.gov/vuln/detail/CVE-2023-28370"
+    },
+    {
+      "type": "WEB",
+      "url": "https://github.com/tornadoweb/tornado/commit/32ad07c54e607839273b4e1819c347f5c8976b2f"
+    },
+    {
+      "type": "WEB",
+      "url": "https://github.com/pypa/advisory-database/tree/main/vulns/tornado/PYSEC-2023-75.yaml"
+    },
+    {
+      "type": "PACKAGE",
+      "url": "https://github.com/tornadoweb/tornado"
+    },
+    {
+      "type": "WEB",
+      "url": "https://github.com/tornadoweb/tornado/releases/tag/v6.3.2"
+    },
+    {
+      "type": "WEB",
+      "url": "https://jvn.jp/en/jp/JVN45127776"
+    },
+    {
+      "type": "WEB",
+      "url": "https://lists.debian.org/debian-lts-announce/2025/01/msg00000.html"
+    }
+  ],
+  "database_specific": {
+    "cwe_ids": [
+      "CWE-601"
+    ],
+    "severity": "MODERATE",
+    "github_reviewed": true,
+    "github_reviewed_at": "2023-05-25T17:00:25Z",
+    "nvd_published_at": "2023-05-25T10:15:09Z"
+  }
+}

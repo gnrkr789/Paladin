@@ -14,7 +14,8 @@ from paladin.embedding import LocalEmbedder, model_lock, model_directory, verify
 from paladin.local import _state, _read_config, _verify_metadata
 from paladin.language import TEXT_POLICY, require_english, validate_authored_text
 
-FAMILIES = {"path_traversal", "sql_injection", "ssrf", "command_injection", "unsafe_deserialization"}
+VERIFIED_FAMILIES = {"path_traversal", "sql_injection", "ssrf", "command_injection", "unsafe_deserialization"}
+FAMILIES = VERIFIED_FAMILIES | {"xss", "open_redirect", "xxe", "redos"}
 
 
 def _resource(name):
@@ -31,20 +32,29 @@ def validate_pack(pack):
     cves = [p["cve_id"] for p in pack["patterns"]]
     if len(ids) != len(set(ids)) or len(cves) != len(set(cves)):
         raise ValueError("duplicate pattern or CVE")
-    if {p["family"] for p in pack["patterns"]} != FAMILIES:
-        raise ValueError("pack must cover the five selected families")
+    verified = {p["family"] for p in pack["patterns"] if p["verification_status"] == "source_observed"}
+    if verified != VERIFIED_FAMILIES or not {p["family"] for p in pack["patterns"]} <= FAMILIES:
+        raise ValueError("pack must cover the five verified families and only supported families")
     for pattern in pack["patterns"]:
         if pattern["pattern_id"] != pattern["cve_id"]:
             raise ValueError("pattern/CVE identity mismatch")
     return pack
 
 
+_VALIDATED_PACKS = set()
+
+
 def load_pack():
+    """A fresh copy of the bundled pack; schema validation runs once per pack hash."""
     raw = _resource("prevention-pack.json")
     lock = json.loads(_resource("prevention-pack.lock.json"))
-    if hashlib.sha256(raw).hexdigest() != lock["sha256"]:
+    digest = hashlib.sha256(raw).hexdigest()
+    if digest != lock["sha256"]:
         raise ValueError("bundled prevention pack hash mismatch")
-    pack = validate_pack(json.loads(raw))
+    pack = json.loads(raw)
+    if digest not in _VALIDATED_PACKS:
+        validate_pack(pack)
+        _VALIDATED_PACKS.add(digest)
     if len(pack["patterns"]) != lock["pattern_count"] or pack["pack_id"] != lock["pack_id"]:
         raise ValueError("bundled prevention pack manifest mismatch")
     return pack
@@ -71,9 +81,9 @@ def _manifest(root, pack):
 
 
 def passage(pattern):
+    """Search text: limitations are left out so every card fits the 512-token encoder."""
     return (pattern["title"] + "\nCause: " + pattern["cause"] + "\nConditions: "
-            + " ".join(pattern["preconditions"]) + "\nPrevention: " + pattern["prevention"]
-            + "\nLimits: " + pattern["limitations"])
+            + " ".join(pattern["preconditions"]) + "\nPrevention: " + pattern["prevention"])
 
 
 def _context(root):

@@ -23,13 +23,15 @@ class M2Contracts(unittest.TestCase):
 
     def test_pack_has_thirty_distinct_source_qualified_advisories(self):
         pack = self.pack()
-        self.assertEqual(len(pack["patterns"]), 30)
-        self.assertEqual(len({p["cve_id"] for p in pack["patterns"]}), 30)
+        verified = [p for p in pack["patterns"] if p["verification_status"] == "source_observed"]
+        self.assertEqual(len(verified), 30)
+        self.assertEqual(pack["patterns"][:30], verified)
+        self.assertEqual(len({p["cve_id"] for p in pack["patterns"]}), len(pack["patterns"]))
         self.assertTrue(all(not p["enforcement_enabled"] for p in pack["patterns"]))
 
-    def test_m0_mismatched_references_remain_excluded(self):
-        ids = {p["cve_id"] for p in self.pack()["patterns"]}
-        self.assertTrue(ids.isdisjoint({"CVE-2023-24329", "CVE-2024-5998"}))
+    def test_m0_mismatched_references_are_never_source_observed(self):
+        verified = {p["cve_id"] for p in self.pack()["patterns"] if p["verification_status"] == "source_observed"}
+        self.assertTrue(verified.isdisjoint({"CVE-2023-24329", "CVE-2024-5998"}))
 
     def test_duplicate_pattern_is_rejected(self):
         pack = self.pack()
@@ -135,7 +137,7 @@ class M2Contracts(unittest.TestCase):
         with contextlib.redirect_stdout(output):
             code = main(["patterns", "validate", "--json"])
         self.assertEqual(code, 0)
-        self.assertEqual(json.loads(output.getvalue())["pattern_count"], 30)
+        self.assertEqual(json.loads(output.getvalue())["pattern_count"], len(self.pack()["patterns"]))
 
     def test_cli_search_reports_unavailable_index_as_json(self):
         import contextlib, io

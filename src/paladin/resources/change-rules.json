@@ -1,0 +1,2045 @@
+{
+ "rules": [
+  {
+   "call": [
+    "aiohttp.web.normalize_path_middleware",
+    "aiohttp.web_middlewares.normalize_path_middleware"
+   ],
+   "cve_ids": [
+    "CVE-2021-21330"
+   ],
+   "family": "open_redirect",
+   "fix": "Upgrade aiohttp to 3.7.4 or later, or stop using normalize_path_middleware if upgrading is not possible.",
+   "require": [],
+   "rule_id": "aiohttp-normalize-path-middleware-open-redirect-v1",
+   "severity": "review",
+   "title": "normalize_path_middleware used; aiohttp before 3.7.4 can redirect to an attacker-chosen site"
+  },
+  {
+   "call": [
+    "*.add_static",
+    "aiohttp.web.static"
+   ],
+   "cve_ids": [
+    "CVE-2024-23334"
+   ],
+   "family": "path_traversal",
+   "fix": "Remove follow_symlinks=True from the static route and upgrade aiohttp to 3.9.2 or later. In production, serve static files from a reverse proxy such as nginx instead of aiohttp.",
+   "require": [
+    {
+     "equals": true,
+     "keyword": "follow_symlinks"
+    }
+   ],
+   "rule_id": "aiohttp-static-follow-symlinks-enabled-v1",
+   "severity": "review",
+   "title": "aiohttp static route enables follow_symlinks, which allows directory traversal in versions before 3.9.2"
+  },
+  {
+   "call": [
+    "*.add_static",
+    "aiohttp.web.static"
+   ],
+   "cve_ids": [
+    "CVE-2024-27306"
+   ],
+   "family": "xss",
+   "fix": "Upgrade aiohttp to 3.9.4 or later, and turn off the directory index on static routes, or serve static files from a reverse proxy instead.",
+   "require": [
+    {
+     "equals": true,
+     "keyword": "show_index"
+    }
+   ],
+   "rule_id": "aiohttp-static-show-index-v1",
+   "severity": "review",
+   "title": "aiohttp static route with show_index enabled can render unescaped file names in the index page"
+  },
+  {
+   "call": [
+    "airflow.operators.bash.BashOperator",
+    "airflow.operators.bash_operator.BashOperator"
+   ],
+   "cve_ids": [
+    "CVE-2022-40127"
+   ],
+   "family": "command_injection",
+   "fix": "Keep bash_command a fixed string and pass run_id or other untrusted values through the operator's environment variables, validating them first, so their content is never parsed as shell text.",
+   "require": [
+    {
+     "is": "built_string",
+     "keyword": "bash_command"
+    }
+   ],
+   "rule_id": "airflow-bashoperator-built-command-v1",
+   "severity": "review",
+   "title": "BashOperator bash_command built from data such as a manually supplied run_id"
+  },
+  {
+   "call": [
+    "authlib.common.security.is_secure_transport"
+   ],
+   "cve_ids": [
+    "CVE-2026-114614"
+   ],
+   "family": "open_redirect",
+   "fix": "Parse the URL and check the real scheme and host, accepting https or http only for a loopback host and rejecting any userinfo component, and upgrade Authlib to 1.8.0 or later.",
+   "require": [
+    {
+     "arg": 0,
+     "is": "non_constant"
+    }
+   ],
+   "rule_id": "authlib-is-secure-transport-url-prefix-v1",
+   "severity": "review",
+   "title": "Authlib is_secure_transport() called on a non-constant URL can be fooled by loopback userinfo"
+  },
+  {
+   "call": [
+    "bleach.clean",
+    "bleach.sanitizer.Cleaner"
+   ],
+   "cve_ids": [
+    "CVE-2021-23980"
+   ],
+   "family": "xss",
+   "fix": "Upgrade Bleach to 3.3.0 or later and leave comment stripping on. If comments must be kept, do not allow svg or math together with p or br and raw-text tags such as style, title, noscript, script, textarea, noframes, iframe or xmp.",
+   "require": [
+    {
+     "equals": false,
+     "keyword": "strip_comments"
+    }
+   ],
+   "rule_id": "bleach-clean-strip-comments-disabled-v1",
+   "severity": "review",
+   "title": "bleach.clean or Cleaner called with strip_comments=False, a precondition for mutation XSS (CVE-2021-23980)"
+  },
+  {
+   "call": [
+    "boto3.client",
+    "boto3.resource"
+   ],
+   "cve_ids": [
+    "CVE-2025-25297"
+   ],
+   "family": "ssrf",
+   "fix": "Validate the endpoint against an allowlist of permitted S3 hosts and HTTPS only before creating the client, and keep error responses from the target out of user-facing messages.",
+   "require": [
+    {
+     "arg": 0,
+     "equals": "s3",
+     "keyword": "service_name"
+    },
+    {
+     "is": "non_constant",
+     "keyword": "endpoint_url"
+    }
+   ],
+   "rule_id": "boto3-s3-custom-endpoint-url-v1",
+   "severity": "review",
+   "title": "boto3 S3 client created with a non-constant endpoint_url that may come from user input"
+  },
+  {
+   "call": [
+    "cookiecutter.main.cookiecutter"
+   ],
+   "cve_ids": [
+    "CVE-2022-24065"
+   ],
+   "family": "command_injection",
+   "fix": "Upgrade cookiecutter to 2.1.1 or later, and only accept checkout values that look like plain revision, branch or tag names, rejecting anything that starts with a dash.",
+   "require": [
+    {
+     "arg": 1,
+     "is": "non_constant",
+     "keyword": "checkout"
+    }
+   ],
+   "rule_id": "cookiecutter-checkout-non-constant-v1",
+   "severity": "review",
+   "title": "cookiecutter called with a non-constant checkout value that may reach hg as an option"
+  },
+  {
+   "call": [
+    "dash.html.A",
+    "dash_html_components.A"
+   ],
+   "cve_ids": [
+    "CVE-2024-21485"
+   ],
+   "family": "xss",
+   "fix": "Upgrade dash to 2.15.0 or later, upgrade dash-core-components and dash-html-components to the fixed releases, and do not set an anchor href from user-supplied or stored data such as saved views.",
+   "require": [
+    {
+     "is": "non_constant",
+     "keyword": "href"
+    }
+   ],
+   "rule_id": "dash-anchor-non-constant-href-v1",
+   "severity": "review",
+   "title": "Dash html.A href set from non-constant data may carry attacker-controlled script URLs"
+  },
+  {
+   "call": [
+    "django.utils.archive.extract"
+   ],
+   "cve_ids": [
+    "CVE-2021-3281",
+    "CVE-2025-59682"
+   ],
+   "family": "path_traversal",
+   "fix": "Upgrade Django to 2.2.18, 3.0.12, 3.1.6 or later, and only extract archives from trusted sources, checking that each member's resolved destination stays inside the target directory.",
+   "require": [
+    {
+     "arg": 0,
+     "is": "non_constant",
+     "keyword": "path"
+    }
+   ],
+   "rule_id": "django-archive-extract-untrusted-path-v1",
+   "severity": "review",
+   "title": "django.utils.archive.extract called on a non-constant archive path"
+  },
+  {
+   "call": [
+    "django.contrib.gis.db.models.functions.Distance",
+    "django.contrib.gis.db.models.functions.Area",
+    "django.contrib.gis.db.models.functions.Length",
+    "django.contrib.gis.db.models.functions.Perimeter",
+    "django.contrib.gis.db.models.functions.Intersection",
+    "django.contrib.gis.db.models.functions.Difference",
+    "django.contrib.gis.db.models.functions.SymDifference",
+    "django.contrib.gis.db.models.functions.Union",
+    "django.contrib.gis.db.models.functions.IsValid",
+    "django.contrib.gis.db.models.Extent",
+    "django.contrib.gis.db.models.Union",
+    "django.contrib.gis.db.models.Collect",
+    "django.contrib.gis.db.models.MakeLine",
+    "django.contrib.gis.db.models.aggregates.Extent",
+    "django.contrib.gis.db.models.aggregates.Union",
+    "django.contrib.gis.db.models.aggregates.Collect",
+    "django.contrib.gis.db.models.aggregates.MakeLine"
+   ],
+   "cve_ids": [
+    "CVE-2020-9402"
+   ],
+   "family": "sql_injection",
+   "fix": "Upgrade Django to 1.11.29, 2.2.11, 3.0.4 or later, and pass tolerance only as a numeric value chosen by the application, or convert and validate user input to a number first.",
+   "require": [
+    {
+     "is": "non_constant",
+     "keyword": "tolerance"
+    }
+   ],
+   "rule_id": "django-gis-oracle-nonconstant-tolerance-v1",
+   "severity": "review",
+   "title": "Non-constant tolerance passed to Django GIS function or aggregate (Oracle SQL injection)"
+  },
+  {
+   "call": [
+    "django.utils.http.is_safe_url"
+   ],
+   "cve_ids": [
+    "CVE-2015-2317"
+   ],
+   "family": "xss",
+   "fix": "Upgrade Django to a patched release (1.4.20, 1.6.11, 1.7.7, 1.8c1 or later), and reject or strip control characters from the redirect URL before checking it, then validate the scheme and host of the normalized value.",
+   "require": [
+    {
+     "arg": 0,
+     "is": "non_constant",
+     "keyword": "url"
+    }
+   ],
+   "rule_id": "django-is-safe-url-control-char-v1",
+   "severity": "review",
+   "title": "Redirect target vetted with django.utils.http.is_safe_url, which can be bypassed by control characters on unpatched Django"
+  },
+  {
+   "call": [
+    "*.order_by"
+   ],
+   "cve_ids": [
+    "CVE-2021-35042"
+   ],
+   "family": "sql_injection",
+   "fix": "Upgrade Django to 3.1.13, 3.2.5 or later, and map any user-chosen sort option to a fixed developer-defined set of ordering strings, rejecting anything outside that set, before calling order_by.",
+   "require": [
+    {
+     "arg": 0,
+     "is": "non_constant"
+    }
+   ],
+   "rule_id": "django-order-by-non-constant-v1",
+   "severity": "review",
+   "title": "Non-constant value passed to QuerySet.order_by (CVE-2021-35042 SQL injection on Django before 3.1.13 / 3.2.5)"
+  },
+  {
+   "call": [
+    "django.contrib.postgres.aggregates.StringAgg"
+   ],
+   "cve_ids": [
+    "CVE-2020-7471"
+   ],
+   "family": "sql_injection",
+   "fix": "Upgrade Django to 1.11.28, 2.2.10, 3.0.3 or later, and map any user-chosen delimiter to a small set of fixed, developer-defined values instead of passing the raw request value.",
+   "require": [
+    {
+     "arg": 1,
+     "is": "non_constant",
+     "keyword": "delimiter"
+    }
+   ],
+   "rule_id": "django-stringagg-non-constant-delimiter-v1",
+   "severity": "review",
+   "title": "StringAgg delimiter taken from a non-constant value (SQL injection on unpatched Django)"
+  },
+  {
+   "call": [
+    "django.db.models.functions.Trunc",
+    "django.db.models.functions.Extract"
+   ],
+   "cve_ids": [
+    "CVE-2022-34265"
+   ],
+   "family": "sql_injection",
+   "fix": "Upgrade Django to 3.2.14 or 4.0.6 or later, and check the kind or lookup name against a fixed allow-list before it reaches Trunc or Extract, rejecting anything not on the list.",
+   "require": [
+    {
+     "arg": 1,
+     "is": "non_constant",
+     "keyword": "kind"
+    }
+   ],
+   "rule_id": "django-trunc-extract-untrusted-kind-v1",
+   "severity": "review",
+   "title": "Django Trunc() or Extract() called with a non-constant kind or lookup_name"
+  },
+  {
+   "call": [
+    "*.words"
+   ],
+   "cve_ids": [
+    "CVE-2024-27351"
+   ],
+   "family": "redos",
+   "fix": "Upgrade Django to 3.2.25, 4.2.11, 5.0.3 or later, and cap the length of untrusted text before passing it to HTML-aware word truncation.",
+   "require": [
+    {
+     "equals": true,
+     "keyword": "html"
+    }
+   ],
+   "rule_id": "django-truncator-words-html-redos-v1",
+   "severity": "review",
+   "title": "Django Truncator.words called in HTML-aware mode (ReDoS in unpatched releases)"
+  },
+  {
+   "call": [
+    "*.values",
+    "*.values_list"
+   ],
+   "cve_ids": [
+    "CVE-2024-42005"
+   ],
+   "family": "sql_injection",
+   "fix": "Upgrade Django to 5.0.8 or 4.2.15 or later, and check any user-supplied JSON key against a fixed allowlist of names before building the field argument.",
+   "require": [
+    {
+     "arg": 0,
+     "is": "built_string"
+    }
+   ],
+   "rule_id": "django-values-built-json-key-alias-v1",
+   "severity": "review",
+   "title": "Django values()/values_list() given a field name built from data, which may carry an untrusted JSONField key"
+  },
+  {
+   "call": [
+    "*.token2json"
+   ],
+   "cve_ids": [
+    "CVE-2025-3933"
+   ],
+   "family": "redos",
+   "fix": "Upgrade transformers to 4.52.1 or later, and until then avoid passing untrusted or unbounded-length strings to token2json, or process them in isolated workers with limits.",
+   "require": [
+    {
+     "arg": 0,
+     "is": "non_constant",
+     "keyword": "tokens"
+    }
+   ],
+   "rule_id": "donut-token2json-untrusted-input-redos-v1",
+   "severity": "review",
+   "title": "DonutProcessor token2json called on non-constant input (ReDoS in vulnerable Transformers)"
+  },
+  {
+   "call": [
+    "rest_framework.templatetags.rest_framework.break_long_headers"
+   ],
+   "cve_ids": [
+    "CVE-2024-21520"
+   ],
+   "family": "xss",
+   "fix": "Upgrade djangorestframework to 3.15.2 or later, and escape untrusted text for HTML before splitting it and joining the pieces with line break tags, instead of passing raw header values to this filter.",
+   "require": [
+    {
+     "arg": 0,
+     "is": "non_constant",
+     "keyword": "value"
+    }
+   ],
+   "rule_id": "drf-break-long-headers-untrusted-v1",
+   "severity": "review",
+   "title": "break_long_headers filter called directly on non-constant data"
+  },
+  {
+   "call": [
+    "*.normalize_numbers"
+   ],
+   "cve_ids": [
+    "CVE-2025-6051"
+   ],
+   "family": "redos",
+   "fix": "Upgrade transformers to 4.53.0 or later, and treat number normalization of untrusted text as a CPU-sensitive path until the upgrade is deployed.",
+   "require": [
+    {
+     "arg": 0,
+     "is": "non_constant",
+     "keyword": "text"
+    }
+   ],
+   "rule_id": "english-normalizer-normalize-numbers-redos-v1",
+   "severity": "review",
+   "title": "EnglishNormalizer.normalize_numbers called on non-constant text (ReDoS in transformers <= 4.52.4)"
+  },
+  {
+   "call": [
+    "langchain_community.document_loaders.EverNoteLoader",
+    "langchain_community.document_loaders.evernote.EverNoteLoader"
+   ],
+   "cve_ids": [
+    "CVE-2025-6984"
+   ],
+   "family": "xxe",
+   "fix": "Upgrade langchain-community to 0.3.27 or later, and do not pass untrusted or user-supplied export files to EverNoteLoader.",
+   "require": [
+    {
+     "arg": 0,
+     "is": "non_constant",
+     "keyword": "file_path"
+    }
+   ],
+   "rule_id": "evernote-loader-untrusted-xml-xxe-v1",
+   "severity": "review",
+   "title": "EverNoteLoader given a non-constant path may parse attacker-controlled XML with external entities enabled"
+  },
+  {
+   "call": [
+    "langchain_community.vectorstores.FAISS.deserialize_from_bytes",
+    "langchain_community.vectorstores.faiss.FAISS.deserialize_from_bytes",
+    "langchain.vectorstores.FAISS.deserialize_from_bytes",
+    "langchain.vectorstores.faiss.FAISS.deserialize_from_bytes"
+   ],
+   "cve_ids": [
+    "CVE-2024-5998"
+   ],
+   "family": "unsafe_deserialization",
+   "fix": "Do not load index bytes that an outside party can supply or alter; rebuild the index from the original documents with a trusted embedding step, load only bytes your own application produced and stored where outsiders cannot write, and upgrade to langchain 0.2.4 or later.",
+   "require": [
+    {
+     "arg": 0,
+     "is": "non_constant",
+     "keyword": "serialized"
+    }
+   ],
+   "rule_id": "faiss-deserialize-from-bytes-untrusted-v1",
+   "severity": "review",
+   "title": "FAISS.deserialize_from_bytes loads pickle data from a non-constant bytes value"
+  },
+  {
+   "call": [
+    "git.Repo.clone_from",
+    "git.repo.base.Repo.clone_from"
+   ],
+   "cve_ids": [
+    "CVE-2023-40267"
+   ],
+   "family": "command_injection",
+   "fix": "Upgrade GitPython to 3.1.32 or later, validate the URL against permitted schemes and hosts before cloning, and never let untrusted input choose git options.",
+   "require": [
+    {
+     "arg": 0,
+     "is": "non_constant",
+     "keyword": "url"
+    }
+   ],
+   "rule_id": "gitpython-clone-from-untrusted-url-v1",
+   "severity": "review",
+   "title": "GitPython clone_from called with a non-constant remote URL"
+  },
+  {
+   "call": [
+    "git.Repo.clone_from",
+    "git.repo.base.Repo.clone_from"
+   ],
+   "cve_ids": [
+    "CVE-2026-42284"
+   ],
+   "family": "command_injection",
+   "fix": "Upgrade GitPython to 3.1.47 or later and keep untrusted text out of multi_options, using only fixed, hard-coded option strings.",
+   "require": [
+    {
+     "is": "non_constant",
+     "keyword": "multi_options"
+    }
+   ],
+   "rule_id": "gitpython-clone-multi-options-non-constant-v1",
+   "severity": "review",
+   "title": "GitPython clone_from passes non-constant multi_options that may carry untrusted text"
+  },
+  {
+   "call": [
+    "git.Repo.clone_from",
+    "git.repo.base.Repo.clone_from",
+    "git.Repo.clone",
+    "*.clone"
+   ],
+   "cve_ids": [
+    "CVE-2026-78677"
+   ],
+   "family": "path_traversal",
+   "fix": "Upgrade GitPython to 3.1.59 or later, do not forward caller-influenced values as separate_git_dir to clone calls, and keep allow_unsafe_options at its default of False.",
+   "require": [
+    {
+     "is": "non_constant",
+     "keyword": "separate_git_dir"
+    }
+   ],
+   "rule_id": "gitpython-clone-separate-git-dir-v1",
+   "severity": "review",
+   "title": "GitPython clone passes a non-constant separate_git_dir keyword, which bypasses the unsafe-option guard"
+  },
+  {
+   "call": [
+    "*.iter_commits",
+    "*.blame"
+   ],
+   "cve_ids": [
+    "CVE-2026-67323"
+   ],
+   "family": "command_injection",
+   "fix": "Reject any revision that starts with a dash and check that it resolves to a real ref or object name before calling iter_commits or blame, and upgrade GitPython to 3.1.51 or later.",
+   "require": [
+    {
+     "arg": 0,
+     "is": "non_constant",
+     "keyword": "rev"
+    }
+   ],
+   "rule_id": "gitpython-dynamic-revision-option-injection-v1",
+   "severity": "review",
+   "title": "Non-constant revision passed to GitPython iter_commits or blame can act as a Git option"
+  },
+  {
+   "call": [
+    "git.IndexFile.from_tree",
+    "git.index.IndexFile.from_tree",
+    "git.index.base.IndexFile.from_tree"
+   ],
+   "cve_ids": [
+    "CVE-2026-76219"
+   ],
+   "family": "command_injection",
+   "fix": "Upgrade GitPython to 3.1.58 or later, and reject treeish values starting with a dash or validate them as real revisions (for example by resolving them to a commit hash first) before passing them in.",
+   "require": [
+    {
+     "arg": 1,
+     "is": "non_constant"
+    }
+   ],
+   "rule_id": "gitpython-indexfile-from-tree-nonconstant-treeish-v1",
+   "severity": "review",
+   "title": "Non-constant treeish passed to GitPython IndexFile.from_tree can inject git read-tree options"
+  },
+  {
+   "call": [
+    "git.Repo.clone_from",
+    "*.fetch",
+    "*.pull"
+   ],
+   "cve_ids": [
+    "CVE-2026-42215"
+   ],
+   "family": "command_injection",
+   "fix": "Upgrade GitPython to 3.1.47 or later and never pass caller-influenced values or option dictionaries as upload_pack kwargs; use a fixed, developer-chosen value or omit the option.",
+   "require": [
+    {
+     "is": "non_constant",
+     "keyword": "upload_pack"
+    }
+   ],
+   "rule_id": "gitpython-nonconstant-upload-pack-kwarg-v1",
+   "severity": "review",
+   "title": "GitPython clone/fetch/pull called with a non-constant upload_pack option"
+  },
+  {
+   "call": [
+    "git.Repo.init",
+    "git.repo.base.Repo.init"
+   ],
+   "cve_ids": [
+    "CVE-2026-76218"
+   ],
+   "family": "command_injection",
+   "fix": "Do not pass externally influenced values as the template option to Repo.init; build init options from a fixed allowlist, reject template and separate-git-dir, and upgrade GitPython to 3.1.58 or later.",
+   "require": [
+    {
+     "is": "non_constant",
+     "keyword": "template"
+    }
+   ],
+   "rule_id": "gitpython-repo-init-template-v1",
+   "severity": "review",
+   "title": "GitPython Repo.init called with a non-constant template option that can plant git hooks"
+  },
+  {
+   "call": [
+    "*.rev_parse"
+   ],
+   "cve_ids": [
+    "CVE-2023-41040"
+   ],
+   "family": "path_traversal",
+   "fix": "Upgrade GitPython to 3.1.37 or later, and validate revision strings from users against a strict reference-name pattern, rejecting parent-directory segments and absolute paths, before passing them to repository lookups.",
+   "require": [
+    {
+     "arg": 0,
+     "is": "non_constant",
+     "keyword": "rev"
+    }
+   ],
+   "rule_id": "gitpython-rev-parse-non-constant-ref-v1",
+   "severity": "review",
+   "title": "Non-constant revision or reference name passed to GitPython rev_parse"
+  },
+  {
+   "call": [
+    "gradio.utils.is_in_or_equal"
+   ],
+   "cve_ids": [
+    "CVE-2024-47164"
+   ],
+   "family": "path_traversal",
+   "fix": "Upgrade Gradio to 5.0 or later, and resolve the path to a normalized absolute form and reject malformed input before any containment check against the resolved allowed directory.",
+   "require": [
+    {
+     "arg": 0,
+     "is": "non_constant",
+     "keyword": "path_1"
+    }
+   ],
+   "rule_id": "gradio-is-in-or-equal-unresolved-path-v1",
+   "severity": "review",
+   "title": "Gradio is_in_or_equal used as a directory containment check on a non-constant path"
+  },
+  {
+   "call": [
+    "gradio.load"
+   ],
+   "cve_ids": [
+    "CVE-2026-28416"
+   ],
+   "family": "ssrf",
+   "fix": "Upgrade Gradio to 6.6.0 or later, and only load Spaces from an operator-chosen fixed allowlist rather than from names supplied at runtime.",
+   "require": [
+    {
+     "arg": 0,
+     "is": "non_constant",
+     "keyword": "name"
+    }
+   ],
+   "rule_id": "gradio-load-dynamic-space-v1",
+   "severity": "review",
+   "title": "gradio.load called with a non-constant Space name, so an untrusted Space config may add proxy_url hosts to the trusted list"
+  },
+  {
+   "call": [
+    "langchain_community.chains.graph_qa.cypher.GraphCypherQAChain.from_llm",
+    "langchain_community.chains.GraphCypherQAChain.from_llm",
+    "langchain.chains.GraphCypherQAChain.from_llm",
+    "langchain_community.chains.graph_qa.cypher.GraphCypherQAChain",
+    "langchain_community.chains.GraphCypherQAChain",
+    "langchain.chains.GraphCypherQAChain"
+   ],
+   "cve_ids": [
+    "CVE-2024-8309"
+   ],
+   "family": "sql_injection",
+   "fix": "Do not opt in to dangerous requests for chains that take untrusted prompts; upgrade to a patched release and give the chain a read-only database account scoped to the calling tenant, with authorization enforced in the database layer.",
+   "require": [
+    {
+     "equals": true,
+     "keyword": "allow_dangerous_requests"
+    }
+   ],
+   "rule_id": "graph-cypher-qa-chain-dangerous-requests-v1",
+   "severity": "review",
+   "title": "GraphCypherQAChain built with allow_dangerous_requests enabled lets prompt text drive database queries"
+  },
+  {
+   "call": [
+    "twisted.mail.imap4.wildcardToRegexp"
+   ],
+   "cve_ids": [
+    "CVE-2026-106454"
+   ],
+   "family": "redos",
+   "fix": "Do not pass client-supplied LIST or LSUB patterns to wildcardToRegexp, since it leaves regex syntax unescaped; build the regex yourself by escaping every character except the asterisk and percent wildcards, or match without regular expressions, and upgrade Twisted once a fixed release is available.",
+   "require": [
+    {
+     "arg": 0,
+     "is": "non_constant",
+     "keyword": "wildcard"
+    }
+   ],
+   "rule_id": "imap4-wildcard-to-regexp-nonconstant-v1",
+   "severity": "review",
+   "title": "Client-controlled pattern passed to twisted.mail.imap4.wildcardToRegexp allows regex backtracking DoS"
+  },
+  {
+   "call": [
+    "IPython.utils.terminal.set_term_title"
+   ],
+   "cve_ids": [
+    "CVE-2023-24816"
+   ],
+   "family": "command_injection",
+   "fix": "Upgrade IPython to a patched release and do not pass attacker-influenced text such as directory names, paths or user labels as the terminal title; use a fixed string or strictly filtered input.",
+   "require": [
+    {
+     "arg": 0,
+     "is": "non_constant",
+     "keyword": "title"
+    }
+   ],
+   "rule_id": "ipython-set-term-title-non-constant-v1",
+   "severity": "review",
+   "title": "IPython set_term_title called with a non-constant title (shell command injection on Windows without ctypes)"
+  },
+  {
+   "call": [
+    "jinja2.Environment"
+   ],
+   "cve_ids": [
+    "CVE-2024-49377"
+   ],
+   "family": "xss",
+   "fix": "Enable automatic escaping for the whole Jinja2 environment so output is escaped by default, and mark a value as safe only where unescaped output is intended and the value is trusted.",
+   "require": [
+    {
+     "absent_or_not_in": [
+      true,
+      "jinja2.select_autoescape"
+     ],
+     "keyword": "autoescape"
+    }
+   ],
+   "rule_id": "jinja2-environment-autoescape-not-enabled-v1",
+   "severity": "review",
+   "title": "Jinja2 Environment created without automatic escaping enabled"
+  },
+  {
+   "call": [
+    "litellm.completion",
+    "litellm.acompletion"
+   ],
+   "cve_ids": [
+    "CVE-2024-6587"
+   ],
+   "family": "ssrf",
+   "fix": "Take api_base from operator-controlled configuration, or check any request-supplied value against an operator-defined allowlist of trusted destinations before the call, and never send server-held keys to unapproved addresses.",
+   "require": [
+    {
+     "is": "non_constant",
+     "keyword": "api_base"
+    }
+   ],
+   "rule_id": "litellm-non-constant-api-base-v1",
+   "severity": "review",
+   "title": "litellm completion call takes api_base from a non-constant value, which may let a caller redirect a request carrying the server's API key"
+  },
+  {
+   "call": [
+    "llama_index.core.query_engine.JSONalyzeQueryEngine",
+    "llama_index.core.query_engine.jsonalyze.JSONalyzeQueryEngine",
+    "llama_index.core.query_engine.jsonalyze.jsonalyze_query_engine.JSONalyzeQueryEngine",
+    "llama_index.core.query_engine.jsonalyze.jsonalyze_query_engine.default_jsonalyzer"
+   ],
+   "cve_ids": [
+    "CVE-2024-12911"
+   ],
+   "family": "sql_injection",
+   "fix": "Upgrade llama-index to a release newer than the fixed version (at least 0.12.3), and until then keep this engine away from untrusted prompts or replace it with a query path that does not execute model-written SQL.",
+   "require": [],
+   "rule_id": "llama-index-jsonalyze-query-engine-prompt-sql-injection-v1",
+   "severity": "review",
+   "title": "JSONalyzeQueryEngine runs LLM-generated SQL that prompt content can steer (CVE-2024-12911)"
+  },
+  {
+   "call": [
+    "lxml.html.clean.clean_html"
+   ],
+   "cve_ids": [
+    "CVE-2014-3146"
+   ],
+   "family": "xss",
+   "fix": "Upgrade lxml to 3.3.5 or later, confirm the cleaner's link scheme handling is not relied on alone, and apply output escaping or a content security policy as defense in depth.",
+   "require": [
+    {
+     "arg": 0,
+     "is": "non_constant",
+     "keyword": "html"
+    }
+   ],
+   "rule_id": "lxml-clean-html-untrusted-input-v1",
+   "severity": "review",
+   "title": "lxml clean_html used on non-constant HTML; versions before 3.3.5 let control characters in link schemes bypass the blacklist"
+  },
+  {
+   "call": [
+    "lxml.html.clean.Cleaner"
+   ],
+   "cve_ids": [
+    "CVE-2021-28957"
+   ],
+   "family": "xss",
+   "fix": "Upgrade lxml to 4.6.3 or later, and keep safe_attrs_only or forms enabled when sanitizing untrusted HTML.",
+   "require": [
+    {
+     "equals": false,
+     "keyword": "safe_attrs_only"
+    },
+    {
+     "equals": false,
+     "keyword": "forms"
+    }
+   ],
+   "rule_id": "lxml-cleaner-forms-and-safe-attrs-disabled-v1",
+   "severity": "review",
+   "title": "lxml Cleaner built with both safe_attrs_only and forms disabled leaves formaction attribute"
+  },
+  {
+   "call": [
+    "lxml.html.clean.Cleaner",
+    "lxml.html.clean.clean_html"
+   ],
+   "cve_ids": [
+    "CVE-2020-27783"
+   ],
+   "family": "xss",
+   "fix": "Upgrade lxml to a release containing the upstream fix, or replace the lxml cleaner with a maintained allowlist sanitizer, and keep output escaping and a restrictive Content-Security-Policy as extra layers.",
+   "require": [],
+   "rule_id": "lxml-html-cleaner-untrusted-html-v1",
+   "severity": "review",
+   "title": "lxml.html.clean sanitizer used on HTML that a browser may parse differently (CVE-2020-27783)"
+  },
+  {
+   "call": [
+    "lxml.etree.XMLParser"
+   ],
+   "cve_ids": [
+    "CVE-2013-1665"
+   ],
+   "family": "xxe",
+   "fix": "Do not enable entity resolution on parsers that handle untrusted XML; set entity resolution off and disable network access, or reject documents that declare entities.",
+   "require": [
+    {
+     "equals": true,
+     "keyword": "resolve_entities"
+    }
+   ],
+   "rule_id": "lxml-xmlparser-resolve-entities-enabled-v1",
+   "severity": "review",
+   "title": "lxml XMLParser explicitly configured to resolve entities, which allows XXE on untrusted XML"
+  },
+  {
+   "call": [
+    "mako.lexer.Lexer"
+   ],
+   "cve_ids": [
+    "CVE-2022-40023"
+   ],
+   "family": "redos",
+   "fix": "Upgrade Mako to 1.2.2 or later, and do not pass template text from untrusted sources to the Lexer class.",
+   "require": [
+    {
+     "arg": 0,
+     "is": "non_constant",
+     "keyword": "text"
+    }
+   ],
+   "rule_id": "mako-lexer-untrusted-text-v1",
+   "severity": "review",
+   "title": "Mako Lexer constructed with non-constant template text (ReDoS before 1.2.2)"
+  },
+  {
+   "call": [
+    "*.get_template"
+   ],
+   "cve_ids": [
+    "CVE-2026-44307"
+   ],
+   "family": "path_traversal",
+   "fix": "Upgrade Mako to 1.3.12 or later, and avoid passing user-controlled names to the template lookup; map input to an allow-list of known template names, or convert backslashes to forward slashes before the lookup.",
+   "require": [
+    {
+     "arg": 0,
+     "is": "non_constant"
+    }
+   ],
+   "rule_id": "mako-lookup-get-template-dynamic-name-v1",
+   "severity": "review",
+   "title": "Non-constant template name passed to get_template (Mako backslash traversal on Windows)"
+  },
+  {
+   "call": [
+    "*.get_template"
+   ],
+   "cve_ids": [
+    "CVE-2026-102991",
+    "CVE-2026-41205"
+   ],
+   "family": "path_traversal",
+   "fix": "Upgrade Mako to 1.4.2 or later, and avoid passing untrusted input as template names. Map user choices to a fixed allowlist of template names, or normalize the name by converting backslashes to forward slashes and stripping leading slashes and drive designators before lookup.",
+   "require": [
+    {
+     "arg": 0,
+     "is": "non_constant",
+     "keyword": "uri"
+    }
+   ],
+   "rule_id": "mako-lookup-get-template-nonconstant-uri-v1",
+   "severity": "review",
+   "title": "Non-constant template name passed to get_template, which may be a Mako TemplateLookup (path traversal via drive-letter URI on Windows)"
+  },
+  {
+   "call": [
+    "mcp.client.sse.sse_client",
+    "mcp.client.streamable_http.streamablehttp_client",
+    "mcp.client.streamable_http.streamable_http_client"
+   ],
+   "cve_ids": [
+    "CVE-2026-45019"
+   ],
+   "family": "ssrf",
+   "fix": "Do not let clients choose the MCP endpoint; connect only to URLs that match a default-deny allowlist of scheme, host, port and path prefix, strip sensitive client headers, disable redirects, and require authentication on the endpoint.",
+   "require": [
+    {
+     "arg": 0,
+     "is": "non_constant",
+     "keyword": "url"
+    }
+   ],
+   "rule_id": "mcp-client-user-controlled-url-v1",
+   "severity": "review",
+   "title": "MCP SSE or streamable-http client opened with a non-constant URL"
+  },
+  {
+   "call": [
+    "mistune.directives.Include"
+   ],
+   "cve_ids": [
+    "CVE-2026-115355"
+   ],
+   "family": "path_traversal",
+   "fix": "Upgrade mistune to 3.3.0 or later, do not enable the Include directive for untrusted Markdown, and make sure resolved include paths stay inside the source directory and that included content and error messages are HTML-escaped.",
+   "require": [],
+   "rule_id": "mistune-include-directive-enabled-v1",
+   "severity": "review",
+   "title": "Mistune Include directive enabled; path traversal and unescaped output in versions before 3.3.0"
+  },
+  {
+   "call": [
+    "mistune.directives.Include",
+    "mistune.directives.include.Include"
+   ],
+   "cve_ids": [
+    "CVE-2026-59924"
+   ],
+   "family": "path_traversal",
+   "fix": "Upgrade mistune to 3.3.0 or later, or leave the Include directive disabled for untrusted markdown; if include paths are resolved in your own code, resolve the final path to its real location and refuse to open it unless it lies inside a trusted base directory.",
+   "require": [],
+   "rule_id": "mistune-include-directive-enabled-v1",
+   "severity": "review",
+   "title": "mistune Include directive enabled; include paths may escape the source directory before 3.3.0"
+  },
+  {
+   "call": [
+    "nicegui.ui.add_css",
+    "nicegui.ui.add_scss",
+    "nicegui.ui.add_sass",
+    "nicegui.functions.style.add_css",
+    "nicegui.functions.style.add_scss",
+    "nicegui.functions.style.add_sass"
+   ],
+   "cve_ids": [
+    "CVE-2025-66469"
+   ],
+   "family": "xss",
+   "fix": "Upgrade NiceGUI to 3.4.0 or later, and never build the style text from request data such as URL parameters; use fixed styles or validate values against a strict allowlist.",
+   "require": [
+    {
+     "arg": 0,
+     "is": "non_constant",
+     "keyword": "content"
+    }
+   ],
+   "rule_id": "nicegui-add-css-dynamic-style-text-v1",
+   "severity": "review",
+   "title": "NiceGUI add_css, add_scss or add_sass called with non-constant style text"
+  },
+  {
+   "call": [
+    "nicegui.app.add_media_files",
+    "*.add_media_files"
+   ],
+   "cve_ids": [
+    "CVE-2025-66645"
+   ],
+   "family": "path_traversal",
+   "fix": "Upgrade NiceGUI to 3.4.0 or later; if a version before 3.4.0 must stay, replace the call with a custom route that resolves the joined path to its canonical form and rejects anything outside the served directory with a not-found response.",
+   "require": [],
+   "rule_id": "nicegui-add-media-files-traversal-v1",
+   "severity": "review",
+   "title": "NiceGUI add_media_files serves files without confining paths to the media directory (versions 3.3.1 and earlier)"
+  },
+  {
+   "call": [
+    "*.run_method",
+    "*.run_grid_method",
+    "*.run_chart_method",
+    "*.get_computed_prop"
+   ],
+   "cve_ids": [
+    "CVE-2026-27156"
+   ],
+   "family": "xss",
+   "fix": "Upgrade NiceGUI to 3.8.0 or later and keep method and property names fixed in code rather than taken from user input such as query parameters; use ui.run_javascript with developer-written script if arbitrary JavaScript is truly needed.",
+   "require": [
+    {
+     "arg": 0,
+     "is": "non_constant"
+    }
+   ],
+   "rule_id": "nicegui-dynamic-client-method-name-v1",
+   "severity": "review",
+   "title": "Non-constant method or property name passed to a NiceGUI client-side method-execution API"
+  },
+  {
+   "call": [
+    "nicegui.ui.html"
+   ],
+   "cve_ids": [
+    "CVE-2025-53354"
+   ],
+   "family": "xss",
+   "fix": "Do not pass untrusted values to ui.html(); show them with a text-only component such as ui.label, or HTML-escape them first, and upgrade NiceGUI to 3.0.0 or later.",
+   "require": [
+    {
+     "arg": 0,
+     "is": "non_constant",
+     "keyword": "content"
+    }
+   ],
+   "rule_id": "nicegui-html-non-constant-content-v1",
+   "severity": "review",
+   "title": "Non-constant content passed to NiceGUI ui.html() is rendered as raw markup"
+  },
+  {
+   "call": [
+    "nicegui.ui.interactive_image"
+   ],
+   "cve_ids": [
+    "CVE-2025-66470"
+   ],
+   "family": "xss",
+   "fix": "Upgrade NiceGUI to 3.4.0 or later, and until then keep user-controlled data out of the content property of interactive_image, or sanitize or escape it before use.",
+   "require": [
+    {
+     "is": "non_constant",
+     "keyword": "content"
+    }
+   ],
+   "rule_id": "nicegui-interactive-image-dynamic-content-v1",
+   "severity": "review",
+   "title": "Non-constant content passed to NiceGUI ui.interactive_image is rendered as unsanitized SVG/HTML"
+  },
+  {
+   "call": [
+    "nltk.tokenize.casual_tokenize",
+    "nltk.tokenize.casual.casual_tokenize"
+   ],
+   "cve_ids": [
+    "CVE-2026-72818"
+   ],
+   "family": "redos",
+   "fix": "Upgrade nltk to 3.10.1 or later, which bounds the domain-label repetition, and limit the length of untrusted text before tokenizing it.",
+   "require": [
+    {
+     "arg": 0,
+     "is": "non_constant",
+     "keyword": "text"
+    }
+   ],
+   "rule_id": "nltk-casual-tokenize-untrusted-text-v1",
+   "severity": "review",
+   "title": "casual_tokenize on non-constant text can trigger catastrophic regex backtracking in nltk before 3.10.1"
+  },
+  {
+   "call": [
+    "nltk.corpus.reader.LinThesaurusCorpusReader",
+    "nltk.corpus.reader.PanLexLiteCorpusReader",
+    "nltk.corpus.reader.lin.LinThesaurusCorpusReader",
+    "nltk.corpus.reader.panlex_lite.PanLexLiteCorpusReader"
+   ],
+   "cve_ids": [
+    "CVE-2026-79674"
+   ],
+   "family": "path_traversal",
+   "fix": "Upgrade NLTK to 3.10.3 or later, and validate any externally influenced corpus root against the allowed data roots before building the reader, or use a fixed trusted root.",
+   "require": [
+    {
+     "arg": 0,
+     "is": "non_constant",
+     "keyword": "root"
+    }
+   ],
+   "rule_id": "nltk-corpus-reader-untrusted-root-v1",
+   "severity": "review",
+   "title": "NLTK corpus reader constructed with a non-constant root path (pathsec sandbox bypass before 3.10.3)"
+  },
+  {
+   "call": [
+    "nltk.corpus.reader.util.StreamBackedCorpusView",
+    "nltk.corpus.reader.xmldocs.XMLCorpusView"
+   ],
+   "cve_ids": [
+    "CVE-2026-63312"
+   ],
+   "family": "path_traversal",
+   "fix": "Upgrade NLTK to 3.10.0 or later and map user input to a fixed allowlist of known corpus file identifiers instead of passing raw strings as the fileid.",
+   "require": [
+    {
+     "arg": 0,
+     "is": "non_constant",
+     "keyword": "fileid"
+    }
+   ],
+   "rule_id": "nltk-corpus-view-untrusted-fileid-v1",
+   "severity": "review",
+   "title": "NLTK StreamBackedCorpusView or XMLCorpusView opened with a non-constant fileid bypasses pathsec.ENFORCE"
+  },
+  {
+   "call": [
+    "nltk.data.load"
+   ],
+   "cve_ids": [
+    "CVE-2026-79657"
+   ],
+   "family": "unsafe_deserialization",
+   "fix": "Upgrade NLTK to 3.10.3 or later, and load pickle-format tokenizer or model artifacts only from trusted, fixed locations; use a non-pickle format for anything user-supplied or downloaded.",
+   "require": [
+    {
+     "arg": 0,
+     "is": "non_constant",
+     "keyword": "resource_url"
+    },
+    {
+     "equals": "pickle",
+     "keyword": "format"
+    }
+   ],
+   "rule_id": "nltk-data-load-pickle-nonconstant-v1",
+   "severity": "review",
+   "title": "nltk.data.load reads a non-constant resource as a pickle, which can execute code during unpickling"
+  },
+  {
+   "call": [
+    "nltk.data.load"
+   ],
+   "cve_ids": [
+    "CVE-2026-54293"
+   ],
+   "family": "path_traversal",
+   "fix": "Upgrade NLTK to 3.10.0-rc1 or later, and never pass untrusted resource identifiers to nltk.data.load; map user choices to a fixed allowlist of resource names, or reject input containing percent-encoded separators, dots, or absolute paths after decoding.",
+   "require": [
+    {
+     "arg": 0,
+     "is": "non_constant",
+     "keyword": "resource_url"
+    }
+   ],
+   "rule_id": "nltk-data-load-untrusted-resource-v1",
+   "severity": "review",
+   "title": "nltk.data.load called with a non-constant resource identifier that may be attacker-controlled"
+  },
+  {
+   "call": [
+    "nltk.downloader.Downloader"
+   ],
+   "cve_ids": [
+    "CVE-2024-39705",
+    "CVE-2026-33236"
+   ],
+   "family": "unsafe_deserialization",
+   "fix": "Do not fetch NLTK data packages from an origin you do not control; use the default trusted index or pre-vetted packages stored in a controlled location, and verify their integrity before anything loads them.",
+   "require": [
+    {
+     "arg": 0,
+     "is": "non_constant",
+     "keyword": "server_index_url"
+    }
+   ],
+   "rule_id": "nltk-downloader-custom-server-v1",
+   "severity": "review",
+   "title": "NLTK Downloader pointed at a non-constant server index URL can fetch pickled data packages from an untrusted origin"
+  },
+  {
+   "call": [
+    "nltk.util.filestring"
+   ],
+   "cve_ids": [
+    "CVE-2026-0846"
+   ],
+   "family": "path_traversal",
+   "fix": "Do not pass externally supplied strings to filestring; resolve the input against a fixed allowlist of permitted files or a fixed base directory, reject absolute and traversal paths before opening, and upgrade to a fixed nltk release.",
+   "require": [
+    {
+     "arg": 0,
+     "is": "non_constant",
+     "keyword": "f"
+    }
+   ],
+   "rule_id": "nltk-filestring-nonconstant-path-v1",
+   "severity": "review",
+   "title": "nltk.util.filestring called with a non-constant path that may be user-controlled"
+  },
+  {
+   "call": [
+    "*.frame_by_name"
+   ],
+   "cve_ids": [
+    "CVE-2026-62385"
+   ],
+   "family": "path_traversal",
+   "fix": "Upgrade NLTK to 3.10.0 or later, and until then check frame names against the known frame list or a strict name pattern that rejects path separators and parent-directory parts before calling the reader.",
+   "require": [
+    {
+     "arg": 0,
+     "is": "non_constant"
+    }
+   ],
+   "rule_id": "nltk-framenet-frame-by-name-untrusted-v1",
+   "severity": "review",
+   "title": "FrameNet reader frame_by_name called with a non-constant frame name on NLTK before 3.10.0"
+  },
+  {
+   "call": [
+    "nltk.pathsec.urlopen"
+   ],
+   "cve_ids": [
+    "CVE-2026-78682"
+   ],
+   "family": "ssrf",
+   "fix": "Upgrade NLTK to 3.10.3 or later, and do not rely on pathsec hostname validation as the SSRF barrier when a proxy performs the fetch; instead validate the destination the proxy will reach, restrict URLs to an allowlist, or refuse proxied fetches unless the proxy is a trusted operator opt-in.",
+   "require": [
+    {
+     "arg": 0,
+     "is": "non_constant",
+     "keyword": "url"
+    }
+   ],
+   "rule_id": "nltk-pathsec-urlopen-dynamic-url-v1",
+   "severity": "review",
+   "title": "nltk.pathsec.urlopen called with a non-constant URL, which can bypass SSRF checks when an HTTP proxy is configured"
+  },
+  {
+   "call": [
+    "nltk.parse.stanford.StanfordParser",
+    "nltk.parse.stanford.StanfordDependencyParser",
+    "nltk.parse.stanford.StanfordNeuralDependencyParser",
+    "nltk.tag.stanford.StanfordPOSTagger",
+    "nltk.tag.stanford.StanfordNERTagger",
+    "nltk.tokenize.stanford.StanfordTokenizer",
+    "nltk.tokenize.stanford_segmenter.StanfordSegmenter"
+   ],
+   "cve_ids": [
+    "CVE-2026-79675"
+   ],
+   "family": "command_injection",
+   "fix": "Upgrade NLTK to 3.10.3 or later and pass only a fixed set of JVM options chosen by the application, never values taken from user input, config files or environment variables; reject agent-loading, remote debugging and at-sign argument-file flags.",
+   "require": [
+    {
+     "is": "non_constant",
+     "keyword": "java_options"
+    }
+   ],
+   "rule_id": "nltk-stanford-wrapper-nonconstant-java-options-v1",
+   "severity": "review",
+   "title": "NLTK Stanford wrapper receives non-constant java_options that may carry JVM flag injection"
+  },
+  {
+   "call": [
+    "nltk.tgrep.tgrep_positions",
+    "nltk.tgrep.tgrep_nodes",
+    "nltk.tgrep.tgrep_compile"
+   ],
+   "cve_ids": [
+    "CVE-2026-80206"
+   ],
+   "family": "redos",
+   "fix": "Upgrade NLTK to 3.10.3 or later, use only fixed or trusted tgrep patterns, reject regex nodes in external input, and run any remaining untrusted regex matching in a separate process that can be terminated on timeout.",
+   "require": [
+    {
+     "arg": 0,
+     "is": "non_constant"
+    }
+   ],
+   "rule_id": "nltk-tgrep-untrusted-pattern-v1",
+   "severity": "review",
+   "title": "nltk.tgrep compiles a non-constant pattern that may carry attacker-chosen regex nodes"
+  },
+  {
+   "call": [
+    "nltk.pathsec.validate_network_url"
+   ],
+   "cve_ids": [
+    "CVE-2026-12372"
+   ],
+   "family": "ssrf",
+   "fix": "Upgrade to an NLTK release with the fix, and also accept only destinations positively classified as global (explicitly excluding 100.64.0.0/10) on the resolved address, with egress filtering as defense in depth.",
+   "require": [
+    {
+     "arg": 0,
+     "is": "non_constant",
+     "keyword": "url"
+    }
+   ],
+   "rule_id": "nltk-validate-network-url-shared-space-v1",
+   "severity": "review",
+   "title": "nltk.pathsec.validate_network_url used on a dynamic URL does not reject 100.64.0.0/10 addresses"
+  },
+  {
+   "call": [
+    "oauthlib.oauth2.RevocationEndpoint",
+    "oauthlib.oauth2.rfc6749.endpoints.RevocationEndpoint",
+    "oauthlib.oauth2.rfc6749.endpoints.revocation.RevocationEndpoint"
+   ],
+   "cve_ids": [
+    "CVE-2026-49264"
+   ],
+   "family": "xss",
+   "fix": "Upgrade oauthlib to 4.0.0 or later and turn JSONP off in favor of CORS; if JSONP must stay, only allow callback values that fully match a strict JavaScript identifier pattern.",
+   "require": [
+    {
+     "arg": 2,
+     "equals": true,
+     "keyword": "enable_jsonp"
+    }
+   ],
+   "rule_id": "oauthlib-revocation-endpoint-jsonp-enabled-v1",
+   "severity": "review",
+   "title": "oauthlib RevocationEndpoint created with JSONP enabled reflects an unvalidated callback"
+  },
+  {
+   "call": [
+    "oauthlib.uri_validate.is_absolute_uri",
+    "oauthlib.uri_validate.is_uri",
+    "oauthlib.uri_validate.is_uri_reference"
+   ],
+   "cve_ids": [
+    "CVE-2022-36087"
+   ],
+   "family": "open_redirect",
+   "fix": "Upgrade oauthlib to 3.2.2 or later, and keep any validation of user-supplied redirect URIs cheap and bounded before it reaches these helpers.",
+   "require": [
+    {
+     "arg": 0,
+     "is": "non_constant"
+    }
+   ],
+   "rule_id": "oauthlib-uri-validate-untrusted-uri-v1",
+   "severity": "review",
+   "title": "Untrusted URI passed directly to oauthlib uri_validate helpers"
+  },
+  {
+   "call": [
+    "openllm.common.async_run_command"
+   ],
+   "cve_ids": [
+    "CVE-2026-15035"
+   ],
+   "family": "command_injection",
+   "fix": "Pass the program and each argument as separate list items instead of building one command string, and check externally supplied names such as repository or directory names against a strict allowlist before they reach the helper.",
+   "require": [
+    {
+     "arg": 0,
+     "is": "built_string",
+     "keyword": "cmd"
+    }
+   ],
+   "rule_id": "openllm-async-run-command-built-string-v1",
+   "severity": "review",
+   "title": "OpenLLM async_run_command called with a command string built from data"
+  },
+  {
+   "call": [
+    "*.get_online_pass_interval"
+   ],
+   "cve_ids": [
+    "CVE-2023-52310"
+   ],
+   "family": "command_injection",
+   "fix": "Upgrade PaddlePaddle to 2.6.0 or later, and avoid passing untrusted values to this function; compute pass intervals in plain code instead.",
+   "require": [],
+   "rule_id": "paddle-get-online-pass-interval-call-v1",
+   "severity": "review",
+   "title": "Call to PaddlePaddle get_online_pass_interval, which is affected by command injection before 2.6.0"
+  },
+  {
+   "call": [
+    "paddle.utils.download._wget_download"
+   ],
+   "cve_ids": [
+    "CVE-2023-52311",
+    "CVE-2024-0815"
+   ],
+   "family": "command_injection",
+   "fix": "Upgrade PaddlePaddle to 2.6.0 or later, and avoid calling the private download helper with externally supplied values; fetch files with a direct HTTP client or an argument-list process call instead of a shell command string.",
+   "require": [
+    {
+     "arg": 0,
+     "is": "non_constant",
+     "keyword": "url"
+    }
+   ],
+   "rule_id": "paddle-wget-download-nonconstant-url-v1",
+   "severity": "review",
+   "title": "Direct call to PaddlePaddle private _wget_download with a non-constant URL"
+  },
+  {
+   "call": [
+    "os.path.commonprefix"
+   ],
+   "cve_ids": [
+    "CVE-2023-29159"
+   ],
+   "family": "path_traversal",
+   "fix": "Resolve both paths to normalized absolute form and compare whole components with os.path.commonpath, rejecting the request unless the common path equals the allowed base directory.",
+   "require": [
+    {
+     "arg": 0,
+     "is": "non_constant"
+    }
+   ],
+   "rule_id": "path-containment-via-commonprefix-v1",
+   "severity": "review",
+   "title": "os.path.commonprefix used on runtime paths, which compares characters rather than path components"
+  },
+  {
+   "call": [
+    "weasyprint.HTML"
+   ],
+   "cve_ids": [
+    "CVE-2026-45347"
+   ],
+   "family": "ssrf",
+   "fix": "HTML-escape every user-controlled value before placing it in the HTML template passed to the PDF renderer, so injected image tags are rendered as text and never fetched.",
+   "require": [
+    {
+     "is": "built_string",
+     "keyword": "string"
+    }
+   ],
+   "rule_id": "pdf-html-built-from-data-v1",
+   "severity": "review",
+   "title": "HTML-to-PDF renderer fed an HTML string built from data without escaping"
+  },
+  {
+   "call": [
+    "pickle.loads",
+    "pickle.load",
+    "cPickle.loads",
+    "cPickle.load",
+    "_pickle.loads",
+    "_pickle.load"
+   ],
+   "cve_ids": [
+    "CVE-2018-8021"
+   ],
+   "family": "unsafe_deserialization",
+   "fix": "Do not unpickle data that crosses a trust boundary; use a data-only format such as JSON, or authenticate the payload (for example with an HMAC) before loading it.",
+   "require": [
+    {
+     "arg": 0,
+     "is": "non_constant"
+    }
+   ],
+   "rule_id": "pickle-load-non-constant-data-v1",
+   "severity": "review",
+   "title": "pickle load called on data that is not a constant"
+  },
+  {
+   "call": [
+    "pickle.loads"
+   ],
+   "cve_ids": [
+    "CVE-2012-4406"
+   ],
+   "family": "unsafe_deserialization",
+   "fix": "Store cached metadata in a data-only format such as JSON, parse it with a loader that cannot instantiate arbitrary objects, and validate the shape of the decoded structure before use.",
+   "require": [
+    {
+     "arg": 0,
+     "is": "non_constant"
+    }
+   ],
+   "rule_id": "pickle-loads-non-constant-data-v1",
+   "severity": "review",
+   "title": "pickle.loads called on data that is not a constant, such as bytes read from a shared cache"
+  },
+  {
+   "call": [
+    "PIL.Image.open"
+   ],
+   "cve_ids": [
+    "CVE-2026-112901"
+   ],
+   "family": "redos",
+   "fix": "Upgrade Pillow to 13.0.0 or later, or pass an explicit formats allowlist that excludes XBM when opening untrusted bytes.",
+   "require": [
+    {
+     "arg": 0,
+     "is": "non_constant",
+     "keyword": "fp"
+    }
+   ],
+   "rule_id": "pillow-image-open-untrusted-xbm-redos-v1",
+   "severity": "review",
+   "title": "Image.open() on non-constant input can hit the Pillow XBM header regex backtracking (ReDoS) before Pillow 13.0.0"
+  },
+  {
+   "call": [
+    "nltk.corpus.reader.pl196x.Pl196xCorpusReader",
+    "nltk.corpus.reader.Pl196xCorpusReader"
+   ],
+   "cve_ids": [
+    "CVE-2026-81725"
+   ],
+   "family": "redos",
+   "fix": "Upgrade NLTK to 3.10.3 or later, and do not read untrusted or malformed PL196X/TEI files with this reader on older versions; pre-validate input or parse it with a linear XML parser instead.",
+   "require": [],
+   "rule_id": "pl196x-reader-untrusted-corpus-v1",
+   "severity": "review",
+   "title": "Pl196xCorpusReader used on corpus files that may be attacker-influenced (quadratic ReDoS before NLTK 3.10.3)"
+  },
+  {
+   "call": [
+    "pygments.lexers.archetype.AdlLexer",
+    "pygments.lexers.AdlLexer"
+   ],
+   "cve_ids": [
+    "CVE-2026-4539"
+   ],
+   "family": "redos",
+   "fix": "Upgrade pygments to 2.20.0 or later, and where text may come from untrusted sources, run highlighting under a CPU time limit or in a separate worker process.",
+   "require": [],
+   "rule_id": "pygments-adl-lexer-redos-review-v1",
+   "severity": "review",
+   "title": "AdlLexer used for highlighting; GUID regex can cause ReDoS in pygments before 2.20.0"
+  },
+  {
+   "call": [
+    "pygments.formatters.ImageFormatter",
+    "pygments.formatters.JpgImageFormatter",
+    "pygments.formatters.BmpImageFormatter",
+    "pygments.formatters.GifImageFormatter",
+    "pygments.formatters.img.ImageFormatter",
+    "pygments.formatters.img.JpgImageFormatter",
+    "pygments.formatters.img.BmpImageFormatter",
+    "pygments.formatters.img.GifImageFormatter",
+    "pygments.formatters.img.FontManager"
+   ],
+   "cve_ids": [
+    "CVE-2015-8557"
+   ],
+   "family": "command_injection",
+   "fix": "Upgrade Pygments past 2.0.2, and never let untrusted input choose the font name; use a fixed value or check it against an allow-list of known font names.",
+   "require": [
+    {
+     "arg": 0,
+     "is": "non_constant",
+     "keyword": "font_name"
+    }
+   ],
+   "rule_id": "pygments-image-formatter-dynamic-font-name-v1",
+   "severity": "review",
+   "title": "Pygments image formatter receives a non-constant font name that old versions pass into a shell command"
+  },
+  {
+   "call": [
+    "jwt.PyJWKClient",
+    "jwt.jwks_client.PyJWKClient"
+   ],
+   "cve_ids": [
+    "CVE-2026-48522"
+   ],
+   "family": "ssrf",
+   "fix": "Upgrade PyJWT to 2.13.0 or later, and use a fixed operator-configured JWKS URL or check the URL against a trusted issuer list and allow only the https scheme before creating the client.",
+   "require": [
+    {
+     "arg": 0,
+     "is": "non_constant",
+     "keyword": "uri"
+    }
+   ],
+   "rule_id": "pyjwkclient-non-constant-uri-v1",
+   "severity": "review",
+   "title": "PyJWKClient created with a non-constant JWKS URI that may allow non-HTTP schemes"
+  },
+  {
+   "call": [
+    "ray.data.read_webdataset"
+   ],
+   "cve_ids": [
+    "CVE-2026-57516"
+   ],
+   "family": "unsafe_deserialization",
+   "fix": "Upgrade Ray to 2.56.0 or later and read only archives from trusted sources; otherwise avoid the default decoder and read raw members with a custom routine that handles only known-safe formats and rejects pickle and torch members.",
+   "require": [
+    {
+     "absent_or_not_in": [
+      "ray.data.safe_decoder"
+     ],
+     "keyword": "decoder"
+    }
+   ],
+   "rule_id": "ray-read-webdataset-default-decoder-v1",
+   "severity": "review",
+   "title": "ray.data.read_webdataset used with the default decoder that unpickles tar members"
+  },
+  {
+   "call": [
+    "langchain_community.agent_toolkits.openapi.toolkit.RequestsToolkit"
+   ],
+   "cve_ids": [
+    "CVE-2025-2828"
+   ],
+   "family": "ssrf",
+   "fix": "Upgrade langchain-community to 0.0.28 or later. Do not let untrusted input choose request targets. Wrap requests in a wrapper that checks the resolved destination against an allowlist and refuses local, private and cloud metadata addresses.",
+   "require": [
+    {
+     "equals": true,
+     "keyword": "allow_dangerous_requests"
+    }
+   ],
+   "rule_id": "requests-toolkit-unrestricted-destination-v1",
+   "severity": "review",
+   "title": "RequestsToolkit explicitly enabled to send requests to unrestricted destinations"
+  },
+  {
+   "call": [
+    "scrapy.utils.iterators.xmliter"
+   ],
+   "cve_ids": [
+    "CVE-2024-1892"
+   ],
+   "family": "redos",
+   "fix": "Upgrade Scrapy to 2.11.1 (or 1.8.4 on the 1.8 line), or iterate nodes with the lxml-based xmliter_lxml instead of the regex-based xmliter when parsing untrusted responses.",
+   "require": [
+    {
+     "arg": 0,
+     "is": "non_constant",
+     "keyword": "obj"
+    }
+   ],
+   "rule_id": "scrapy-xmliter-untrusted-response-redos-v1",
+   "severity": "review",
+   "title": "Direct call to scrapy.utils.iterators.xmliter on non-constant content uses vulnerable regex node iteration"
+  },
+  {
+   "call": [
+    "flask.send_from_directory"
+   ],
+   "cve_ids": [
+    "CVE-2026-25527"
+   ],
+   "family": "path_traversal",
+   "fix": "Keep the base directory fixed or chosen from a known list of allowed names, reject segments made only of dots, and resolve the final path and confirm it is still inside the intended static root before serving.",
+   "require": [
+    {
+     "arg": 0,
+     "is": "built_string",
+     "keyword": "directory"
+    }
+   ],
+   "rule_id": "send-from-directory-built-base-dir-v1",
+   "severity": "review",
+   "title": "File-sending helper receives a base directory assembled from request data"
+  },
+  {
+   "call": [
+    "*.execute"
+   ],
+   "cve_ids": [
+    "CVE-2025-55156"
+   ],
+   "family": "sql_injection",
+   "fix": "Keep the SQL text constant, generate one bound placeholder per value for IN lists, and pass the values separately as the driver's parameters instead of joining or formatting them into the statement.",
+   "require": [
+    {
+     "arg": 0,
+     "is": "built_string"
+    }
+   ],
+   "rule_id": "sql-execute-built-string-v1",
+   "severity": "review",
+   "title": "SQL statement built from data by string formatting and passed to execute"
+  },
+  {
+   "call": [
+    "*.order_by"
+   ],
+   "cve_ids": [
+    "CVE-2019-7164"
+   ],
+   "family": "sql_injection",
+   "fix": "Upgrade SQLAlchemy to 1.3.0b3 or later, and map outside sort choices to an allowlist of column objects instead of building order_by text from input.",
+   "require": [
+    {
+     "arg": 0,
+     "is": "built_string"
+    }
+   ],
+   "rule_id": "sqlalchemy-order-by-built-string-v1",
+   "severity": "review",
+   "title": "Query.order_by called with a string built from data (CVE-2019-7164)"
+  },
+  {
+   "call": [
+    "django.core.files.storage.default_storage.save"
+   ],
+   "cve_ids": [
+    "CVE-2021-45452"
+   ],
+   "family": "path_traversal",
+   "fix": "Upgrade Django to 2.2.26, 3.2.11, 4.0.1 or later, and have the application generate or strictly validate the stored name instead of passing externally supplied filenames to storage.",
+   "require": [
+    {
+     "arg": 0,
+     "is": "non_constant",
+     "keyword": "name"
+    }
+   ],
+   "rule_id": "storage-save-untrusted-name-v1",
+   "severity": "review",
+   "title": "Non-constant filename passed directly to Django default_storage.save"
+  },
+  {
+   "call": [
+    "*.load_repo_checkpoint"
+   ],
+   "cve_ids": [
+    "CVE-2024-3568"
+   ],
+   "family": "unsafe_deserialization",
+   "fix": "Upgrade transformers to a release that fixes CVE-2024-3568, load checkpoints only from sources you control or can verify, and prefer a weight format that does not execute code on load, such as safetensors.",
+   "require": [
+    {
+     "arg": 0,
+     "is": "non_constant",
+     "keyword": "repo_path_or_name"
+    }
+   ],
+   "rule_id": "tf-load-repo-checkpoint-untrusted-v1",
+   "severity": "review",
+   "title": "TFPreTrainedModel.load_repo_checkpoint called on a non-constant path or repo, which loads checkpoint data with pickle"
+  },
+  {
+   "call": [
+    "transformers.modeling_tf_pytorch_utils.convert_tf_weight_name_to_pt_weight_name"
+   ],
+   "cve_ids": [
+    "CVE-2025-5197"
+   ],
+   "family": "redos",
+   "fix": "Upgrade transformers to 4.53.0 or later, and do not run TensorFlow-to-PyTorch weight name conversion on names from untrusted sources in a shared service.",
+   "require": [
+    {
+     "arg": 0,
+     "is": "non_constant",
+     "keyword": "tf_name"
+    }
+   ],
+   "rule_id": "tf-weight-name-conversion-nonconstant-v1",
+   "severity": "review",
+   "title": "TensorFlow weight name passed to convert_tf_weight_name_to_pt_weight_name may trigger regex backtracking"
+  },
+  {
+   "call": [
+    "torch.load"
+   ],
+   "cve_ids": [
+    "CVE-2025-24357"
+   ],
+   "family": "unsafe_deserialization",
+   "fix": "Load checkpoints in the safetensors format where possible, or pass weights_only=True to torch.load, and only fetch weights from repositories you trust.",
+   "require": [
+    {
+     "arg": 0,
+     "is": "non_constant",
+     "keyword": "f"
+    },
+    {
+     "absent_or_not_in": [
+      true
+     ],
+     "keyword": "weights_only"
+    }
+   ],
+   "rule_id": "torch-load-without-weights-only-v1",
+   "severity": "review",
+   "title": "torch.load on a non-constant path without weights_only=True unpickles checkpoint data"
+  },
+  {
+   "call": [
+    "torch.load"
+   ],
+   "cve_ids": [
+    "CVE-2026-1839"
+   ],
+   "family": "unsafe_deserialization",
+   "fix": "Pass weights_only=True when calling torch.load, load checkpoints only from trusted sources, and upgrade Transformers and PyTorch to patched versions.",
+   "require": [
+    {
+     "absent_or_not_in": [
+      true
+     ],
+     "keyword": "weights_only"
+    }
+   ],
+   "rule_id": "torch-load-without-weights-only-v1",
+   "severity": "review",
+   "title": "torch.load called without weights_only=True can unpickle attacker-controlled checkpoint files"
+  },
+  {
+   "call": [
+    "tornado.web.HTTPError",
+    "*.set_status"
+   ],
+   "cve_ids": [
+    "CVE-2025-67724"
+   ],
+   "family": "xss",
+   "fix": "Upgrade Tornado to 6.5.3 or newer, and use a fixed literal reason or omit it; put variable text in log_message instead of reason.",
+   "require": [
+    {
+     "is": "non_constant",
+     "keyword": "reason"
+    }
+   ],
+   "rule_id": "tornado-untrusted-reason-phrase-v1",
+   "severity": "review",
+   "title": "Non-constant reason passed to Tornado set_status or HTTPError"
+  },
+  {
+   "call": [
+    "transformers.testing_utils.preprocess_string"
+   ],
+   "cve_ids": [
+    "CVE-2025-2099"
+   ],
+   "family": "redos",
+   "fix": "Upgrade transformers to 4.50.0 or later, and do not pass untrusted multi-line text to preprocess_string or code paths that call it.",
+   "require": [
+    {
+     "arg": 0,
+     "is": "non_constant",
+     "keyword": "string"
+    }
+   ],
+   "rule_id": "transformers-preprocess-string-untrusted-input-v1",
+   "severity": "review",
+   "title": "transformers.testing_utils.preprocess_string called with non-constant text (ReDoS in docstring code block regex before 4.50.0)"
+  },
+  {
+   "call": [
+    "twisted.web.util.redirectTo"
+   ],
+   "cve_ids": [
+    "CVE-2024-41810"
+   ],
+   "family": "xss",
+   "fix": "Upgrade Twisted to 24.7.0rc1 or later, and make sure the redirect target is never chosen directly by request data unless it has been checked against an allowlist of expected destinations.",
+   "require": [
+    {
+     "arg": 0,
+     "is": "non_constant",
+     "keyword": "URL"
+    }
+   ],
+   "rule_id": "twisted-redirectto-non-constant-url-v1",
+   "severity": "review",
+   "title": "twisted.web.util.redirectTo called with a non-constant URL (HTML injection in redirect body on Twisted before 24.7.0rc1)"
+  },
+  {
+   "call": [
+    "urllib3.PoolManager"
+   ],
+   "cve_ids": [
+    "CVE-2025-50181"
+   ],
+   "family": "open_redirect",
+   "fix": "Upgrade urllib3 to 2.5.0 or later, and until then disable redirects on each request call instead of relying on the pool-level retries setting.",
+   "require": [
+    {
+     "equals": false,
+     "keyword": "retries"
+    }
+   ],
+   "rule_id": "urllib3-poolmanager-retries-false-redirects-v1",
+   "severity": "review",
+   "title": "PoolManager created with retries=False to disable redirects, which urllib3 before 2.5.0 ignores"
+  },
+  {
+   "call": [
+    "wagtail.search.utils.parse_query_string"
+   ],
+   "cve_ids": [
+    "CVE-2024-39317"
+   ],
+   "family": "redos",
+   "fix": "Upgrade Wagtail to 5.2.6, 6.0.6 or 6.1.3 or later; where an upgrade is not possible, cap the length of untrusted search text before passing it to parse_query_string.",
+   "require": [
+    {
+     "arg": 0,
+     "is": "non_constant",
+     "keyword": "query_string"
+    }
+   ],
+   "rule_id": "wagtail-parse-query-string-untrusted-input-v1",
+   "severity": "review",
+   "title": "Wagtail parse_query_string called on non-constant text (ReDoS on long strings without spaces)"
+  },
+  {
+   "call": [
+    "langchain_community.retrievers.web_research.WebResearchRetriever.from_llm",
+    "langchain_community.retrievers.web_research.WebResearchRetriever",
+    "langchain_community.retrievers.WebResearchRetriever.from_llm",
+    "langchain_community.retrievers.WebResearchRetriever",
+    "langchain.retrievers.web_research.WebResearchRetriever.from_llm",
+    "langchain.retrievers.web_research.WebResearchRetriever"
+   ],
+   "cve_ids": [
+    "CVE-2024-3095"
+   ],
+   "family": "ssrf",
+   "fix": "Do not enable the dangerous-requests opt-in unless the host's outbound traffic goes through a proxy or egress filter that blocks loopback, private and cloud metadata addresses, and keep the retriever away from untrusted input.",
+   "require": [
+    {
+     "equals": true,
+     "keyword": "allow_dangerous_requests"
+    }
+   ],
+   "rule_id": "web-research-retriever-opt-in-ssrf-v1",
+   "severity": "review",
+   "title": "WebResearchRetriever enabled with dangerous requests allowed can fetch local and internal addresses"
+  },
+  {
+   "call": [
+    "werkzeug.utils.safe_join",
+    "werkzeug.security.safe_join"
+   ],
+   "cve_ids": [
+    "CVE-2024-49766"
+   ],
+   "family": "path_traversal",
+   "fix": "Upgrade Werkzeug to 3.0.6 or later, or run on Python 3.11 or later; also reject user-supplied segments that start with a double slash or backslash before calling safe_join.",
+   "require": [
+    {
+     "arg": 1,
+     "is": "non_constant"
+    }
+   ],
+   "rule_id": "werkzeug-safe-join-untrusted-path-v1",
+   "severity": "review",
+   "title": "Werkzeug safe_join called with a non-constant path segment (UNC bypass on Windows, Python before 3.11)"
+  },
+  {
+   "call": [
+    "wheel.cli.unpack.unpack"
+   ],
+   "cve_ids": [
+    "CVE-2026-24049"
+   ],
+   "family": "path_traversal",
+   "fix": "Upgrade wheel to 0.46.2 or later, and do not unpack wheel files from untrusted sources without first rejecting member names that resolve outside the destination directory.",
+   "require": [
+    {
+     "arg": 0,
+     "is": "non_constant",
+     "keyword": "path"
+    }
+   ],
+   "rule_id": "wheel-unpack-untrusted-archive-v1",
+   "severity": "review",
+   "title": "wheel unpack called on a wheel file chosen at runtime may change permissions outside the destination"
+  },
+  {
+   "call": [
+    "yaml.load",
+    "yaml.load_all"
+   ],
+   "cve_ids": [
+    "CVE-2017-18342"
+   ],
+   "family": "unsafe_deserialization",
+   "fix": "Parse untrusted YAML with yaml.safe_load (or pass a safe loader such as SafeLoader), and upgrade PyYAML to 5.1 or later.",
+   "require": [
+    {
+     "arg": 0,
+     "is": "non_constant",
+     "keyword": "stream"
+    },
+    {
+     "absent_or_not_in": [
+      "yaml.SafeLoader",
+      "yaml.CSafeLoader",
+      "yaml.BaseLoader"
+     ],
+     "keyword": "Loader"
+    }
+   ],
+   "rule_id": "yaml-load-without-safe-loader-v1",
+   "severity": "review",
+   "title": "yaml.load or yaml.load_all on non-constant input without a safe Loader"
+  },
+  {
+   "call": [
+    "*.recv_pyobj"
+   ],
+   "cve_ids": [
+    "CVE-2025-32444"
+   ],
+   "family": "unsafe_deserialization",
+   "fix": "Receive raw bytes or JSON and decode them with a data-only format plus validation instead of recv_pyobj, bind sockets only to the interface actually needed, and upgrade vLLM to 0.8.5 or later.",
+   "require": [],
+   "rule_id": "zmq-recv-pyobj-implicit-pickle-v1",
+   "severity": "review",
+   "title": "ZeroMQ recv_pyobj implicitly unpickles data received from a network peer"
+  }
+ ],
+ "schema_version": 1
+}

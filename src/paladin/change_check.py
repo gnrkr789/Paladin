@@ -5,10 +5,13 @@ and carry fixed Paladin text only, so project content is never echoed back to an
 agent as instructions.
 """
 import hashlib
+from importlib import resources
+import json
 import os
 from pathlib import Path, PurePosixPath
 import stat
 
+from paladin import data_rules
 from paladin.candidate_scan import MAX_FILE_BYTES, RULE_ID, scan_source
 from paladin.hg_argv_rule import RULE_ID as GENERAL_RULE_ID
 from paladin.pip_case_adapter import RULE_ID as PIP_RULE_ID
@@ -44,6 +47,38 @@ GUIDANCE = {
                 "to its option ('--rev=' + value). This is a review finding, not a confirmed vulnerability."),
     },
 }
+
+
+_DATA_RULES = None
+
+
+def load_data_rules():
+    """Shipped review-level rules (data only; examples stay in the research data)."""
+    text = resources.files("paladin").joinpath("resources", "change-rules.json").read_text(encoding="utf-8")
+    return data_rules.load_runtime(json.loads(text))
+
+
+def _data_rules():
+    global _DATA_RULES
+    if _DATA_RULES is None:
+        _DATA_RULES = data_rules.compile_rules(load_data_rules())
+    return _DATA_RULES
+
+
+def line_digest(text):
+    """Short digest of one stripped source line, so edits can be matched without echoing code."""
+    return hashlib.sha256(text.strip().encode("utf-8", "replace")).hexdigest()[:16]
+
+
+def _finding(item, lines):
+    line = item["line"]
+    found = {"rule_id": item["rule_id"], "cve_id": item["cve_ids"][0] if "cve_ids" in item else item["cve_id"],
+             "line": line, "line_sha": line_digest(lines[line - 1] if 0 < line <= len(lines) else "")}
+    if "cve_ids" in item:
+        found.update(cve_ids=item["cve_ids"], severity=item["severity"], title=item["title"], fix=item["fix"])
+    else:
+        found.update(severity=GUIDANCE[item["rule_id"]]["severity"], title=GUIDANCE[item["rule_id"]]["title"])
+    return found
 
 
 def _entry(path, status, notes=(), sha=None, findings=()):
@@ -112,9 +147,9 @@ def check_file(root, raw):
     if len(data) > MAX_FILE_BYTES:
         return _entry(rel, "unsupported", ["file larger than the size limit"])
     candidates, notes = scan_source(rel, data)
-    findings = [{"rule_id": item["rule_id"], "cve_id": item["cve_id"], "line": item["line"],
-                 "severity": GUIDANCE[item["rule_id"]]["severity"], "title": GUIDANCE[item["rule_id"]]["title"]}
-                for item in sorted(candidates, key=lambda item: item["line"])]
+    candidates += data_rules.scan(_data_rules(), data)[0]  # Parse failures are already in notes.
+    lines = data.decode("utf-8", "replace").splitlines()
+    findings = [_finding(item, lines) for item in sorted(candidates, key=lambda item: (item["line"], item["rule_id"]))]
     status = "findings" if findings else ("partial" if notes else "clean")
     entry = _entry(rel, status, notes, hashlib.sha256(data).hexdigest(), findings)
     entry["parse_failed"] = any(note.startswith(PARSE_FAILURE) for note in notes)
@@ -127,12 +162,16 @@ def check_paths(root, paths):
         return {"status": "invalid_request", "files": []}
     files = [check_file(root, raw) for raw in paths]
     remaining, truncated = MAX_FINDINGS, False
-    for item in files:
-        if len(item["findings"]) > remaining:
-            item["findings"] = item["findings"][:remaining]
-            item["notes"].append("findings truncated to the response limit")
-            truncated = True
-        remaining -= len(item["findings"])
+    # Blocking findings take the budget first, so review noise can never hide a block.
+    for blocking in (True, False):
+        for item in files:
+            group = [finding for finding in item["findings"] if (finding["severity"] == "block") == blocking]
+            if len(group) > remaining:
+                dropped = group[remaining:]
+                item["findings"] = [finding for finding in item["findings"] if finding not in dropped]
+                item["notes"].append("findings truncated to the response limit")
+                truncated = True
+            remaining -= min(len(group), remaining)
     used = {finding["rule_id"] for item in files for finding in item["findings"]}
     statuses = {item["status"] for item in files}
     if "findings" in statuses:
@@ -143,6 +182,7 @@ def check_paths(root, paths):
         status = "clean"
     return {"status": status, "files": files, "truncated": truncated,
             "guidance": {rule: {"cause": GUIDANCE[rule]["cause"], "fix": GUIDANCE[rule]["fix"]}
-                         for rule in sorted(used)},
-            "limitations": ["Static, single-file pattern checks for two Mercurial CVE shapes only.",
+                         for rule in sorted(used) if rule in GUIDANCE},
+            "limitations": ["Static, single-file checks: blocking rules for two Mercurial CVE shapes and "
+                            "review-level rules drafted from CVE cards.",
                             "A clean result is not a security verdict."]}

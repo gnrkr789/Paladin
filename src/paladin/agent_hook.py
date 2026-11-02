@@ -13,12 +13,13 @@ import shlex
 import stat
 import tempfile
 
-from paladin.change_check import check_paths
+from paladin.change_check import check_paths, line_digest
 
 EDIT_TOOLS = {"Write", "Edit", "MultiEdit"}
 HOOK_MATCHER = "Write|Edit|MultiEdit"
 HOOK_MARKER = "hook claude-code"
 MAX_REASON = 4000
+MAX_REVIEW = 1500
 MAX_PAYLOAD = 16_000_000
 LOG_VARIABLE = "PALADIN_HOOK_LOG"
 
@@ -34,13 +35,36 @@ def _describe(entry, finding, guidance):
         title=finding["title"], cause=advice.get("cause", ""), fix=advice.get("fix", "")))
 
 
-def _respond(entries, guidance):
-    """Shared PostToolUse output for one or more checked files; None means allow silently."""
+def _brief(entry, finding, guidance):
+    fix = finding.get("fix") or guidance.get(finding["rule_id"], {}).get("fix", "")
+    return "- {path}:{line} [{rule}] {title}. Fix: {fix} Card: {cards}".format(
+        path=entry["path"], line=finding["line"], rule=finding["rule_id"], title=finding["title"], fix=fix,
+        cards=", ".join(finding.get("cve_ids") or [finding["cve_id"]]))
+
+
+def _bounded(header, items, tail):
+    """Header plus as many review lines as fit in MAX_REVIEW, then a count of the rest."""
+    text = header
+    for index, line in enumerate(items):
+        rest = "\n... and {} more review findings.".format(len(items) - index)
+        if len(text) + 1 + len(line) + len(rest) + len(tail) > MAX_REVIEW:
+            return text + rest + tail
+        text += "\n" + line
+    return text + tail
+
+
+def _respond(entries, guidance, written=None):
+    """Shared PostToolUse output for one or more checked files; None means allow silently.
+
+    written lists, per entry, digests of the lines this edit wrote (None: the whole file).
+    Review findings are reported only on those lines; blocking findings always are.
+    """
+    written = written or [None] * len(entries)
     unsupported = [entry for entry in entries if entry["status"] == "unsupported"]
     blocking = [(entry, finding) for entry in entries for finding in entry["findings"]
                 if finding["severity"] == "block"]
-    review = [(entry, finding) for entry in entries for finding in entry["findings"]
-              if finding["severity"] != "block"]
+    review = [(entry, finding) for entry, lines in zip(entries, written) for finding in entry["findings"]
+              if finding["severity"] != "block" and (lines is None or finding.get("line_sha") in lines)]
     notes = ["Not inspected (unsupported): {} ({}).".format(entry["path"] or "unsupported path",
                                              "; ".join(entry["notes"]) or "unsupported")
              for entry in unsupported]
@@ -56,18 +80,22 @@ def _respond(entries, guidance):
         lines.append("Static check of the changed files only; re-checked on the next edit.")
         return {"decision": "block", "reason": "\n".join(lines)[:MAX_REASON]}
     if review:
-        lines = ["Paladin review finding (not blocking; static pattern match, not a confirmed vulnerability):"]
-        lines += [_describe(entry, finding, guidance) for entry, finding in review]
-        return _context("\n".join(lines + notes))
+        header = "Paladin review finding (not blocking; static pattern match, not a confirmed vulnerability):"
+        tail = "".join("\n" + note for note in notes)
+        return _context(_bounded(header, [_brief(entry, finding, guidance) for entry, finding in review], tail))
     if notes:
         return _context("Paladin change check is incomplete. " + " ".join(notes))
     return None
 
 
-def _check(workspace, paths):
+def _written(texts):
+    return {line_digest(line) for text in texts if isinstance(text, str) for line in text.splitlines()}
+
+
+def _check(workspace, paths, written=None):
     try:
         result = check_paths(Path(workspace), paths)
-        return _respond(result["files"], result["guidance"])
+        return _respond(result["files"], result["guidance"], written)
     except Exception as exc:  # The hook must never break the agent turn.
         return _context("Paladin change check unavailable ({}); no result for this edit.".format(
             type(exc).__name__))
@@ -83,10 +111,33 @@ def claude_code_hook(payload, workspace):
     raw = tool_input["file_path"]
     if not raw.lower().endswith(".py"):
         return None
-    return _check(workspace, [raw])
+    edits = tool_input.get("edits") if payload["tool_name"] == "MultiEdit" else [tool_input]
+    texts = [edit.get("new_string") for edit in edits or [] if isinstance(edit, dict)]
+    known = payload["tool_name"] != "Write" and any(isinstance(text, str) for text in texts)
+    return _check(workspace, [raw], [_written(texts) if known else None])
 
 
 PATCH_PATH = re.compile(r"^\*\*\* (?:Add File|Update File|Move to): (.+?)\s*$", re.M)
+PATCH_FILE = re.compile(r"^\*\*\* (Add File|Update File|Delete File|Move to): (.+?)\s*$")
+
+
+def patch_written(patch):
+    """Per target path: digests of added lines, or None for a new file (all lines written)."""
+    written, current = {}, None
+    for line in patch.splitlines():
+        header = PATCH_FILE.match(line)
+        if header:
+            kind, path = header.groups()
+            if kind == "Move to" and current is not None:
+                written[path] = written.get(current)
+            current = path
+            if kind == "Add File":
+                written[path] = None
+            elif kind == "Update File":
+                written.setdefault(path, set())
+        elif line.startswith("+") and current is not None and written.get(current) is not None:
+            written[current].add(line_digest(line[1:]))
+    return written
 
 
 def patch_paths(patch):
@@ -107,13 +158,14 @@ def codex_hook(payload, workspace):
     if not isinstance(patch, str):
         return _context("Paladin change check unavailable (unrecognized apply_patch input); no result for this edit.")
     base = payload.get("cwd") if isinstance(payload.get("cwd"), str) else str(workspace)
-    paths = [path if Path(path).is_absolute() else str(Path(base) / path)
-             for path in patch_paths(patch) if path.lower().endswith(".py")]
+    named = [path for path in patch_paths(patch) if path.lower().endswith(".py")]
+    paths = [path if Path(path).is_absolute() else str(Path(base) / path) for path in named]
     if not paths:
         return None
     if len(paths) > 20:
         return _context("Paladin change check covered the first 20 of {} Python files.".format(len(paths)))
-    return _check(workspace, paths)
+    written = patch_written(patch)
+    return _check(workspace, paths, [written.get(path, set()) for path in named])
 
 
 HOSTS = {"claude-code": claude_code_hook, "codex": codex_hook}

@@ -12,6 +12,7 @@ import numpy as np
 
 from paladin.embedding import LocalEmbedder, model_lock, model_directory, verify_artifacts
 from paladin.local import _state, _read_config, _verify_metadata
+from paladin import lexical
 from paladin.language import TEXT_POLICY, require_english, validate_authored_text
 
 VERIFIED_FAMILIES = {"path_traversal", "sql_injection", "ssrf", "command_injection", "unsafe_deserialization"}
@@ -207,6 +208,19 @@ def knowledge_status(root):
         return _failure(exc)
 
 
+DENSE_POOL = 100  # dense candidates that BM25 may reorder before the limit applies
+_LEXICAL = {}
+
+
+def _lexical_index(pack):
+    documents = {p["pattern_id"]: passage(p) for p in pack["patterns"]}
+    key = hashlib.sha256(json.dumps(documents, sort_keys=True).encode()).hexdigest()
+    if key not in _LEXICAL:
+        _LEXICAL.clear()
+        _LEXICAL[key] = lexical.Bm25(documents)
+    return _LEXICAL[key]
+
+
 def search_patterns(root, query, *, limit=5, family=None, embedder=None):
     if (not isinstance(query, str) or not query.strip() or len(query.encode("utf-8")) > 20000
             or isinstance(limit, bool) or not isinstance(limit, int) or not 1 <= limit <= 20):
@@ -225,18 +239,18 @@ def search_patterns(root, query, *, limit=5, family=None, embedder=None):
         try:
             if not store.matches(manifest):
                 raise ValueError("Milvus semantic index manifest mismatch")
-            hits = store.search(manifest, vector, limit, family)
+            hits = store.search(manifest, vector, DENSE_POOL, family)
         finally:
             store.close()
         patterns = {p["pattern_id"]: p for p in pack["patterns"]}
-        matches = []
-        for hit in hits:
-            if hit["id"] not in patterns:
-                raise ValueError("index contains unknown pattern identity")
-            matches.append({"pattern": patterns[hit["id"]], "cosine_similarity": hit["distance"],
-                            "applicability": "must_verify_preconditions"})
+        if any(hit["id"] not in patterns for hit in hits):
+            raise ValueError("index contains unknown pattern identity")
+        distance = {hit["id"]: hit["distance"] for hit in hits}
+        ranked = lexical.fuse([hit["id"] for hit in hits], _lexical_index(pack).scores(query), limit)
+        matches = [{"pattern": patterns[key], "cosine_similarity": distance[key],
+                    "applicability": "must_verify_preconditions"} for key in ranked]
         return {"status": "complete", "judgment": "reference_candidates" if matches else "no_known_match",
-                "matches": matches, "manifest": manifest, "security_ready": False,
+                "matches": matches, "manifest": manifest, "ranking": "hybrid_bm25_rrf_v1", "security_ready": False,
                 "notice": "Advisory references only. Similarity is not a vulnerability probability or blocking verdict."}
     except Exception as exc:
         return _failure(exc)

@@ -1,8 +1,13 @@
-"""Fixed development retrieval evaluation. Requires a prepared model and index."""
+"""Fixed development retrieval evaluation. Requires a prepared model and index.
+
+Usage: python -B eval/run_m2.py [FIXTURE] [OUTPUT] [--force] (defaults: the v1 query set and its
+evidence file). An existing result for a held-out fixture is never replaced without --force.
+"""
 import hashlib
 import json
 from pathlib import Path
 import statistics
+import sys
 import time
 from unittest.mock import patch
 
@@ -11,10 +16,21 @@ from paladin.knowledge import search_patterns
 from paladin.language import require_english
 
 
-def main():
+def check_output(data, output, force):
+    """A held-out set is measured once: refuse to replace its recorded result unless forced."""
+    if "held_out" in data.get("purpose", "") and output.exists() and not force:
+        raise SystemExit("refusing to overwrite held-out evidence {}; pass --force or another output".format(output))
+
+
+def main(argv=None):
     root = Path(__file__).resolve().parents[1]
-    fixture = root / "eval/m2-queries.json"
+    args = sys.argv[1:] if argv is None else argv
+    force = "--force" in args
+    args = [arg for arg in args if arg != "--force"]
+    fixture = root / (args[0] if args else "eval/m2-queries.json")
     data = json.loads(fixture.read_text(encoding="utf-8"))
+    output = root / (args[1] if len(args) > 1 else "docs/evidence/m2/retrieval-evaluation.json")
+    check_output(data, output, force)
     for item in data["queries"]:
         if item["language"] != "en":
             raise ValueError("evaluation supports English only")
@@ -48,9 +64,9 @@ def main():
                "p95_seconds": sorted(x["seconds"] for x in results)[int(total * .95) - 1],
                "languages": {lang: sum(x["hit_at_5"] for x in results if x["language"] == lang)
                              / sum(x["language"] == lang for x in results) for lang in ["en"]},
-               "gate": data["gate"], "security_prevention_evaluated": False}
+               "gate": data["gate"], "ranking": result.get("ranking", "dense_v1"),
+               "security_prevention_evaluated": False}
     summary["gate_pass"] = summary["hit_at_5"] >= data["gate"]["hit_at_5"] and summary["mrr"] >= data["gate"]["mrr"]
-    output = root / "docs/evidence/m2/retrieval-evaluation.json"
     output.write_text(json.dumps({"summary": summary, "results": results}, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     print(json.dumps(summary, indent=2))
     return 0 if summary["gate_pass"] else 1

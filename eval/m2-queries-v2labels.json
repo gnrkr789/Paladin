@@ -1,0 +1,1262 @@
+{
+ "purpose": "v1_queries_with_model_judged_candidate_labels_uncalibrated",
+ "gate": {
+  "hit_at_5": 0.8,
+  "mrr": 0.6
+ },
+ "queries": [
+  {
+   "id": "en-paraphrase-upload",
+   "language": "en",
+   "query": "How can uploaded names containing parent directory components be prevented from escaping their storage directory?",
+   "relevant": [
+    "CVE-2021-31542",
+    "CVE-2021-28658",
+    "CVE-2024-39330",
+    "CVE-2021-45452",
+    "CVE-2026-24486",
+    "CVE-2026-39844",
+    "CVE-2025-54140",
+    "CVE-2026-24049",
+    "CVE-2026-25527",
+    "CVE-2024-47164",
+    "CVE-2023-47890"
+   ]
+  },
+  {
+   "id": "en-upload",
+   "language": "en",
+   "query": "How should Django validate an uploaded filename before storage so parent directories cannot escape the upload root?",
+   "relevant": [
+    "CVE-2021-31542",
+    "CVE-2021-28658",
+    "CVE-2024-39330",
+    "CVE-2021-45452",
+    "CVE-2025-54140",
+    "CVE-2026-24486",
+    "CVE-2023-47890",
+    "CVE-2024-47164",
+    "CVE-2026-25527"
+   ]
+  },
+  {
+   "id": "en-paraphrase-windows",
+   "language": "en",
+   "query": "How should a Windows network share path be rejected when an older Python absolute-path check misses it?",
+   "relevant": [
+    "CVE-2024-49766",
+    "CVE-2026-28414",
+    "CVE-2026-33682"
+   ]
+  },
+  {
+   "id": "en-windows",
+   "language": "en",
+   "query": "Werkzeug safe_join on Windows Python before 3.11 can miss UNC paths. What extra condition is needed?",
+   "relevant": [
+    "CVE-2024-49766",
+    "CVE-2026-28414"
+   ]
+  },
+  {
+   "id": "en-paraphrase-datepart",
+   "language": "en",
+   "query": "Can user-selected date units in Django date extraction and truncation inject structural SQL arguments?",
+   "relevant": [
+    "CVE-2022-34265"
+   ]
+  },
+  {
+   "id": "en-datepart",
+   "language": "en",
+   "query": "Untrusted kind or lookup_name is passed to Trunc and Extract date functions; how should structural SQL arguments be constrained?",
+   "relevant": [
+    "CVE-2022-34265"
+   ]
+  },
+  {
+   "id": "en-paraphrase-ordering",
+   "language": "en",
+   "query": "How should user-controlled sorting fields be validated when a deprecated Django alias path bypasses checks?",
+   "relevant": [
+    "CVE-2021-35042"
+   ]
+  },
+  {
+   "id": "en-ordering",
+   "language": "en",
+   "query": "A deprecated raw column alias path in QuerySet.order_by bypasses validation despite emitting a warning.",
+   "relevant": [
+    "CVE-2021-35042",
+    "CVE-2026-1312"
+   ]
+  },
+  {
+   "id": "en-paraphrase-brackets",
+   "language": "en",
+   "query": "How can bracketed URL hosts cause parser disagreement and requests to an internal network?",
+   "relevant": [
+    "CVE-2024-11168",
+    "CVE-2026-25960"
+   ]
+  },
+  {
+   "id": "en-brackets",
+   "language": "en",
+   "query": "urllib.parse accepts bracketed hosts that are not IPv6 or IPvFuture, causing parser disagreement and conditional SSRF.",
+   "relevant": [
+    "CVE-2024-11168",
+    "CVE-2026-25960",
+    "CVE-2026-24779",
+    "CVE-2024-24808"
+   ]
+  },
+  {
+   "id": "en-paraphrase-options",
+   "language": "en",
+   "query": "Can a user-supplied branch name become a process option even when subprocess uses an argument list without a shell?",
+   "relevant": [
+    "CVE-2022-24065",
+    "CVE-2026-76219"
+   ]
+  },
+  {
+   "id": "en-options",
+   "language": "en",
+   "query": "Mercurial checkout receives an untrusted branch argument and interprets it as a flag even with shell=False.",
+   "relevant": [
+    "CVE-2022-24065",
+    "CVE-2023-5752"
+   ]
+  },
+  {
+   "id": "en-paraphrase-exceptions",
+   "language": "en",
+   "query": "How can restoring an exception from stored task queue error metadata invoke an arbitrary function?",
+   "relevant": [
+    "CVE-2021-23727",
+    "CVE-2026-67587",
+    "CVE-2026-58076",
+    "CVE-2012-4406"
+   ]
+  },
+  {
+   "id": "en-exceptions",
+   "language": "en",
+   "query": "Celery result metadata selects a callable as an exception constructor; validate BaseException subclass before invocation.",
+   "relevant": [
+    "CVE-2021-23727",
+    "CVE-2026-58076"
+   ]
+  },
+  {
+   "id": "en-paraphrase-pickle",
+   "language": "en",
+   "query": "How should a machine learning web service reject pickle data from external HTTP requests before deserialization?",
+   "relevant": [
+    "CVE-2024-2912",
+    "CVE-2025-27520",
+    "CVE-2026-57516",
+    "CVE-2018-8021",
+    "CVE-2024-3568",
+    "CVE-2024-5998",
+    "CVE-2025-32444",
+    "CVE-2012-4406",
+    "CVE-2025-29783"
+   ]
+  },
+  {
+   "id": "en-pickle",
+   "language": "en",
+   "query": "BentoML entry service should reject pickle media type at the public request boundary while preserving ordinary JSON requests.",
+   "relevant": [
+    "CVE-2024-2912",
+    "CVE-2025-27520",
+    "CVE-2025-32444",
+    "CVE-2025-29783"
+   ]
+  },
+  {
+   "id": "en-paraphrase-commonprefix",
+   "language": "en",
+   "query": "Can checking only an extraction directory string prefix allow escape into a sibling directory sharing that prefix?",
+   "relevant": [
+    "CVE-2025-59682",
+    "CVE-2021-3281",
+    "CVE-2026-48099",
+    "CVE-2023-29159",
+    "CVE-2026-55443"
+   ]
+  },
+  {
+   "id": "en-tolerance",
+   "language": "en",
+   "query": "Oracle GIS tolerance is supplied by an external user and interpolated into SQL instead of passed as a numeric Value expression.",
+   "relevant": [
+    "CVE-2020-9402",
+    "CVE-2024-5225"
+   ]
+  },
+  {
+   "id": "en-paraphrase-leadingzero",
+   "language": "en",
+   "query": "How can leading zeros in IPv4 octets cause inconsistent octal interpretation and bypass address validation?",
+   "relevant": [
+    "CVE-2021-33571"
+   ]
+  },
+  {
+   "id": "en-redirect",
+   "language": "en",
+   "query": "An urllib3 PoolManager redirect-disable policy is lost through retry handling; SSRF mitigation must apply at the effective request layer.",
+   "relevant": [
+    "CVE-2025-50181",
+    "CVE-2026-35459",
+    "CVE-2023-47116"
+   ]
+  }
+ ],
+ "protocol_revision": "english-only-v1+pooled-judge-v1",
+ "pool_depth": 10,
+ "judge": "claude-sonnet-5-5",
+ "judgments": [
+  {
+   "query_id": "en-paraphrase-upload",
+   "pattern_id": "CVE-2026-24486",
+   "relevant": true,
+   "reason": "The card covers the same weakness class (client-supplied upload filename escaping the storage directory via path join) and its general fix, treating the name as a single leaf and verifying the resolved destination stays inside the upload directory, applies to parent-directory components like '../' too, though the card's specific trigger is an absolute path and the library fix is python-multipart-specific."
+  },
+  {
+   "query_id": "en-paraphrase-upload",
+   "pattern_id": "CVE-2026-39844",
+   "relevant": true,
+   "reason": "The card covers upload filenames escaping the storage directory via path separators (backslashes on Windows) and gives applicable fixes: sanitize with platform-aware separators, use server-generated names, and verify the resolved destination stays inside the upload directory, which directly addresses the question about parent directory components."
+  },
+  {
+   "query_id": "en-paraphrase-upload",
+   "pattern_id": "CVE-2025-54140",
+   "relevant": true,
+   "reason": "The card covers the same weakness (path traversal via parent-directory sequences in an uploaded filename escaping the storage directory) and gives an applicable fix: sanitize the filename, resolve the final path with realpath, and verify it stays inside the storage folder before saving."
+  },
+  {
+   "query_id": "en-paraphrase-upload",
+   "pattern_id": "CVE-2026-24049",
+   "relevant": true,
+   "reason": "Both concern path traversal via '..' components in untrusted names (upload filenames vs. archive member names) escaping a destination directory, and the card's fix of rejecting/normalizing names and verifying the resolved path stays inside the destination directory applies directly, though the card's focus is on post-extraction permission changes in wheel."
+  },
+  {
+   "query_id": "en-paraphrase-upload",
+   "pattern_id": "CVE-2026-25527",
+   "relevant": true,
+   "reason": "Both are path traversal through '..' in a user-supplied path component, and the card's fix of resolving the final path with realpath, confirming it stays inside the intended root, and not trusting a dot-permitting character filter applies directly to upload storage, even though the card's example is a read-side static route."
+  },
+  {
+   "query_id": "en-paraphrase-upload",
+   "pattern_id": "CVE-2024-27306",
+   "relevant": false,
+   "reason": "The question concerns path traversal via uploaded file names with parent directory components, while the card covers XSS from unescaped file names in aiohttp directory index pages, which is a different weakness (HTML injection) with a fix (HTML-escaping, upgrading aiohttp) that doesn't apply to path sanitization."
+  },
+  {
+   "query_id": "en-paraphrase-upload",
+   "pattern_id": "CVE-2025-58180",
+   "relevant": false,
+   "reason": "The question is about path traversal (parent directory components like '../' escaping the storage directory), while the card covers command injection via filenames in event handler system commands, a different weakness class whose fix (safe-character filename restriction, disabling handlers, upgrading OctoPrint) does not address path containment."
+  },
+  {
+   "query_id": "en-paraphrase-upload",
+   "pattern_id": "CVE-2024-47164",
+   "relevant": true,
+   "reason": "The card covers path traversal via parent-directory sequences defeating a directory containment check, and its fix of resolving to a normalized absolute path and comparing against the resolved allowed directory applies directly to preventing uploaded names with '..' from escaping a storage directory."
+  },
+  {
+   "query_id": "en-paraphrase-upload",
+   "pattern_id": "CVE-2023-47890",
+   "relevant": true,
+   "reason": "Both concern path traversal where a user-supplied name/folder with parent-directory components escapes the intended storage root, and the card's fix (validate on every entry point in shared code, and verify the resolved final path stays inside the root before writing) directly applies to preventing uploaded names from escaping their storage directory."
+  },
+  {
+   "query_id": "en-upload",
+   "pattern_id": "CVE-2025-54140",
+   "relevant": true,
+   "reason": "The card covers the same weakness (path traversal via a client-supplied upload filename in Python code) and its fix direction\u2014sanitize the filename to remove separators and parent sequences, resolve the final path with realpath, and confirm it stays inside the storage root\u2014applies directly to Django upload handling, though the pyLoad-specific upgrade advice does not."
+  },
+  {
+   "query_id": "en-upload",
+   "pattern_id": "CVE-2026-24486",
+   "relevant": true,
+   "reason": "The card covers the same weakness (client-supplied filename with a leading slash defeating os.path.join and escaping the upload root) and its application-level fix of treating the name as a leaf and verifying the final path stays inside the upload directory applies directly to Django filename validation, even though the specific library upgrade is python-multipart rather than Django."
+  },
+  {
+   "query_id": "en-upload",
+   "pattern_id": "CVE-2023-47890",
+   "relevant": true,
+   "reason": "The card describes path traversal from an unvalidated user-supplied folder/path value escaping a storage root, with a fix of enforcing containment within the root in shared storage code and verifying the final resolved location before writing, which directly applies to validating Django upload filenames against escaping the upload root."
+  },
+  {
+   "query_id": "en-upload",
+   "pattern_id": "CVE-2023-47115",
+   "relevant": false,
+   "reason": "The card addresses stored XSS from unvalidated file extensions and content-type sniffing in Django's serve view, whereas the question is about path traversal via filename sanitization to keep uploads inside the upload root, so the weakness and fix direction differ."
+  },
+  {
+   "query_id": "en-upload",
+   "pattern_id": "CVE-2026-35464",
+   "relevant": false,
+   "reason": "The question is about validating uploaded filenames in Django to prevent parent-directory traversal, whereas the card covers a user-changeable download folder setting redirected into a pickle-backed session store, with a fix of making the option admin-only and denylisting sensitive directories; the weakness and fix direction differ."
+  },
+  {
+   "query_id": "en-upload",
+   "pattern_id": "CVE-2024-47164",
+   "relevant": true,
+   "reason": "The card covers path traversal via parent-directory sequences bypassing a directory containment check, and its in-code fix (resolve to a normalized absolute path, compare against the resolved allowed directory, reject malformed paths) directly applies to validating Django upload filenames against the upload root, though the Gradio upgrade advice is not applicable."
+  },
+  {
+   "query_id": "en-upload",
+   "pattern_id": "CVE-2026-25527",
+   "relevant": true,
+   "reason": "Both involve path traversal where a user-supplied path segment containing dots escapes an intended root directory, and the card's fix (reject dot-only segments, resolve with realpath and confirm containment within the root) applies directly to validating upload filenames in Django, though the card is about serving files rather than storing uploads."
+  },
+  {
+   "query_id": "en-paraphrase-windows",
+   "pattern_id": "CVE-2026-28414",
+   "relevant": true,
+   "reason": "Both concern Windows path forms (UNC share vs. root-relative) slipping past an os.path.isabs check on untrusted input, and the card's fix of not relying on isabs alone but resolving the joined path and confirming it stays inside the base directory also rejects network share paths."
+  },
+  {
+   "query_id": "en-paraphrase-windows",
+   "pattern_id": "CVE-2026-12372",
+   "relevant": false,
+   "reason": "The card covers an SSRF gap in IP address validation (RFC 6598 range missed by an ipaddress private check), while the question is about rejecting Windows UNC/network share file paths that an older os.path.isabs-style check misses, which is a different weakness in different code."
+  },
+  {
+   "query_id": "en-paraphrase-windows",
+   "pattern_id": "CVE-2026-33682",
+   "relevant": true,
+   "reason": "The card covers rejecting untrusted Windows UNC/network share paths before resolving them with os.path.realpath()/Path.resolve(), which directly matches the question's concern about rejecting network share paths that older Python absolute-path checks miss, and its fix direction (validate and reject remote network locations before resolution) applies."
+  },
+  {
+   "query_id": "en-paraphrase-windows",
+   "pattern_id": "CVE-2024-24808",
+   "relevant": false,
+   "reason": "The card covers an open redirect caused by urlparse/client disagreement on URLs like https:///example.com, whereas the question is about rejecting Windows UNC network share paths (path validation/traversal) that an older Python os.path.isabs check misses, so the weakness class, code context, and fix direction differ."
+  },
+  {
+   "query_id": "en-paraphrase-windows",
+   "pattern_id": "CVE-2026-87819",
+   "relevant": false,
+   "reason": "The card covers regex denial of service in GitPython's commit author/committer header parsing, while the question is about path validation that rejects Windows UNC network share paths missed by an older Python os.path.isabs check, which is a different weakness in a different kind of code."
+  },
+  {
+   "query_id": "en-paraphrase-windows",
+   "pattern_id": "CVE-2023-40587",
+   "relevant": false,
+   "reason": "The question concerns rejecting Windows UNC/network share paths that an older os.path.isabs check misses, whereas the card covers null-byte truncation in os.path.normpath causing a one-directory-up traversal in Pyramid static views, a different weakness with a different fix."
+  },
+  {
+   "query_id": "en-paraphrase-windows",
+   "pattern_id": "CVE-2024-0818",
+   "relevant": false,
+   "reason": "The question is about rejecting Windows UNC/network share paths that older Python absolute-path checks miss, while the card is a generic PaddlePaddle path traversal advisory whose fix is to upgrade and canonicalize with realpath, and it never mentions UNC paths or Windows-specific absolute-path detection gaps."
+  },
+  {
+   "query_id": "en-paraphrase-windows",
+   "pattern_id": "CVE-2026-76217",
+   "relevant": false,
+   "reason": "The question concerns rejecting Windows UNC/network share paths that an older Python os.path.isabs-style check misses (path validation), whereas the card covers GitPython forwarding pathspec-from-file options into git rm/checkout leading to file disclosure via error text, which is a different weakness in different code with an inapplicable fix."
+  },
+  {
+   "query_id": "en-paraphrase-windows",
+   "pattern_id": "CVE-2024-42474",
+   "relevant": false,
+   "reason": "The question asks how to reject Windows UNC/network share paths that an older Python absolute-path check (os.path.isabs) misses, but the card only says to upgrade Streamlit or disable static file sharing and explicitly does not describe the input handling flaw or a concrete path-validation fix."
+  },
+  {
+   "query_id": "en-windows",
+   "pattern_id": "CVE-2026-24049",
+   "relevant": false,
+   "reason": "The question concerns Werkzeug safe_join missing UNC paths on Windows (Python < 3.11), which needs an extra check such as rejecting paths with UNC prefixes like '//' or '\\\\'; the card covers wheel unpack applying permissions to unsanitized archive member names, a different weakness in different code with a different fix."
+  },
+  {
+   "query_id": "en-windows",
+   "pattern_id": "CVE-2026-76220",
+   "relevant": false,
+   "reason": "The question concerns Werkzeug safe_join missing UNC paths on Windows (path traversal and path normalization), while the card covers GitPython's unsafe-option guard bypass via joined short-option tokens (argument injection), which is a different weakness in different code with an unrelated fix."
+  },
+  {
+   "query_id": "en-windows",
+   "pattern_id": "CVE-2026-78677",
+   "relevant": false,
+   "reason": "The question concerns Werkzeug safe_join missing UNC paths on Windows (path traversal in a path-joining helper), while the card covers GitPython clone_from option denylist bypass via --separate-git-dir, a different weakness in different code with a non-applicable fix."
+  },
+  {
+   "query_id": "en-windows",
+   "pattern_id": "CVE-2026-78683",
+   "relevant": false,
+   "reason": "The question concerns path traversal via UNC paths in Werkzeug's safe_join on Windows, while the card covers unsafe pickle deserialization in NLTK's TransitionParser, which is a different weakness in different code with a non-applicable fix."
+  },
+  {
+   "query_id": "en-windows",
+   "pattern_id": "CVE-2026-28414",
+   "relevant": true,
+   "reason": "Both cases involve a safe-join check on Windows that relies on os.path.isabs, whose behavior varies by Python version and lets UNC or root-relative paths escape the base directory, and the card's fix of not trusting isabs alone and verifying the resolved path stays inside the base directory applies, though it does not name Werkzeug's specific extra condition."
+  },
+  {
+   "query_id": "en-windows",
+   "pattern_id": "CVE-2023-40587",
+   "relevant": false,
+   "reason": "The question concerns Werkzeug safe_join missing UNC paths on Windows (Python <3.11) and the extra condition needed, whereas the card covers Pyramid static view traversal via null-byte truncation in os.path.normpath on Python 3.11, a different weakness, framework, and fix."
+  },
+  {
+   "query_id": "en-windows",
+   "pattern_id": "CVE-2026-48818",
+   "relevant": false,
+   "reason": "The card covers Starlette's StaticFiles calling realpath on a UNC path, which triggers outbound SMB/NTLM before the containment check, with an upgrade as the fix. The question is about Werkzeug's safe_join failing to detect UNC paths on Python before 3.11, which needs an extra explicit UNC/absolute-path rejection condition that the card does not give."
+  },
+  {
+   "query_id": "en-windows",
+   "pattern_id": "CVE-2026-42215",
+   "relevant": false,
+   "reason": "The question concerns Werkzeug safe_join missing UNC paths on Windows (path traversal and path normalization), while the card covers GitPython's unsafe-option check being bypassed by underscore-form kwargs (argument injection), so the weakness, code, and fix do not match."
+  },
+  {
+   "query_id": "en-windows",
+   "pattern_id": "CVE-2026-24486",
+   "relevant": false,
+   "reason": "The question asks about a specific Werkzeug safe_join bypass on Windows with UNC paths before Python 3.11 (the extra condition needed), while the card covers python-multipart's os.path.join with an absolute leading-slash filename; they are different libraries and different specific bugs, and the card's fix (upgrade python-multipart, treat name as leaf) does not answer the UNC-path condition."
+  },
+  {
+   "query_id": "en-paraphrase-datepart",
+   "pattern_id": "CVE-2026-1312",
+   "relevant": false,
+   "reason": "The card covers order_by() injection via dotted aliases reused in FilteredRelation, whereas the question concerns user-selected date units (kind/lookup_name) in Extract/Trunc functions, a different API and injection vector whose fix (validating the unit against an allowlist or upgrading for that specific CVE) does not match the card's guidance."
+  },
+  {
+   "query_id": "en-paraphrase-datepart",
+   "pattern_id": "CVE-2026-1287",
+   "relevant": false,
+   "reason": "The question concerns user-selected date units (kind/lookup_name) in Extract/Trunc functions injecting SQL arguments, whereas the card covers control characters in column alias names via FilteredRelation and **kwargs expansion into annotate/aggregate/values, a different injection point and fix (alias name validation), so its guidance does not directly apply."
+  },
+  {
+   "query_id": "en-paraphrase-datepart",
+   "pattern_id": "CVE-2024-27351",
+   "relevant": false,
+   "reason": "The question is about SQL injection via user-controlled date units (kind/lookup_name) in Django's ORM date extraction and truncation functions, while the card covers a regex denial of service in HTML-aware word truncation (Truncator, truncatewords_html), which is a different weakness in different code with an unrelated fix."
+  },
+  {
+   "query_id": "en-paraphrase-datepart",
+   "pattern_id": "CVE-2024-5225",
+   "relevant": false,
+   "reason": "The question is about Django's date extraction/truncation functions (Extract/Trunc) letting a user-selected 'kind'/lookup name be interpolated into SQL as a structural argument, whereas the card covers litellm concatenating an api_key value into a query string; both are SQL injection, but the card's fix (parameterize values, validate value shape) doesn't address the Django case of restricting a user-chosen unit name to an allowlist of valid date parts."
+  },
+  {
+   "query_id": "en-paraphrase-datepart",
+   "pattern_id": "CVE-2020-13596",
+   "relevant": false,
+   "reason": "The question concerns SQL injection via user-controlled date unit arguments (kind/lookup_name) in Django's Extract/Trunc functions, while the card covers XSS from unencoded query parameters in the admin ForeignKeyRawIdWidget, so the weakness class, code area, and fix (URL encoding vs. validating/whitelisting date units) do not match."
+  },
+  {
+   "query_id": "en-paraphrase-datepart",
+   "pattern_id": "CVE-2019-7164",
+   "relevant": false,
+   "reason": "The card covers an SQLAlchemy order_by injection fixed by upgrading, while the question is about Django date extraction/truncation units (kind/lookup_name) injecting SQL, which is a different framework, parameter, and fix direction (validating the unit against an allowlist or upgrading Django)."
+  },
+  {
+   "query_id": "en-paraphrase-datepart",
+   "pattern_id": "CVE-2024-41991",
+   "relevant": false,
+   "reason": "The question concerns SQL injection through user-selected date units (kind/lookup_name) in Django's Extract/Trunc functions, whereas the card covers a denial of service in urlize, urlizetrunc and AdminURLFieldWidget with large Unicode inputs, which is a different weakness in different code with an unrelated fix."
+  },
+  {
+   "query_id": "en-paraphrase-datepart",
+   "pattern_id": "CVE-2023-49736",
+   "relevant": false,
+   "reason": "The card covers a user-chosen quote character in Superset's where_in Jinja macro (value delimiting in a templating helper), whereas the question concerns user-selected date unit names (kind/lookup_name) in Django's Extract/Trunc being injected into SQL, a different weakness in different code with a different fix (validating the unit against an allowlist)."
+  },
+  {
+   "query_id": "en-paraphrase-datepart",
+   "pattern_id": "CVE-2023-32786",
+   "relevant": false,
+   "reason": "The card covers prompt-injection-driven SSRF in Langchain, while the question is about SQL injection through user-selected date units (kind/lookup_name) in Django's Extract/Trunc functions, so the weakness class, codebase, and fix (upgrade Langchain, restrict fetch URLs) do not apply."
+  },
+  {
+   "query_id": "en-datepart",
+   "pattern_id": "CVE-2024-5225",
+   "relevant": false,
+   "reason": "The card is about SQL injection from a concatenated value (api_key), and its main fix is to keep the query structure fixed and bind values as parameters, but Trunc/Extract kind and lookup_name are structural parts of the SQL that cannot be bound as parameters and need an allowlist of permitted names, which the card does not cover."
+  },
+  {
+   "query_id": "en-datepart",
+   "pattern_id": "CVE-2026-70489",
+   "relevant": false,
+   "reason": "The question is about SQL injection via untrusted structural arguments (kind/lookup_name) in Trunc/Extract date functions and how to whitelist them, while the card covers a DoS from an unbounded recurrence walk anchored at a far-past date, a different weakness in unrelated code with a non-applicable fix."
+  },
+  {
+   "query_id": "en-datepart",
+   "pattern_id": "CVE-2025-3263",
+   "relevant": false,
+   "reason": "The question concerns SQL injection via untrusted structural arguments (kind, lookup_name) in Trunc/Extract date functions, whereas the card covers regex catastrophic backtracking (ReDoS) in Transformers' get_configuration_file, a different weakness class in different code with an unrelated fix."
+  },
+  {
+   "query_id": "en-datepart",
+   "pattern_id": "CVE-2026-0846",
+   "relevant": false,
+   "reason": "The card covers path traversal and arbitrary file read via nltk's filestring(), while the question is about SQL injection through untrusted structural arguments (kind, lookup_name) in Trunc/Extract date functions, so the weakness class, code context, and fix direction (allowlisting SQL parts) do not match."
+  },
+  {
+   "query_id": "en-datepart",
+   "pattern_id": "CVE-2026-78683",
+   "relevant": false,
+   "reason": "The question concerns SQL injection via untrusted structural arguments (kind/lookup_name) in Trunc/Extract date functions, while the card covers unsafe pickle deserialization in NLTK model loading, which is a different weakness class in unrelated code with a non-applicable fix."
+  },
+  {
+   "query_id": "en-datepart",
+   "pattern_id": "CVE-2024-39887",
+   "relevant": false,
+   "reason": "The question concerns SQL injection through structural arguments (kind, lookup_name) in ORM Trunc/Extract date functions, where the fix is allowlist validation of those arguments, while the card covers a Superset authorization bypass fixed by a deny list of engine-specific functions in submitted SQL, so the weakness and fix direction differ."
+  },
+  {
+   "query_id": "en-datepart",
+   "pattern_id": "CVE-2026-55574",
+   "relevant": false,
+   "reason": "The question concerns SQL injection via untrusted structural arguments (kind/lookup_name) in date Trunc/Extract functions, whereas the card covers ReDoS-style resource exhaustion from unbounded regex grammar compilation in an inference server, so the weakness and fix (allowlisting SQL identifiers vs. compile timeouts) do not match."
+  },
+  {
+   "query_id": "en-datepart",
+   "pattern_id": "CVE-2026-71513",
+   "relevant": false,
+   "reason": "The question concerns SQL injection through untrusted structural arguments (kind/lookup_name) to date functions like Trunc and Extract, whereas the card covers unsafe pickle deserialization via a dotted-name allowlist bypass in NLTK, which is a different weakness in different code with a non-applicable fix."
+  },
+  {
+   "query_id": "en-datepart",
+   "pattern_id": "CVE-2026-58076",
+   "relevant": false,
+   "reason": "The question concerns SQL injection via untrusted structural arguments (kind/lookup_name) in Trunc/Extract date functions, whereas the card covers unrestricted import_string() class instantiation during deserialization of Airflow exception nodes, a different weakness in different code with a fix (BaseException subclass check) that doesn't apply."
+  },
+  {
+   "query_id": "en-paraphrase-ordering",
+   "pattern_id": "CVE-2023-47890",
+   "relevant": false,
+   "reason": "The question concerns validating user-controlled sorting fields (e.g., ORDER BY injection) in Django when a deprecated alias path skips checks, while the card covers path traversal via an unvalidated package folder on edit in pyLoad; the weakness class and code context differ, though the 'enforce validation on every path' lesson is loosely similar."
+  },
+  {
+   "query_id": "en-paraphrase-ordering",
+   "pattern_id": "CVE-2025-11201",
+   "relevant": false,
+   "reason": "The question concerns validating user-controlled sorting fields (e.g., order_by) in Django where a deprecated alias path skips checks, whereas the card addresses path traversal in file paths via canonicalization and base-directory checks, which is a different weakness class and fix."
+  },
+  {
+   "query_id": "en-paraphrase-ordering",
+   "pattern_id": "CVE-2024-4941",
+   "relevant": false,
+   "reason": "The question concerns validating user-controlled sorting fields in Django (ORM order_by/alias injection), while the card covers gradio local file inclusion through JSON reaching file-caching traversal, which is a different weakness in different code with a non-applicable fix."
+  },
+  {
+   "query_id": "en-paraphrase-ordering",
+   "pattern_id": "CVE-2024-47164",
+   "relevant": false,
+   "reason": "The question concerns validating user-controlled sorting fields (e.g., Django order_by/ORM injection via a deprecated alias path), while the card addresses path traversal in directory containment checks in Gradio, which is a different weakness in different code with a non-applicable fix."
+  },
+  {
+   "query_id": "en-paraphrase-ordering",
+   "pattern_id": "CVE-2026-1287",
+   "relevant": false,
+   "reason": "The card covers SQL injection through control characters in alias names when a dictionary is expanded into kwargs for annotate, aggregate, extra, values, values_list and alias, whereas the question concerns validating user-controlled sort fields (order_by) where a deprecated path bypasses checks, so the affected code path and the version-upgrade fix do not match, even though the allowlist advice loosely carries over."
+  },
+  {
+   "query_id": "en-paraphrase-ordering",
+   "pattern_id": "CVE-2013-6044",
+   "relevant": false,
+   "reason": "The question concerns validating user-controlled sorting fields (order_by-style input, SQL injection) when a deprecated alias path skips checks, while the card covers redirect URL scheme validation allowing javascript: XSS, which is a different weakness in different code with an inapplicable fix."
+  },
+  {
+   "query_id": "en-paraphrase-ordering",
+   "pattern_id": "CVE-2015-2317",
+   "relevant": false,
+   "reason": "The question is about validating user-controlled sorting/ordering fields when a deprecated alias path skips checks, whereas the card covers control characters bypassing Django's is_safe_url redirect check (XSS via redirect URL), which is a different weakness in different code with a non-applicable fix."
+  },
+  {
+   "query_id": "en-paraphrase-ordering",
+   "pattern_id": "CVE-2026-88001",
+   "relevant": false,
+   "reason": "The question concerns validating user-controlled sorting fields (e.g., ORDER BY injection) in Django where a deprecated alias path bypasses checks, while the card covers SSRF via unchecked redirect destinations in aiohttp fetches; the weakness class, code context, and fix direction do not match."
+  },
+  {
+   "query_id": "en-ordering",
+   "pattern_id": "CVE-2026-1312",
+   "relevant": true,
+   "reason": "Both concern QuerySet.order_by() accepting dotted column aliases that bypass validation and allow SQL injection, and the card's fix (upgrade Django, reject period-containing aliases before order_by) applies, although the card's trigger is FilteredRelation alias reuse rather than a deprecation-warning path."
+  },
+  {
+   "query_id": "en-ordering",
+   "pattern_id": "CVE-2026-1287",
+   "relevant": false,
+   "reason": "The question concerns a deprecated raw column alias path in QuerySet.order_by bypassing validation, whereas the card covers SQL injection via control characters in alias names expanded as kwargs into annotate/aggregate/extra/values/values_list/alias (FilteredRelation), a different method and mechanism, so its fix guidance (upgrade versions, restrict kwarg alias names) does not directly apply."
+  },
+  {
+   "query_id": "en-ordering",
+   "pattern_id": "CVE-2024-39887",
+   "relevant": false,
+   "reason": "The question concerns Django's QuerySet.order_by accepting raw column aliases that skip validation (SQL injection via ORM ordering input), whereas the card covers Superset's SQL authorization missing engine-specific functions and fixes it with a function deny list, which is a different weakness in a different kind of code with a non-applicable fix."
+  },
+  {
+   "query_id": "en-ordering",
+   "pattern_id": "CVE-2024-53947",
+   "relevant": false,
+   "reason": "The question concerns Django's QuerySet.order_by accepting a deprecated raw column alias that skips validation (SQL injection via ORM ordering), while the card covers Superset's incomplete denylist of PostgreSQL functions in SQL authorization, so the code, weakness mechanism, and fix (adding functions to DISALLOWED_SQL_FUNCTIONS) do not apply."
+  },
+  {
+   "query_id": "en-ordering",
+   "pattern_id": "CVE-2024-2928",
+   "relevant": false,
+   "reason": "The question concerns SQL injection via a deprecated raw column alias path in Django's QuerySet.order_by, while the card covers directory traversal in URI fragments in mlflow, which is a different weakness class in different code with a non-applicable fix."
+  },
+  {
+   "query_id": "en-ordering",
+   "pattern_id": "CVE-2024-3848",
+   "relevant": false,
+   "reason": "The question concerns Django QuerySet.order_by raw column alias validation bypass (SQL injection), while the card covers URL fragment path-validation bypass leading to local file read in MLflow, so the weakness type, code context, and fix direction do not match."
+  },
+  {
+   "query_id": "en-ordering",
+   "pattern_id": "CVE-2025-52967",
+   "relevant": false,
+   "reason": "The question concerns Django's QuerySet.order_by raw column alias validation bypass (SQL injection-type issue in an ORM), while the card covers SSRF via an unvalidated gateway_path in MLflow's proxy handler, a different weakness class in different code with an unrelated fix."
+  },
+  {
+   "query_id": "en-paraphrase-brackets",
+   "pattern_id": "CVE-2022-36087",
+   "relevant": false,
+   "reason": "The question is about parser disagreement on bracketed URL hosts leading to SSRF/internal network access, while the card covers a denial of service from malformed IPv6 redirect URIs in oauthlib, a different weakness class with a fix (upgrade oauthlib, bound validation) that does not address parser differential or SSRF."
+  },
+  {
+   "query_id": "en-paraphrase-brackets",
+   "pattern_id": "CVE-2026-25960",
+   "relevant": true,
+   "reason": "Both concern SSRF caused by a validator and an HTTP client parsing the same URL differently (bracketed IPv6-style hosts vs. backslash/userinfo), and the card's fix of deriving the host from the client's own parser and rejecting disagreement applies directly."
+  },
+  {
+   "query_id": "en-paraphrase-brackets",
+   "pattern_id": "CVE-2024-24808",
+   "relevant": false,
+   "reason": "The card covers an open redirect caused by urlparse treating https:///example.com as relative while the client normalizes it to an external host, whereas the question is about bracketed URL hosts (e.g., IPv6 literals) causing parser disagreement that leads to SSRF into internal networks, which is a different weakness class and a different fix direction."
+  },
+  {
+   "query_id": "en-paraphrase-brackets",
+   "pattern_id": "CVE-2024-1183",
+   "relevant": false,
+   "reason": "The question is about URL parser disagreement from bracketed hosts (e.g., IPv6 literal syntax) causing SSRF to internal networks, while the card covers Gradio's file parameter leaking port state via distinguishable responses, with no mention of host parsing, bracket handling, or parser differentials, so its fix direction does not address the question."
+  },
+  {
+   "query_id": "en-paraphrase-brackets",
+   "pattern_id": "CVE-2026-70479",
+   "relevant": false,
+   "reason": "The question concerns URL parser disagreement over bracketed hosts (e.g., IPv6 literals) that lets validation and the actual request resolve to different hosts, while the card covers a headless-browser loader that only validated top-level navigation and skipped sub-resource, redirect, service-worker, and WebSocket requests, so the weakness and fix direction do not match."
+  },
+  {
+   "query_id": "en-paraphrase-brackets",
+   "pattern_id": "CVE-2026-35459",
+   "relevant": false,
+   "reason": "The question concerns parser disagreement over bracketed (IPv6-style) URL hosts, which calls for consistent host parsing and normalization before validation, whereas the card addresses SSRF through unvalidated automatic redirect hops, a different weakness with a different fix."
+  },
+  {
+   "query_id": "en-paraphrase-brackets",
+   "pattern_id": "CVE-2023-51449",
+   "relevant": false,
+   "reason": "The question is about URL parser disagreement from bracketed (IPv6-style) hosts leading to SSRF against internal networks, whereas the card covers Gradio file-route path traversal and a generic SSRF fix via upgrade, with no guidance on host parsing, bracket handling, or consistent URL validation."
+  },
+  {
+   "query_id": "en-paraphrase-brackets",
+   "pattern_id": "CVE-2026-87999",
+   "relevant": false,
+   "reason": "The question is about bracketed URL host parsing differences (parser disagreement) leading to internal network requests, while the card addresses treating 'globally routable' as proof of externality and missing internal-purpose public-space addresses like 168.63.129.16, so it is a different weakness; only the alternative-spelling note touches on it tangentially and gives no guidance on bracketed host parsing."
+  },
+  {
+   "query_id": "en-paraphrase-brackets",
+   "pattern_id": "CVE-2021-29434",
+   "relevant": false,
+   "reason": "The question concerns SSRF caused by URL parser disagreement over bracketed hosts (e.g., IPv6 literals) reaching internal networks, while the card covers missing server-side protocol validation allowing javascript: URLs (XSS) in Wagtail rich text, which is a different weakness class and fix."
+  },
+  {
+   "query_id": "en-brackets",
+   "pattern_id": "CVE-2022-36087",
+   "relevant": false,
+   "reason": "The question concerns urllib.parse accepting malformed bracketed hosts, leading to parser disagreement and conditional SSRF, while the card covers a denial-of-service in oauthlib's redirect URI validation and recommends upgrading oauthlib or rejecting colons, which does not address parser differential or SSRF host validation."
+  },
+  {
+   "query_id": "en-brackets",
+   "pattern_id": "CVE-2026-25960",
+   "relevant": true,
+   "reason": "Both describe SSRF via URL parser disagreement between a validator and the HTTP client, and the card's fix (use the same parser the client uses, send the parsed result, reject on disagreement) applies to the bracketed-host mismatch in urllib.parse, though the specific trigger differs (backslash/userinfo vs. malformed bracketed host)."
+  },
+  {
+   "query_id": "en-brackets",
+   "pattern_id": "CVE-2026-12372",
+   "relevant": false,
+   "reason": "The question concerns urllib.parse accepting malformed bracketed hosts that cause parser disagreement and SSRF, whereas the card covers an IP classification gap (RFC 6598 100.64.0.0/10 not flagged as private) in NLTK's URL validator, so the weakness and the fix direction differ."
+  },
+  {
+   "query_id": "en-brackets",
+   "pattern_id": "CVE-2026-24779",
+   "relevant": true,
+   "reason": "Both describe SSRF caused by a URL parser differential, where urllib.parse validates the host and the HTTP client fetches from a different interpretation, and the card's fix of using one parser for check and request (or rejecting ambiguous URLs) applies directly."
+  },
+  {
+   "query_id": "en-brackets",
+   "pattern_id": "CVE-2026-70485",
+   "relevant": false,
+   "reason": "The question concerns urllib.parse accepting malformed bracketed hosts (not valid IPv6/IPvFuture) that cause parser differentials, whereas the card addresses classifying NAT64-embedded IPv4 addresses in valid IPv6 literals via ipaddress is_global; the weakness and fix direction (strict bracketed-host validation/parser consistency vs. unwrapping embedded IPv4) differ."
+  },
+  {
+   "query_id": "en-brackets",
+   "pattern_id": "CVE-2026-114620",
+   "relevant": false,
+   "reason": "The question concerns urllib.parse accepting malformed bracketed hosts that cause URL parser disagreement in Python URL validation, whereas the card covers Authlib's JAR request_uri being fetched without a registration policy, which is a different weakness and fix (upgrade Authlib, pre-register request_uris) that does not address host-parsing validation."
+  },
+  {
+   "query_id": "en-brackets",
+   "pattern_id": "CVE-2026-87999",
+   "relevant": false,
+   "reason": "The question concerns urllib.parse accepting malformed bracketed hosts that are neither IPv6 nor IPvFuture, causing parser disagreement, whereas the card is about treating 'globally routable' as proof of externality and needing a block list of internal-purpose ranges, so the weakness and fix direction (consistent host parsing/validation) differ."
+  },
+  {
+   "query_id": "en-brackets",
+   "pattern_id": "CVE-2026-35459",
+   "relevant": false,
+   "reason": "The question concerns urllib.parse accepting malformed bracketed hosts that cause URL parser disagreement (a host-parsing/validation weakness), whereas the card addresses SSRF bypass via unvalidated automatic HTTP redirects, a different weakness with a fix (validate each redirect hop) that does not address parser differential handling of bracketed hosts."
+  },
+  {
+   "query_id": "en-brackets",
+   "pattern_id": "CVE-2024-24808",
+   "relevant": true,
+   "reason": "Both involve urllib.parse/urlparse disagreeing with the client or downstream parser about a URL's meaning (malformed bracketed host vs. scheme with empty host), leading to a security bypass (SSRF vs. open redirect), and the fix of validating the URL as the consuming client would interpret it, rejecting unusual forms, applies directly."
+  },
+  {
+   "query_id": "en-paraphrase-options",
+   "pattern_id": "CVE-2019-14904",
+   "relevant": false,
+   "reason": "The question is about argument injection (a branch name beginning with '-' interpreted as an option) when subprocess uses an argument list with no shell, while the card covers shell command injection from a zone name in a ps command line and advises allow-list validation and avoiding shell interpretation, which doesn't address option-style injection or fixes like '--' separators or rejecting leading dashes."
+  },
+  {
+   "query_id": "en-paraphrase-options",
+   "pattern_id": "CVE-2015-8557",
+   "relevant": false,
+   "reason": "The question is about argument injection, where a branch name starting with a dash becomes an option even with an argument list and no shell, but the card covers shell metacharacter injection via a font name in a shell command string, and its advice to pass a separate literal argument without a shell would not stop option injection."
+  },
+  {
+   "query_id": "en-paraphrase-options",
+   "pattern_id": "CVE-2026-76220",
+   "relevant": false,
+   "reason": "The question is about a user-supplied value, such as a branch name starting with '-', being parsed as an option in an argv-list subprocess call, where the fix is to reject leading dashes or use a '--' separator. The card covers a GitPython-specific bypass of the unsafe-option guard through joined short-option kwargs, so its fix (upgrade GitPython, validate the transformed argv) does not address that question."
+  },
+  {
+   "query_id": "en-paraphrase-options",
+   "pattern_id": "CVE-2026-67325",
+   "relevant": false,
+   "reason": "The question is about option (argument) injection where a user-supplied branch name starting with '-' is interpreted as an option even without a shell, with fixes like '--' separators or rejecting leading dashes, whereas the card covers bypassing an option blocklist in GitPython via git long-option prefix abbreviation, a different weakness mechanism with a GitPython-specific fix."
+  },
+  {
+   "query_id": "en-paraphrase-options",
+   "pattern_id": "CVE-2024-39887",
+   "relevant": false,
+   "reason": "The question concerns argument injection, where a branch name beginning with a dash is parsed as an option by a subprocess command, while the card covers SQL authorization bypass via engine-specific functions in Superset, which is a different weakness in different code with an unrelated fix."
+  },
+  {
+   "query_id": "en-paraphrase-options",
+   "pattern_id": "CVE-2026-87819",
+   "relevant": false,
+   "reason": "The question concerns argument/option injection (a branch name starting with '-' being parsed as a git option) in subprocess calls, whereas the card covers a ReDoS in GitPython's author/committer header regex, a different weakness class with an unrelated fix."
+  },
+  {
+   "query_id": "en-paraphrase-options",
+   "pattern_id": "CVE-2023-24816",
+   "relevant": false,
+   "reason": "The question concerns argument (option) injection, where a branch name starting with '-' is parsed as a flag by a subprocess called without a shell, while the card describes shell command injection via IPython's set_term_title on Windows without ctypes, so the weakness class and fix (upgrade IPython, filter title input) do not apply."
+  },
+  {
+   "query_id": "en-paraphrase-options",
+   "pattern_id": "CVE-2026-78677",
+   "relevant": false,
+   "reason": "The question is about option injection through a user-supplied branch name even with an argument list and no shell, while the card covers a GitPython clone denylist missing --separate-git-dir; both involve git option handling, but the card does not address leading-dash values being parsed as options or fixes like '--' separators or validating ref names."
+  },
+  {
+   "query_id": "en-paraphrase-options",
+   "pattern_id": "CVE-2026-42284",
+   "relevant": false,
+   "reason": "The question concerns option injection where a branch name starting with '-' is parsed as a git option despite list-style subprocess args (fix: '--' separator, validating the value), while the card covers a GitPython-specific bug where multi_options is validated before shlex.split re-tokenizes it, a different mechanism with a fix that does not apply."
+  },
+  {
+   "query_id": "en-paraphrase-options",
+   "pattern_id": "CVE-2026-76219",
+   "relevant": true,
+   "reason": "The card describes the exact weakness the question asks about: a user-controlled treeish (branch/revision name) passed positionally to a git subprocess becomes an option (e.g. a leading-dash value overriding the index-output option) even with list-style args and no shell, and it gives applicable fixes (reject leading dashes, validate revisions, add a '--' separator, upgrade)."
+  },
+  {
+   "query_id": "en-options",
+   "pattern_id": "CVE-2026-76220",
+   "relevant": false,
+   "reason": "The question is about argument injection where an untrusted Mercurial branch name is parsed as a flag (fixed by validating it or using '--'), while the card covers a GitPython unsafe-option guard bypass caused by joined short-option tokens, a different weakness and fix."
+  },
+  {
+   "query_id": "en-options",
+   "pattern_id": "CVE-2024-2928",
+   "relevant": false,
+   "reason": "The question concerns argument injection (an untrusted branch value parsed as a command-line flag in a Mercurial checkout, fixed by validating leading dashes or using '--' separators), whereas the card covers directory traversal in URI fragments in mlflow, a different weakness class with a different fix."
+  },
+  {
+   "query_id": "en-options",
+   "pattern_id": "CVE-2017-14695",
+   "relevant": false,
+   "reason": "The question concerns argument/option injection (an untrusted branch value parsed as a flag) in a Mercurial checkout command, while the card covers directory traversal via an incompletely validated minion ID in Salt, so the weakness type and the fix direction (path-component validation) do not match."
+  },
+  {
+   "query_id": "en-options",
+   "pattern_id": "CVE-2026-59220",
+   "relevant": false,
+   "reason": "The question concerns argument injection, where an untrusted branch name is parsed as a command-line flag by Mercurial, while the card covers regex backtracking (ReDoS) from overlapping quantifiers, which is a different weakness in different code with a fix that doesn't apply."
+  },
+  {
+   "query_id": "en-options",
+   "pattern_id": "CVE-2026-42215",
+   "relevant": false,
+   "reason": "The question concerns argument injection in Mercurial checkout where an untrusted branch value is parsed as a flag (fixed by validating the value or using '--' or a safe prefix), while the card covers GitPython's unsafe-option check being bypassed by underscore-form kwarg names, a different weakness mechanism and a GitPython-specific upgrade fix."
+  },
+  {
+   "query_id": "en-options",
+   "pattern_id": "CVE-2024-3848",
+   "relevant": false,
+   "reason": "The question is about argument injection where an untrusted branch name is parsed as a flag by the Mercurial command (fix: validate/reject leading '-' or use '--' separator), whereas the card is about unvalidated URL fragments bypassing path checks for local file reads in MLflow, a different weakness class in different code."
+  },
+  {
+   "query_id": "en-options",
+   "pattern_id": "CVE-2023-5752",
+   "relevant": true,
+   "reason": "Both describe argument injection in Mercurial commands where an untrusted revision/branch is interpreted as a command-line option (not shell injection), and the card's fix direction of ensuring user-supplied revisions are treated only as values and never as options applies directly."
+  },
+  {
+   "query_id": "en-options",
+   "pattern_id": "CVE-2026-87819",
+   "relevant": false,
+   "reason": "The question concerns argument injection (an untrusted branch name interpreted as a flag in a Mercurial checkout command), while the card covers ReDoS in GitPython's author/committer header regex parsing, so the weakness class and fix direction (regex hardening vs. option-terminator/argument validation) do not match."
+  },
+  {
+   "query_id": "en-options",
+   "pattern_id": "CVE-2026-70486",
+   "relevant": false,
+   "reason": "The question concerns argument injection (an untrusted branch name parsed as a flag) in a Mercurial checkout subprocess call, while the card covers an iframe sandbox combining allow-scripts and allow-same-origin in a web UI preview, so the weakness class, code type, and fix are unrelated."
+  },
+  {
+   "query_id": "en-paraphrase-exceptions",
+   "pattern_id": "CVE-2026-67587",
+   "relevant": true,
+   "reason": "Both involve rebuilding an object from stored, attacker-influenced data that names a module or class path, which triggers an import or call, and the card's fix of validating the stored path against a fixed set of expected targets (not just a class-name allow-list) applies to exception restoration."
+  },
+  {
+   "query_id": "en-paraphrase-exceptions",
+   "pattern_id": "CVE-2026-58076",
+   "relevant": true,
+   "reason": "The question asks how rebuilding an exception from stored error metadata can invoke an arbitrary function, and the card describes exactly that weakness: a deserializer that imports a class name from a blob and instantiates it with blob-supplied arguments, with a fix of checking the imported object is a BaseException subclass before instantiating."
+  },
+  {
+   "query_id": "en-paraphrase-exceptions",
+   "pattern_id": "CVE-2012-4406",
+   "relevant": true,
+   "reason": "Both cases involve rebuilding objects from untrusted metadata in a shared store (memcached or a task result backend), which lets stored data trigger arbitrary code, and the card's advice to store plain data only and validate its shape applies, though the question's flaw is a module/type lookup rather than pickle."
+  },
+  {
+   "query_id": "en-paraphrase-exceptions",
+   "pattern_id": "CVE-2026-70489",
+   "relevant": false,
+   "reason": "The question concerns unsafe deserialization/dynamic function resolution when restoring exceptions from stored error metadata (code-execution risk), while the card covers an unbounded recurrence-walk denial of service in scheduler date parsing, a different weakness in different code."
+  },
+  {
+   "query_id": "en-paraphrase-exceptions",
+   "pattern_id": "CVE-2024-53947",
+   "relevant": false,
+   "reason": "The question concerns unsafe deserialization/dynamic function resolution when rebuilding an exception from stored task queue error metadata, while the card covers an incomplete blocklist of PostgreSQL functions in Superset's SQL authorization, which is a different weakness in different code with a non-applicable fix."
+  },
+  {
+   "query_id": "en-paraphrase-exceptions",
+   "pattern_id": "CVE-2026-67260",
+   "relevant": false,
+   "reason": "The card covers the Airflow scheduler deserializing human-in-the-loop next_kwargs, with a version-specific upgrade fix, whereas the question is about rebuilding an exception from stored task queue error metadata (module/type lookup), which is a different code path and fix."
+  },
+  {
+   "query_id": "en-paraphrase-exceptions",
+   "pattern_id": "CVE-2026-24049",
+   "relevant": false,
+   "reason": "The question concerns deserializing stored task queue error metadata into an exception that invokes an arbitrary function (unsafe deserialization/dynamic callable resolution), while the card covers path traversal in wheel unpack permission changes using unsanitized archive member names, which is a different weakness in different code with a non-applicable fix."
+  },
+  {
+   "query_id": "en-paraphrase-exceptions",
+   "pattern_id": "CVE-2026-33858",
+   "relevant": false,
+   "reason": "The question is about rebuilding an exception from stored task queue error metadata and thereby calling an arbitrary function (likely a class/function path resolved from stored data), while the card covers Airflow XCom legacy __type/__var keys bypassing deserialization protection in the webserver, which is a different code path, and its fix (upgrade Airflow) does not address the exception-restoration pattern."
+  },
+  {
+   "query_id": "en-paraphrase-exceptions",
+   "pattern_id": "CVE-2026-27905",
+   "relevant": false,
+   "reason": "The question concerns unsafe deserialization of exception data from task queue error metadata (resolving an attacker-controlled function/class name to call it), while the card covers symlink path validation in tar extraction, which is a different weakness class with a non-applicable fix."
+  },
+  {
+   "query_id": "en-exceptions",
+   "pattern_id": "CVE-2026-58076",
+   "relevant": true,
+   "reason": "Both involve deserializing an exception type from untrusted serialized metadata and instantiating it without restriction, and the card's fix of resolving the imported object and confirming it is a BaseException subclass before calling it directly applies to the Celery result exception-constructor case."
+  },
+  {
+   "query_id": "en-exceptions",
+   "pattern_id": "CVE-2024-5225",
+   "relevant": false,
+   "reason": "The card covers SQL injection from concatenating request values into a query string, while the question concerns unsafe dynamic selection of an exception constructor from Celery result metadata, which needs BaseException subclass validation, so the weakness class and fix direction do not match."
+  },
+  {
+   "query_id": "en-exceptions",
+   "pattern_id": "CVE-2026-67587",
+   "relevant": false,
+   "reason": "The card covers Airflow's Callback deserialization importing attacker-named modules in the scheduler, while the question concerns Celery result metadata where a callable is used as an exception constructor and needs a BaseException subclass check; the code paths and fix directions (a fixed import-target allow-list vs. a subclass type check before invocation) differ, though both involve untrusted deserialized data."
+  },
+  {
+   "query_id": "en-exceptions",
+   "pattern_id": "CVE-2017-14695",
+   "relevant": false,
+   "reason": "The card covers path traversal in Salt minion ID validation, whereas the question concerns Celery result metadata being used to pick a callable as an exception constructor (unsafe dynamic callable/type resolution), so the weakness class and fix direction (BaseException subclass check) do not match."
+  },
+  {
+   "query_id": "en-exceptions",
+   "pattern_id": "CVE-2026-79675",
+   "relevant": false,
+   "reason": "The card covers JVM option injection in NLTK Stanford wrappers (an incomplete validation fix across code paths), while the question concerns Celery deserializing exception metadata and validating a callable as a BaseException subclass before invoking it, which is a different weakness in different code with a non-applicable fix."
+  },
+  {
+   "query_id": "en-exceptions",
+   "pattern_id": "CVE-2026-55574",
+   "relevant": false,
+   "reason": "The question concerns unsafe deserialization in Celery where untrusted result metadata picks a callable used as an exception constructor (needs a BaseException subclass check), whereas the card covers regex compilation DoS in vLLM structured outputs, a different weakness class in different code with an unrelated fix (timeouts and complexity checks)."
+  },
+  {
+   "query_id": "en-exceptions",
+   "pattern_id": "CVE-2020-11982",
+   "relevant": false,
+   "reason": "The card covers Airflow's insecure default Celery config allowing broker payload deserialization (RCE) and fixes via upgrade and broker network restriction, whereas the question concerns validating that a result-metadata callable is a BaseException subclass before using it as an exception constructor, a different weakness with a different fix."
+  },
+  {
+   "query_id": "en-exceptions",
+   "pattern_id": "CVE-2024-6587",
+   "relevant": false,
+   "reason": "The card is about request-controlled outbound destinations leaking a server-held API key (SSRF/credential exfiltration), whereas the question concerns unsafe dynamic selection of a callable as an exception constructor from Celery result metadata (type validation before invocation), a different weakness class with a different fix."
+  },
+  {
+   "query_id": "en-exceptions",
+   "pattern_id": "CVE-2026-78675",
+   "relevant": false,
+   "reason": "The card covers GitPython .gitmodules include directives leaking local file content via parser errors, while the question is about Celery result metadata where an attacker-controlled callable is used as an exception constructor and needs BaseException subclass validation, so the weakness class, code, and fix do not match."
+  },
+  {
+   "query_id": "en-paraphrase-pickle",
+   "pattern_id": "CVE-2025-27520",
+   "relevant": true,
+   "reason": "The card covers the same weakness (unsafe pickle deserialization of untrusted HTTP request payloads in an ML serving framework) and its fix direction, never unpickling network-supplied bytes and accepting only validated data-only formats, directly answers how to reject pickle data before deserialization."
+  },
+  {
+   "query_id": "en-paraphrase-pickle",
+   "pattern_id": "CVE-2026-57516",
+   "relevant": true,
+   "reason": "Both concern untrusted data reaching pickle/torch.load deserialization, and the card's fix direction (don't deserialize pickle-style content by default, reject pickle members, use safe formats or weights_only) applies to rejecting pickle from external HTTP requests, though the card is Ray/WebDataset-specific."
+  },
+  {
+   "query_id": "en-paraphrase-pickle",
+   "pattern_id": "CVE-2018-8021",
+   "relevant": true,
+   "reason": "The card covers the same weakness (untrusted data passed to pickle's unsafe load leading to RCE) and its general fix of not unpickling data that crosses a trust boundary and reviewing similar code paths applies directly to an ML web service rejecting pickle from HTTP requests, though the Superset version upgrade advice is specific to that product."
+  },
+  {
+   "query_id": "en-paraphrase-pickle",
+   "pattern_id": "CVE-2024-3568",
+   "relevant": true,
+   "reason": "Both concern the same weakness, unsafe pickle deserialization of untrusted data in ML code, and the card's advice to treat external serialized data as hostile, never pass it to pickle, and use a loader that doesn't execute code applies directly to an ML service receiving pickle over HTTP, though its checkpoint-loading and CVE-specific details are narrower than the question."
+  },
+  {
+   "query_id": "en-paraphrase-pickle",
+   "pattern_id": "CVE-2024-5998",
+   "relevant": true,
+   "reason": "The card covers the same weakness (untrusted pickle bytes from outside sources being deserialized in an ML/vector-index service) and its fix direction of never unpickling untrusted input and using non-pickle formats or rebuilding from source data applies, though it is specific to FAISS.deserialize_from_bytes rather than general pre-deserialization rejection."
+  },
+  {
+   "query_id": "en-paraphrase-pickle",
+   "pattern_id": "CVE-2025-32444",
+   "relevant": true,
+   "reason": "The card covers the same weakness (untrusted network input deserialized with pickle leading to RCE) and its fix direction of never unpickling untrusted input and using a data-only format with validation applies to an ML web service rejecting pickle from HTTP requests, though the transport (ZeroMQ vs HTTP) and the vLLM-specific upgrade advice differ."
+  },
+  {
+   "query_id": "en-paraphrase-pickle",
+   "pattern_id": "CVE-2012-4406",
+   "relevant": true,
+   "reason": "Both concern unsafe pickle deserialization of untrusted data that can execute code, and the card's fix (don't unpickle untrusted input, use a data-only format like JSON, validate structure) directly applies to rejecting pickle from HTTP requests, though the card's source is a memcached cache rather than HTTP."
+  },
+  {
+   "query_id": "en-paraphrase-pickle",
+   "pattern_id": "CVE-2025-29783",
+   "relevant": true,
+   "reason": "Both concern untrusted network bytes reaching pickle.loads() in an ML serving context (CWE-502), and the card's general guidance to never unpickle data from network sockets and treat remote data as untrusted directly applies to rejecting pickle from external HTTP requests, though the vLLM-specific upgrade advice is not applicable."
+  },
+  {
+   "query_id": "en-paraphrase-pickle",
+   "pattern_id": "CVE-2023-50943",
+   "relevant": false,
+   "reason": "The card is about an Airflow-specific XCom pickling bypass fixed by upgrading to 2.8.1 and restricting DAG authors, whereas the question asks how to reject untrusted pickle data from external HTTP requests in an ML web service (e.g., avoid pickle, use safe formats, validate input), so the code context and fix direction do not match."
+  },
+  {
+   "query_id": "en-pickle",
+   "pattern_id": "CVE-2025-27520",
+   "relevant": true,
+   "reason": "The card covers the same weakness in BentoML (pickle deserialization of client-controlled HTTP request payloads selected by client-supplied metadata) and its fix direction of rejecting pickle at the network boundary and accepting only data-only formats like JSON directly applies to the question."
+  },
+  {
+   "query_id": "en-pickle",
+   "pattern_id": "CVE-2025-54381",
+   "relevant": false,
+   "reason": "The card covers SSRF from server-side fetching of user-supplied URLs in file upload fields, whereas the question concerns rejecting the pickle media type (unsafe deserialization/RCE) at the request boundary, so the weakness class and fix direction differ."
+  },
+  {
+   "query_id": "en-pickle",
+   "pattern_id": "CVE-2025-32444",
+   "relevant": true,
+   "reason": "Both involve remote code execution from deserializing untrusted network input with pickle at an exposed boundary, and the card's fix direction (never unpickle untrusted network data, use a data-only format like JSON and validate it) applies to rejecting the pickle media type in BentoML while keeping JSON working."
+  },
+  {
+   "query_id": "en-pickle",
+   "pattern_id": "CVE-2025-29783",
+   "relevant": true,
+   "reason": "Both involve untrusted network input reaching pickle deserialization (RCE), and the card's general guidance to never pass network-sourced bytes to pickle.loads() applies to rejecting the pickle media type at BentoML's public boundary, though the card is about vLLM Mooncake with a version-upgrade fix and does not cover content-type checking or preserving JSON requests."
+  },
+  {
+   "query_id": "en-pickle",
+   "pattern_id": "CVE-2026-115912",
+   "relevant": false,
+   "reason": "The card covers forged shared-memory handles reaching pickle.loads() in vLLM's multimodal cache (fix: server-issued unforgeable capabilities), whereas the question is about rejecting the pickle media type at BentoML's public request boundary, so the code, trigger, and fix direction differ even though both involve pickle deserialization."
+  },
+  {
+   "query_id": "en-pickle",
+   "pattern_id": "CVE-2026-78683",
+   "relevant": false,
+   "reason": "The card covers unsafe pickle deserialization of NLTK model files and fixes it by upgrading NLTK and using a restricted unpickler, whereas the question is about rejecting the pickle media type at BentoML's HTTP request boundary while still accepting JSON, so the code, library, and fix direction do not match."
+  },
+  {
+   "query_id": "en-pickle",
+   "pattern_id": "CVE-2024-3568",
+   "relevant": false,
+   "reason": "The card covers pickle loading of untrusted checkpoint files in transformers and advises trusted sources and upgrading, while the question is about rejecting the pickle media type on BentoML's public HTTP request boundary, so the code context and fix direction (content-type allowlisting) don't match."
+  },
+  {
+   "query_id": "en-pickle",
+   "pattern_id": "CVE-2026-79657",
+   "relevant": false,
+   "reason": "The card covers NLTK's pickle unpickler allowlists that trust whole module namespaces (fix: exact module/name pairs, deny dangerous modules), whereas the question is about rejecting the pickle media type at BentoML's request boundary while keeping JSON working, which is a different weakness location and a different fix."
+  },
+  {
+   "query_id": "en-pickle",
+   "pattern_id": "CVE-2023-50943",
+   "relevant": false,
+   "reason": "The card is about Airflow XCom pickle deserialization bypassing a config switch (fix: upgrade Airflow, restrict DAG authors), whereas the question is about rejecting the pickle media type at BentoML's public HTTP request boundary while keeping JSON working, so the code, attack surface, and fix direction do not match."
+  },
+  {
+   "query_id": "en-paraphrase-commonprefix",
+   "pattern_id": "CVE-2026-48099",
+   "relevant": true,
+   "reason": "The card describes the same weakness (string-prefix containment check lets a sibling directory sharing the root's name prefix pass) and its fix, component-wise containment on the fully resolved path, applies directly to an extraction directory prefix check."
+  },
+  {
+   "query_id": "en-paraphrase-commonprefix",
+   "pattern_id": "CVE-2023-29159",
+   "relevant": true,
+   "reason": "The card describes the same weakness (character-wise string prefix check on a directory path letting a sibling directory with a shared prefix pass containment) and its fix, component-wise comparison with resolved paths via os.path.commonpath, applies directly to extraction-directory prefix checks."
+  },
+  {
+   "query_id": "en-paraphrase-commonprefix",
+   "pattern_id": "CVE-2026-62384",
+   "relevant": false,
+   "reason": "The question is about a string-prefix check on an extraction directory allowing escape into a sibling directory (e.g., /tmp/out vs /tmp/out2), whereas the card covers a symlink with a separator-free name escaping the corpus root in NLTK's FrameNet reader, so the weakness mechanism and fix (use a path-boundary check like commonpath vs. resolving symlinks within a scoped open) do not directly match."
+  },
+  {
+   "query_id": "en-paraphrase-commonprefix",
+   "pattern_id": "CVE-2026-55443",
+   "relevant": true,
+   "reason": "The card explicitly covers string prefix checks lacking a path-segment boundary that accept sibling paths sharing the prefix, and its fix (canonicalize paths, verify real path is inside root, enforce segment boundary) directly applies to the extraction-directory sibling-escape question."
+  },
+  {
+   "query_id": "en-paraphrase-commonprefix",
+   "pattern_id": "CVE-2026-24049",
+   "relevant": false,
+   "reason": "The question is about a string-prefix check on the extraction directory allowing escape into a sibling directory (e.g., /tmp/out vs /tmp/out_evil), whereas the card covers wheel unpack applying permission changes to a path built from the raw archive member name with '..' segments; the fix of resolving paths and confirming containment overlaps only loosely, and the card never addresses prefix-comparison flaws."
+  },
+  {
+   "query_id": "en-paraphrase-commonprefix",
+   "pattern_id": "CVE-2026-27905",
+   "relevant": false,
+   "reason": "The question is about a string-prefix check on the extraction directory (e.g. '/tmp/out' vs '/tmp/out_evil') allowing escape into a sibling directory, whereas the card covers unvalidated symlink targets in tar extraction; the fixes (using a path-separator-aware or commonpath check versus validating symlink targets) are different, so the card does not directly address it."
+  },
+  {
+   "query_id": "en-paraphrase-commonprefix",
+   "pattern_id": "CVE-2026-49119",
+   "relevant": false,
+   "reason": "The card covers os.path.join discarding the root or accepting traversal and absolute segments in a Gradio file explorer, not the sibling-directory bypass caused by a string-prefix containment check during archive extraction, and it gives no guidance on prefix pitfalls such as a missing trailing separator or commonpath."
+  },
+  {
+   "query_id": "en-paraphrase-commonprefix",
+   "pattern_id": "CVE-2023-5115",
+   "relevant": false,
+   "reason": "The question is about a string-prefix check on the extraction directory allowing escape into a sibling directory that shares the prefix, while the card covers symlink-based path traversal in Ansible role extraction; its resolve-the-final-destination and verify-inside-directory advice partly overlaps, but it never mentions prefix-comparison pitfalls or sibling directories."
+  },
+  {
+   "query_id": "en-tolerance",
+   "pattern_id": "CVE-2024-5225",
+   "relevant": true,
+   "reason": "Both describe SQL injection from externally supplied values concatenated or interpolated into SQL text, and the card's fix of keeping the query structure fixed, passing values separately as parameters, and validating their shape applies directly to passing the Oracle GIS tolerance as a numeric bind value."
+  },
+  {
+   "query_id": "en-tolerance",
+   "pattern_id": "CVE-2023-49736",
+   "relevant": false,
+   "reason": "The card concerns a user-chosen quote character in Superset's where_in Jinja macro, whereas the question is about an external tolerance value interpolated into Oracle GIS SQL instead of being passed as a numeric bound expression, so the injection vector, code context, and fix (parameterize or bind numerics versus fix quote delimiting and upgrade Superset) differ even though both are SQL injection."
+  },
+  {
+   "query_id": "en-tolerance",
+   "pattern_id": "CVE-2024-49377",
+   "relevant": false,
+   "reason": "The question concerns SQL injection from interpolating an external tolerance value into an Oracle GIS query (fix: parameterize as a numeric value), whereas the card covers reflected XSS from missing Jinja2 autoescaping in OctoPrint templates, which is a different weakness class, code type, and fix."
+  },
+  {
+   "query_id": "en-tolerance",
+   "pattern_id": "CVE-2024-6587",
+   "relevant": false,
+   "reason": "The question concerns SQL injection from interpolating an external GIS tolerance value into a query (fix: pass it as a parameterized numeric expression), while the card covers SSRF-style credential leakage via a client-controlled outbound destination (api_base), which is a different weakness class with a different fix."
+  },
+  {
+   "query_id": "en-tolerance",
+   "pattern_id": "CVE-2026-67260",
+   "relevant": false,
+   "reason": "The question concerns SQL injection from interpolating an external tolerance value into an Oracle GIS query (fix: pass it as a numeric parameter/Value expression), while the card covers unsafe deserialization of next_kwargs in the Airflow scheduler (fix: upgrade and use an allow-list), so the weakness class, code context, and fix direction all differ."
+  },
+  {
+   "query_id": "en-tolerance",
+   "pattern_id": "CVE-2026-59220",
+   "relevant": false,
+   "reason": "The question concerns SQL injection from interpolating an external tolerance value into Oracle GIS queries (fix: pass it as a numeric parameter/Value expression), while the card covers regex ReDoS from overlapping quantifiers, which is a different weakness class with an unrelated fix."
+  },
+  {
+   "query_id": "en-tolerance",
+   "pattern_id": "CVE-2019-7164",
+   "relevant": false,
+   "reason": "The question concerns a Django/GIS Oracle tolerance value being string-interpolated into SQL and needing a numeric Value expression, while the card is about a SQLAlchemy order_by injection fixed by upgrading to 1.3.0b3, which is a different library, parameter, and fix direction."
+  },
+  {
+   "query_id": "en-tolerance",
+   "pattern_id": "CVE-2024-39887",
+   "relevant": false,
+   "reason": "The question concerns SQL injection from interpolating an external Oracle GIS tolerance value into a query instead of binding it as a numeric parameter, whereas the card covers bypassing authorization via unchecked engine-specific functions and recommends a function deny list and a Superset upgrade, which does not address parameterization."
+  },
+  {
+   "query_id": "en-paraphrase-leadingzero",
+   "pattern_id": "CVE-2017-14695",
+   "relevant": false,
+   "reason": "The card covers incomplete minion ID validation causing directory traversal and auth bypass in Salt, while the question is about leading-zero IPv4 octets being parsed inconsistently as octal and bypassing address validation, which is a different weakness in a different kind of code."
+  },
+  {
+   "query_id": "en-paraphrase-leadingzero",
+   "pattern_id": "CVE-2026-70479",
+   "relevant": false,
+   "reason": "The question concerns IP address parsing inconsistencies (leading-zero octal interpretation) bypassing validation, while the card covers SSRF from unvalidated sub-resource requests, redirects, service workers, and WebSockets in a headless browser loader, so the weakness and fix direction differ."
+  },
+  {
+   "query_id": "en-paraphrase-leadingzero",
+   "pattern_id": "CVE-2025-32444",
+   "relevant": false,
+   "reason": "The card covers unsafe pickle deserialization over exposed ZeroMQ sockets leading to RCE, while the question is about IPv4 leading-zero octal ambiguity bypassing address validation, which is a different weakness class in different code."
+  },
+  {
+   "query_id": "en-paraphrase-leadingzero",
+   "pattern_id": "CVE-2024-3848",
+   "relevant": false,
+   "reason": "The card covers URL fragment validation bypass leading to local file read in MLflow artifact paths, while the question is about leading zeros in IPv4 octets causing octal interpretation inconsistencies and address validation bypass, which is a different weakness in different code."
+  },
+  {
+   "query_id": "en-paraphrase-leadingzero",
+   "pattern_id": "CVE-2025-6210",
+   "relevant": false,
+   "reason": "The question concerns IPv4 octets with leading zeros being parsed inconsistently as octal and bypassing address validation, while the card covers hardlink-based path traversal in a file reader, which is a different weakness class in a different kind of code with an unrelated fix."
+  },
+  {
+   "query_id": "en-paraphrase-leadingzero",
+   "pattern_id": "CVE-2025-61773",
+   "relevant": false,
+   "reason": "The question concerns IPv4 leading-zero octal ambiguity bypassing address validation (e.g., SSRF/ACL checks), while the card covers reflected XSS from unvalidated HTTP parameters in pyLoad, a different weakness class with a different fix (output encoding and input validation, not canonical IP parsing)."
+  },
+  {
+   "query_id": "en-paraphrase-leadingzero",
+   "pattern_id": "CVE-2026-64849",
+   "relevant": false,
+   "reason": "The card addresses SSRF through unvalidated redirects, unpinned DNS resolution, and IPv6-embedded IPv4 forms, not the parsing ambiguity of leading-zero IPv4 octets (octal vs decimal) that the question is about, so its fix direction (validate the connected peer IP) is only tangentially related."
+  },
+  {
+   "query_id": "en-paraphrase-leadingzero",
+   "pattern_id": "CVE-2011-4924",
+   "relevant": false,
+   "reason": "The card covers incomplete HTML sanitization of Zope error messages (reflected XSS), whereas the question is about IPv4 leading-zero octal ambiguity bypassing address validation, which is a different weakness in different code with a non-applicable fix."
+  },
+  {
+   "query_id": "en-redirect",
+   "pattern_id": "CVE-2025-50182",
+   "relevant": false,
+   "reason": "The card covers redirect and retries settings being ignored because the Pyodide (browser/Node.js) runtime uses Fetch/XHR, while the question is about a PoolManager-level redirect-disable policy lost in urllib3's own retry handling on a normal runtime, so the cause and fix (Pyodide-specific advice) do not apply."
+  },
+  {
+   "query_id": "en-redirect",
+   "pattern_id": "CVE-2026-114620",
+   "relevant": false,
+   "reason": "The card covers Authlib's JAR request_uri being fetched in the get_request_object() hook without a registration policy, while the question concerns urllib3 PoolManager losing its redirect-disable setting via retry handling, so the library, code path, and fix (request_uri registration and allowlisting vs. enforcing redirect settings in the retry layer) do not match."
+  },
+  {
+   "query_id": "en-redirect",
+   "pattern_id": "CVE-2026-35459",
+   "relevant": true,
+   "reason": "Both concern SSRF defenses bypassed via HTTP redirects, and the card's fix of disabling automatic redirects and validating every hop (manually following redirects with per-target checks) applies directly to the urllib3 case, though the question's specific retry-handling loss of redirect=False is not covered."
+  },
+  {
+   "query_id": "en-redirect",
+   "pattern_id": "CVE-2024-22421",
+   "relevant": false,
+   "reason": "The card covers a JupyterLab/jupyter-server redirect vulnerability fixed by upgrading versions, while the question concerns urllib3 PoolManager losing its redirect-disable setting through retry handling and applying SSRF mitigation in request code, so the library, weakness, and fix direction do not match."
+  },
+  {
+   "query_id": "en-redirect",
+   "pattern_id": "CVE-2026-58076",
+   "relevant": false,
+   "reason": "The card covers unrestricted class import and instantiation (arbitrary callable) during Airflow deserialization, while the question is about an urllib3 PoolManager redirect-disable setting being lost in retry handling, an SSRF-policy propagation issue with a different weakness and fix."
+  },
+  {
+   "query_id": "en-redirect",
+   "pattern_id": "CVE-2026-70479",
+   "relevant": false,
+   "reason": "The question concerns urllib3 PoolManager losing a redirect-disable setting through Retry handling, while the card covers Playwright browser sub-resource request interception, WebSocket and service-worker bypasses, so the library, code layer and fix direction differ even though both are SSRF."
+  },
+  {
+   "query_id": "en-redirect",
+   "pattern_id": "CVE-2022-36087",
+   "relevant": false,
+   "reason": "The card covers a denial of service from malformed IPv6 redirect URIs in oauthlib URI validation, while the question is about an SSRF mitigation (redirect-disable policy) being lost in urllib3 PoolManager retry handling, so the weakness class, library, and fix direction all differ."
+  },
+  {
+   "query_id": "en-redirect",
+   "pattern_id": "CVE-2026-115886",
+   "relevant": false,
+   "reason": "The question concerns urllib3 PoolManager losing its redirect-disable setting through retry handling (SSRF redirect policy enforcement), while the card covers SSRF via request-controlled constructor arguments in MLflow scorer deserialization, so the weakness, code, and fix direction do not match."
+  },
+  {
+   "query_id": "en-redirect",
+   "pattern_id": "CVE-2023-47116",
+   "relevant": true,
+   "reason": "Both concern SSRF protection being bypassed through redirects, and the card's fix of enforcing the check at the connection that is actually made and on every redirect target matches the need to apply the mitigation at the effective request layer in urllib3."
+  }
+ ]
+}

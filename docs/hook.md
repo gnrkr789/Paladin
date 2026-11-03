@@ -97,6 +97,14 @@ the MCP check tools reported the task files as unreadable, because the MCP serve
 was started on the Paladin checkout (where the search index lives), not on the task
 folder; search itself worked.
 
+Installed registration (2026-11-03, `--installed-mcp`): Claude Code run 3 and Codex
+run 7 read Paladin's MCP entry from the files `paladin mcp install` wrote (.mcp.json,
+enabled the way approving it records; .codex/config.toml in the trusted folder), with no
+MCP configuration passed on the command line. Both connected, searched, and ran
+check_changes on the task folder (Codex also check_dependencies). Claude Code was blocked
+on CVE-2022-24065 and fixed it; Codex wrote the `--` form itself and got the pickle
+review note.
+
 Set `PALADIN_HOOK_LOG` to a file path to append each hook decision as one JSON
 line (Claude Code's stream output does not include PostToolUse hook responses).
 

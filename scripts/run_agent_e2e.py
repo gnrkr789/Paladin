@@ -52,6 +52,30 @@ def mcp_server(task):
     return {"command": str(PYTHON), "args": ["-I", "-m", "paladin.cli", "mcp", "--workspace", str(task)]}
 
 
+def paladin_cli(*args):
+    subprocess.run([str(PYTHON), "-I", "-m", "paladin.cli", *map(str, args)], check=True, capture_output=True)
+
+
+def run_claude_installed(task):
+    """MCP from the project's .mcp.json written by `paladin mcp install`, as a user would set it up.
+
+    settings.local.json enables that server, which is what approving it in Claude Code records.
+    """
+    paladin_cli("mcp", "install", "--host", "claude-code", "--workspace", task)
+    (task / ".claude" / "settings.local.json").write_text(json.dumps({"enabledMcpjsonServers": ["paladin"]}),
+                                                          encoding="utf-8")
+    return ["claude", "-p", "--model", "claude-sonnet-5-5", "--output-format", "stream-json", "--verbose",
+            "--setting-sources", "project,local", "--permission-mode", "acceptEdits",
+            "--allowedTools", "mcp__paladin", "--no-session-persistence"], PROMPT
+
+
+def run_codex_installed(task):
+    """MCP from the project's .codex/config.toml written by `paladin mcp install`; trusted folder only."""
+    paladin_cli("mcp", "install", "--host", "codex", "--workspace", task)
+    return ["codex", "exec", "-m", "gpt-6.1-sol", "-s", "workspace-write", "--skip-git-repo-check", "--ephemeral",
+            "--json", "-C", str(task), "-"], PROMPT
+
+
 def run_claude(task, log):
     config = task.parent / (task.name + "-mcp.json")
     config.write_text(json.dumps({"mcpServers": {"paladin": mcp_server(task)}}), encoding="utf-8")
@@ -86,6 +110,8 @@ def main(argv=None):
     parser.add_argument("--trusted-dir", type=Path,
                         help="codex only: an existing folder whose Paladin hook the user trusted in Codex; "
                              "runs with the user's Codex config and no trust bypass")
+    parser.add_argument("--installed-mcp", action="store_true",
+                        help="use the MCP registration written by `paladin mcp install` instead of passing one")
     parser.add_argument("--repo-hook", action="store_true",
                         help="codex only: use the user's Codex config and the trusted hook of this checkout "
                              "(task folder inside the repo), with no trust bypass")
@@ -105,7 +131,10 @@ def main(argv=None):
         subprocess.run([str(PYTHON), "-I", "-m", "paladin.cli", "hook", "install", "--host", host,
                         "--workspace", str(task)], check=True, capture_output=True)
     log = evidence / "hook-log.jsonl"
-    command, prompt = run_claude(task, log) if args.host == "claude" else run_codex(task, log, args.repo_hook)
+    if args.installed_mcp:
+        command, prompt = run_claude_installed(task) if args.host == "claude" else run_codex_installed(task)
+    else:
+        command, prompt = run_claude(task, log) if args.host == "claude" else run_codex(task, log, args.repo_hook)
     env = dict(os.environ, PALADIN_HOOK_LOG=str(log))
     done = subprocess.run(command, input=prompt, capture_output=True, text=True, encoding="utf-8", errors="replace",
                           cwd=task, env=env, timeout=TIMEOUT, shell=sys.platform == "win32")

@@ -6,15 +6,16 @@
   <img src="https://img.shields.io/badge/version-0.2.0a1-3451d1" alt="version 0.2.0a1">
   <img src="https://img.shields.io/badge/python-3.11%2B-3776ab" alt="python 3.11+">
   <img src="https://img.shields.io/badge/license-Apache--2.0-blue" alt="Apache-2.0">
-  <img src="https://img.shields.io/badge/tests-286%20passing-2fbf71" alt="286 unit tests passing">
+  <img src="https://img.shields.io/badge/tests-300%20passing-2fbf71" alt="300 unit tests passing">
 </p>
 
 Paladin stops AI coding agents from reintroducing known CVE patterns. It tells
 the agent what the problem is and how to avoid it; the agent writes its own fix.
 
 - **Prevention cards** for 524 Python web CVEs, searchable by the agent over MCP
-  (e5 + BM25 hybrid). 30 are checked against the upstream patch; 494 are
-  `candidate` cards drafted from advisory text only.
+  (e5 + BM25 hybrid). 30 were checked against the patch by an agent (Codex);
+  471 were drafted from advisory text and then checked against the fix diff by
+  a model (`patch_checked`); 23 remain `candidate`.
 - **Edit-time hook** for Claude Code and Codex, with no model or network call:
   an exact CVE match blocks the turn with the CVE, line, cause and fix
   direction; 98 rules drafted from the cards add non-blocking review notes.
@@ -40,7 +41,7 @@ the agent what the problem is and how to avoid it; the agent writes its own fix.
 | Clean install from wheel | pass |
 | Search, fresh held-out questions (hit@5 / MRR) | 0.831 / 0.697 and 0.873 / 0.736 |
 | Review rules, first scan of 4,055 site-packages files | 89 of 98 rules silent; pickle.load 37 files |
-| Unit tests | 286 pass |
+| Unit tests | 300 pass |
 
 Evidence: [docs/evidence/private-alpha/final-report.md](docs/evidence/private-alpha/final-report.md).
 
@@ -73,7 +74,7 @@ Proof loop: `cases runtime-build`, then `cases auto --project <dir> --workspace 
 ## Limits
 
 Two exact CVE rules block; the other rules only advise. Single-file static
-checks. Candidate cards are not yet checked against a patch. A clean result is
+checks. Patch checks are model reviews, not human review. A clean result is
 not a security verdict. Project text is English ASCII.
 
 ## Docs

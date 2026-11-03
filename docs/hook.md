@@ -29,7 +29,7 @@ On each edit of a `.py` file inside the workspace:
 | Result | Hook output | Effect on the agent |
 |---|---|---|
 | Exact CVE rule match (CVE-2022-24065 checkout, CVE-2023-5752 pip revision) | `{"decision": "block", "reason": ...}` | The turn is blocked; the agent receives CVE, file:line, cause and fix |
-| Generalized Mercurial argv rule (review) | `additionalContext` | Advisory note; not blocked |
+| Generalized Mercurial argv rule or one of 98 data rules drafted from CVE cards (review) | `additionalContext` | Advisory note with the card id, only for lines the edit wrote; not blocked |
 | Unsupported (outside the workspace, link, unreadable, non-ASCII path) | `additionalContext` | Explicit "not inspected" note; never a safe claim |
 | Paladin failure | `additionalContext` | "unavailable" note; never blocks |
 | Clean, or not a Python file | no output | Nothing |
@@ -91,5 +91,6 @@ the hook timeout. MCP results send rule guidance once and cap findings at 50.
 
 ## Limits
 
-Two exact CVE rules and one generalized Mercurial rule; single-file,
+Two exact CVE rules (blocking), one generalized Mercurial rule and 98 data
+rules (review); single-file,
 intraprocedural, syntactic matching. A clean result is not a security verdict.

@@ -6,15 +6,18 @@
   <img src="https://img.shields.io/badge/version-0.2.0a1-3451d1" alt="version 0.2.0a1">
   <img src="https://img.shields.io/badge/python-3.11%2B-3776ab" alt="python 3.11+">
   <img src="https://img.shields.io/badge/license-Apache--2.0-blue" alt="Apache-2.0">
-  <img src="https://img.shields.io/badge/tests-212%20passing-2fbf71" alt="212 unit tests passing">
+  <img src="https://img.shields.io/badge/tests-286%20passing-2fbf71" alt="286 unit tests passing">
 </p>
 
 Paladin stops AI coding agents from reintroducing known CVE patterns. It tells
 the agent what the problem is and how to avoid it; the agent writes its own fix.
 
-- **Prevention cards** for 30 Python web CVEs, searchable by the agent over MCP.
-- **Edit-time hook** for Claude Code and Codex: an exact CVE match blocks the
-  turn with the CVE, line, cause and fix direction.
+- **Prevention cards** for 524 Python web CVEs, searchable by the agent over MCP
+  (e5 + BM25 hybrid). 30 are checked against the upstream patch; 494 are
+  `candidate` cards drafted from advisory text only.
+- **Edit-time hook** for Claude Code and Codex, with no model or network call:
+  an exact CVE match blocks the turn with the CVE, line, cause and fix
+  direction; 98 rules drafted from the cards add non-blocking review notes.
 - **Proof loop**: reproduces a CVE and verifies a repair inside an isolated
   Docker observer before a case is recorded.
 
@@ -35,7 +38,9 @@ the agent what the problem is and how to avoid it; the agent writes its own fix.
 | Same 3 sets after fixes | 21/21, 0 FP |
 | Claude Code session, ported vulnerable code | blocked, agent fixed it |
 | Clean install from wheel | pass |
-| Unit tests | 212 pass |
+| Search, fresh held-out questions (hit@5 / MRR) | 0.831 / 0.697 and 0.873 / 0.736 |
+| Review rules, first scan of 4,055 site-packages files | 89 of 98 rules silent; pickle.load 37 files |
+| Unit tests | 286 pass |
 
 Evidence: [docs/evidence/private-alpha/final-report.md](docs/evidence/private-alpha/final-report.md).
 
@@ -59,12 +64,17 @@ uv --cache-dir .cache/uv sync --locked
 .\.venv\Scripts\paladin.exe mcp --workspace C:/projects/example
 ```
 
+Packaged vectors match the locked onnxruntime, tokenizers and numpy versions; a
+plain `pip install` of the wheel gets newer ones, and `patterns index` then
+embeds the cards locally (about 90 s). The hook needs no model, index or Docker.
+
 Proof loop: `cases runtime-build`, then `cases auto --project <dir> --workspace <dir>`.
 
 ## Limits
 
-Two exact CVE rules and one generalized Mercurial rule; single-file static
-checks. A clean result is not a security verdict. Project text is English ASCII.
+Two exact CVE rules block; the other rules only advise. Single-file static
+checks. Candidate cards are not yet checked against a patch. A clean result is
+not a security verdict. Project text is English ASCII.
 
 ## Docs
 

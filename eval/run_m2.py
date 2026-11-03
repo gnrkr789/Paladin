@@ -11,6 +11,7 @@ import sys
 import time
 from unittest.mock import patch
 
+from paladin.home import default_home
 from paladin.embedding import LocalEmbedder
 from paladin.knowledge import search_patterns
 from paladin.language import require_english
@@ -36,13 +37,14 @@ def main(argv=None):
             raise ValueError("evaluation supports English only")
         require_english(item["query"])
     started = time.perf_counter()
-    encoder = LocalEmbedder(root)
+    home = default_home()  # search state lives in the Paladin home
+    encoder = LocalEmbedder(home)
     load_seconds = time.perf_counter() - started
     results = []
     with patch("urllib.request.urlopen", side_effect=AssertionError("unexpected model download during evaluation")):
         for item in data["queries"]:
             started = time.perf_counter()
-            result = search_patterns(root, item["query"], limit=5, embedder=encoder)
+            result = search_patterns(home, item["query"], limit=5, embedder=encoder)
             elapsed = time.perf_counter() - started
             if result["status"] != "complete":
                 raise RuntimeError(json.dumps(result))

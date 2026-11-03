@@ -17,9 +17,11 @@ class HomeTests(unittest.TestCase):
 
     def test_the_platform_default_is_a_user_data_folder(self):
         env = {key: value for key, value in os.environ.items() if key != "PALADIN_HOME"}
+        # Not %LOCALAPPDATA%: MSIX-packaged hosts (Claude and Codex desktop apps) get a private copy of it.
         with patch.dict(os.environ, dict(env, LOCALAPPDATA="C:/Users/u/AppData/Local"), clear=True), \
-                patch.object(home.sys, "platform", "win32"):
-            self.assertEqual(home.default_home(), Path("C:/Users/u/AppData/Local/paladin"))
+                patch.object(home.sys, "platform", "win32"), \
+                patch.object(home.Path, "home", return_value=Path("C:/Users/u")):
+            self.assertEqual(home.default_home(), Path("C:/Users/u/.paladin"))
         with patch.dict(os.environ, dict(env, XDG_DATA_HOME="/home/u/.data"), clear=True), \
                 patch.object(home.sys, "platform", "linux"):
             self.assertEqual(home.default_home(), Path("/home/u/.data/paladin"))

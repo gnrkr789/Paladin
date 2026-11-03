@@ -37,14 +37,15 @@ def main(argv=None):
     sys.path[:0] = [str(ROOT / "src"), str(ROOT / "scripts")]
     from headless_claude import Claude
     from paladin.card_draft import parse_answer
+    from paladin.home import default_home
     from paladin.embedding import LocalEmbedder
     from paladin.knowledge import load_pack, search_patterns
     data = json.loads((ROOT / "eval" / "m2-queries.json").read_text(encoding="utf-8"))
     patterns = {p["pattern_id"]: p for p in load_pack()["patterns"]}
-    claude, encoder, judged = Claude(), LocalEmbedder(ROOT), []
+    claude, encoder, judged = Claude(), LocalEmbedder(default_home()), []
     with tempfile.TemporaryDirectory(ignore_cleanup_errors=True) as workdir:
         for item in data["queries"]:
-            result = search_patterns(ROOT, item["query"], limit=args.depth, embedder=encoder)
+            result = search_patterns(default_home(), item["query"], limit=args.depth, embedder=encoder)
             pooled = [m["pattern"]["pattern_id"] for m in result["matches"]
                       if m["pattern"]["pattern_id"] not in item["relevant"]
                       and m["pattern"]["verification_status"] != "source_observed"]

@@ -202,7 +202,7 @@ class ProtocolContracts(unittest.IsolatedAsyncioTestCase):
         from paladin.advisory import OUTPUT_SCHEMA
         with tempfile.TemporaryDirectory() as temp:
             async with Client(StdioServerParameters(command=sys.executable,
-                              args=["-B", "-m", "paladin.cli", "mcp", "--workspace", temp])) as client:
+                              args=["-B", "-m", "paladin.cli", "mcp", "--workspace", temp, "--home", temp])) as client:
                 tools = (await client.list_tools()).tools
                 self.assertEqual({t.name for t in tools}, {"search_prevention_patterns", "get_pattern_evidence",
                                                            "get_knowledge_status", "check_changes",
@@ -308,7 +308,7 @@ class ProtocolContracts(unittest.IsolatedAsyncioTestCase):
         self.server_api()
         with tempfile.TemporaryDirectory() as temp:
             process = await asyncio.create_subprocess_exec(
-                sys.executable, "-B", "-m", "paladin.cli", "mcp", "--workspace", temp,
+                sys.executable, "-B", "-m", "paladin.cli", "mcp", "--workspace", temp, "--home", temp,
                 stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
             async def exchange(request):
                 process.stdin.write(json.dumps(request).encode() + b"\n")

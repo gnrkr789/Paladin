@@ -47,13 +47,14 @@ PROMPT = """Work only inside the current folder. Use English.
 """.format(legacy="\n".join("   " + line for line in LEGACY.splitlines()))
 
 
-def mcp_server():
-    return {"command": str(PYTHON), "args": ["-I", "-m", "paladin.cli", "mcp", "--workspace", str(ROOT)]}
+def mcp_server(task):
+    """Checks read the task folder; search reads the Paladin home (PALADIN_HOME or the default)."""
+    return {"command": str(PYTHON), "args": ["-I", "-m", "paladin.cli", "mcp", "--workspace", str(task)]}
 
 
 def run_claude(task, log):
     config = task.parent / (task.name + "-mcp.json")
-    config.write_text(json.dumps({"mcpServers": {"paladin": mcp_server()}}), encoding="utf-8")
+    config.write_text(json.dumps({"mcpServers": {"paladin": mcp_server(task)}}), encoding="utf-8")
     command = ["claude", "-p", "--model", "claude-sonnet-5-5", "--output-format", "stream-json", "--verbose",
                "--mcp-config", str(config), "--strict-mcp-config", "--setting-sources", "project",
                "--permission-mode", "acceptEdits", "--allowedTools", "mcp__paladin__search_prevention_patterns",
@@ -62,7 +63,7 @@ def run_claude(task, log):
 
 
 def run_codex(task, log, repo_hook=False):
-    server = mcp_server()
+    server = mcp_server(task)
     if repo_hook:
         return ["codex", "exec", "-m", "gpt-6.1-sol", "-s", "workspace-write", "--skip-git-repo-check", "--ephemeral",
                 "--json", "-C", str(task),

@@ -11,11 +11,15 @@ VARIABLE = "PALADIN_HOME"
 
 
 def default_home():
-    """PALADIN_HOME, else the platform's per-user data folder plus paladin."""
+    """PALADIN_HOME, else ~/.paladin on Windows, else the XDG data folder plus paladin.
+
+    Windows avoids %LOCALAPPDATA%: MSIX-packaged agent hosts (the Claude and Codex desktop
+    apps) see a private, redirected copy of it, so a terminal and a desktop agent would use
+    different homes, and Docker would mount yet another path.
+    """
     if os.environ.get(VARIABLE):
         return Path(os.environ[VARIABLE])
     if sys.platform == "win32":
-        base = os.environ.get("LOCALAPPDATA") or str(Path.home() / "AppData" / "Local")
-    else:
-        base = os.environ.get("XDG_DATA_HOME") or str(Path.home() / ".local" / "share")
+        return Path.home() / ".paladin"
+    base = os.environ.get("XDG_DATA_HOME") or str(Path.home() / ".local" / "share")
     return Path(base) / "paladin"

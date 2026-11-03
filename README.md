@@ -6,7 +6,7 @@
   <img src="https://img.shields.io/badge/version-0.2.0a1-3451d1" alt="version 0.2.0a1">
   <img src="https://img.shields.io/badge/python-3.11%2B-3776ab" alt="python 3.11+">
   <img src="https://img.shields.io/badge/license-Apache--2.0-blue" alt="Apache-2.0">
-  <img src="https://img.shields.io/badge/tests-336%20passing-2fbf71" alt="336 unit tests passing">
+  <img src="https://img.shields.io/badge/tests-344%20passing-2fbf71" alt="344 unit tests passing">
 </p>
 
 Paladin stops AI coding agents from reintroducing known CVE patterns. It tells
@@ -46,7 +46,7 @@ the agent what the problem is and how to avoid it; the agent writes its own fix.
 | Review rules, first scan of 4,055 site-packages files | 112 of 125 rules silent; pickle.load 37 files; 1 rule over 50 files not shipped |
 | Rewritten cards audited by a second model (Codex), sample of 30 | 30 better than the draft; 10 exact, 20 with a side claim to fix |
 | Same 207 cards after correction, Fable audit of a new sample of 30 | 29 exact, 1 with a minor omission |
-| Unit tests | 336 pass |
+| Unit tests | 344 pass |
 
 Evidence: [docs/evidence/private-alpha/final-report.md](docs/evidence/private-alpha/final-report.md).
 
@@ -58,7 +58,8 @@ Evidence: [docs/evidence/private-alpha/final-report.md](docs/evidence/private-al
 
 ## Quick start
 
-Python 3.11+, [uv](https://docs.astral.sh/uv/), Docker Desktop.
+Windows only for now (Linux and macOS are untested). Python 3.12 recommended (on 3.11 the
+first `patterns index` re-embeds the cards, about 90 s), [uv](https://docs.astral.sh/uv/), Docker Desktop.
 
 Once per user (search state goes to the Paladin home: `PALADIN_HOME`, or
 `%USERPROFILE%\.paladin` on Windows, `~/.local/share/paladin` elsewhere):
@@ -77,10 +78,13 @@ reads the home):
 .\.venv\Scripts\paladin.exe hook install --workspace C:/projects/example
 .\.venv\Scripts\paladin.exe hook install --host codex --workspace C:/projects/example
 .\.venv\Scripts\paladin.exe deps check --workspace C:/projects/example
-.\.venv\Scripts\paladin.exe mcp --workspace C:/projects/example
+.\.venv\Scripts\paladin.exe mcp install --workspace C:/projects/example
+.\.venv\Scripts\paladin.exe mcp install --host codex --workspace C:/projects/example
 ```
 
-Codex runs a project's hook only after you trust it with `/hooks` in that project.
+`mcp install` writes the project's `.mcp.json` (Claude Code asks once to approve it) or a
+managed block in `.codex/config.toml`. Codex runs a project's hook and reads its config
+only after you trust the project (`/hooks` for the hook).
 
 Packaged vectors match the locked onnxruntime, tokenizers and numpy versions; a
 plain `pip install` of the wheel gets newer ones, and `patterns index` then

@@ -2,8 +2,20 @@
 name = "paladin"
 version = "0.2.0a1"
 description = "Evidence-grounded vulnerability prevention for coding agents"
+readme = "README.md"
 requires-python = ">=3.11"
 license = {text = "Apache-2.0"}
+authors = [{name = "Jun Tae Kim"}]
+keywords = ["security", "cve", "coding-agents", "mcp", "claude-code", "codex"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: Apache Software License",
+    "Operating System :: Microsoft :: Windows",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Security",
+]
 dependencies = [
     "jsonschema>=4.23,<5",
     "mcp==2.3.0",
@@ -13,6 +25,10 @@ dependencies = [
     "pymilvus==2.6.17",
     "tokenizers>=0.21,<1",
 ]
+
+[project.urls]
+Homepage = "https://github.com/gnrkr789/Paladin"
+Issues = "https://github.com/gnrkr789/Paladin/issues"
 
 [project.scripts]
 paladin = "paladin.cli:main"

@@ -12,6 +12,17 @@ After installing the locked dependencies, launch from the project directory:
 .\.venv\Scripts\paladin.exe mcp --workspace 'C:\Users\user\Desktop\personal\Paladin'
 ```
 
+Register it in a project instead of editing agent settings by hand:
+
+```powershell
+.\.venv\Scripts\paladin.exe mcp install --workspace C:/projects/example              # Claude Code: .mcp.json
+.\.venv\Scripts\paladin.exe mcp install --host codex --workspace C:/projects/example # Codex: .codex/config.toml
+```
+
+Other servers in those files stay; Paladin's entry is replaced on reinstall, and a
+hand-written `mcp_servers.paladin` table in the Codex config is refused rather than
+overwritten. User-level settings are never touched.
+
 The MCP client owns the process and supplies stdin/stdout. There is no HTTP
 listener. Stdout carries protocol messages only. Launch performs no setup,
 download, indexing or Docker control. Prepare semantic retrieval with the

@@ -137,7 +137,11 @@ class M2Contracts(unittest.TestCase):
         with contextlib.redirect_stdout(output):
             code = main(["patterns", "validate", "--json"])
         self.assertEqual(code, 0)
-        self.assertEqual(json.loads(output.getvalue())["pattern_count"], len(self.pack()["patterns"]))
+        result = json.loads(output.getvalue())
+        self.assertEqual(result["pattern_count"], len(self.pack()["patterns"]))
+        self.assertNotIn("verification_status", result, "a pack mixes statuses; report counts instead")
+        self.assertEqual(sum(result["verification_counts"].values()), result["pattern_count"])
+        self.assertGreater(result["verification_counts"]["candidate"], 0)
 
     def test_cli_search_reports_unavailable_index_as_json(self):
         import contextlib, io

@@ -1,6 +1,7 @@
 """Source-qualified advisory retrieval. Similarity is not a vulnerability verdict."""
 from contextlib import closing
 import base64
+from collections import Counter
 import hashlib
 from importlib import metadata, resources
 import json
@@ -191,6 +192,11 @@ def _failure(exc):
     return {"status": "unavailable", "security_ready": False, "error": f"{type(exc).__name__}: {str(exc)[:600]}"}
 
 
+def verification_counts(pack):
+    """Patterns per verification status; a pack mixes source-checked and candidate cards."""
+    return dict(sorted(Counter(p["verification_status"] for p in pack["patterns"]).items()))
+
+
 def knowledge_status(root):
     try:
         pack = load_pack()
@@ -202,7 +208,7 @@ def knowledge_status(root):
                 raise ValueError("Milvus semantic schema or record manifest mismatch")
         finally:
             store.close()
-        return {"status": "ready", "manifest": manifest, "verification_status": "source_observed",
+        return {"status": "ready", "manifest": manifest, "verification_counts": verification_counts(pack),
                 "security_ready": False, "enforcement_enabled": False}
     except Exception as exc:
         return _failure(exc)

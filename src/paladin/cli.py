@@ -135,11 +135,11 @@ def main(argv=None):
             result["notice"] = ("Only the Cookiecutter CVE-2022-24065 and pip Mercurial CVE-2023-5752 "
                                 "adapters are supported; no security verdict.")
         elif args.command == "patterns":
-            from paladin.knowledge import load_pack, build_index, knowledge_status
+            from paladin.knowledge import load_pack, build_index, knowledge_status, verification_counts
             if args.action == "validate":
                 pack = load_pack()
                 result = {"status": "valid", "pack_id": pack["pack_id"], "pattern_count": len(pack["patterns"]),
-                          "verification_status": "source_observed", "enforcement_enabled": False}
+                          "verification_counts": verification_counts(pack), "enforcement_enabled": False}
             elif args.action == "export":
                 from paladin.knowledge import export_snapshot
                 result = export_snapshot(args.workspace)

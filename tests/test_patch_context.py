@@ -65,7 +65,7 @@ class PatchContextTests(unittest.TestCase):
             result = advisory.dispatch(Path(workspace.name), "get_prevention_guidance", args)
             self.assertEqual(result["status"], "complete", result)
             self.assertTrue(result["patch_context"]["changed_files"])
-            partial = patch_context(ROOT, result["guidance"], max_bytes=1)
+            partial = patch_context(advisory.evidence_root(), result["guidance"], max_bytes=1)
             self.assertEqual(partial["status"], "partial")
             self.assertIsNone(partial["patch"])
             self.assertEqual(partial["reason"], "patch_context_byte_limit")

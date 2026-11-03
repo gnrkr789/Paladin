@@ -86,7 +86,8 @@ class AdvisoryContracts(unittest.TestCase):
         api = self.api()
         with tempfile.TemporaryDirectory() as temp, \
                 patch("paladin.knowledge.LocalEmbedder", side_effect=AssertionError("model touched")), \
-                patch("paladin.knowledge.SemanticStore", side_effect=AssertionError("DB touched")):
+                patch("paladin.knowledge.SemanticStore", side_effect=AssertionError("DB touched")), \
+                patch("paladin.advisory.evidence_root", return_value=Path(temp) / "data"):
             result = api.dispatch(Path(temp), "get_pattern_evidence", self.args())
             self.assertEqual(result["status"], "complete")
             self.assertEqual(result["verification_status"], "source_observed")
@@ -121,7 +122,8 @@ class AdvisoryContracts(unittest.TestCase):
             path = Path(temp) / entry["snapshot_path"]
             path.parent.mkdir(parents=True)
             path.write_bytes(raw)
-            with patch("paladin.knowledge.load_pack", return_value=pack):
+            with patch("paladin.knowledge.load_pack", return_value=pack), \
+                        patch("paladin.advisory.evidence_root", return_value=Path(temp) / "data"):
                 result = api.dispatch(Path(temp), "get_pattern_evidence",
                                       self.args(include_excerpt=True, max_excerpt_bytes=60,
                                                 evidence_ids=["cve:" + entry["sha256"]]))
@@ -142,7 +144,8 @@ class AdvisoryContracts(unittest.TestCase):
             path.parent.mkdir(parents=True)
             for raw, reason in [(b"changed", "hash_mismatch"), (b"x" * (4 * 1024 * 1024 + 1), "source_too_large")]:
                 path.write_bytes(raw)
-                with patch("paladin.knowledge.load_pack", return_value=pack):
+                with patch("paladin.knowledge.load_pack", return_value=pack), \
+                        patch("paladin.advisory.evidence_root", return_value=Path(temp) / "data"):
                     result = api.dispatch(Path(temp), "get_pattern_evidence", self.args(include_excerpt=True))
                 self.assertEqual(result["omissions"][0]["reason"], reason)
                 self.assertNotIn("excerpt", result["evidence"][0])
@@ -155,7 +158,8 @@ class AdvisoryContracts(unittest.TestCase):
             root = Path(temp)
             for path in ["../outside.txt", "data/m0/sources/../../secret.txt"]:
                 entry["snapshot_path"] = path
-                with patch("paladin.knowledge.load_pack", return_value=pack):
+                with patch("paladin.knowledge.load_pack", return_value=pack), \
+                        patch("paladin.advisory.evidence_root", return_value=Path(temp) / "data"):
                     result = api.dispatch(root, "get_pattern_evidence", self.args(include_excerpt=True))
                 self.assertEqual(result["omissions"][0]["reason"], "unsafe_path")
             link = root / "data/m0/sources"
@@ -167,7 +171,8 @@ class AdvisoryContracts(unittest.TestCase):
                 link.symlink_to(outside, target_is_directory=True)
             try:
                 entry["snapshot_path"] = "data/m0/sources/secret.txt"
-                with patch("paladin.knowledge.load_pack", return_value=pack):
+                with patch("paladin.knowledge.load_pack", return_value=pack), \
+                        patch("paladin.advisory.evidence_root", return_value=Path(temp) / "data"):
                     result = api.dispatch(root, "get_pattern_evidence", self.args(include_excerpt=True))
                 self.assertEqual(result["omissions"][0]["reason"], "unsafe_path")
             finally:

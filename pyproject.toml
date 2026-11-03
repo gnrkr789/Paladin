@@ -21,11 +21,15 @@ paladin = "paladin.cli:main"
 requires = ["setuptools>=75"]
 build-backend = "setuptools.build_meta"
 
-[tool.setuptools.packages.find]
-where = ["src"]
+[tool.setuptools]
+packages = ["paladin", "paladin_evidence"]
+# Evidence copies (CVE records, advisories, upstream patches for verified cards) ship as their
+# own package so excerpts work in every project and install, not only in this checkout.
+package-dir = {"paladin" = "src/paladin", "paladin_evidence" = "data"}
 
 [tool.setuptools.package-data]
 paladin = ["resources/*.yaml", "resources/*.json", "resources/sandbox/*"]
+paladin_evidence = ["THIRD_PARTY.md", "m0/sources/*", "m2/sources/*", "cve-expansion/sources/*"]
 
 [dependency-groups]
 dev = [

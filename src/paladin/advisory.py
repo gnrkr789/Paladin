@@ -144,13 +144,26 @@ def bounded(result):
     return result
 
 
+EVIDENCE_GROUPS = [("data", "m0", "sources"), ("data", "m2", "sources"), ("data", "cve-expansion", "sources")]
+
+
+def evidence_root():
+    """The packaged evidence copies (the checkout's data folder in a development install)."""
+    from importlib import resources
+    return Path(str(resources.files("paladin_evidence")))
+
+
 def snapshot_path(root, relative):
-    """Reject escapes and reparse points before reading a pack-listed source."""
+    """Reject escapes and reparse points before reading a pack-listed source.
+
+    root is the evidence root; pack paths start with data/, which is that root.
+    """
     root = Path(root).resolve()
     parts = PurePosixPath(relative).parts
-    if (len(parts) < 4 or parts[:3] not in [("data", "m0", "sources"), ("data", "m2", "sources")]
+    if (len(parts) < 4 or parts[:3] not in EVIDENCE_GROUPS
             or any(part in {".", ".."} or ":" in part or "\\" in part for part in parts)):
         raise ValueError("unsafe_path")
+    parts = parts[1:]
     path = root
     for part in parts:
         path = path / part
@@ -160,7 +173,7 @@ def snapshot_path(root, relative):
             continue
         if stat.S_ISLNK(info.st_mode) or getattr(info, "st_file_attributes", 0) & 0x400:
             raise ValueError("unsafe_path")
-    allowed = root.joinpath(*parts[:3])
+    allowed = root.joinpath(*parts[:2])
     resolved = path.resolve()
     if not resolved.is_relative_to(allowed) or not resolved.is_relative_to(root):
         raise ValueError("unsafe_path")
@@ -204,7 +217,7 @@ def excerpt(root, entry, budget):
     return result, used
 
 
-def get_evidence(root, args):
+def get_evidence(args):
     from paladin.knowledge import _resource, load_pack
     pack = load_pack()
     pin = hashlib.sha256(_resource("prevention-pack.json")).hexdigest()
@@ -225,7 +238,7 @@ def get_evidence(root, args):
         item = {**entries[eid], "evidence_id": eid}
         if args.get("include_excerpt", False):
             try:
-                content, used = excerpt(root, item, min(args.get("max_excerpt_bytes", 4096), remaining))
+                content, used = excerpt(evidence_root(), item, min(args.get("max_excerpt_bytes", 4096), remaining))
                 item.update(content)
                 remaining -= used
                 if content["truncated"]:
@@ -241,9 +254,8 @@ def get_evidence(root, args):
     return result
 
 
-def get_status(root, home=None):
-    """Index readiness from the home; evidence snapshots counted in the workspace that serves them."""
-    home = home if home is not None else root
+def get_status(home):
+    """Index readiness from the home; evidence snapshots counted in the packaged evidence."""
     from paladin.knowledge import _resource, knowledge_status, load_pack
     from paladin.local import doctor
     pack = load_pack()
@@ -257,7 +269,7 @@ def get_status(root, home=None):
     entries = [e for p in pack["patterns"] for e in p["evidence"]]
     for entry in entries:
         try:
-            available += snapshot_path(root, entry["snapshot_path"]).is_file()
+            available += snapshot_path(evidence_root(), entry["snapshot_path"]).is_file()
         except (ValueError, OSError):
             pass
     return {"status": "ready" if semantic["status"] == local["status"] == "ready" else "unavailable",
@@ -274,7 +286,8 @@ def get_status(root, home=None):
             "freshness_notice": "Pack date is not proof of upstream freshness."}
 
 
-def get_guidance(root, args):
+def get_guidance(home, args):
+    """Claims and patch context from the packaged evidence; verified cases from the home."""
     from paladin.guidance import checked_claim, guidance_identity, load_guidance
     from paladin.knowledge import _resource, load_pack
 
@@ -285,7 +298,7 @@ def get_guidance(root, args):
     pack = load_pack()
     guidance = load_guidance()
     try:
-        claim = checked_claim(root, args["pattern_id"], pack, guidance)
+        claim = checked_claim(evidence_root(), args["pattern_id"], pack, guidance)
     except (ValueError, OSError) as exc:
         reason = str(exc) if isinstance(exc, ValueError) else "source_content_unavailable"
         return {**failure(reason), "gaps": [reason]}
@@ -296,10 +309,10 @@ def get_guidance(root, args):
             "human_reviewed": False,
             "fixture_status": "illustrative_only_upstream_not_executed",
             "promotion_eligible": False}
-    if (Path(root) / ".paladin/cases.sqlite3").exists():
+    if (Path(home) / ".paladin/cases.sqlite3").exists():
         from paladin.case_pipeline import verified_case_references
         try:
-            references = verified_case_references(root, args["pattern_id"])
+            references = verified_case_references(home, args["pattern_id"])
         except (OSError, ValueError, KeyError):
             references = {"status": "partial", "cases": []}
         result["verified_case_references"] = references["cases"][:10]
@@ -310,7 +323,7 @@ def get_guidance(root, args):
             result["status"] = "partial"
     if args.get("include_patch_context", False):
         from paladin.guidance import patch_context
-        result["patch_context"] = patch_context(root, claim)
+        result["patch_context"] = patch_context(evidence_root(), claim)
         if result["patch_context"]["status"] != "complete":
             result["status"] = "partial"
     return result
@@ -358,11 +371,11 @@ def dispatch(root, name, arguments, home=None):
                 for entry in match["pattern"]["evidence"]:
                     entry["evidence_id"] = evidence_id(entry)
         elif name == "get_pattern_evidence":
-            result = get_evidence(root, arguments)
+            result = get_evidence(arguments)
         elif name == "get_prevention_guidance":
-            result = get_guidance(root, arguments)
+            result = get_guidance(home, arguments)
         else:
-            result = get_status(root, home)
+            result = get_status(home)
         return bounded(result)
     except Exception:
         # No user input, paths, source content or exception internals in diagnostics.

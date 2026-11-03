@@ -39,7 +39,7 @@ def _case_error(exc):
     return code if code in known else "case_operation_failed"
 
 
-HOME_COMMANDS = {"setup", "doctor", "model", "patterns", "search"}
+HOME_COMMANDS = {"setup", "doctor", "model", "patterns", "search", "cases"}
 
 
 def main(argv=None):
@@ -74,15 +74,13 @@ def main(argv=None):
     cases = commands.add_parser("cases", help="scan and verify locally supported CVE cases")
     cases.add_argument("action", choices=["scan", "auto", "list", "runtime-build"])
     cases.add_argument("--project", type=Path, default=Path.cwd())
-    # Verified cases stay with the workspace that evidence and guidance read.
-    cases.add_argument("--workspace", type=Path, default=Path.cwd())
     cases.add_argument("--json", action="store_true")
     cases.add_argument("--cve", choices=["CVE-2022-24065", "CVE-2023-5752"])
     deps.add_argument("--workspace", type=Path, default=Path.cwd())
     deps.add_argument("--json", action="store_true")
     for command in [model, patterns, search]:
         command.add_argument("--json", action="store_true")
-    for command in [commands.choices["setup"], commands.choices["doctor"], model, patterns, search]:
+    for command in [commands.choices["setup"], commands.choices["doctor"], model, patterns, search, cases]:
         command.add_argument("--home", type=Path, help="Paladin home (default: PALADIN_HOME or the per-user "
                                                        "data folder)")
         command.add_argument("--workspace", type=Path, help="old spelling of --home")

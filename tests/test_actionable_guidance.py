@@ -64,7 +64,8 @@ class GuidanceContracts(unittest.TestCase):
 
     def test_s2_gaps_are_named_without_applicability_claim(self):
         args = self.args("CVE-2021-31542")
-        with tempfile.TemporaryDirectory() as empty:
+        with tempfile.TemporaryDirectory() as empty, \
+                patch("paladin.advisory.evidence_root", return_value=Path(empty)):
             missing = advisory.dispatch(Path(empty), "get_prevention_guidance", args)
         self.assertEqual(missing["status"], "unavailable")
         self.assertEqual(missing["gaps"], ["source_content_unavailable"])

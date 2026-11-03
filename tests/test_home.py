@@ -83,37 +83,6 @@ class SplitTests(unittest.TestCase):
             self.assertEqual((result["status"], result["outcome"]), ("complete", "findings"))
             Draft202012Validator(advisory.OUTPUT_SCHEMA).validate(result)
 
-    def test_cases_and_evidence_stay_with_the_workspace_and_status_counts_them_there(self):
-        from paladin.cli import main
-        seen = {}
-
-        def references(root, cve):
-            seen["cases"] = Path(root)
-            return {"status": "complete", "cases": []}
-
-        with patch("paladin.case_pipeline.verified_case_references", references), \
-                contextlib.redirect_stdout(io.StringIO()), patch.dict(os.environ, {"PALADIN_HOME": str(self.home)}):
-            previous = os.getcwd()
-            os.chdir(self.workspace)
-            try:
-                main(["cases", "list", "--cve", "CVE-2022-24065"])
-            finally:
-                os.chdir(previous)
-        self.assertEqual(seen["cases"].resolve(), self.workspace.resolve())
-
-        counted = []
-        real = advisory.snapshot_path
-
-        def snapshot(root, relative):
-            counted.append(Path(root))
-            return real(root, relative)
-
-        with patch("paladin.knowledge.knowledge_status", return_value={"status": "unavailable"}), \
-                patch("paladin.local.doctor", return_value={"status": "unavailable"}), \
-                patch("paladin.advisory.snapshot_path", snapshot):
-            advisory.dispatch(self.workspace, "get_knowledge_status", {}, home=self.home)
-        self.assertEqual(set(counted), {self.workspace.resolve()} | {self.workspace})
-
     def test_the_mcp_worker_gets_both_folders(self):
         from paladin.mcp_server import WorkerRunner
 

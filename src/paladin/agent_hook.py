@@ -10,11 +10,10 @@ import os
 from pathlib import Path
 import re
 import shlex
-import stat
-import tempfile
 
 from paladin.change_check import check_paths, line_digest
 from paladin.dependency_check import is_dependency_file
+from paladin.settings_files import replace_text, safe_file
 
 EDIT_TOOLS = {"Write", "Edit", "MultiEdit"}
 HOOK_MATCHER = "Write|Edit|MultiEdit"
@@ -258,11 +257,6 @@ def main(workspace, stream_in, stream_out, host="claude-code"):
     return 0
 
 
-def _linked(path):
-    info = os.lstat(path)
-    return stat.S_ISLNK(info.st_mode) or bool(getattr(info, "st_file_attributes", 0) & 0x400)
-
-
 INSTALL_TARGETS = {"claude-code": (".claude", "settings.json", HOOK_MATCHER),
                    "codex": (".codex", "hooks.json", "apply_patch")}
 
@@ -275,15 +269,7 @@ def install_hook(workspace, command, host):
     """Add one project-scoped PostToolUse hook entry; user-level settings are never touched."""
     folder, filename, matcher = INSTALL_TARGETS[host]
     workspace = Path(workspace).resolve()
-    directory = workspace / folder
-    if os.path.lexists(directory) and (_linked(directory) or not directory.is_dir()):
-        raise ValueError("unsafe_settings_directory")
-    directory.mkdir(exist_ok=True)
-    if not directory.resolve().is_relative_to(workspace):
-        raise ValueError("unsafe_settings_directory")
-    path = directory / filename
-    if os.path.lexists(path) and (_linked(path) or not path.is_file()):
-        raise ValueError("unsafe_settings_file")
+    path = safe_file(workspace, Path(folder) / filename)
     try:
         data = json.loads(path.read_text(encoding="utf-8")) if path.exists() else {}
     except ValueError as exc:
@@ -311,15 +297,7 @@ def install_hook(workspace, command, host):
             kept.append(dict(group, hooks=others))
     hooks["PostToolUse"] = kept + [{"matcher": matcher,
                                     "hooks": [{"type": "command", "command": line, "timeout": 10}]}]
-    descriptor, temporary = tempfile.mkstemp(prefix="settings-", suffix=".tmp", dir=directory)
-    try:
-        with os.fdopen(descriptor, "w", encoding="utf-8") as stream:
-            json.dump(data, stream, indent=2)
-            stream.write("\n")
-        os.replace(temporary, path)
-    finally:
-        if os.path.exists(temporary):
-            os.unlink(temporary)
+    replace_text(path, json.dumps(data, indent=2) + "\n")
     result = {"status": "installed", "host": host, "settings": str(path), "command": line}
     if host == "codex":
         result["next_step"] = "Review and trust the project hook in Codex with /hooks; untrusted hooks do not run."

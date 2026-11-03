@@ -68,7 +68,10 @@ def main(argv=None):
     deps.add_argument("action", choices=["check"])
     deps.add_argument("paths", nargs="*", help="workspace-relative dependency files (default: discover)")
     mcp = commands.add_parser("mcp", help="serve bounded advisory tools over stdio")
+    mcp.add_argument("action", nargs="?", choices=["serve", "install"], default="serve",
+                     help="serve over stdio (default) or register Paladin in the project's agent settings")
     mcp.add_argument("--workspace", type=Path, default=Path.cwd())
+    mcp.add_argument("--host", choices=["claude-code", "codex"], default="claude-code")
     mcp.add_argument("--home", type=Path, help="Paladin home with the search index (default: PALADIN_HOME or "
                                                "the per-user data folder)")
     cases = commands.add_parser("cases", help="scan and verify locally supported CVE cases")
@@ -95,6 +98,16 @@ def main(argv=None):
         try:
             # -I: isolated mode, so modules in the hooked workspace cannot shadow Paladin.
             result = agent_hook.install_hook(args.workspace, [sys.executable, "-I", "-m", "paladin.cli"], args.host)
+        except (OSError, ValueError) as exc:
+            print(json.dumps({"status": "unavailable", "error": str(exc).split(":", 1)[0][:200]}, indent=2))
+            return 1
+        print(json.dumps(result, indent=2))
+        return 0
+    if args.command == "mcp" and args.action == "install":
+        from paladin import mcp_install
+        try:
+            # -I: isolated mode, as for the hook, so the project cannot shadow Paladin's modules.
+            result = mcp_install.install(args.workspace, [sys.executable, "-I", "-m", "paladin.cli"], args.host)
         except (OSError, ValueError) as exc:
             print(json.dumps({"status": "unavailable", "error": str(exc).split(":", 1)[0][:200]}, indent=2))
             return 1

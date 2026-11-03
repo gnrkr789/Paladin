@@ -61,7 +61,7 @@ Evidence: [docs/evidence/private-alpha/final-report.md](docs/evidence/private-al
 Python 3.11+, [uv](https://docs.astral.sh/uv/), Docker Desktop.
 
 Once per user (search state goes to the Paladin home: `PALADIN_HOME`, or
-`%LOCALAPPDATA%\paladin`; `~/.local/share/paladin` on Linux and macOS):
+`%USERPROFILE%\.paladin` on Windows, `~/.local/share/paladin` elsewhere):
 
 ```powershell
 uv --cache-dir .cache/uv sync --locked

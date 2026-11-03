@@ -1,0 +1,549 @@
+{
+ "purpose": "known_item_retrieval_for_candidate_cards_first_run_is_held_out",
+ "protocol_revision": "english-known-item-v1",
+ "seed": 20261103,
+ "per_family": 8,
+ "excluded_from": [
+  "eval/m2v2-queries.json",
+  "eval/m2v3-queries.json"
+ ],
+ "query_writer": "claude-sonnet-5-5",
+ "gate": {
+  "hit_at_5": 0.8,
+  "mrr": 0.6
+ },
+ "skipped": [],
+ "queries": [
+  {
+   "id": "v2-CVE-2020-11978",
+   "language": "en",
+   "query": "When I write a workflow task that builds a shell command from run parameters supplied by authenticated users, how do I prevent those values from being injected into the command, and should sample or demo tasks be shipped enabled in production?",
+   "family": "command_injection",
+   "relevant": [
+    "CVE-2020-11978"
+   ]
+  },
+  {
+   "id": "v2-CVE-2021-3583",
+   "language": "en",
+   "query": "When I render a Jinja2 template from a multi-line YAML string that includes values gathered from remote hosts, how can I stop braces inside that untrusted data from being evaluated as template code and leaking secrets or running commands?",
+   "family": "command_injection",
+   "relevant": [
+    "CVE-2021-3583"
+   ]
+  },
+  {
+   "id": "v2-CVE-2023-6018",
+   "language": "en",
+   "query": "How should I write a Python web endpoint that accepts file uploads or artifact paths from unauthenticated clients and saves them to disk, so that a crafted path cannot make it overwrite arbitrary files elsewhere on the server?",
+   "family": "command_injection",
+   "relevant": [
+    "CVE-2023-6018"
+   ]
+  },
+  {
+   "id": "v2-CVE-2024-6825",
+   "language": "en",
+   "query": "Is it safe to let a config file or admin API setting name a dotted Python path like \"module.function\" that my web app imports dynamically and calls as a callback after each chat response?",
+   "family": "command_injection",
+   "relevant": [
+    "CVE-2024-6825"
+   ]
+  },
+  {
+   "id": "v2-CVE-2025-15379",
+   "language": "en",
+   "query": "How should I build a pip install command from a dependency list read out of a YAML file shipped inside an uploaded model bundle, so that a malicious entry cannot inject extra shell commands when my startup code runs it?",
+   "family": "command_injection",
+   "relevant": [
+    "CVE-2025-15379"
+   ]
+  },
+  {
+   "id": "v2-CVE-2026-11332",
+   "language": "en",
+   "query": "When my Python web app shells out to git to clone a repository using a URL or source string taken from a user-supplied YAML dependency file, how do I stop values that start with dashes from being parsed as git options and running code?",
+   "family": "command_injection",
+   "relevant": [
+    "CVE-2026-11332"
+   ]
+  },
+  {
+   "id": "v2-CVE-2026-42266",
+   "language": "en",
+   "query": "How do I build a web feature that lets users install Python packages from an index, restricted by an admin allow-list of permitted sources, and make sure the check cannot be bypassed by packages resolved from the default public index?",
+   "family": "command_injection",
+   "relevant": [
+    "CVE-2026-42266"
+   ]
+  },
+  {
+   "id": "v2-CVE-2026-67325",
+   "language": "en",
+   "query": "Is a blocklist of dangerous option names enough when my Flask endpoint passes user-supplied keyword arguments to git clone or fetch, given that git may accept shortened forms of long options?",
+   "family": "command_injection",
+   "relevant": [
+    "CVE-2026-67325"
+   ]
+  },
+  {
+   "id": "v2-CVE-2017-1000481",
+   "language": "en",
+   "query": "How do I safely redirect a user back to the page they originally requested after login using a next URL query parameter, and what checks stop attackers from crafting links that send them to external sites or run script?",
+   "family": "open_redirect",
+   "relevant": [
+    "CVE-2017-1000481"
+   ]
+  },
+  {
+   "id": "v2-CVE-2020-26215",
+   "language": "en",
+   "query": "How should I safely handle a \"next\" or redirect URL query parameter in a Python web app's handler so that a crafted link on my own trusted host cannot send users to a spoofed external site?",
+   "family": "open_redirect",
+   "relevant": [
+    "CVE-2020-26215"
+   ]
+  },
+  {
+   "id": "v2-CVE-2020-26275",
+   "language": "en",
+   "query": "How should I safely handle a \"next\" or redirect URL query parameter in a Python web handler, such as after login, so that crafted links starting with double slashes or other tricks cannot send users to an attacker's external site?",
+   "family": "open_redirect",
+   "relevant": [
+    "CVE-2020-26275"
+   ]
+  },
+  {
+   "id": "v2-CVE-2021-28125",
+   "language": "en",
+   "query": "How should I build a Flask endpoint that accepts a user-supplied URL and generates a short link that redirects to it, so attackers cannot abuse it to send victims to external malicious sites?",
+   "family": "open_redirect",
+   "relevant": [
+    "CVE-2021-28125"
+   ]
+  },
+  {
+   "id": "v2-CVE-2022-45582",
+   "language": "en",
+   "query": "How should I safely redirect users after a form submission when the destination comes from a request parameter like success_url, so attackers cannot craft links that send people to external malicious sites?",
+   "family": "open_redirect",
+   "relevant": [
+    "CVE-2022-45582"
+   ]
+  },
+  {
+   "id": "v2-CVE-2024-1240",
+   "language": "en",
+   "query": "How should I implement a Flask login view that sends users back to the page they originally wanted using a \"next\" query parameter, without letting attackers craft links that bounce people to an external malicious site after sign-in?",
+   "family": "open_redirect",
+   "relevant": [
+    "CVE-2024-1240"
+   ]
+  },
+  {
+   "id": "v2-CVE-2025-50182",
+   "language": "en",
+   "query": "Can I rely on my HTTP client's redirect and retry settings to block automatic redirects when the same Python code runs in a browser or Node.js through Pyodide, or might the runtime follow redirects anyway?",
+   "family": "open_redirect",
+   "relevant": [
+    "CVE-2025-50182"
+   ]
+  },
+  {
+   "id": "v2-CVE-2026-114614",
+   "language": "en",
+   "query": "Is it safe to allow plain HTTP for localhost in my OAuth server's URL validation by checking whether the string starts with \"http://localhost\", or could a crafted URL with credentials before the real host slip past that check?",
+   "family": "open_redirect",
+   "relevant": [
+    "CVE-2026-114614"
+   ]
+  },
+  {
+   "id": "v2-CVE-2020-25074",
+   "language": "en",
+   "query": "How should I safely build file paths in a Python web handler that serves cached files using a key or filename taken from the request, so that a crafted value cannot escape the cache directory and reach uploaded files or executable content?",
+   "family": "path_traversal",
+   "relevant": [
+    "CVE-2020-25074"
+   ]
+  },
+  {
+   "id": "v2-CVE-2024-51998",
+   "language": "en",
+   "query": "When I validate user-submitted URLs before a headless browser fetches them, how do I block local file access reliably, given that a file scheme can be written without double slashes and bypass a simple startswith check?",
+   "family": "path_traversal",
+   "relevant": [
+    "CVE-2024-51998"
+   ]
+  },
+  {
+   "id": "v2-CVE-2025-48067",
+   "language": "en",
+   "query": "How can I safely implement a Flask endpoint that lets users with upload permission copy or move files within the upload directory, so a crafted source path cannot pull in arbitrary readable files from elsewhere on the server and expose them for download?",
+   "family": "path_traversal",
+   "relevant": [
+    "CVE-2025-48067"
+   ]
+  },
+  {
+   "id": "v2-CVE-2025-66645",
+   "language": "en",
+   "query": "How do I safely serve a folder of user-requested media files over HTTP in my Python web app, so that crafted paths with dot-dot segments cannot let a remote visitor read arbitrary files elsewhere on the server?",
+   "family": "path_traversal",
+   "relevant": [
+    "CVE-2025-66645"
+   ]
+  },
+  {
+   "id": "v2-CVE-2025-69226",
+   "language": "en",
+   "query": "How can I serve user-requested files from a static directory in an async Python web app while normalizing paths to block traversal, without leaking through different responses whether parts of the server's absolute filesystem path exist?",
+   "family": "path_traversal",
+   "relevant": [
+    "CVE-2025-69226"
+   ]
+  },
+  {
+   "id": "v2-CVE-2026-44307",
+   "language": "en",
+   "query": "How do I safely load templates by user-supplied name from a fixed directory in a Python web app that may run on Windows, given that checks using forward slashes only might miss backslash sequences that escape the folder?",
+   "family": "path_traversal",
+   "relevant": [
+    "CVE-2026-44307"
+   ]
+  },
+  {
+   "id": "v2-CVE-2026-62384",
+   "language": "en",
+   "query": "Is checking that a filename contains no path separators enough to keep my file loader inside a corpus directory, or could symlinks planted in that folder still let lookups read files outside the root?",
+   "family": "path_traversal",
+   "relevant": [
+    "CVE-2026-62384"
+   ]
+  },
+  {
+   "id": "v2-CVE-2026-78677",
+   "language": "en",
+   "query": "Is it safe to forward user-supplied options as keyword arguments when my web service clones a git repository from a user-provided URL, or could an option like a separate git directory let attackers write metadata outside the destination and run hooks?",
+   "family": "path_traversal",
+   "relevant": [
+    "CVE-2026-78677"
+   ]
+  },
+  {
+   "id": "v2-CVE-2021-3828",
+   "language": "en",
+   "query": "How can I safely write regular expressions for tokenizing or parsing user-submitted text in a Python web endpoint so that crafted input with nested or overlapping quantifiers cannot cause catastrophic backtracking and tie up the server?",
+   "family": "redos",
+   "relevant": [
+    "CVE-2021-3828"
+   ]
+  },
+  {
+   "id": "v2-CVE-2021-3842",
+   "language": "en",
+   "query": "How can I write regular expressions for tokenizing or cleaning user-submitted text in a Python web app without risking catastrophic backtracking that lets a crafted long input consume excessive CPU and stall requests?",
+   "family": "redos",
+   "relevant": [
+    "CVE-2021-3842"
+   ]
+  },
+  {
+   "id": "v2-CVE-2023-36543",
+   "language": "en",
+   "query": "How should I handle user-supplied values in a Python web view, such as a filter or search parameter, so that a malicious logged-in user cannot craft input that makes a request hang or consume excessive processing time?",
+   "family": "redos",
+   "relevant": [
+    "CVE-2023-36543"
+   ]
+  },
+  {
+   "id": "v2-CVE-2024-12720",
+   "language": "en",
+   "query": "How should I write regular expressions that clean up text produced by a model before returning it from my Python web service, so that crafted input cannot trigger catastrophic backtracking and pin the CPU?",
+   "family": "redos",
+   "relevant": [
+    "CVE-2024-12720"
+   ]
+  },
+  {
+   "id": "v2-CVE-2024-39317",
+   "language": "en",
+   "query": "How can I write a tokenizer or parser for user-submitted search query strings, with quoted phrases and filters, without regular expressions that backtrack catastrophically and let a long string with no spaces cause a denial of service?",
+   "family": "redos",
+   "relevant": [
+    "CVE-2024-39317"
+   ]
+  },
+  {
+   "id": "v2-CVE-2025-1194",
+   "language": "en",
+   "query": "When I write a text tokenizer in Python that uses regular expressions to clean or normalize user-supplied strings, how can I avoid patterns with nested or overlapping repetition that backtrack catastrophically and let crafted input spike CPU usage?",
+   "family": "redos",
+   "relevant": [
+    "CVE-2025-1194"
+   ]
+  },
+  {
+   "id": "v2-CVE-2025-2099",
+   "language": "en",
+   "query": "How can I write a regular expression in Python to strip fenced code blocks from docstring or user-supplied text without nested quantifiers causing catastrophic backtracking when the input contains very many newline characters?",
+   "family": "redos",
+   "relevant": [
+    "CVE-2025-2099"
+   ]
+  },
+  {
+   "id": "v2-CVE-2026-59928",
+   "language": "en",
+   "query": "How should I render user-submitted Markdown in a Flask app so that a malicious document packed with thousands of link reference definitions cannot burn CPU and hang requests, for example through input size limits or timeouts?",
+   "family": "redos",
+   "relevant": [
+    "CVE-2026-59928"
+   ]
+  },
+  {
+   "id": "v2-CVE-2024-8309",
+   "language": "en",
+   "query": "How should I safely let users ask natural language questions that an LLM turns into graph database queries and runs directly, given that crafted prompts could make it generate queries that modify, delete, or leak other tenants' data?",
+   "family": "sql_injection",
+   "relevant": [
+    "CVE-2024-8309"
+   ]
+  },
+  {
+   "id": "v2-CVE-2025-1793",
+   "language": "en",
+   "query": "How should I build SQL queries in a Python web app that stores and searches embeddings in a database, when metadata filters and keys come from user requests, so one user cannot read or modify another user's rows?",
+   "family": "sql_injection",
+   "relevant": [
+    "CVE-2025-1793"
+   ]
+  },
+  {
+   "id": "v2-CVE-2026-1287",
+   "language": "en",
+   "query": "Is it safe to build a dynamic ORM query by unpacking a dictionary of user-supplied keys and values as keyword arguments into annotate, values, or alias calls, or can crafted key names inject SQL?",
+   "family": "sql_injection",
+   "relevant": [
+    "CVE-2026-1287"
+   ]
+  },
+  {
+   "id": "v2-CVE-2017-7200",
+   "language": "en",
+   "query": "How should I build an endpoint that lets users submit a remote URL for the server to fetch and store as an upload, without letting them point it at localhost or internal hosts and probe open ports through my server?",
+   "family": "ssrf",
+   "relevant": [
+    "CVE-2017-7200"
+   ]
+  },
+  {
+   "id": "v2-CVE-2023-47116",
+   "language": "en",
+   "query": "Is checking a user-supplied URL with one DNS lookup to block internal IP ranges enough before my Python server fetches it, or can redirects and DNS rebinding still let attackers reach internal services?",
+   "family": "ssrf",
+   "relevant": [
+    "CVE-2023-47116"
+   ]
+  },
+  {
+   "id": "v2-CVE-2023-48022",
+   "language": "en",
+   "query": "How should I secure an HTTP endpoint in my Python service that accepts job submissions and runs the submitted commands on worker machines, so that anyone who can reach the port cannot execute arbitrary code without authentication?",
+   "family": "ssrf",
+   "relevant": [
+    "CVE-2023-48022"
+   ]
+  },
+  {
+   "id": "v2-CVE-2026-114620",
+   "language": "en",
+   "query": "How should I implement a hook that downloads a signed authorization request object from a request_uri sent by the client, so the server does not become an open fetcher that can be pointed at internal or link-local addresses?",
+   "family": "ssrf",
+   "relevant": [
+    "CVE-2026-114620"
+   ]
+  },
+  {
+   "id": "v2-CVE-2026-24779",
+   "language": "en",
+   "query": "When my Python service downloads images from user-supplied URLs and checks the hostname against an allowlist, how can differences in how URL parsers handle backslashes let attackers bypass that check and reach internal network hosts?",
+   "family": "ssrf",
+   "relevant": [
+    "CVE-2026-24779"
+   ]
+  },
+  {
+   "id": "v2-CVE-2026-45347",
+   "language": "en",
+   "query": "How can I safely build a server-side PDF export feature that renders user-submitted text as HTML, given that embedded image tags could make my server fetch internal or attacker-chosen URLs?",
+   "family": "ssrf",
+   "relevant": [
+    "CVE-2026-45347"
+   ]
+  },
+  {
+   "id": "v2-CVE-2026-50221",
+   "language": "en",
+   "query": "Before my front-end proxy forwards client requests to backend storage services that rely on special internal headers to decide where to send follow-up updates, should I strip those headers from incoming requests, and what could go wrong if I don't?",
+   "family": "ssrf",
+   "relevant": [
+    "CVE-2026-50221"
+   ]
+  },
+  {
+   "id": "v2-CVE-2026-87996",
+   "language": "en",
+   "query": "When my web app fetches user-supplied URLs through a headless browser, is checking that the hostname resolves to a public IP before loading enough, or could DNS rebinding let the browser reach internal services or cloud metadata?",
+   "family": "ssrf",
+   "relevant": [
+    "CVE-2026-87996"
+   ]
+  },
+  {
+   "id": "v2-CVE-2023-50943",
+   "language": "en",
+   "query": "How can I safely serialize and deserialize task results passed between workflow steps in Python when a config flag disables pickle, so that a custom encoder or object type cannot still smuggle in unpickled-but-unsafe data?",
+   "family": "unsafe_deserialization",
+   "relevant": [
+    "CVE-2023-50943"
+   ]
+  },
+  {
+   "id": "v2-CVE-2024-11393",
+   "language": "en",
+   "query": "Is it safe to let users upload or point to pretrained image segmentation model checkpoint files that my Flask app loads with a standard deep learning library, or could unpickling them run attacker code?",
+   "family": "unsafe_deserialization",
+   "relevant": [
+    "CVE-2024-11393"
+   ]
+  },
+  {
+   "id": "v2-CVE-2024-11394",
+   "language": "en",
+   "query": "Is it safe to load a pretrained model checkpoint file that a user uploaded or that I downloaded from an untrusted source, given that formats like pickle can run arbitrary code during deserialization?",
+   "family": "unsafe_deserialization",
+   "relevant": [
+    "CVE-2024-11394"
+   ]
+  },
+  {
+   "id": "v2-CVE-2025-32444",
+   "language": "en",
+   "query": "How should I send Python objects between worker processes over ZeroMQ sockets that bind to all network interfaces, and is using pickle for that safe if an untrusted machine could connect?",
+   "family": "unsafe_deserialization",
+   "relevant": [
+    "CVE-2025-32444"
+   ]
+  },
+  {
+   "id": "v2-CVE-2026-34993",
+   "language": "en",
+   "query": "Is it safe to restore an async HTTP client's saved cookie jar from a file that users can upload, or could loading that file execute arbitrary code, and how should I validate or sanitize it first?",
+   "family": "unsafe_deserialization",
+   "relevant": [
+    "CVE-2026-34993"
+   ]
+  },
+  {
+   "id": "v2-CVE-2026-41486",
+   "language": "en",
+   "query": "Is it safe to implement a custom Arrow extension type whose deserialize method calls pickle on stored metadata bytes, given that Parquet files from untrusted sources might be read and schemas parsed automatically?",
+   "family": "unsafe_deserialization",
+   "relevant": [
+    "CVE-2026-41486"
+   ]
+  },
+  {
+   "id": "v2-CVE-2026-4372",
+   "language": "en",
+   "query": "Is it safe to load third-party pretrained language models from a model hub in my web service if I leave remote code execution disabled, or can a crafted config file still make the loader fetch and run attacker code?",
+   "family": "unsafe_deserialization",
+   "relevant": [
+    "CVE-2026-4372"
+   ]
+  },
+  {
+   "id": "v2-CVE-2026-67587",
+   "language": "en",
+   "query": "How should I rebuild a callback object from stored JSON that includes a dotted import path, without letting whoever wrote that data cause arbitrary modules to be imported in my long-running server process when the constructor runs?",
+   "family": "unsafe_deserialization",
+   "relevant": [
+    "CVE-2026-67587"
+   ]
+  },
+  {
+   "id": "v2-CVE-2012-3442",
+   "language": "en",
+   "query": "When I redirect users to a URL taken from a query parameter after login, do I need to check the URL scheme, or could someone supply a data: or javascript: link that runs script in the browser?",
+   "family": "xss",
+   "relevant": [
+    "CVE-2012-3442"
+   ]
+  },
+  {
+   "id": "v2-CVE-2017-1000482",
+   "language": "en",
+   "query": "How should I render a user-supplied homepage URL from a member profile as a clickable link on a public author page, so that someone entering a javascript: URL cannot get script to run in visitors' browsers?",
+   "family": "xss",
+   "relevant": [
+    "CVE-2017-1000482"
+   ]
+  },
+  {
+   "id": "v2-CVE-2019-12417",
+   "language": "en",
+   "query": "How should I safely render values stored in my database, such as object names or config fields that admins can edit, in web page views, so that stored content cannot run injected scripts or cause the server to read arbitrary local files?",
+   "family": "xss",
+   "relevant": [
+    "CVE-2019-12417"
+   ]
+  },
+  {
+   "id": "v2-CVE-2020-11001",
+   "language": "en",
+   "query": "When I build an admin view that shows a side-by-side diff of two saved content revisions and mark the diff output as safe HTML, how do I stop a low-privilege editor from injecting script that runs in a higher-privileged user's session?",
+   "family": "xss",
+   "relevant": [
+    "CVE-2020-11001"
+   ]
+  },
+  {
+   "id": "v2-CVE-2020-27783",
+   "language": "en",
+   "query": "Is it safe to sanitize user-submitted HTML comments in my Flask app with a Python library's HTML cleaner before rendering them, or can parsing differences between the sanitizer and browsers let malicious scripts slip through?",
+   "family": "xss",
+   "relevant": [
+    "CVE-2020-27783"
+   ]
+  },
+  {
+   "id": "v2-CVE-2023-29247",
+   "language": "en",
+   "query": "How should I render user-supplied task metadata, such as names, notes, or parameters, on a Python web dashboard detail page so that stored values containing script tags cannot execute in other users' browsers?",
+   "family": "xss",
+   "relevant": [
+    "CVE-2023-29247"
+   ]
+  },
+  {
+   "id": "v2-CVE-2024-41675",
+   "language": "en",
+   "query": "How should I render rows of user-uploaded tabular data from a database into an interactive HTML table preview with JavaScript so that cell values containing script tags or markup cannot execute in viewers' browsers?",
+   "family": "xss",
+   "relevant": [
+    "CVE-2024-41675"
+   ]
+  },
+  {
+   "id": "v2-CVE-2025-53354",
+   "language": "en",
+   "query": "Is it safe to display text a visitor typed into an input box by passing it straight into a Python UI library's raw HTML element or chat message, or do I need to escape it first to avoid script injection?",
+   "family": "xss",
+   "relevant": [
+    "CVE-2025-53354"
+   ]
+  }
+ ]
+}

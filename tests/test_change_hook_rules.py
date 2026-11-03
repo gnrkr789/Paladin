@@ -48,6 +48,17 @@ class DataRuleHookTests(unittest.TestCase):
         self.assertNotIn("Why:", context)
         self.assertLessEqual(len(context), 1500)
 
+    def test_review_findings_beside_a_block_keep_their_fix_and_card(self):
+        exposed = "import subprocess\ndef switch(branch):\n    subprocess.check_output(['hg', 'checkout', branch])\n"
+
+        output = self.edit(self.write("both.py", exposed + UNSAFE), tool="Write")
+
+        self.assertEqual(output["decision"], "block")
+        review = output["reason"].split("Also review:")[1]
+        for text in ("yaml-load-unsafe-loader-v1", YAML_LOAD["fix"], "CVE-2020-1747"):
+            self.assertIn(text, review)
+        self.assertNotIn("Fix: \n", output["reason"])
+
     def test_review_findings_on_lines_this_edit_did_not_write_are_not_repeated(self):
         path = self.write("load.py", UNSAFE)
 

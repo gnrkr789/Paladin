@@ -75,7 +75,7 @@ def _respond(entries, guidance, written=None):
         lines += [_describe(entry, finding, guidance) for entry, finding in blocking]
         if review:
             lines.append("Also review:")
-            lines += [_describe(entry, finding, guidance) for entry, finding in review]
+            lines += [_brief(entry, finding, guidance) for entry, finding in review]
         lines += notes
         lines.append("Static check of the changed files only; re-checked on the next edit.")
         return {"decision": "block", "reason": "\n".join(lines)[:MAX_REASON]}

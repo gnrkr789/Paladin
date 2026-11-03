@@ -1,8 +1,10 @@
 """Draft change-check rules from accepted cards with headless Claude Code (offline research).
 
-Usage: python -B scripts/draft_rules.py [--limit N] [--workers 6]
+Usage: python -B scripts/draft_rules.py [--limit N] [--workers 6] [--from-pack]
 Per-CVE answers go to data/cve-expansion/rule-drafts/<CVE>.json (a rule, or no rule with a
-reason); cases already answered are skipped, so reruns resume. Merging and the held-out
+reason); cases already answered are skipped, so reruns resume. --from-pack redrafts the
+patch_checked cards that got no rule, from the pack text plus what the fix changed, into
+data/cve-expansion/rule-drafts-v2/ (build_rules.py prefers those answers). Merging and the held-out
 scan run separately (scripts/build_rules.py).
 """
 import argparse
@@ -22,15 +24,27 @@ from paladin import rule_draft  # noqa: E402
 DATA = ROOT / "data" / "cve-expansion"
 
 
+def pack_cards():
+    """patch_checked pack patterns whose first draft gave no rule, with the fix observation."""
+    first = {path.stem: json.loads(path.read_text(encoding="utf-8"))
+             for path in (DATA / "rule-drafts").glob("CVE-*.json")}
+    pack = json.loads((ROOT / "src" / "paladin" / "resources" / "prevention-pack.json").read_text(encoding="utf-8"))
+    return [dict(pattern, fix_observation=pattern["patch_review"]["observation"]) for pattern in pack["patterns"]
+            if pattern["verification_status"] == "patch_checked"
+            and not (first.get(pattern["cve_id"]) or {}).get("rule")]
+
+
 def main(argv=None):
     parser = argparse.ArgumentParser()
     parser.add_argument("--limit", type=int)
     parser.add_argument("--workers", type=int, default=6)
+    parser.add_argument("--from-pack", action="store_true")
     args = parser.parse_args(argv)
-    out = DATA / "rule-drafts"
+    out = DATA / ("rule-drafts-v2" if args.from_pack else "rule-drafts")
     out.mkdir(parents=True, exist_ok=True)
-    cards = [json.loads(path.read_text(encoding="utf-8")) for path in sorted((DATA / "cards").glob("CVE-*.json"))
-             if not (out / path.name).exists()][:args.limit]
+    cards = pack_cards() if args.from_pack else [
+        json.loads(path.read_text(encoding="utf-8")) for path in sorted((DATA / "cards").glob("CVE-*.json"))]
+    cards = [card for card in cards if not (out / (card["cve_id"] + ".json")).exists()][:args.limit]
     claude = Claude()
 
     def run(card):

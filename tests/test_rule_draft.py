@@ -24,6 +24,12 @@ class RuleDraftTests(unittest.TestCase):
         for text in (CARD["cause"], CARD["prevention"], "absent_or_not_in", "built_string", '"rule": null'):
             self.assertIn(text, prompt)
 
+    def test_a_patch_checked_card_brings_what_the_fix_changed(self):
+        observation = "The fix passes SafeLoader to every yaml.load call."
+
+        self.assertIn(observation, rule_draft.build_prompt(dict(CARD, fix_observation=observation)))
+        self.assertNotIn("fix_observation", rule_draft.build_prompt(CARD))
+
     def test_a_valid_rule_is_accepted_and_tied_to_the_card(self):
         result = rule_draft.draft_rule(CARD, lambda prompt: answer(YAML_LOAD))
 
@@ -79,13 +85,37 @@ class RuleDraftTests(unittest.TestCase):
         self.assertEqual(merged[1]["cve_ids"], ["CVE-2017-18342", "CVE-2020-1747"])
         self.assertEqual(len(merged[1]["examples"]["vulnerable"]), 2)
 
+    def test_a_rule_with_extra_conditions_is_folded_into_the_broader_rule(self):
+        broad = json.loads(json.dumps(YAML_LOAD))
+        broad.update(rule_id="torch-load-v1", call=["torch.load"], cve_ids=["CVE-2021-0001"],
+                     require=[{"keyword": "weights_only", "absent_or_not_in": [True]}])
+        narrow = json.loads(json.dumps(broad))
+        narrow.update(cve_ids=["CVE-2021-0002"], require=[{"arg": 0, "is": "non_constant"}] + broad["require"])
+
+        merged = rule_draft.merge_rules([narrow, broad])
+
+        self.assertEqual(len(merged), 1)
+        self.assertEqual((merged[0]["require"], merged[0]["cve_ids"]), (broad["require"], ["CVE-2021-0001", "CVE-2021-0002"]))
+
+    def test_different_rules_never_share_an_id(self):
+        first = json.loads(json.dumps(YAML_LOAD))
+        second = json.loads(json.dumps(YAML_LOAD))
+        second.update(cve_ids=["CVE-2021-0009"], require=[{"keyword": "Loader", "absent_or_not_in": ["yaml.BaseLoader"]}])
+
+        ids = [rule["rule_id"] for rule in rule_draft.merge_rules([first, second])]
+
+        self.assertEqual(len(set(ids)), 2)
+        self.assertIn("yaml-load-unsafe-loader-cve-2021-0009-v1", ids)
+
     def test_a_rule_whose_calls_another_rule_covers_with_the_same_conditions_is_folded_into_it(self):
         broad = json.loads(json.dumps(YAML_LOAD))
         broad.update(rule_id="z-broad-v1", call=["yaml.load", "yaml.load_all"], cve_ids=["CVE-2021-0001"])
         narrow = json.loads(json.dumps(YAML_LOAD))
         narrow.update(rule_id="a-narrow-v1", call=["yaml.load"], cve_ids=["CVE-2021-0002"])
         stricter = json.loads(json.dumps(narrow))
-        stricter.update(rule_id="b-stricter-v1", require=narrow["require"] + [{"arg": 0, "is": "non_constant"}], cve_ids=["CVE-2021-0003"])
+        # Different conditions (not a superset of the broad rule's): it reports other calls, so it stays.
+        stricter.update(rule_id="b-stricter-v1", require=[{"keyword": "Loader", "absent_or_not_in": ["yaml.BaseLoader"]}],
+                        cve_ids=["CVE-2021-0003"])
 
         merged = rule_draft.merge_rules([narrow, broad, stricter])
 

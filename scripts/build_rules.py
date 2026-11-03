@@ -18,6 +18,9 @@ from paladin import data_rules, rule_draft  # noqa: E402
 
 DATA = ROOT / "data" / "cve-expansion"
 MAX_BYTES = 1_000_000
+# A rule that fires in more corpus files than this on its first scan is too noisy to ship.
+# It stays in rules.json under not_shipped, with its scan count, and is never tuned to pass.
+MAX_FILES_HIT = 50
 
 
 def corpus_scan(rules, roots):
@@ -44,19 +47,25 @@ def main(argv=None):
     parser = argparse.ArgumentParser()
     parser.add_argument("corpus", nargs="+", type=Path)
     args = parser.parse_args(argv)
-    drafts = [json.loads(path.read_text(encoding="utf-8")) for path in sorted((DATA / "rule-drafts").glob("*.json"))]
+    # A redraft from the patch-checked pack text (rule-drafts-v2) replaces the first answer.
+    answers = {path.stem: path for path in sorted((DATA / "rule-drafts").glob("*.json"))}
+    answers.update({path.stem: path for path in sorted((DATA / "rule-drafts-v2").glob("*.json"))})
+    drafts = [json.loads(answers[key].read_text(encoding="utf-8")) for key in sorted(answers)]
     rules = [draft["rule"] for draft in drafts if draft["rule"] and not data_rules.validate_rule(draft["rule"])]
     merged = rule_draft.merge_rules(rules)
     files, hits = corpus_scan(merged, args.corpus)
+    shipped = [rule for rule in merged if hits[rule["rule_id"]]["files"] <= MAX_FILES_HIT]
     record = {"schema_version": 1, "drafts": len(drafts), "no_rule": sum(1 for d in drafts if d["no_rule"]),
-              "valid_rules": len(rules), "merged_rules": len(merged),
+              "valid_rules": len(rules), "merged_rules": len(merged), "shipped_rules": len(shipped),
+              "max_files_hit": MAX_FILES_HIT,
               "first_heldout_scan": {"corpus": [path.as_posix() for path in args.corpus], "files": files,
                                      "per_rule": hits},
+              "not_shipped": [rule["rule_id"] for rule in merged if rule not in shipped],
               "rules": merged}
     (DATA / "rules.json").write_text(json.dumps(record, indent=1, sort_keys=True) + "\n", encoding="utf-8",
                                      newline="\n")
     runtime = {"schema_version": 1,
-               "rules": [{key: value for key, value in rule.items() if key != "examples"} for rule in merged]}
+               "rules": [{key: value for key, value in rule.items() if key != "examples"} for rule in shipped]}
     data_rules.load_runtime(runtime)
     (ROOT / "src" / "paladin" / "resources" / "change-rules.json").write_text(
         json.dumps(runtime, indent=1, sort_keys=True) + "\n", encoding="ascii", newline="\n")

@@ -58,6 +58,20 @@ code, and checked again.
   0.826 / 0.715; v3 0.781 / 0.603 -> 0.875 / 0.643; v4 0.831 / 0.697 ->
   0.881 / 0.710; v5 0.873 / 0.736 -> 0.909 / 0.746.
 
+## Second-model audit (2026-11-03)
+
+Codex gpt-6-astra audited 30 of the 207 rewritten cards (seed 20261106,
+scripts/audit_reviews.py, records in data/cve-expansion/patch-review-audit/). It saw
+the original card, the rewrite and the same diffs (re-fetched, sha256 checked),
+but not the advisory text.
+
+- Rewrite matches the fix: 10 yes, 20 partly, 0 no. Better than the original: 30 of 30.
+- Partly means the main weakness and fix direction are right, but a side claim is
+  wrong or not shown by the diff. Real errors include executor-specific command
+  prefixes stated as one rule (CVE-2020-11981) and URL anchoring advice the test
+  contradicts (CVE-2018-14574). Many other flags are version ranges or attack
+  preconditions that come from the advisory, which the auditor did not see.
+
 ## Risks
 
 - Fix links can point at a release, a merge or an unrelated commit: verdict

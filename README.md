@@ -41,6 +41,7 @@ the agent what the problem is and how to avoid it; the agent writes its own fix.
 | Clean install from wheel | pass |
 | Search, fresh held-out questions (hit@5 / MRR) | 0.831 / 0.697 and 0.873 / 0.736 |
 | Review rules, first scan of 4,055 site-packages files | 89 of 98 rules silent; pickle.load 37 files |
+| Rewritten cards audited by a second model (Codex), sample of 30 | 30 better than the draft; 10 exact, 20 with a side claim to fix |
 | Unit tests | 300 pass |
 
 Evidence: [docs/evidence/private-alpha/final-report.md](docs/evidence/private-alpha/final-report.md).

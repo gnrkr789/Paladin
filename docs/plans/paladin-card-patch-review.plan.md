@@ -72,6 +72,28 @@ but not the advisory text.
   contradicts (CVE-2018-14574). Many other flags are version ranges or attack
   preconditions that come from the advisory, which the auditor did not see.
 
+## Correction and Fable audit (2026-11-03)
+
+- User decision: correct all 207 rewritten cards, have Fable review them, and
+  commit and push if the result is reasonable.
+- Codex gpt-6-astra corrected every rewritten card with the advisory text and the
+  same diffs in view (scripts/audit_reviews.py correct): keep supported claims, fix
+  contradicted ones, move unsupported version ranges, prerequisites and scope to
+  limitations. All 207 passed the text rules; 6.3 edits per card on average.
+  The pack uses the corrected text (field corrected in each review record).
+- 9 corrections made the search passage longer than the e5 encoder's 512 tokens
+  (the export refused them). The correction step now caps title, cause,
+  preconditions and prevention at 1,800 characters, and those 9 were corrected again.
+- Fable (claude-fable-5-1) audited a fresh sample of 30 corrected cards (seed
+  20261107) with the advisory text and diffs: 29 match the fix, 1 partly (an omitted
+  secondary change in CVE-2026-73415), 0 wrong; all 30 better than the draft. Cost
+  $6.45. Before correction, Codex had judged 10 of 30 exact; the auditor and its
+  inputs differ, so the two samples are not a strict comparison.
+- Retrieval on the development sets after correction, hit@5 / MRR: v1 0.950 / 0.900;
+  v2 0.826 / 0.677; v3 0.828 / 0.657; v4 0.847 / 0.685; v5 0.927 / 0.754. All stay
+  above the hybrid before the patch review and above the 0.8 / 0.6 gate; v3 and v4
+  are lower than right after the review (0.875, 0.881).
+
 ## Risks
 
 - Fix links can point at a release, a merge or an unrelated commit: verdict

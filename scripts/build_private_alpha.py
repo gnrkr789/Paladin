@@ -62,7 +62,7 @@ checkout, environment, workspace, version = map(str, sys.argv[1:])
 checkout = Path(checkout).resolve()
 environment = Path(environment).resolve()
 workspace = Path(workspace).resolve()
-assert importlib.metadata.version("paladin") == version
+assert importlib.metadata.version("CVEPaladin") == version
 resource_root = importlib.resources.files("paladin").joinpath("resources")
 resources = sorted(p.name for p in resource_root.joinpath("sandbox").iterdir() if p.is_file())
 assert resources
@@ -177,8 +177,8 @@ def main(argv=None):
 
     if not args.skip_build:
         run("build", ["uv", "build", "--out-dir", artifacts])
-    wheel = artifacts / f"paladin-{VERSION}-py3-none-any.whl"
-    sdist = artifacts / f"paladin-{VERSION}.tar.gz"
+    wheel = artifacts / f"cvepaladin-{VERSION}-py3-none-any.whl"
+    sdist = artifacts / f"cvepaladin-{VERSION}.tar.gz"
     report = {"version": VERSION, "artifacts": {
         path.name: {"sha256": sha256(path), "bytes": path.stat().st_size}
         for path in (wheel, sdist)}}

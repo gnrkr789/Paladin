@@ -47,15 +47,16 @@ def main(argv=None):
     withdrawn_path.write_text(json.dumps(withdrawn, indent=1) + "\n", encoding="utf-8", newline="\n")
     pairs = [(card, pack_build.copy_evidence(card, roots, pins, ROOT, "data/cve-expansion/sources"))
              for card in cards]
-    pack = knowledge.validate_pack(pack_build.build_pack(base, pairs, args.date))
+    reviews = {path.stem: json.loads(path.read_text(encoding="utf-8"))
+               for path in sorted((DATA / "patch-reviews").glob("CVE-*.json"))}
+    pack = knowledge.validate_pack(pack_build.build_pack(base, pairs, args.date, reviews))
     raw = (json.dumps(pack, indent=2, ensure_ascii=True) + "\n").encode("ascii")
     (RESOURCES / "prevention-pack.json").write_bytes(raw)
     lock = {"pack_id": pack["pack_id"], "sha256": hashlib.sha256(raw).hexdigest(),
             "pattern_count": len(pack["patterns"])}
     (RESOURCES / "prevention-pack.lock.json").write_bytes(json.dumps(lock, indent=2).replace("\n", "\r\n").encode()
                                                           + b"\r\n")
-    print(json.dumps({"patterns": len(pack["patterns"]), "candidates": sum(
-        p["verification_status"] == "candidate" for p in pack["patterns"])}))
+    print(json.dumps({"patterns": len(pack["patterns"]), "verification": knowledge.verification_counts(pack)}))
     return 0
 
 

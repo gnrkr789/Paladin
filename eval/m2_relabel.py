@@ -47,7 +47,7 @@ def main(argv=None):
             result = search_patterns(ROOT, item["query"], limit=args.depth, embedder=encoder)
             pooled = [m["pattern"]["pattern_id"] for m in result["matches"]
                       if m["pattern"]["pattern_id"] not in item["relevant"]
-                      and m["pattern"]["verification_status"] == "candidate"]
+                      and m["pattern"]["verification_status"] != "source_observed"]
             for pattern_id in pooled:
                 answer = parse_answer(claude.ask(judge_prompt(item["query"], patterns[pattern_id]), workdir))
                 relevant = isinstance(answer, dict) and answer.get("relevant") is True

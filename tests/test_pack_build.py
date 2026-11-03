@@ -76,6 +76,41 @@ class PackBuildTests(unittest.TestCase):
         self.assertEqual(kept, base["patterns"][0])
         self.assertEqual(pack["patterns"][:len(base["patterns"])], base["patterns"])
 
+    def test_a_patch_checked_review_promotes_the_card_and_applies_its_revision(self):
+        base = knowledge.load_pack()
+        evidence = pack_build.copy_evidence(self.card, self.roots, PINS, self.dest, "data/cve-expansion/sources")
+        other = card("CVE-2099-12346")
+        patches = [{"url": "https://github.com/pallets/jinja/commit/7167953.diff", "sha256": "d" * 64, "bytes": 900,
+                    "truncated": False}]
+        revised = {"cause": "Keys with spaces or slashes passed through.", "preconditions": ["Untrusted keys."],
+                   "prevention": "Reject keys with spaces, slashes, equals signs or angle brackets.",
+                   "limitations": "Values are escaped separately."}
+        reviews = {self.card["cve_id"]: {"outcome": "patch_checked", "verdict": "misaligned", "revised": revised,
+                                         "recheck": "aligned", "recheck_observation": "The fix rejects more characters.",
+                                         "observation": "First look.", "patches": patches,
+                                         "reviewer": "claude-sonnet-5-5", "date": "2026-11-03"},
+                   other["cve_id"]: {"outcome": "candidate", "reason": "unrelated", "patches": patches}}
+
+        pack = pack_build.build_pack(base, [(self.card, evidence), (other, evidence)], "2026-11-03", reviews)
+
+        knowledge.validate_pack(pack)
+        checked = next(p for p in pack["patterns"] if p["cve_id"] == self.card["cve_id"])
+        self.assertEqual(checked["verification_status"], "patch_checked")
+        self.assertEqual(checked["prevention"], revised["prevention"])
+        self.assertEqual(checked["patch_review"], {"reviewer": "claude-sonnet-5-5", "date": "2026-11-03",
+                                                   "observation": "The fix rejects more characters.",
+                                                   "card_revised": True, "patches": patches})
+        unchanged = next(p for p in pack["patterns"] if p["cve_id"] == other["cve_id"])
+        self.assertEqual(unchanged["verification_status"], "candidate")
+        self.assertNotIn("patch_review", unchanged)
+        self.assertEqual(knowledge.verification_counts(pack)["patch_checked"],
+                         knowledge.verification_counts(base).get("patch_checked", 0) + 1)
+
+        unreviewed = copy.deepcopy(checked)
+        del unreviewed["patch_review"]
+        with self.assertRaises(ValueError):
+            knowledge.validate_pack(dict(pack, patterns=pack["patterns"][:-2] + [unreviewed]))
+
     def test_cards_whose_cve_was_withdrawn_or_rejected_leave_the_pack_with_history(self):
         cards = [card("CVE-2099-0001"), card("CVE-2099-0002"), card("CVE-2099-0003"), card("CVE-2099-0004")]
         collection = {"cases": [{"cve_id": "CVE-2099-0001"}], "skipped_items": [

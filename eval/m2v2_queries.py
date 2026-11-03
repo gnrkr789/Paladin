@@ -46,7 +46,7 @@ def clean_answer(text):
 def select_targets(patterns, per_family, seed, exclude=frozenset()):
     """Up to per_family candidate patterns per family, chosen with a fixed seed; exclude skips used targets."""
     by_family = {}
-    for item in sorted((p for p in patterns if p["verification_status"] == "candidate"
+    for item in sorted((p for p in patterns if p["verification_status"] != "source_observed"
                         and p["pattern_id"] not in exclude),
                        key=lambda p: p["pattern_id"]):
         by_family.setdefault(item["family"], []).append(item)

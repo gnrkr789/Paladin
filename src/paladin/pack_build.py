@@ -41,26 +41,36 @@ def copy_evidence(card, roots, pins, dest, folder):
     return evidence
 
 
-def candidate_pattern(card, evidence, date):
-    return {"pattern_id": card["cve_id"], "cve_id": card["cve_id"], "family": card["family"], "language": "python",
-            "title": card["title"], "cause": card["cause"], "preconditions": card["preconditions"],
-            "prevention": card["prevention"], "limitations": card["limitations"], "record_state": "PUBLISHED",
-            "verification_status": "candidate",
-            "source_review": {"kind": "model_advisory_draft", "reviewer": card["drafter"], "date": date},
-            "enforcement_enabled": False, "sharing_enabled": False,
-            "fixtures": [{"role": role, "scenario": card["fixtures"][role], "status": "specification_only"}
-                         for role in ("risk", "safe")],
-            "evidence": evidence, "fix_references": card["fix_references"], "packages": card["packages"],
-            "cwe_ids": card["cwe_ids"], "citations": card["citations"]}
+def candidate_pattern(card, evidence, date, review=None):
+    """Candidate pattern; a patch_checked review promotes it and applies its revised text."""
+    checked = bool(review) and review["outcome"] == "patch_checked"
+    text = dict(card, **review["revised"]) if checked and review["revised"] else card
+    pattern = {"pattern_id": card["cve_id"], "cve_id": card["cve_id"], "family": card["family"], "language": "python",
+               "title": card["title"], "cause": text["cause"], "preconditions": text["preconditions"],
+               "prevention": text["prevention"], "limitations": text["limitations"], "record_state": "PUBLISHED",
+               "verification_status": "patch_checked" if checked else "candidate",
+               "source_review": {"kind": "model_advisory_draft", "reviewer": card["drafter"], "date": date},
+               "enforcement_enabled": False, "sharing_enabled": False,
+               "fixtures": [{"role": role, "scenario": card["fixtures"][role], "status": "specification_only"}
+                            for role in ("risk", "safe")],
+               "evidence": evidence, "fix_references": card["fix_references"], "packages": card["packages"],
+               "cwe_ids": card["cwe_ids"], "citations": card["citations"]}
+    if checked:
+        pattern["patch_review"] = {"reviewer": review["reviewer"], "date": review["date"],
+                                   "observation": review["recheck_observation"] or review["observation"],
+                                   "card_revised": bool(review["revised"]), "patches": review["patches"]}
+    return pattern
 
 
-def build_pack(base, cards, date):
+def build_pack(base, cards, date, reviews=None):
     """base pack + (card, evidence) pairs: verified patterns first in their order, then
     candidates by id; a CVE already in base keeps its verified pattern."""
     pack = copy.deepcopy(base)
+    reviews = reviews or {}
     known = {pattern["cve_id"] for pattern in pack["patterns"]}
-    pack["patterns"] += sorted((candidate_pattern(card, evidence, date) for card, evidence in cards
-                                if card["cve_id"] not in known), key=lambda pattern: pattern["pattern_id"])
+    pack["patterns"] += sorted((candidate_pattern(card, evidence, date, reviews.get(card["cve_id"]))
+                                for card, evidence in cards if card["cve_id"] not in known),
+                               key=lambda pattern: pattern["pattern_id"])
     pack.update(pack_id=PACK_ID, created_on=date)
     return pack
 

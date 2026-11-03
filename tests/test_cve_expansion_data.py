@@ -28,7 +28,7 @@ class ExpansionDataTests(unittest.TestCase):
         pack = knowledge.load_pack()
         used = set()
         for pattern in pack["patterns"]:
-            if pattern["verification_status"] != "candidate":
+            if pattern["verification_status"] == "source_observed":
                 continue
             for entry in pattern["evidence"]:
                 path = ROOT / entry["snapshot_path"]

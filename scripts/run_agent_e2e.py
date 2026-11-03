@@ -61,8 +61,13 @@ def run_claude(task, log):
     return command, PROMPT
 
 
-def run_codex(task, log):
+def run_codex(task, log, repo_hook=False):
     server = mcp_server()
+    if repo_hook:
+        return ["codex", "exec", "-m", "gpt-6.1-sol", "-s", "workspace-write", "--skip-git-repo-check", "--ephemeral",
+                "--json", "-C", str(task),
+                "-c", "mcp_servers.paladin.command=" + json.dumps(server["command"]),
+                "-c", "mcp_servers.paladin.args=" + json.dumps(server["args"]), "-"], PROMPT
     command = ["codex", "exec", "-m", "gpt-6.1-sol", "-s", "workspace-write", "--skip-git-repo-check",
                "--ephemeral", "--ignore-rules", "--ignore-user-config", "--dangerously-bypass-hook-trust", "--json",
                "-C", str(task), "-c", "windows.sandbox=\"elevated\"",
@@ -77,19 +82,29 @@ def main(argv=None):
     parser = argparse.ArgumentParser()
     parser.add_argument("host", choices=["claude", "codex"])
     parser.add_argument("--run", default="run-1")
+    parser.add_argument("--trusted-dir", type=Path,
+                        help="codex only: an existing folder whose Paladin hook the user trusted in Codex; "
+                             "runs with the user's Codex config and no trust bypass")
+    parser.add_argument("--repo-hook", action="store_true",
+                        help="codex only: use the user's Codex config and the trusted hook of this checkout "
+                             "(task folder inside the repo), with no trust bypass")
     args = parser.parse_args(argv)
-    task = ROOT / ".cache" / "agent-e2e" / args.host / args.run
+    task = args.trusted_dir or ROOT / ".cache" / "agent-e2e" / args.host / args.run
     evidence = ROOT / "docs" / "evidence" / "agent-e2e-v2" / args.host / args.run
-    if task.exists() or evidence.exists():
+    if evidence.exists() or (not args.trusted_dir and task.exists()):
         raise SystemExit("run exists; pick a new --run name")
-    (task / "app").mkdir(parents=True)
+    if args.trusted_dir and any(path.name != "__init__.py" for path in (task / "app").glob("*.py")):
+        raise SystemExit("trusted folder is not clean; remove earlier app files first")
+    (task / "app").mkdir(parents=True, exist_ok=True)
     evidence.mkdir(parents=True)
     (task / "app" / "__init__.py").write_text("", encoding="ascii")
+    args.repo_hook = args.repo_hook or bool(args.trusted_dir)
     host = "claude-code" if args.host == "claude" else "codex"
-    subprocess.run([str(PYTHON), "-I", "-m", "paladin.cli", "hook", "install", "--host", host, "--workspace", str(task)],
-                   check=True, capture_output=True)
+    if not args.repo_hook:
+        subprocess.run([str(PYTHON), "-I", "-m", "paladin.cli", "hook", "install", "--host", host,
+                        "--workspace", str(task)], check=True, capture_output=True)
     log = evidence / "hook-log.jsonl"
-    command, prompt = (run_claude if args.host == "claude" else run_codex)(task, log)
+    command, prompt = run_claude(task, log) if args.host == "claude" else run_codex(task, log, args.repo_hook)
     env = dict(os.environ, PALADIN_HOOK_LOG=str(log))
     done = subprocess.run(command, input=prompt, capture_output=True, text=True, encoding="utf-8", errors="replace",
                           cwd=task, env=env, timeout=TIMEOUT, shell=sys.platform == "win32")

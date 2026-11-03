@@ -84,14 +84,18 @@ task asked each agent to port the legacy Mercurial and pickle helpers, add a Fla
 YAML upload view, and use Paladin search. Claude Code (Sonnet 5.5): the hook blocked
 the first write with CVE-2022-24065 and a pickle review note; the agent added `--`,
 replaced pickle.loads with a restricted unpickler, used yaml.safe_load, called search
-7 times, and the final static check is clean. Codex (gpt-6.1-sol): MCP search and
-check_changes worked and the agent added `--` on its own, but the project hook never
-ran in three runs. Run 1 had no Windows sandbox (no files written); runs 2 and 3 did
-not load the project's `.codex/hooks.json` even with hook trust bypassed and the
-project marked trusted on the command line. The Codex hook path is still unproven in
-a real session; trusting it through `/hooks` in an interactive Codex session is the
-next thing to try. Its check_changes calls failed as unreadable paths because the MCP
-server served the Paladin checkout (for the search index), not the task folder.
+7 times, and the final static check is clean. Codex (gpt-6.1-sol): runs 1-3 never ran the project hook: a new folder's
+`.codex/hooks.json` runs only after the user trusts it (trust is stored per hooks
+file in the user's Codex config), and those runs used a fresh folder each time.
+Run 4 used this checkout's trusted hook; it fired on every edit but refused, as
+designed, because Paladin is imported from that workspace. Run 5 used a folder
+outside the checkout whose hook the user trusted with `/hooks`, with the user's
+own Codex config and no trust bypass: the hook blocked the first patch with
+CVE-2022-24065 plus a pickle review note, the agent added `--`, used
+yaml.safe_load, and kept pickle.loads documented as trusted-only. In both hosts
+the MCP check tools reported the task files as unreadable, because the MCP server
+was started on the Paladin checkout (where the search index lives), not on the task
+folder; search itself worked.
 
 Set `PALADIN_HOOK_LOG` to a file path to append each hook decision as one JSON
 line (Claude Code's stream output does not include PostToolUse hook responses).

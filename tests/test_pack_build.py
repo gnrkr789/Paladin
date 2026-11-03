@@ -106,6 +106,12 @@ class PackBuildTests(unittest.TestCase):
         self.assertEqual(knowledge.verification_counts(pack)["patch_checked"],
                          knowledge.verification_counts(base).get("patch_checked", 0) + 1)
 
+        corrected = dict(revised, prevention="Reject keys with spaces, slashes or equals signs.")
+        reviews[self.card["cve_id"]].update(corrected=corrected, corrector="gpt-6-astra")
+        pack = pack_build.build_pack(base, [(self.card, evidence), (other, evidence)], "2026-11-03", reviews)
+        checked = next(p for p in pack["patterns"] if p["cve_id"] == self.card["cve_id"])
+        self.assertEqual(checked["prevention"], corrected["prevention"])
+
         unreviewed = copy.deepcopy(checked)
         del unreviewed["patch_review"]
         with self.assertRaises(ValueError):

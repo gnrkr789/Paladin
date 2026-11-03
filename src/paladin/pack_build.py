@@ -42,9 +42,11 @@ def copy_evidence(card, roots, pins, dest, folder):
 
 
 def candidate_pattern(card, evidence, date, review=None):
-    """Candidate pattern; a patch_checked review promotes it and applies its revised text."""
+    """Candidate pattern; a patch_checked review promotes it and applies its revised text,
+    or the later correction of that text when there is one."""
     checked = bool(review) and review["outcome"] == "patch_checked"
-    text = dict(card, **review["revised"]) if checked and review["revised"] else card
+    revision = checked and (review.get("corrected") or review["revised"])
+    text = dict(card, **revision) if revision else card
     pattern = {"pattern_id": card["cve_id"], "cve_id": card["cve_id"], "family": card["family"], "language": "python",
                "title": card["title"], "cause": text["cause"], "preconditions": text["preconditions"],
                "prevention": text["prevention"], "limitations": text["limitations"], "record_state": "PUBLISHED",

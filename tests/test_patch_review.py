@@ -100,6 +100,16 @@ class ValidateTests(unittest.TestCase):
         self.assertTrue(patch_review.validate_answer(json.loads(answer("aligned", revised=REVISED)), self.diff))
 
 
+class RevisionTests(unittest.TestCase):
+    def test_a_corrected_card_follows_the_same_text_rules(self):
+        diff, _ = patch_review.prepare_diff(DIFF, budget=10_000)
+        copied = dict(REVISED, prevention='raise cherrypy.HTTPError(400, "Invalid session id in cookie.")')
+
+        self.assertEqual(patch_review.validate_revision(REVISED, diff), [])
+        self.assertTrue(patch_review.validate_revision(copied, diff))
+        self.assertTrue(patch_review.validate_revision(dict(REVISED, title="extra"), diff))
+
+
 class ReviewTests(unittest.TestCase):
     def diffs(self):
         return [{"url": "https://github.com/cherrypy/cherrypy/commit/37b856e.diff", "text": DIFF}]

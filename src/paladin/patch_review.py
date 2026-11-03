@@ -103,6 +103,11 @@ def _revised_errors(revised, added):
     return errors
 
 
+def validate_revision(revised, diff_text):
+    """Reasons a rewritten card is rejected: same keys and text rules as a review's revision."""
+    return _revised_errors(revised, _added_lines(diff_text))
+
+
 def validate_answer(answer, diff_text):
     """Reasons the answer is rejected; empty means accepted."""
     if not isinstance(answer, dict) or set(answer) != {"verdict", "observation", "revised"}:

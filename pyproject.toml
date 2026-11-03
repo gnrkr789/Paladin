@@ -1,5 +1,5 @@
 [project]
-name = "paladin"
+name = "CVEPaladin"
 version = "0.2.0a1"
 description = "Evidence-grounded vulnerability prevention for coding agents"
 readme = "README.md"

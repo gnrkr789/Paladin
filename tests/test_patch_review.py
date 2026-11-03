@@ -67,6 +67,15 @@ class PrepareDiffTests(unittest.TestCase):
         self.assertLess(text.index("cherrypy/lib/sessions.py"), text.index("tests/test_session.py"))
         self.assertFalse(truncated)
 
+    def test_a_quoted_path_with_a_space_is_kept(self):
+        quoted = DIFF.replace("diff --git a/cherrypy/lib/sessions.py b/cherrypy/lib/sessions.py",
+                              'diff --git "a/cherrypy/lib/my sessions.py" "b/cherrypy/lib/my sessions.py"')
+
+        text, _ = patch_review.prepare_diff(quoted, budget=10_000)
+
+        self.assertIn("my sessions.py", text)
+        self.assertLess(text.index("my sessions.py"), text.index("tests/test_session.py"))
+
     def test_a_diff_over_budget_is_cut_and_marked(self):
         text, truncated = patch_review.prepare_diff(DIFF, budget=200)
 
@@ -108,6 +117,16 @@ class RevisionTests(unittest.TestCase):
         self.assertEqual(patch_review.validate_revision(REVISED, diff), [])
         self.assertTrue(patch_review.validate_revision(copied, diff))
         self.assertTrue(patch_review.validate_revision(dict(REVISED, title="extra"), diff))
+
+    def test_a_revision_must_keep_the_search_passage_within_the_encoder(self):
+        diff, _ = patch_review.prepare_diff(DIFF, budget=10_000)
+        long = dict(REVISED, preconditions=["Sessions are stored as files on a shared disk. " * 6] * 4,
+                    cause="The session id is joined to the storage path without a check. " * 12)
+
+        self.assertEqual(patch_review.validate_revision(REVISED, diff, CARD), [])
+        errors = patch_review.validate_revision(long, diff, CARD)
+        self.assertTrue(any("search passage" in error for error in errors), errors)
+        self.assertTrue(patch_review.validate_answer(json.loads(answer("misaligned", revised=long)), diff, CARD))
 
 
 class ReviewTests(unittest.TestCase):

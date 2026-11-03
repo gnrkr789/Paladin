@@ -27,14 +27,13 @@ sys.path.insert(0, str(ROOT / "src"))
 sys.path.insert(0, str(ROOT / "scripts"))
 
 from headless_claude import Claude  # noqa: E402
-from paladin import card_draft, knowledge, patch_review  # noqa: E402
+from paladin import card_draft, patch_review  # noqa: E402
 from review_cards import fetch  # noqa: E402
 
 DATA = ROOT / "data" / "cve-expansion"
 REVIEWS = DATA / "patch-reviews"
 SOURCES = ROOT / ".cache" / "sources"
 TIMEOUT = 900
-MAX_PASSAGE = 1800  # search passage characters; the longest measured at this size was 465 of 512 tokens
 FIELDS = ("cause", "preconditions", "prevention", "limitations")
 AUDIT_SCHEMA = {"type": "object", "additionalProperties": False,
                 "required": ["revised_matches_fix", "better_than_original", "problems", "summary"],
@@ -121,8 +120,10 @@ class Asker:
             schema_path.write_text(json.dumps(schema), encoding="utf-8")
             command = ["codex", "exec", "-m", self.model, "-s", "read-only", "--skip-git-repo-check", "--ephemeral",
                        "--ignore-rules", "--output-schema", str(schema_path), "-o", str(out), "-"]
-            subprocess.run(command, input=prompt, capture_output=True, text=True, encoding="utf-8", cwd=empty,
-                           timeout=TIMEOUT, check=True, shell=sys.platform == "win32")
+            done = subprocess.run(command, input=prompt, capture_output=True, text=True, encoding="utf-8",
+                                  errors="replace", cwd=empty, timeout=TIMEOUT, shell=sys.platform == "win32")
+            if done.returncode != 0:
+                raise RuntimeError("codex exited {}: {}".format(done.returncode, (done.stderr or "").strip()[-300:]))
             return json.loads(out.read_text(encoding="utf-8"))
 
 
@@ -143,10 +144,7 @@ def correct(cve, review, card, case, asker):
         request = prompt if not errors else prompt + "\n\nYour previous answer was rejected:\n- " + "\n- ".join(errors)
         answer = asker.ask(request, CORRECT_SCHEMA)
         revision = {key: answer[key] for key in FIELDS}
-        errors = patch_review.validate_revision(revision, diff_text)
-        if not errors and len(knowledge.passage(dict(card, **revision))) > MAX_PASSAGE:
-            errors = ["cause, preconditions and prevention together must stay under {} characters so the card "
-                      "fits the search encoder; move detail to limitations".format(MAX_PASSAGE - len(card["title"]))]
+        errors = patch_review.validate_revision(revision, diff_text, card)
         if not errors:
             return dict(review, corrected=revision, corrector=asker.model, correction_changes=answer["changes"],
                         correction_date=datetime.date.today().isoformat())

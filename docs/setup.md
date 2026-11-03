@@ -10,7 +10,7 @@ uv --cache-dir .cache/uv sync --locked
 .\.venv\Scripts\paladin.exe doctor --json
 ```
 
-Setup downloads pinned images if necessary, starts a workspace-specific Compose project and initializes three synthetic diagnostic samples. It preserves unrelated projects and reports port conflicts instead of resolving them automatically. `setup --no-start --json` only writes configuration and returns `configured`; it does not claim DB readiness. Pass the same `--workspace` when running from another directory.
+Setup downloads pinned images if necessary, starts a Compose project for the Paladin home (`--home`, else `PALADIN_HOME`, else the per-user data folder; `--workspace` is still accepted as the old spelling) and initializes three synthetic diagnostic samples. It preserves unrelated projects and reports port conflicts instead of resolving them automatically. `setup --no-start --json` only writes configuration and returns `configured`; it does not claim DB readiness. Use the same home for every command; projects need no setup of their own.
 
 Versions: Milvus 2.6.25, PyMilvus 2.6.17, etcd v3.5.25, MinIO RELEASE.2024-12-18T13-15-44Z. Python dependencies are pinned in uv.lock. Image tags are fixed; Compose does not enforce digest pins. Original Compose and observed digests are in [M1 evidence](evidence/m1/).
 
@@ -18,7 +18,7 @@ Versions: Milvus 2.6.25, PyMilvus 2.6.17, etcd v3.5.25, MinIO RELEASE.2024-12-18
 
 Workspace `.paladin/` holds config.toml, packaged compose.yaml, manifest.json, metadata.sqlite3 and persistent data/etcd, data/minio, data/milvus bind mounts. Model artifacts and the semantic manifest are added by M2. This directory is excluded from version control.
 
-The canonical Compose file is `src/paladin/resources/compose.yaml`, also included in wheels. Setup preserves existing configuration and identity, upserts diagnostic samples by stable IDs and rejects incompatible schemas without deletion. Modified Compose is preserved and reported as a conflict. Arbitrary ports, remote endpoints, diagnostic models and manual Compose edits are unsupported. State paths must resolve inside the workspace, including symlinks and nested mounts.
+The canonical Compose file is `src/paladin/resources/compose.yaml`, also included in wheels. Setup preserves existing configuration and identity, upserts diagnostic samples by stable IDs and rejects incompatible schemas without deletion. Modified Compose is preserved and reported as a conflict. Arbitrary ports, remote endpoints, diagnostic models and manual Compose edits are unsupported. State paths must resolve inside the home, including symlinks and nested mounts.
 
 ## Read-only doctor
 

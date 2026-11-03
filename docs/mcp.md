@@ -17,7 +17,13 @@ listener. Stdout carries protocol messages only. Launch performs no setup,
 download, indexing or Docker control. Prepare semantic retrieval with the
 explicit administrative commands in [knowledge](knowledge.md) first.
 
-The workspace resolves once at startup; tool arguments cannot change it. No
+`--workspace` is the project the check tools read (check_changes,
+check_dependencies, scan_cve_candidates, evidence and guidance). Search and status
+read the Paladin home (`--home`, else `PALADIN_HOME`, else the per-user data
+folder), where `setup`, `model prepare` and `patterns index` put the index, so one
+setup serves every project.
+
+Both folders resolve once at startup; tool arguments cannot change them. No
 arbitrary SQL, query expression, file path, URL fetch or shell command is exposed.
 Actual Codex registration and task behavior remain M4. No host configuration or
 hooks are installed; a client can ignore or bypass advisory tools.

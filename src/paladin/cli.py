@@ -4,6 +4,7 @@ import json
 import sys
 from pathlib import Path
 
+from paladin.home import default_home
 from paladin.local import doctor, setup
 
 
@@ -38,12 +39,14 @@ def _case_error(exc):
     return code if code in known else "case_operation_failed"
 
 
+HOME_COMMANDS = {"setup", "doctor", "model", "patterns", "search"}
+
+
 def main(argv=None):
     parser = argparse.ArgumentParser(prog="paladin")
     commands = parser.add_subparsers(dest="command", required=True)
     for name in ["setup", "doctor"]:
         command = commands.add_parser(name)
-        command.add_argument("--workspace", type=Path, default=Path.cwd())
         command.add_argument("--json", action="store_true")
         if name == "setup":
             command.add_argument("--no-start", action="store_true", help="write local configuration without starting Docker")
@@ -66,16 +69,27 @@ def main(argv=None):
     deps.add_argument("paths", nargs="*", help="workspace-relative dependency files (default: discover)")
     mcp = commands.add_parser("mcp", help="serve bounded advisory tools over stdio")
     mcp.add_argument("--workspace", type=Path, default=Path.cwd())
+    mcp.add_argument("--home", type=Path, help="Paladin home with the search index (default: PALADIN_HOME or "
+                                               "the per-user data folder)")
     cases = commands.add_parser("cases", help="scan and verify locally supported CVE cases")
     cases.add_argument("action", choices=["scan", "auto", "list", "runtime-build"])
     cases.add_argument("--project", type=Path, default=Path.cwd())
+    # Verified cases stay with the workspace that evidence and guidance read.
     cases.add_argument("--workspace", type=Path, default=Path.cwd())
     cases.add_argument("--json", action="store_true")
     cases.add_argument("--cve", choices=["CVE-2022-24065", "CVE-2023-5752"])
-    for command in [model, patterns, search, deps]:
-        command.add_argument("--workspace", type=Path, default=Path.cwd())
+    deps.add_argument("--workspace", type=Path, default=Path.cwd())
+    deps.add_argument("--json", action="store_true")
+    for command in [model, patterns, search]:
         command.add_argument("--json", action="store_true")
+    for command in [commands.choices["setup"], commands.choices["doctor"], model, patterns, search]:
+        command.add_argument("--home", type=Path, help="Paladin home (default: PALADIN_HOME or the per-user "
+                                                       "data folder)")
+        command.add_argument("--workspace", type=Path, help="old spelling of --home")
     args = parser.parse_args(argv)
+    if args.command in HOME_COMMANDS:
+        # Search state lives in one home per user; --workspace is kept as the old spelling.
+        args.workspace = args.home or args.workspace or default_home()
     if args.command == "hook":
         from paladin import agent_hook
         if args.action in agent_hook.HOSTS:
@@ -90,7 +104,7 @@ def main(argv=None):
         return 0
     if args.command == "mcp":
         from paladin.mcp_server import main as serve_mcp
-        serve_mcp(args.workspace)
+        serve_mcp(args.workspace, args.home or default_home())
         return 0
     try:
         if args.command == "setup":

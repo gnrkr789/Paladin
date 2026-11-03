@@ -202,7 +202,7 @@ class ChangeHookTests(unittest.TestCase):
         self.write("vcs.py", EXPOSED)
         self.write("tools.py", WRAPPER)
         result = advisory.dispatch(self.root, "check_changes", {"paths": ["vcs.py", "tools.py"]})
-        self.assertEqual(result["status"], "findings")
+        self.assertEqual((result["status"], result["outcome"]), ("complete", "findings"))
         found = {(item["path"], finding["line"], finding["severity"])
                  for item in result["files"] for finding in item["findings"]}
         self.assertEqual(found, {("vcs.py", 3, "block"), ("tools.py", 2, "review")})

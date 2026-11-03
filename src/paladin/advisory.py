@@ -241,7 +241,9 @@ def get_evidence(root, args):
     return result
 
 
-def get_status(root):
+def get_status(root, home=None):
+    """Index readiness from the home; evidence snapshots counted in the workspace that serves them."""
+    home = home if home is not None else root
     from paladin.knowledge import _resource, knowledge_status, load_pack
     from paladin.local import doctor
     pack = load_pack()
@@ -249,8 +251,8 @@ def get_status(root):
     guidance = load_guidance()
     pack_sha = hashlib.sha256(_resource("prevention-pack.json")).hexdigest()
     guidance_sha = hashlib.sha256(_resource("guidance-pack.json")).hexdigest()
-    semantic = knowledge_status(root)
-    local = doctor(root)
+    semantic = knowledge_status(home)
+    local = doctor(home)
     available = 0
     entries = [e for p in pack["patterns"] for e in p["evidence"]]
     for entry in entries:
@@ -314,7 +316,9 @@ def get_guidance(root, args):
     return result
 
 
-def dispatch(root, name, arguments):
+def dispatch(root, name, arguments, home=None):
+    """root is the project workspace; home holds search state (defaults to root)."""
+    home = Path(home) if home is not None else root
     try:
         validate_arguments(name, arguments)
     except RequestError:
@@ -325,7 +329,10 @@ def dispatch(root, name, arguments):
                 return {**failure("no_paths_given", "unsupported"), "inspection_performed": False}
             from paladin.change_check import check_paths
             result = check_paths(root, arguments["paths"])
-            result.update(inspection_performed=True, judgment="static_pattern_findings_only")
+            # The tool contract has no "findings" or "clean" status: those become the outcome.
+            outcome = result["status"]
+            result.update(outcome=outcome, status="complete" if outcome in {"findings", "clean"} else outcome,
+                          inspection_performed=True, judgment="static_pattern_findings_only")
             return bounded(result)
         if name == "check_dependencies":
             from paladin.dependency_check import check_workspace
@@ -346,7 +353,7 @@ def dispatch(root, name, arguments):
             if family is not None and family not in FAMILIES:
                 return failure("unsupported_family", "unsupported")
             from paladin.knowledge import search_patterns
-            result = copy.deepcopy(search_patterns(root, arguments["intent"], limit=arguments.get("limit", 5), family=family))
+            result = copy.deepcopy(search_patterns(home, arguments["intent"], limit=arguments.get("limit", 5), family=family))
             for match in result.get("matches", []):
                 for entry in match["pattern"]["evidence"]:
                     entry["evidence_id"] = evidence_id(entry)
@@ -355,7 +362,7 @@ def dispatch(root, name, arguments):
         elif name == "get_prevention_guidance":
             result = get_guidance(root, arguments)
         else:
-            result = get_status(root)
+            result = get_status(root, home)
         return bounded(result)
     except Exception:
         # No user input, paths, source content or exception internals in diagnostics.
@@ -369,13 +376,15 @@ def worker_main():
     import sys
     parser = argparse.ArgumentParser()
     parser.add_argument("--workspace", type=Path, required=True)
+    parser.add_argument("--home", type=Path)
     parser.add_argument("--tool", choices=list(INPUT_SCHEMAS), required=True)
     args = parser.parse_args()
     raw = sys.stdin.buffer.read(MAX_ARGUMENT_BYTES + 1)
     try:
         arguments = json.loads(raw)
         with redirect_stdout(sys.stderr):
-            result = dispatch(args.workspace.resolve(), args.tool, arguments)
+            result = dispatch(args.workspace.resolve(), args.tool, arguments,
+                              home=args.home.resolve() if args.home else None)
     except Exception:
         result = failure("invalid_arguments", "invalid_request")
     sys.stdout.write(json.dumps(result, ensure_ascii=True, allow_nan=False))

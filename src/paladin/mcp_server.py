@@ -28,11 +28,16 @@ DESCRIPTIONS = {
 class WorkerRunner:
     """One backend operation at a time; cancellation kills and reaps the worker."""
 
-    def __init__(self, root, timeout=30):
+    def __init__(self, root, timeout=30, home=None):
         self.root = Path(root).resolve()
+        self.home = Path(home).resolve() if home is not None else self.root
         self.timeout = timeout
         self.lock = anyio.Lock()
         self.active_pids = set()
+
+    def command(self, name):
+        return [sys.executable, "-I", "-B", "-m", "paladin.advisory", "--workspace", str(self.root),
+                "--home", str(self.home), "--tool", name]
 
     async def call(self, name, arguments, *, command=None):
         # The deadline also includes queue time; the lock includes reaping.
@@ -48,8 +53,7 @@ class WorkerRunner:
         try:
             env = {**os.environ, "PYTHONDONTWRITEBYTECODE": "1"}
             process = await anyio.open_process(
-                command or [sys.executable, "-I", "-B", "-m", "paladin.advisory",
-                            "--workspace", str(self.root), "--tool", name],
+                command or self.command(name),
                 stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.DEVNULL, env=env,
                 creationflags=subprocess.CREATE_NO_WINDOW if sys.platform == "win32" else 0)
             self.active_pids.add(process.pid)
@@ -82,8 +86,8 @@ class WorkerRunner:
                     self.active_pids.discard(process.pid)
 
 
-def create_server(root):
-    runner = WorkerRunner(root)
+def create_server(root, home=None):
+    runner = WorkerRunner(root, home=home)
 
     async def list_tools(ctx, params):
         return types.ListToolsResult(tools=[types.Tool(
@@ -102,7 +106,7 @@ def create_server(root):
             result = failure("invalid_arguments", "invalid_request")
         else:
             if params.name == "check_changes" and not arguments.get("paths"):
-                result = dispatch(runner.root, params.name, arguments)
+                result = dispatch(runner.root, params.name, arguments, home=runner.home)
             else:
                 result = await runner.call(params.name, arguments)
         wire = tool_result(result)
@@ -113,11 +117,11 @@ def create_server(root):
                   get_tool_input_schema=INPUT_SCHEMAS.get)
 
 
-async def serve(root):
-    server = create_server(Path(root).resolve())
+async def serve(root, home=None):
+    server = create_server(Path(root).resolve(), home)
     async with stdio_server() as (read, write):
         await server.run(read, write, server.create_initialization_options())
 
 
-def main(root):
-    anyio.run(serve, root)
+def main(root, home=None):
+    anyio.run(serve, root, home)

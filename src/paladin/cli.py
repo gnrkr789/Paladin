@@ -61,6 +61,9 @@ def main(argv=None):
     hook.add_argument("action", choices=["claude-code", "codex", "install"])
     hook.add_argument("--workspace", type=Path, default=Path.cwd())
     hook.add_argument("--host", choices=["claude-code", "codex"], default="claude-code")
+    deps = commands.add_parser("deps", help="check pinned dependency versions against collected advisories")
+    deps.add_argument("action", choices=["check"])
+    deps.add_argument("paths", nargs="*", help="workspace-relative dependency files (default: discover)")
     mcp = commands.add_parser("mcp", help="serve bounded advisory tools over stdio")
     mcp.add_argument("--workspace", type=Path, default=Path.cwd())
     cases = commands.add_parser("cases", help="scan and verify locally supported CVE cases")
@@ -69,7 +72,7 @@ def main(argv=None):
     cases.add_argument("--workspace", type=Path, default=Path.cwd())
     cases.add_argument("--json", action="store_true")
     cases.add_argument("--cve", choices=["CVE-2022-24065", "CVE-2023-5752"])
-    for command in [model, patterns, search]:
+    for command in [model, patterns, search, deps]:
         command.add_argument("--workspace", type=Path, default=Path.cwd())
         command.add_argument("--json", action="store_true")
     args = parser.parse_args(argv)
@@ -99,6 +102,9 @@ def main(argv=None):
                 result["semantic"] = knowledge_status(args.workspace)
                 if result["status"] == "ready" and result["semantic"]["status"] != "ready":
                     result["status"] = "degraded"
+        elif args.command == "deps":
+            from paladin.dependency_check import check_workspace
+            result = check_workspace(args.workspace, args.paths or None)
         elif args.command == "model":
             from paladin.embedding import prepare_model
             result = prepare_model(args.workspace)
@@ -170,8 +176,16 @@ def main(argv=None):
             print("  candidate: " + candidate["path"] + ":" + str(candidate["line"]))
         for case in result.get("case_runs", []):
             print("  case: " + case["status"])
+        for finding in result.get("findings", []) if args.command == "deps" else []:
+            print("  {}:{} {} {} {} {} (fixed in {})".format(
+                finding["file"], finding["line"] or "-", finding["package"], finding["version"], finding["cve_id"],
+                finding["title"], ", ".join(finding["fixed_in"]) or "no fixed version listed"))
+        for path, names in result.get("unpinned", {}).items() if args.command == "deps" else []:
+            print("  {} not pinned: {}".format(path, ", ".join(names)))
+        for note in result.get("notes", []) if args.command == "deps" else []:
+            print("  note: " + note)
         print(result.get("notice", "Advisory tooling; security prevention and blocking are not ready."))
-    return 0 if result["status"] in {"ready", "configured", "prepared", "indexed", "valid", "complete", "exported"} else 1
+    return 0 if result["status"] in {"ready", "configured", "prepared", "indexed", "valid", "complete", "exported", "clean", "no_dependency_files"} else 1
 
 
 if __name__ == "__main__":

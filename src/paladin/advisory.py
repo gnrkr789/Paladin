@@ -45,6 +45,11 @@ INPUT_SCHEMAS = {
                   "description": "Workspace-relative Python files to check statically."},
     }),
     "scan_cve_candidates": object_schema(),
+    "check_dependencies": object_schema({
+        "paths": {"type": "array", "minItems": 1, "maxItems": 20,
+                  "items": {"type": "string", "minLength": 1, "maxLength": 1024},
+                  "description": "Workspace-relative dependency files; omit to check the workspace's own."},
+    }),
     "get_prevention_guidance": object_schema({
         "include_patch_context": {"type": "boolean", "default": False,
                                   "description": "Include the complete verified upstream diff and integration scope."},
@@ -321,6 +326,12 @@ def dispatch(root, name, arguments):
             from paladin.change_check import check_paths
             result = check_paths(root, arguments["paths"])
             result.update(inspection_performed=True, judgment="static_pattern_findings_only")
+            return bounded(result)
+        if name == "check_dependencies":
+            from paladin.dependency_check import check_workspace
+            result = check_workspace(root, arguments.get("paths"))
+            result.update(outcome=result["status"], status="complete", inspection_performed=True,
+                          judgment="pinned_versions_in_advisory_ranges_only")
             return bounded(result)
         if name == "scan_cve_candidates":
             from paladin.candidate_scan import scan_project

@@ -30,6 +30,7 @@ On each edit of a `.py` file inside the workspace:
 |---|---|---|
 | Exact CVE rule match (CVE-2022-24065 checkout, CVE-2023-5752 pip revision) | `{"decision": "block", "reason": ...}` | The turn is blocked; the agent receives CVE, file:line, cause and fix |
 | Generalized Mercurial argv rule or one of 98 data rules drafted from CVE cards (review) | `additionalContext` | Advisory note with the card id, only for lines the edit wrote; not blocked |
+| Edited dependency file (requirements*.txt, pyproject.toml, uv.lock, poetry.lock, Pipfile.lock) with a pinned version in an advisory range | `additionalContext` | Review note with CVE, card title and fixed versions; not blocked |
 | Unsupported (outside the workspace, link, unreadable, non-ASCII path) | `additionalContext` | Explicit "not inspected" note; never a safe claim |
 | Paladin failure | `additionalContext` | "unavailable" note; never blocks |
 | Clean, or not a Python file | no output | Nothing |

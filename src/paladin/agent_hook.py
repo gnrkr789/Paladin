@@ -14,6 +14,7 @@ import stat
 import tempfile
 
 from paladin.change_check import check_paths, line_digest
+from paladin.dependency_check import is_dependency_file
 
 EDIT_TOOLS = {"Write", "Edit", "MultiEdit"}
 HOOK_MATCHER = "Write|Edit|MultiEdit"
@@ -101,6 +102,36 @@ def _check(workspace, paths, written=None):
             type(exc).__name__))
 
 
+def _dependencies(workspace, paths):
+    """Review note for edited dependency files whose pinned versions are in an advisory range."""
+    try:
+        from paladin.dependency_check import check_workspace
+        result = check_workspace(Path(workspace), paths)
+    except Exception as exc:  # The hook must never break the agent turn.
+        return _context("Paladin dependency check unavailable ({}); no result for this edit.".format(
+            type(exc).__name__))
+    if not result["findings"]:
+        notes = result["notes"]
+        return _context("Paladin dependency check is incomplete. " + " ".join(notes)) if notes else None
+    header = ("Paladin dependency finding (not blocking; the pinned version is in an advisory's affected range, "
+              "which does not show the vulnerable feature is used):")
+    lines = ["- {}:{} {} {} is affected by {}: {}. Fixed in: {}.".format(
+        f["file"], f["line"] or "-", f["package"], f["version"], f["cve_id"], f["title"],
+        ", ".join(f["fixed_in"]) or "no fixed version listed") for f in result["findings"]]
+    return _context(_bounded(header, lines, ""))
+
+
+def _combine(first, second):
+    """One hook output from a code check and a dependency check; a block keeps its decision."""
+    if not first or not second:
+        return first or second
+    extra = second["hookSpecificOutput"]["additionalContext"]
+    if "decision" in first:
+        return dict(first, reason=(first["reason"] + "\n" + extra)[:MAX_REASON])
+    text = first["hookSpecificOutput"]["additionalContext"] + "\n" + extra
+    return _context(text)
+
+
 def claude_code_hook(payload, workspace):
     """Claude Code Write/Edit/MultiEdit payload."""
     if not isinstance(payload, dict) or payload.get("tool_name") not in EDIT_TOOLS:
@@ -109,6 +140,8 @@ def claude_code_hook(payload, workspace):
     if not isinstance(tool_input, dict) or not isinstance(tool_input.get("file_path"), str):
         return None
     raw = tool_input["file_path"]
+    if is_dependency_file(raw):
+        return _dependencies(workspace, [raw])
     if not raw.lower().endswith(".py"):
         return None
     edits = tool_input.get("edits") if payload["tool_name"] == "MultiEdit" else [tool_input]
@@ -149,6 +182,10 @@ def patch_paths(patch):
     return paths
 
 
+def _absolute(base, path):
+    return path if Path(path).is_absolute() else str(Path(base) / path)
+
+
 def codex_hook(payload, workspace):
     """Codex apply_patch payload: the patch text is tool_input.command."""
     if not isinstance(payload, dict) or payload.get("tool_name") != "apply_patch":
@@ -158,14 +195,17 @@ def codex_hook(payload, workspace):
     if not isinstance(patch, str):
         return _context("Paladin change check unavailable (unrecognized apply_patch input); no result for this edit.")
     base = payload.get("cwd") if isinstance(payload.get("cwd"), str) else str(workspace)
+    dependencies = [_absolute(base, path) for path in patch_paths(patch) if is_dependency_file(path)][:20]
+    found = _dependencies(workspace, dependencies) if dependencies else None
     named = [path for path in patch_paths(patch) if path.lower().endswith(".py")]
-    paths = [path if Path(path).is_absolute() else str(Path(base) / path) for path in named]
+    paths = [_absolute(base, path) for path in named]
     if not paths:
-        return None
+        return found
     if len(paths) > 20:
-        return _context("Paladin change check covered the first 20 of {} Python files.".format(len(paths)))
+        return _combine(_context("Paladin change check covered the first 20 of {} Python files.".format(len(paths))),
+                        found)
     written = patch_written(patch)
-    return _check(workspace, paths, [written.get(path, set()) for path in named])
+    return _combine(_check(workspace, paths, [written.get(path, set()) for path in named]), found)
 
 
 HOSTS = {"claude-code": claude_code_hook, "codex": codex_hook}

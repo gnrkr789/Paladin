@@ -6,7 +6,7 @@
   <img src="https://img.shields.io/badge/version-0.2.0a1-3451d1" alt="version 0.2.0a1">
   <img src="https://img.shields.io/badge/python-3.11%2B-3776ab" alt="python 3.11+">
   <img src="https://img.shields.io/badge/license-Apache--2.0-blue" alt="Apache-2.0">
-  <img src="https://img.shields.io/badge/tests-305%20passing-2fbf71" alt="305 unit tests passing">
+  <img src="https://img.shields.io/badge/tests-323%20passing-2fbf71" alt="323 unit tests passing">
 </p>
 
 Paladin stops AI coding agents from reintroducing known CVE patterns. It tells
@@ -19,6 +19,9 @@ the agent what the problem is and how to avoid it; the agent writes its own fix.
 - **Edit-time hook** for Claude Code and Codex, with no model or network call:
   an exact CVE match blocks the turn with the CVE, line, cause and fix
   direction; 98 rules drafted from the cards add non-blocking review notes.
+- **Dependency check** (`paladin deps check`, MCP `check_dependencies`, and the hook
+  when an agent edits a dependency file): pinned versions against the PyPI affected
+  ranges of 520 collected CVEs, most of which are library-internal and have no code rule.
 - **Proof loop**: reproduces a CVE and verifies a repair inside an isolated
   Docker observer before a case is recorded.
 
@@ -43,7 +46,7 @@ the agent what the problem is and how to avoid it; the agent writes its own fix.
 | Review rules, first scan of 4,055 site-packages files | 89 of 98 rules silent; pickle.load 37 files |
 | Rewritten cards audited by a second model (Codex), sample of 30 | 30 better than the draft; 10 exact, 20 with a side claim to fix |
 | Same 207 cards after correction, Fable audit of a new sample of 30 | 29 exact, 1 with a minor omission |
-| Unit tests | 305 pass |
+| Unit tests | 323 pass |
 
 Evidence: [docs/evidence/private-alpha/final-report.md](docs/evidence/private-alpha/final-report.md).
 

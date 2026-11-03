@@ -31,6 +31,7 @@ hooks are installed; a client can ignore or bypass advisory tools.
 | `get_knowledge_status` | Empty object | Pack identity/date, supported scope, text policy, semantic readiness, separate diagnostic/DB checks and source-content availability |
 | `check_changes` | Empty object | `unsupported`, `reason=rules_not_validated`, `inspection_performed=false`; no receipt or safety judgment |
 | `scan_cve_candidates` | Empty object; configured workspace is the scan root | Source locations for the supported CVE-2022-24065 checkout rule; partial coverage is explicit; candidates require verification |
+| `check_dependencies` | Optional `paths` (workspace-relative dependency files) | Pinned versions in requirements*.txt, pyproject.toml, uv.lock, poetry.lock or Pipfile.lock that fall in a collected PyPI advisory range, with CVE, card title and fixed versions; unpinned requirements are listed, not judged |
 | `get_prevention_guidance` | Required `pattern_id`, `pack_sha256`, `guidance_sha256`; optional `include_patch_context` | Conditional correction, verified patch context on request, and policy-checked local case references when present |
 
 Discovery publishes input/output schemas and read-only annotations. Annotations

@@ -1,0 +1,7865 @@
+{
+ "entries": [
+  {
+   "cve_id": "CVE-2008-0252",
+   "package": "cherrypy",
+   "ranges": [
+    {
+     "fixed": "2.1.1",
+     "introduced": "0"
+    },
+    {
+     "fixed": "3.0.2",
+     "introduced": "3.0"
+    }
+   ],
+   "title": "Crafted session id in a cookie escapes the session directory in CherryPy file-based sessions",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2008-1474",
+   "package": "roundup",
+   "ranges": [
+    {
+     "fixed": "1.4.4",
+     "introduced": "0"
+    }
+   ],
+   "title": "Roundup before 1.4.4: unspecified issues possibly including cross-site scripting",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2008-2302",
+   "package": "django",
+   "ranges": [
+    {
+     "fixed": "0.91.2",
+     "introduced": "0.91"
+    },
+    {
+     "fixed": "0.95.3",
+     "introduced": "0.95"
+    },
+    {
+     "fixed": "0.96.2",
+     "introduced": "0.96"
+    },
+    {
+     "fixed": "1.1",
+     "introduced": "0"
+    }
+   ],
+   "title": "Admin login form reflects the URI of an earlier request without neutralizing it (Django, CVE-2008-2302)",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2009-2659",
+   "package": "django",
+   "ranges": [
+    {
+     "fixed": "0.96.4",
+     "introduced": "0.96.0"
+    },
+    {
+     "fixed": "1.0.3",
+     "introduced": "1.0"
+    },
+    {
+     "fixed": "1.1",
+     "introduced": "0"
+    }
+   ],
+   "title": "Django development admin media handler",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2009-3695",
+   "package": "django",
+   "ranges": [
+    {
+     "fixed": "1.0.4",
+     "introduced": "1.0"
+    },
+    {
+     "fixed": "1.1.1",
+     "introduced": "1.1"
+    }
+   ],
+   "title": "Regex backtracking DoS in Django form validation of email and URL fields",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2010-2491",
+   "package": "roundup",
+   "ranges": [
+    {
+     "fixed": "1.4.14",
+     "introduced": "0"
+    }
+   ],
+   "title": "Reflected XSS through the template argument of the Roundup issue program",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2010-3082",
+   "package": "django",
+   "ranges": [
+    {
+     "fixed": "1.2.2",
+     "introduced": "1.2"
+    }
+   ],
+   "title": "Django 1.2.x XSS via attacker-supplied CSRF token cookie",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2011-0697",
+   "package": "django",
+   "ranges": [
+    {
+     "fixed": "1.1.4",
+     "introduced": "1.1"
+    },
+    {
+     "fixed": "1.2.5",
+     "introduced": "1.2"
+    }
+   ],
+   "title": "Script injection through file upload filenames in old Django releases",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2011-0698",
+   "package": "django",
+   "ranges": [
+    {
+     "fixed": "1.1.4",
+     "introduced": "1.1"
+    },
+    {
+     "fixed": "1.2.5",
+     "introduced": "1.2"
+    }
+   ],
+   "title": "Django file session backend keys",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2011-4596",
+   "package": "nova",
+   "ranges": [
+    {
+     "fixed": "12.0.0a0",
+     "introduced": "0"
+    }
+   ],
+   "title": "Directory traversal via crafted image tarball or manifest in Nova S3/RegisterImage",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2011-4924",
+   "package": "zope",
+   "ranges": [
+    {
+     "fixed": "3.7.3",
+     "introduced": "3.1.1"
+    }
+   ],
+   "title": "Incomplete sanitization of content shown in Zope error messages allows reflected script injection",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2011-4924",
+   "package": "zope2",
+   "ranges": [
+    {
+     "fixed": "2.12.22",
+     "introduced": "0"
+    },
+    {
+     "fixed": "2.13.12",
+     "introduced": "2.13.0a1"
+    }
+   ],
+   "title": "Incomplete sanitization of content shown in Zope error messages allows reflected script injection",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2012-0805",
+   "package": "sqlalchemy",
+   "ranges": [
+    {
+     "fixed": "0.7.0b4",
+     "introduced": "0"
+    },
+    {
+     "fixed": "0.7.0",
+     "introduced": "0"
+    }
+   ],
+   "title": "SQLAlchemy before 0.7.0b4: SQL injection through select limit and offset",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2012-2094",
+   "package": "horizon",
+   "ranges": [
+    {
+     "fixed": "8.0.0a0",
+     "introduced": "0"
+    }
+   ],
+   "title": "Untrusted guest console output in the Horizon log viewer refresh path enables XSS",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2012-3360",
+   "package": "nova",
+   "ranges": [
+    {
+     "fixed": "12.0.0a0",
+     "introduced": "0"
+    }
+   ],
+   "title": "Directory traversal via dot-dot in file element path when writing into guest disk images (Nova, CVE-2012-3360)",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2012-3442",
+   "package": "django",
+   "ranges": [
+    {
+     "fixed": "1.3.2",
+     "introduced": "0"
+    },
+    {
+     "fixed": "1.4.1",
+     "introduced": "1.4"
+    }
+   ],
+   "title": "Redirect responses accepting unvalidated URL schemes enable data: URL XSS",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2012-4406",
+   "package": "swift",
+   "ranges": [
+    {
+     "fixed": "1.7.0",
+     "introduced": "0"
+    }
+   ],
+   "title": "Unsafe pickle deserialization of memcached metadata in OpenStack Swift",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2012-6131",
+   "package": "roundup",
+   "ranges": [
+    {
+     "fixed": "1.4.20",
+     "introduced": "0"
+    }
+   ],
+   "title": "Roundup XSS through the @action request parameter (CVE-2012-6131)",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2013-1664",
+   "package": "django",
+   "ranges": [
+    {
+     "fixed": "1.3.6",
+     "introduced": "1.3.0"
+    },
+    {
+     "fixed": "1.4.4",
+     "introduced": "1.4.0"
+    }
+   ],
+   "title": "XML Entity Expansion denial of service via Python XML libraries in Django",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2013-1665",
+   "package": "django",
+   "ranges": [
+    {
+     "fixed": "1.3.6",
+     "introduced": "1.3.0"
+    },
+    {
+     "fixed": "1.4.4",
+     "introduced": "1.4.0"
+    }
+   ],
+   "title": "Do not let XML parsers resolve external entities in untrusted XML (Django XXE, CVE-2013-1665)",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2013-4249",
+   "package": "django",
+   "ranges": [
+    {
+     "fixed": "1.5.2",
+     "introduced": "1.5"
+    }
+   ],
+   "title": "Stored or reflected XSS through URLField values in the Django admin URL widget",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2013-4315",
+   "package": "django",
+   "ranges": [
+    {
+     "fixed": "1.4.7",
+     "introduced": "1.4"
+    },
+    {
+     "fixed": "1.5.3",
+     "introduced": "1.5"
+    }
+   ],
+   "title": "Django SSI template include root",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2013-6044",
+   "package": "django",
+   "ranges": [
+    {
+     "fixed": "1.4.6",
+     "introduced": "1.4"
+    },
+    {
+     "fixed": "1.5.2",
+     "introduced": "1.5"
+    }
+   ],
+   "title": "Redirect URL validation that accepts non-HTTP schemes enables XSS (CVE-2013-6044)",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2014-0474",
+   "package": "django",
+   "ranges": [
+    {
+     "fixed": "1.4.11",
+     "introduced": "0"
+    },
+    {
+     "fixed": "1.5.6",
+     "introduced": "1.5"
+    },
+    {
+     "fixed": "1.6.3",
+     "introduced": "1.6"
+    }
+   ],
+   "title": "Django MySQL typecasting flaw in FilePathField and IP address model fields",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2014-3146",
+   "package": "lxml",
+   "ranges": [
+    {
+     "fixed": "3.3.5",
+     "introduced": "0"
+    }
+   ],
+   "title": "Control characters in link schemes bypass lxml HTML cleaner blacklist",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2014-3473",
+   "package": "horizon",
+   "ranges": [
+    {
+     "fixed": "8.0.0a0",
+     "introduced": "0"
+    }
+   ],
+   "title": "Stored XSS in Horizon Orchestration through crafted template resource names",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2014-3474",
+   "package": "horizon",
+   "ranges": [
+    {
+     "fixed": "8.0.0a0",
+     "introduced": "0"
+    }
+   ],
+   "title": "Untrusted network name in the Horizon Launch Instance menu script",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2014-3594",
+   "package": "horizon",
+   "ranges": [
+    {
+     "fixed": "8.0.0a0",
+     "introduced": "0"
+    }
+   ],
+   "title": "Stored XSS via host aggregate name in Horizon Host Aggregates interface",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2015-0220",
+   "package": "django",
+   "ranges": [
+    {
+     "fixed": "1.4.18",
+     "introduced": "0"
+    },
+    {
+     "fixed": "1.6.10",
+     "introduced": "1.6"
+    },
+    {
+     "fixed": "1.7.3",
+     "introduced": "1.7"
+    },
+    {
+     "fixed": "1.6.10",
+     "introduced": "1.5"
+    }
+   ],
+   "title": "Redirect URL safety check bypassed by leading whitespace in Django (CVE-2015-0220)",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2015-1195",
+   "package": "glance",
+   "ranges": [
+    {
+     "fixed": "11.0.0a0",
+     "introduced": "0"
+    }
+   ],
+   "title": "Full pathname in filesystem URL of image location enables arbitrary file read or delete in Glance V2 API",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2015-2241",
+   "package": "django",
+   "ranges": [
+    {
+     "fixed": "1.7.6",
+     "introduced": "0"
+    },
+    {
+     "fixed": "1.8b2",
+     "introduced": "1.8a1"
+    }
+   ],
+   "title": "Django admin readonly_fields model attribute rendered without neutralizing script (CVE-2015-2241)",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2015-2317",
+   "package": "django",
+   "ranges": [
+    {
+     "fixed": "1.4.20",
+     "introduced": "0"
+    },
+    {
+     "fixed": "1.6.11",
+     "introduced": "1.5"
+    },
+    {
+     "fixed": "1.7.7",
+     "introduced": "1.7"
+    },
+    {
+     "fixed": "1.8c1",
+     "introduced": "1.8a1"
+    },
+    {
+     "fixed": "1.8c1",
+     "introduced": "1.8a0"
+    }
+   ],
+   "title": "Control characters bypass redirect URL safety check in Django is_safe_url",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2015-3219",
+   "package": "horizon",
+   "ranges": [
+    {
+     "fixed": "8.0.0a0",
+     "introduced": "0"
+    }
+   ],
+   "title": "Stored XSS via heat template description rendered as form field help text in Horizon",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2015-4706",
+   "package": "ipython",
+   "ranges": [
+    {
+     "fixed": "3.2.0",
+     "introduced": "3.0.0"
+    }
+   ],
+   "title": "Untrusted input in JSON error messages for the IPython /api/contents path enabled XSS",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2015-4707",
+   "package": "ipython",
+   "ranges": [
+    {
+     "fixed": "3.2.0",
+     "introduced": "0"
+    }
+   ],
+   "title": "IPython before 3.2: XSS through JSON error messages on the /api/notebooks path",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2015-5145",
+   "package": "django",
+   "ranges": [
+    {
+     "fixed": "1.8.3",
+     "introduced": "1.8a1"
+    },
+    {
+     "fixed": "1.8.3",
+     "introduced": "1.8"
+    }
+   ],
+   "title": "Django 1.8.x URLValidator ReDoS causing CPU exhaustion before 1.8.3",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2015-6938",
+   "package": "ipython",
+   "ranges": [
+    {
+     "fixed": "3.2.2",
+     "introduced": "0"
+    }
+   ],
+   "title": "Folder names rendered unescaped in the Jupyter and IPython Notebook file browser enable XSS",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2015-6938",
+   "package": "notebook",
+   "ranges": [
+    {
+     "fixed": "4.0.5",
+     "introduced": "4.0.0"
+    }
+   ],
+   "title": "Folder names rendered unescaped in the Jupyter and IPython Notebook file browser enable XSS",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2015-7316",
+   "package": "plone",
+   "ranges": [
+    {
+     "fixed": "3.3.7",
+     "introduced": "3.3"
+    },
+    {
+     "fixed": "4.0.11",
+     "introduced": "4.0"
+    },
+    {
+     "fixed": "4.1.7",
+     "introduced": "4.1"
+    },
+    {
+     "fixed": "4.2.8",
+     "introduced": "4.2"
+    },
+    {
+     "fixed": "4.3.7",
+     "introduced": "4.3"
+    },
+    {
+     "fixed": "4.0a1",
+     "introduced": "3.3"
+    },
+    {
+     "fixed": "4.1a1",
+     "introduced": "4.0"
+    },
+    {
+     "fixed": "4.2a1",
+     "introduced": "4.1"
+    },
+    {
+     "fixed": "4.3a1",
+     "introduced": "4.2"
+    },
+    {
+     "fixed": "5.0rc2",
+     "introduced": "5.0a1"
+    }
+   ],
+   "title": "Plone URL checking accepts crafted URLs containing script markup, leading to XSS",
+   "versions": [
+    "5.0rc1"
+   ]
+  },
+  {
+   "cve_id": "CVE-2015-8557",
+   "package": "pygments",
+   "ranges": [
+    {
+     "fixed": "2.1",
+     "introduced": "1.2.2"
+    }
+   ],
+   "title": "Shell metacharacters in a font name reach command execution in Pygments image formatter",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2016-10516",
+   "package": "werkzeug",
+   "ranges": [
+    {
+     "fixed": "0.11.11",
+     "introduced": "0"
+    }
+   ],
+   "title": "Unescaped exception messages in the Werkzeug debugger page enable XSS",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2016-1505",
+   "package": "radicale",
+   "ranges": [
+    {
+     "fixed": "1.1",
+     "introduced": "0"
+    }
+   ],
+   "title": "Windows path traversal in Radicale filesystem storage backend via crafted request path",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2016-2512",
+   "package": "django",
+   "ranges": [
+    {
+     "fixed": "1.8.10",
+     "introduced": "0"
+    },
+    {
+     "fixed": "1.9.3",
+     "introduced": "1.9a1"
+    },
+    {
+     "fixed": "1.9.3",
+     "introduced": "1.9"
+    }
+   ],
+   "title": "Redirect target check in is_safe_url accepts URLs with basic authentication",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2016-4428",
+   "package": "horizon",
+   "ranges": [
+    {
+     "fixed": "8.0.2",
+     "introduced": "0"
+    },
+    {
+     "fixed": "9.1.0",
+     "introduced": "9.0.0"
+    }
+   ],
+   "title": "Authenticated users injecting AngularJS templates through Horizon dashboard forms (CVE-2016-4428)",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2016-6186",
+   "package": "django",
+   "ranges": [
+    {
+     "fixed": "1.8.14",
+     "introduced": "0"
+    },
+    {
+     "fixed": "1.9.8",
+     "introduced": "1.9"
+    },
+    {
+     "fixed": "1.10rc1",
+     "introduced": "1.10a1"
+    },
+    {
+     "fixed": "1.10rc1",
+     "introduced": "1.10a0"
+    }
+   ],
+   "title": "Admin related-object popup callback inserting data through Element.innerHTML (Django XSS)",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2016-8628",
+   "package": "ansible",
+   "ranges": [
+    {
+     "fixed": "2.2.0.0",
+     "introduced": "0"
+    }
+   ],
+   "title": "Unsanitized fact variables from the Ansible controller allow command execution on clients",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2017-1000481",
+   "package": "plone",
+   "ranges": [
+    {
+     "fixed": "4.3.16",
+     "introduced": "2.5"
+    },
+    {
+     "fixed": "5.1.0",
+     "introduced": "5"
+    }
+   ],
+   "title": "Open redirect through the came_from parameter after Plone login",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2017-1000481",
+   "package": "products-cmfplone",
+   "ranges": [
+    {
+     "fixed": "4.3.17",
+     "introduced": "0"
+    },
+    {
+     "fixed": "5.0.10",
+     "introduced": "5.0.0"
+    },
+    {
+     "fixed": "5.1.0",
+     "introduced": "5.1a1"
+    }
+   ],
+   "title": "Open redirect through the came_from parameter after Plone login",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2017-1000482",
+   "package": "plone",
+   "ranges": [
+    {
+     "fixed": "4.3.16",
+     "introduced": "2.5a1"
+    },
+    {
+     "fixed": "5.1.0",
+     "introduced": "5.0a1"
+    },
+    {
+     "fixed": "4.3.16",
+     "introduced": "2.5"
+    },
+    {
+     "fixed": "5.1.0",
+     "introduced": "5"
+    }
+   ],
+   "title": "Stored XSS via user-controlled profile home page link",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2017-1000482",
+   "package": "products-cmfplone",
+   "ranges": [
+    {
+     "fixed": "4.3.17",
+     "introduced": "0"
+    },
+    {
+     "fixed": "5.0.10",
+     "introduced": "5.0.0"
+    },
+    {
+     "fixed": "5.1.0",
+     "introduced": "5.1a1"
+    }
+   ],
+   "title": "Stored XSS via user-controlled profile home page link",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2017-12614",
+   "package": "apache-airflow",
+   "ranges": [
+    {
+     "fixed": "1.9.0",
+     "introduced": "0"
+    }
+   ],
+   "title": "Reflected XSS in certain Apache Airflow 404 pages",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2017-12791",
+   "package": "salt",
+   "ranges": [
+    {
+     "fixed": "2016.11.7",
+     "introduced": "0"
+    },
+    {
+     "fixed": "2017.7.1",
+     "introduced": "2017.7.0"
+    },
+    {
+     "fixed": "2017.7.1",
+     "introduced": "2017.7"
+    }
+   ],
+   "title": "Minion ID validation must reject directory traversal in Salt master authentication",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2017-12794",
+   "package": "django",
+   "ranges": [
+    {
+     "fixed": "1.10.8",
+     "introduced": "1.10a1"
+    },
+    {
+     "fixed": "1.11.5",
+     "introduced": "1.11a1"
+    },
+    {
+     "fixed": "1.10.8",
+     "introduced": "1.10"
+    },
+    {
+     "fixed": "1.11.5",
+     "introduced": "1.11"
+    }
+   ],
+   "title": "Disabled autoescaping in Django technical 500 debug page enables XSS",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2017-14695",
+   "package": "salt",
+   "ranges": [
+    {
+     "fixed": "2016.3.8",
+     "introduced": "0"
+    },
+    {
+     "fixed": "2016.11.8",
+     "introduced": "2016.11.0"
+    },
+    {
+     "fixed": "2017.7.2",
+     "introduced": "2017.7.0"
+    },
+    {
+     "fixed": "2016.11.8",
+     "introduced": "2016.11"
+    },
+    {
+     "fixed": "2017.7.2",
+     "introduced": "2017.7"
+    }
+   ],
+   "title": "Incomplete minion ID validation allows directory traversal and authentication bypass on a Salt master",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2017-15612",
+   "package": "mistune",
+   "ranges": [
+    {
+     "fixed": "0.8",
+     "introduced": "0"
+    }
+   ],
+   "title": "Mistune XSS via newline in link scheme and crafted email autolinks",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2017-16762",
+   "package": "sanic",
+   "ranges": [
+    {
+     "fixed": "0.5.1",
+     "introduced": "0"
+    }
+   ],
+   "title": "Directory traversal through the static file route in Sanic before 0.5.1",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2017-16876",
+   "package": "mistune",
+   "ranges": [
+    {
+     "fixed": "0.8.1",
+     "introduced": "0"
+    }
+   ],
+   "title": "Unescaped key argument in Mistune _keyify enables XSS",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2017-18342",
+   "package": "pyyaml",
+   "ranges": [
+    {
+     "fixed": "5.1",
+     "introduced": "0"
+    }
+   ],
+   "title": "Avoid arbitrary code execution from yaml.load() on untrusted YAML in PyYAML before 5.1",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2017-5934",
+   "package": "moin",
+   "ranges": [
+    {
+     "fixed": "1.9.10",
+     "introduced": "0"
+    }
+   ],
+   "title": "Cross-site scripting in the MoinMoin GUI editor link dialogue",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2017-7200",
+   "package": "glance",
+   "ranges": [
+    {
+     "fixed": "11.0.0a0",
+     "introduced": "0"
+    }
+   ],
+   "title": "Glance v1 copy_from URL enables masked internal port scanning (SSRF)",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2017-7233",
+   "package": "django",
+   "ranges": [
+    {
+     "fixed": "1.10.7",
+     "introduced": "1.10a1"
+    },
+    {
+     "fixed": "1.9.13",
+     "introduced": "1.9a1"
+    },
+    {
+     "fixed": "1.8.18",
+     "introduced": "1.8a1"
+    },
+    {
+     "fixed": "1.10.7",
+     "introduced": "1.10"
+    },
+    {
+     "fixed": "1.9.13",
+     "introduced": "1.9"
+    },
+    {
+     "fixed": "1.8.18",
+     "introduced": "1.8"
+    }
+   ],
+   "title": "Open redirect via numeric URLs accepted by Django is_safe_url",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2017-7234",
+   "package": "django",
+   "ranges": [
+    {
+     "fixed": "1.10.7",
+     "introduced": "1.10"
+    },
+    {
+     "fixed": "1.9.13",
+     "introduced": "1.9"
+    },
+    {
+     "fixed": "1.8.18",
+     "introduced": "1.8"
+    }
+   ],
+   "title": "Open redirect through the Django static serve view in unpatched releases",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2018-14574",
+   "package": "django",
+   "ranges": [
+    {
+     "fixed": "2.0.8",
+     "introduced": "2.0"
+    },
+    {
+     "fixed": "1.11.15",
+     "introduced": "1.11"
+    }
+   ],
+   "title": "Open redirect in Django CommonMiddleware on unpatched 1.11.x and 2.0.x releases",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2018-16516",
+   "package": "flask-admin",
+   "ranges": [
+    {
+     "fixed": "1.5.3",
+     "introduced": "0"
+    }
+   ],
+   "title": "Reflected XSS via crafted URL in Flask-Admin 1.5.2 helpers module",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2018-19351",
+   "package": "notebook",
+   "ranges": [
+    {
+     "fixed": "5.7.1",
+     "introduced": "0"
+    }
+   ],
+   "title": "Untrusted notebook XSS through nbconvert responses served without a Content Security Policy",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2018-19352",
+   "package": "notebook",
+   "ranges": [
+    {
+     "fixed": "5.7.2",
+     "introduced": "0"
+    }
+   ],
+   "title": "Cross-site scripting through crafted directory names in the Jupyter Notebook file listing",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2018-19787",
+   "package": "lxml",
+   "ranges": [
+    {
+     "fixed": "4.2.5",
+     "introduced": "0"
+    }
+   ],
+   "title": "lxml HTML cleaner misses escaped javascript: URLs, enabling XSS",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2018-20244",
+   "package": "apache-airflow",
+   "ranges": [
+    {
+     "fixed": "1.10.2",
+     "introduced": "0"
+    }
+   ],
+   "title": "Stored XSS from edited metadata database objects in Apache Airflow page views",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2018-21030",
+   "package": "notebook",
+   "ranges": [
+    {
+     "fixed": "5.5.0rc1",
+     "introduced": "0"
+    },
+    {
+     "fixed": "5.5.0",
+     "introduced": "0"
+    }
+   ],
+   "title": "Serve user files under a CSP header so they are treated as a separate origin (Jupyter Notebook XSS via SVG)",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2018-25045",
+   "package": "django-rest-framework",
+   "ranges": [
+    {
+     "fixed": "3.9.1",
+     "introduced": "0"
+    }
+   ],
+   "title": "Browsable API templates with autoescaping disabled allow XSS in Django REST framework",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2018-25091",
+   "package": "urllib3",
+   "ranges": [
+    {
+     "fixed": "1.24.2",
+     "introduced": "0"
+    }
+   ],
+   "title": "Authorization header forwarded on cross-origin redirect in urllib3",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2018-8021",
+   "package": "superset",
+   "ranges": [
+    {
+     "fixed": "0.23",
+     "introduced": "0"
+    },
+    {
+     "fixed": "0.23.0",
+     "introduced": "0"
+    }
+   ],
+   "title": "Unsafe pickle deserialization in Superset before 0.23 allows remote code execution",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2019-0216",
+   "package": "apache-airflow",
+   "ranges": [
+    {
+     "fixed": "1.10.3",
+     "introduced": "0"
+    },
+    {
+     "fixed": "1.10.3b1",
+     "introduced": "0"
+    }
+   ],
+   "title": "Stored XSS from admin-editable metadata database state shown in Airflow page views",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2019-1010259",
+   "package": "salt",
+   "ranges": [
+    {
+     "fixed": "2018.3.4",
+     "introduced": "2018.3.0"
+    },
+    {
+     "fixed": "2018.3.4",
+     "introduced": "0"
+    }
+   ],
+   "title": "SQL injection through a crafted password in the Salt MySQL module user_chpass function",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2019-10255",
+   "package": "jupyterhub",
+   "ranges": [
+    {
+     "fixed": "0.9.6",
+     "introduced": "0"
+    }
+   ],
+   "title": "Open redirect after login via crafted links to the login page",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2019-10255",
+   "package": "notebook",
+   "ranges": [
+    {
+     "fixed": "5.7.8",
+     "introduced": "0"
+    }
+   ],
+   "title": "Open redirect after login via crafted links to the login page",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2019-10856",
+   "package": "notebook",
+   "ranges": [
+    {
+     "fixed": "5.7.8",
+     "introduced": "0"
+    }
+   ],
+   "title": "Open redirect in Jupyter Notebook via empty netloc in redirect target validation",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2019-11358",
+   "package": "django",
+   "ranges": [
+    {
+     "fixed": "2.1.9",
+     "introduced": "2.0a1"
+    },
+    {
+     "fixed": "2.2.2",
+     "introduced": "2.2a1"
+    }
+   ],
+   "title": "Object.prototype pollution through jQuery deep extend in versions before 3.4.0",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2019-12308",
+   "package": "django",
+   "ranges": [
+    {
+     "fixed": "1.11.21",
+     "introduced": "1.11a1"
+    },
+    {
+     "fixed": "2.1.9",
+     "introduced": "2.1a1"
+    },
+    {
+     "fixed": "2.2.2",
+     "introduced": "2.2a1"
+    },
+    {
+     "fixed": "2.1.9",
+     "introduced": "2.1"
+    },
+    {
+     "fixed": "1.11.21",
+     "introduced": "1.11"
+    },
+    {
+     "fixed": "2.2.2",
+     "introduced": "2.2"
+    }
+   ],
+   "title": "Unvalidated Current URL link in Django AdminURLFieldWidget enables clickable JavaScript links",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2019-12417",
+   "package": "airflow",
+   "ranges": [
+    {
+     "fixed": "1.10.6",
+     "introduced": "0"
+    }
+   ],
+   "title": "Stored XSS via editable metadata database object state in Airflow page views",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2019-12417",
+   "package": "apache-airflow",
+   "ranges": [
+    {
+     "fixed": "1.10.6rc1",
+     "introduced": "0"
+    }
+   ],
+   "title": "Stored XSS via editable metadata database object state in Airflow page views",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2019-14234",
+   "package": "django",
+   "ranges": [
+    {
+     "fixed": "1.11.23",
+     "introduced": "1.11a1"
+    },
+    {
+     "fixed": "2.1.11",
+     "introduced": "2.1a1"
+    },
+    {
+     "fixed": "2.2.4",
+     "introduced": "2.2a1"
+    },
+    {
+     "fixed": "2.1.11",
+     "introduced": "2.1"
+    },
+    {
+     "fixed": "1.11.23",
+     "introduced": "1.11"
+    },
+    {
+     "fixed": "2.2.4",
+     "introduced": "2.2"
+    }
+   ],
+   "title": "Django PostgreSQL JSONField HStoreField keys",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2019-14751",
+   "package": "nltk",
+   "ranges": [
+    {
+     "fixed": "3.4.5",
+     "introduced": "0"
+    }
+   ],
+   "title": "Archive extraction path traversal in NLTK Downloader packages",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2019-14904",
+   "package": "ansible",
+   "ranges": [
+    {
+     "fixed": "2.7.16",
+     "introduced": "0"
+    },
+    {
+     "fixed": "2.8.8",
+     "introduced": "2.8.0a1"
+    },
+    {
+     "fixed": "2.9.3",
+     "introduced": "2.9.0a1"
+    },
+    {
+     "fixed": "2.7.15",
+     "introduced": "0"
+    },
+    {
+     "fixed": "2.8.7",
+     "introduced": "2.8.0"
+    },
+    {
+     "fixed": "2.9.2",
+     "introduced": "2.9.0"
+    }
+   ],
+   "title": "Untrusted zone name used in a remote ps check allows command injection in solaris_zone",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2019-20916",
+   "package": "pip",
+   "ranges": [
+    {
+     "fixed": "19.2",
+     "introduced": "0"
+    }
+   ],
+   "title": "Path traversal via Content-Disposition filename in pip URL installs",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2019-3828",
+   "package": "ansible",
+   "ranges": [
+    {
+     "fixed": "2.5.15",
+     "introduced": "0"
+    },
+    {
+     "fixed": "2.6.14",
+     "introduced": "2.6.0a1"
+    },
+    {
+     "fixed": "2.7.8",
+     "introduced": "2.7.0a1"
+    },
+    {
+     "fixed": "2.5.15",
+     "introduced": "2.5.0"
+    },
+    {
+     "fixed": "2.6.14",
+     "introduced": "2.6.0"
+    },
+    {
+     "fixed": "2.7.8",
+     "introduced": "2.7.0"
+    }
+   ],
+   "title": "Ansible fetch module writes outside the destination when an absolute path is not restricted",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2019-7164",
+   "package": "sqlalchemy",
+   "ranges": [
+    {
+     "fixed": "1.3.0b3",
+     "introduced": "0"
+    }
+   ],
+   "title": "SQL injection through the order_by parameter in SQLAlchemy before 1.3.0b3",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2020-10691",
+   "package": "ansible",
+   "ranges": [
+    {
+     "fixed": "2.9.7",
+     "introduced": "2.9.0a1"
+    },
+    {
+     "fixed": "2.9.7",
+     "introduced": "2.9.0"
+    }
+   ],
+   "title": "Archive member names must be sanitized when extracting ansible-galaxy collection tarballs",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2020-11001",
+   "package": "wagtail",
+   "ranges": [
+    {
+     "fixed": "2.7.2",
+     "introduced": "1.9.0"
+    },
+    {
+     "fixed": "2.8.1",
+     "introduced": "2.8.0"
+    },
+    {
+     "fixed": "2.7.2",
+     "introduced": "1.9"
+    }
+   ],
+   "title": "Stored XSS in the Wagtail admin page revision comparison view",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2020-11978",
+   "package": "apache-airflow",
+   "ranges": [
+    {
+     "fixed": "1.10.11rc1",
+     "introduced": "0"
+    }
+   ],
+   "title": "Command injection in an example DAG shipped with Apache Airflow",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2020-11981",
+   "package": "apache-airflow",
+   "ranges": [
+    {
+     "fixed": "1.10.11rc1",
+     "introduced": "0"
+    }
+   ],
+   "title": "Command injection through a directly reachable Celery broker in Apache Airflow",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2020-11982",
+   "package": "apache-airflow",
+   "ranges": [
+    {
+     "fixed": "1.10.11",
+     "introduced": "0"
+    },
+    {
+     "fixed": "1.10.11rc1",
+     "introduced": "0"
+    }
+   ],
+   "title": "Celery worker deserializes malicious broker payloads in Apache Airflow CeleryExecutor (CVE-2020-11982)",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2020-13596",
+   "package": "django",
+   "ranges": [
+    {
+     "fixed": "2.2.13",
+     "introduced": "2.2a1"
+    },
+    {
+     "fixed": "3.0.7",
+     "introduced": "3.0a1"
+    },
+    {
+     "fixed": "2.2.13",
+     "introduced": "2.2"
+    },
+    {
+     "fixed": "3.0.7",
+     "introduced": "3.0"
+    }
+   ],
+   "title": "Unencoded query parameters in Django admin ForeignKeyRawIdWidget enable XSS",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2020-13944",
+   "package": "apache-airflow",
+   "ranges": [
+    {
+     "fixed": "1.10.12",
+     "introduced": "0"
+    }
+   ],
+   "title": "Reflected XSS through the origin parameter on Airflow endpoints such as /trigger",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2020-15118",
+   "package": "wagtail",
+   "ranges": [
+    {
+     "fixed": "2.9.3",
+     "introduced": "2.8rc1"
+    },
+    {
+     "fixed": "2.7.4",
+     "introduced": "0"
+    },
+    {
+     "fixed": "2.7.4",
+     "introduced": "2.7"
+    },
+    {
+     "fixed": "2.9.3",
+     "introduced": "2.9"
+    }
+   ],
+   "title": "Unescaped form field help text in Wagtail form pages enables editor-driven XSS",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2020-15275",
+   "package": "moin",
+   "ranges": [
+    {
+     "fixed": "1.9.11",
+     "introduced": "0"
+    }
+   ],
+   "title": "Stored XSS through SVG attachments uploaded to a MoinMoin wiki",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2020-1734",
+   "package": "ansible",
+   "ranges": [
+    {
+     "fixed": "2.10.0rc1",
+     "introduced": "2.10.0a1"
+    },
+    {
+     "fixed": "2.9.11",
+     "introduced": "2.9.0a1"
+    },
+    {
+     "fixed": "2.8.13",
+     "introduced": "0"
+    },
+    {
+     "fixed": "2.7.17",
+     "introduced": "0"
+    }
+   ],
+   "title": "Unescaped Ansible facts reaching the pipe lookup plugin shell command",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2020-1735",
+   "package": "ansible",
+   "ranges": [
+    {
+     "fixed": "2.7.18",
+     "introduced": "2.7.0a1"
+    },
+    {
+     "fixed": "2.8.12",
+     "introduced": "2.8.0a1"
+    },
+    {
+     "fixed": "2.9.8",
+     "introduced": "2.9.0a1"
+    },
+    {
+     "fixed": "2.7.17",
+     "introduced": "0"
+    },
+    {
+     "fixed": "2.8.9",
+     "introduced": "2.8.0"
+    },
+    {
+     "fixed": "2.9.6",
+     "introduced": "2.9.0"
+    }
+   ],
+   "title": "Fetch module lets an intercepted or injected path choose the destination on the controller",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2020-1737",
+   "package": "ansible",
+   "ranges": [
+    {
+     "fixed": "2.8.9",
+     "introduced": "2.8.0a1"
+    },
+    {
+     "fixed": "2.9.6",
+     "introduced": "2.9.0a1"
+    },
+    {
+     "fixed": "2.7.17",
+     "introduced": "0"
+    },
+    {
+     "fixed": "2.8.9",
+     "introduced": "2.8.0"
+    },
+    {
+     "fixed": "2.9.6",
+     "introduced": "2.9.0"
+    }
+   ],
+   "title": "Zip extraction in win_unzip writing outside the destination folder",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2020-17376",
+   "package": "nova",
+   "ranges": [
+    {
+     "fixed": "19.3.1",
+     "introduced": "0"
+    },
+    {
+     "fixed": "20.3.1",
+     "introduced": "20.0.0"
+    },
+    {
+     "fixed": "21.1.0",
+     "introduced": "21.0.0"
+    }
+   ],
+   "title": "Stale persistent domain definition after live migration exposes destination host devices",
+   "versions": [
+    "21.0.0"
+   ]
+  },
+  {
+   "cve_id": "CVE-2020-1738",
+   "package": "ansible",
+   "ranges": [
+    {
+     "introduced": "0",
+     "last_affected": "2.7.16"
+    },
+    {
+     "introduced": "2.8.0a1",
+     "last_affected": "2.8.10"
+    },
+    {
+     "introduced": "2.9.0a1",
+     "last_affected": "2.9.6"
+    },
+    {
+     "fixed": "2.7.17",
+     "introduced": "0"
+    },
+    {
+     "fixed": "2.8.9",
+     "introduced": "2.8.0"
+    },
+    {
+     "fixed": "2.9.6",
+     "introduced": "2.9.0"
+    }
+   ],
+   "title": "Attacker-selected backend module via facts when the use parameter is omitted in Ansible package and service modules",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2020-17513",
+   "package": "apache-airflow",
+   "ranges": [
+    {
+     "fixed": "1.10.13",
+     "introduced": "0"
+    }
+   ],
+   "title": "SSRF in the Charts and Query View of the old Apache Airflow UI",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2020-17515",
+   "package": "apache-airflow",
+   "ranges": [
+    {
+     "fixed": "1.10.15rc1",
+     "introduced": "0"
+    },
+    {
+     "fixed": "2.0.2rc1",
+     "introduced": "2.0.0b1"
+    },
+    {
+     "fixed": "1.10.13",
+     "introduced": "0"
+    }
+   ],
+   "title": "Incomplete fix leaves the origin parameter open to XSS in Apache Airflow endpoints",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2020-25032",
+   "package": "flask-cors",
+   "ranges": [
+    {
+     "fixed": "3.0.9",
+     "introduced": "0"
+    }
+   ],
+   "title": "Flask-CORS resource matching on non-canonical paths allows ../ traversal",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2020-25074",
+   "package": "moin",
+   "ranges": [
+    {
+     "fixed": "1.9.11",
+     "introduced": "0"
+    }
+   ],
+   "title": "Directory traversal in the MoinMoin cache action leading to remote code execution",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2020-26215",
+   "package": "notebook",
+   "ranges": [
+    {
+     "fixed": "6.1.5",
+     "introduced": "0"
+    }
+   ],
+   "title": "Jupyter Notebook open redirect through crafted server links (CVE-2020-26215)",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2020-26232",
+   "package": "jupyter-server",
+   "ranges": [
+    {
+     "fixed": "1.0.6",
+     "introduced": "0"
+    }
+   ],
+   "title": "Open redirect via crafted links to Jupyter Server before 1.0.6",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2020-26275",
+   "package": "jupyter-server",
+   "ranges": [
+    {
+     "fixed": "1.1.1",
+     "introduced": "0"
+    }
+   ],
+   "title": "Open redirect in Jupyter Server links sends browsers to a spoofed site",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2020-27783",
+   "package": "lxml",
+   "ranges": [
+    {
+     "fixed": "4.6.2",
+     "introduced": "0"
+    },
+    {
+     "fixed": "4.6.2",
+     "introduced": "1.2"
+    }
+   ],
+   "title": "Sanitizer and browser parse HTML differently in the lxml clean module (CVE-2020-27783)",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2020-29565",
+   "package": "horizon",
+   "ranges": [
+    {
+     "fixed": "15.3.2",
+     "introduced": "0"
+    },
+    {
+     "fixed": "16.2.1",
+     "introduced": "16.0.0"
+    },
+    {
+     "fixed": "18.3.3",
+     "introduced": "17.0.0"
+    },
+    {
+     "fixed": "18.6.0",
+     "introduced": "18.4.0"
+    },
+    {
+     "fixed": "15.3.2",
+     "introduced": "15.3.0"
+    }
+   ],
+   "title": "Open redirect via unvalidated next parameter in Horizon workflow forms",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2020-6802",
+   "package": "bleach",
+   "ranges": [
+    {
+     "fixed": "3.1.1",
+     "introduced": "0"
+    }
+   ],
+   "title": "Mutation XSS in bleach.clean when noscript and a raw-text tag are both allowed",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2020-7471",
+   "package": "django",
+   "ranges": [
+    {
+     "fixed": "1.11.28",
+     "introduced": "0"
+    },
+    {
+     "fixed": "2.2.10",
+     "introduced": "2.0"
+    },
+    {
+     "fixed": "3.0.3",
+     "introduced": "3.0"
+    },
+    {
+     "fixed": "1.11.28",
+     "introduced": "1.11"
+    },
+    {
+     "fixed": "2.2.10",
+     "introduced": "2.2"
+    }
+   ],
+   "title": "Django PostgreSQL StringAgg delimiter",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2020-9402",
+   "package": "django",
+   "ranges": [
+    {
+     "fixed": "1.11.29",
+     "introduced": "1.11"
+    },
+    {
+     "fixed": "2.2.11",
+     "introduced": "2.2"
+    },
+    {
+     "fixed": "3.0.4",
+     "introduced": "3.0"
+    }
+   ],
+   "title": "Django Oracle GIS tolerance",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2021-21330",
+   "package": "aiohttp",
+   "ranges": [
+    {
+     "fixed": "3.7.4",
+     "introduced": "0"
+    }
+   ],
+   "title": "Open redirect via aiohttp normalize_path_middleware before 3.7.4",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2021-23727",
+   "package": "celery",
+   "ranges": [
+    {
+     "fixed": "5.2.2",
+     "introduced": "0"
+    }
+   ],
+   "title": "Celery result backend exception reconstruction",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2021-23980",
+   "package": "bleach",
+   "ranges": [
+    {
+     "fixed": "3.3.0",
+     "introduced": "0"
+    }
+   ],
+   "title": "Mutation XSS in bleach.clean() when SVG or MathML, paragraph or break, and raw-text tags are allowed with comments kept",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2021-25967",
+   "package": "ckan",
+   "ranges": [
+    {
+     "fixed": "2.10.0",
+     "introduced": "2.9.0"
+    },
+    {
+     "fixed": "2.9.4",
+     "introduced": "2.9.0"
+    }
+   ],
+   "title": "Stored XSS through SVG profile picture upload in CKAN",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2021-28125",
+   "package": "apache-superset",
+   "ranges": [
+    {
+     "fixed": "1.1.0",
+     "introduced": "0"
+    }
+   ],
+   "title": "Open redirect through a URL shortener that accepts unchecked external URLs",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2021-28125",
+   "package": "superset",
+   "ranges": [
+    {
+     "introduced": "0",
+     "last_affected": "0.34.0"
+    }
+   ],
+   "title": "Open redirect through a URL shortener that accepts unchecked external URLs",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2021-28359",
+   "package": "apache-airflow",
+   "ranges": [
+    {
+     "fixed": "1.10.15",
+     "introduced": "0"
+    },
+    {
+     "fixed": "2.0.2",
+     "introduced": "2.0.0a1"
+    },
+    {
+     "fixed": "1.10.15",
+     "introduced": "1.8.1"
+    },
+    {
+     "fixed": "2.0.2",
+     "introduced": "2.0.0"
+    }
+   ],
+   "title": "Unsafe handling of the origin parameter on Airflow endpoints such as trigger leads to reflected XSS",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2021-28957",
+   "package": "lxml",
+   "ranges": [
+    {
+     "fixed": "4.6.3",
+     "introduced": "0"
+    }
+   ],
+   "title": "lxml Cleaner leaves formaction attribute when forms and safe_attrs_only are disabled",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2021-29434",
+   "package": "wagtail",
+   "ranges": [
+    {
+     "fixed": "2.11.7",
+     "introduced": "0"
+    },
+    {
+     "fixed": "2.12.4",
+     "introduced": "2.12"
+    },
+    {
+     "fixed": "2.11.7",
+     "introduced": "2.11"
+    },
+    {
+     "fixed": "2.11.6",
+     "introduced": "0"
+    }
+   ],
+   "title": "Missing server-side link protocol validation in Wagtail rich text fields allows javascript: URLs",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2021-31542",
+   "package": "django",
+   "ranges": [
+    {
+     "fixed": "2.2.21",
+     "introduced": "2.2"
+    },
+    {
+     "fixed": "3.1.9",
+     "introduced": "3.0"
+    },
+    {
+     "fixed": "3.2.1",
+     "introduced": "3.2"
+    },
+    {
+     "fixed": "3.1.9",
+     "introduced": "3.1"
+    }
+   ],
+   "title": "Django file uploads",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2021-32633",
+   "package": "zope",
+   "ranges": [
+    {
+     "fixed": "4.6",
+     "introduced": "0"
+    },
+    {
+     "fixed": "5.2",
+     "introduced": "5.0"
+    }
+   ],
+   "title": "Indirect access to untrusted modules through allowed modules in through-the-web TAL expressions",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2021-32674",
+   "package": "zope",
+   "ranges": [
+    {
+     "fixed": "5.2.1",
+     "introduced": "5.0"
+    },
+    {
+     "fixed": "4.6.1",
+     "introduced": "0"
+    },
+    {
+     "fixed": "4.6.1",
+     "introduced": "4.0"
+    }
+   ],
+   "title": "Untrusted modules reachable through TAL expression traversal in through-the-web Zope Page Templates",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2021-32797",
+   "package": "jupyterlab",
+   "ranges": [
+    {
+     "fixed": "1.2.21",
+     "introduced": "0"
+    },
+    {
+     "fixed": "2.2.10",
+     "introduced": "2.0.0a0"
+    },
+    {
+     "fixed": "2.3.2",
+     "introduced": "2.3.0a0"
+    },
+    {
+     "fixed": "3.0.17",
+     "introduced": "3.0.0a0"
+    },
+    {
+     "fixed": "3.1.4",
+     "introduced": "3.1.0a0"
+    },
+    {
+     "fixed": "2.2.10",
+     "introduced": "2"
+    },
+    {
+     "fixed": "2.3.2",
+     "introduced": "2.3"
+    },
+    {
+     "fixed": "3.0.17",
+     "introduced": "3"
+    },
+    {
+     "fixed": "3.1.4",
+     "introduced": "3.1"
+    }
+   ],
+   "title": "Unsanitized form action attribute in untrusted notebook HTML enables code execution on load",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2021-32797",
+   "package": "notebook",
+   "ranges": [
+    {
+     "fixed": "5.7.11",
+     "introduced": "0"
+    },
+    {
+     "fixed": "6.4.1",
+     "introduced": "6.0.0"
+    }
+   ],
+   "title": "Unsanitized form action attribute in untrusted notebook HTML enables code execution on load",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2021-32798",
+   "package": "notebook",
+   "ranges": [
+    {
+     "fixed": "5.7.11",
+     "introduced": "0"
+    },
+    {
+     "fixed": "6.4.1",
+     "introduced": "6.0.0"
+    },
+    {
+     "fixed": "5.7.11",
+     "introduced": "5.7.0"
+    }
+   ],
+   "title": "Sanitizer bypass in untrusted notebook HTML output leads to XSS and code execution on load",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2021-32805",
+   "package": "flask-appbuilder",
+   "ranges": [
+    {
+     "fixed": "3.3.2",
+     "introduced": "0"
+    }
+   ],
+   "title": "Open redirect through crafted URLs in Flask-AppBuilder OAuth (CVE-2021-32805)",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2021-3281",
+   "package": "django",
+   "ranges": [
+    {
+     "fixed": "2.2.18",
+     "introduced": "2.2"
+    },
+    {
+     "fixed": "3.1.6",
+     "introduced": "3.1"
+    },
+    {
+     "fixed": "3.0.12",
+     "introduced": "3.0"
+    }
+   ],
+   "title": "Django archive extract historical traversal",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2021-33203",
+   "package": "django",
+   "ranges": [
+    {
+     "fixed": "2.2.24",
+     "introduced": "0"
+    },
+    {
+     "fixed": "3.1.12",
+     "introduced": "3.0"
+    },
+    {
+     "fixed": "3.2.4",
+     "introduced": "3.2"
+    }
+   ],
+   "title": "Django admindocs TemplateDetailView",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2021-33571",
+   "package": "django",
+   "ranges": [
+    {
+     "fixed": "2.2.24",
+     "introduced": "2.2a1"
+    },
+    {
+     "fixed": "3.1.12",
+     "introduced": "3.0a1"
+    },
+    {
+     "fixed": "3.2.4",
+     "introduced": "3.2a1"
+    },
+    {
+     "fixed": "2.2.24",
+     "introduced": "2.2"
+    },
+    {
+     "fixed": "3.1.12",
+     "introduced": "3.0"
+    },
+    {
+     "fixed": "3.2.4",
+     "introduced": "3.2"
+    }
+   ],
+   "title": "Django URLValidator IPv4 leading zeros",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2021-35042",
+   "package": "django",
+   "ranges": [
+    {
+     "fixed": "3.2.5",
+     "introduced": "3.2a1"
+    },
+    {
+     "fixed": "3.1.13",
+     "introduced": "3.0a1"
+    },
+    {
+     "fixed": "3.1.13",
+     "introduced": "3.1"
+    },
+    {
+     "fixed": "3.2.5",
+     "introduced": "3.2"
+    }
+   ],
+   "title": "Django QuerySet.order_by",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2021-3583",
+   "package": "ansible",
+   "ranges": [
+    {
+     "fixed": "2.9.23rc1",
+     "introduced": "0"
+    },
+    {
+     "fixed": "2.10.11rc1",
+     "introduced": "2.10.0a1"
+    },
+    {
+     "fixed": "2.11.2rc1",
+     "introduced": "2.11.0a1"
+    },
+    {
+     "fixed": "2.9.23",
+     "introduced": "0"
+    }
+   ],
+   "title": "Template injection in Ansible via facts placed in multi-line YAML strings",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2021-3828",
+   "package": "nltk",
+   "ranges": [
+    {
+     "fixed": "3.6.4",
+     "introduced": "0"
+    }
+   ],
+   "title": "Regular expression denial of service in the NLTK comparative sentences corpus reader",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2021-3842",
+   "package": "nltk",
+   "ranges": [
+    {
+     "fixed": "3.6.6",
+     "introduced": "0"
+    }
+   ],
+   "title": "Inefficient regular expressions in nltk RegexpTaggers allow ReDoS",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2021-42771",
+   "package": "babel",
+   "ranges": [
+    {
+     "fixed": "2.9.1",
+     "introduced": "0"
+    }
+   ],
+   "title": "Directory traversal in Babel Locale loading leads to code execution",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2021-43818",
+   "package": "lxml",
+   "ranges": [
+    {
+     "fixed": "4.6.5",
+     "introduced": "0"
+    }
+   ],
+   "title": "lxml HTML Cleaner lets crafted script and SVG data URI script through",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2021-43831",
+   "package": "gradio",
+   "ranges": [
+    {
+     "fixed": "2.5.0",
+     "introduced": "0"
+    }
+   ],
+   "title": "Unrestricted file paths in Gradio static file serving expose host files",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2021-45229",
+   "package": "apache-airflow",
+   "ranges": [
+    {
+     "fixed": "2.2.4rc1",
+     "introduced": "0"
+    }
+   ],
+   "title": "Untrusted origin query argument on the Trigger DAG with config screen leads to XSS in Apache Airflow",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2021-45452",
+   "package": "django",
+   "ranges": [
+    {
+     "fixed": "2.2.26",
+     "introduced": "2.2"
+    },
+    {
+     "fixed": "3.2.11",
+     "introduced": "3.2"
+    },
+    {
+     "fixed": "4.0.1",
+     "introduced": "4.0"
+    }
+   ],
+   "title": "Django Storage save returned path",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2022-0697",
+   "package": "archivy",
+   "ranges": [
+    {
+     "fixed": "1.7.1",
+     "introduced": "0"
+    },
+    {
+     "fixed": "1.7.0",
+     "introduced": "0"
+    }
+   ],
+   "title": "Open redirect in archivy web application redirects",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2022-1430",
+   "package": "octoprint",
+   "ranges": [
+    {
+     "fixed": "1.8.0",
+     "introduced": "0"
+    }
+   ],
+   "title": "DOM-based XSS on the OctoPrint login endpoint before version 1.8.0",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2022-1432",
+   "package": "octoprint",
+   "ranges": [
+    {
+     "fixed": "1.8.0",
+     "introduced": "0"
+    }
+   ],
+   "title": "OctoPrint Stream URL value can execute an XSS payload (CVE-2022-1432)",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2022-22818",
+   "package": "django",
+   "ranges": [
+    {
+     "fixed": "2.2.27",
+     "introduced": "2.2"
+    },
+    {
+     "fixed": "3.2.12",
+     "introduced": "3.2"
+    },
+    {
+     "fixed": "4.0.2",
+     "introduced": "4.0"
+    }
+   ],
+   "title": "Unencoded context output from the Django debug template tag leads to XSS",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2022-24065",
+   "package": "cookiecutter",
+   "ranges": [
+    {
+     "fixed": "2.1.1",
+     "introduced": "0"
+    }
+   ],
+   "title": "Cookiecutter Mercurial checkout",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2022-24303",
+   "package": "pillow",
+   "ranges": [
+    {
+     "fixed": "9.0.1",
+     "introduced": "0"
+    }
+   ],
+   "title": "Spaces in temporary pathnames can lead to unintended file deletion in Pillow before 9.0.1",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2022-24776",
+   "package": "flask-appbuilder",
+   "ranges": [
+    {
+     "fixed": "3.4.5",
+     "introduced": "0"
+    }
+   ],
+   "title": "Open redirect on the Flask-AppBuilder database authentication login page",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2022-28346",
+   "package": "django",
+   "ranges": [
+    {
+     "fixed": "2.2.28",
+     "introduced": "2.2"
+    },
+    {
+     "fixed": "3.2.13",
+     "introduced": "3.2"
+    },
+    {
+     "fixed": "4.0.4",
+     "introduced": "4.0"
+    }
+   ],
+   "title": "Django annotate aggregate extra aliases",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2022-28347",
+   "package": "django",
+   "ranges": [
+    {
+     "fixed": "2.2.28",
+     "introduced": "2.2"
+    },
+    {
+     "fixed": "3.2.13",
+     "introduced": "3.2"
+    },
+    {
+     "fixed": "4.0.4",
+     "introduced": "4.0"
+    }
+   ],
+   "title": "Django PostgreSQL explain options",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2022-34265",
+   "package": "django",
+   "ranges": [
+    {
+     "fixed": "3.2.14",
+     "introduced": "3.2a1"
+    },
+    {
+     "fixed": "4.0.6",
+     "introduced": "4.0a1"
+    },
+    {
+     "fixed": "3.2.14",
+     "introduced": "3.2"
+    },
+    {
+     "fixed": "4.0.6",
+     "introduced": "4.0"
+    }
+   ],
+   "title": "Django Trunc/Extract",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2022-34749",
+   "package": "mistune",
+   "ranges": [
+    {
+     "fixed": "2.0.3",
+     "introduced": "2.0.0a1"
+    }
+   ],
+   "title": "Catastrophic backtracking in mistune inline markup regular expressions",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2022-35918",
+   "package": "streamlit",
+   "ranges": [
+    {
+     "fixed": "1.11.1",
+     "introduced": "0.63.0"
+    }
+   ],
+   "title": "Directory traversal through custom component file serving in Streamlit",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2022-35920",
+   "package": "sanic",
+   "ranges": [
+    {
+     "fixed": "22.6.1",
+     "introduced": "22.0.0"
+    },
+    {
+     "fixed": "21.12.2",
+     "introduced": "21.0.0"
+    },
+    {
+     "fixed": "20.12.7",
+     "introduced": "0"
+    }
+   ],
+   "title": "Sanic static file serving exposes lateral directories via encoded slash URLs",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2022-36087",
+   "package": "oauthlib",
+   "ranges": [
+    {
+     "fixed": "3.2.2",
+     "introduced": "3.1.1"
+    },
+    {
+     "fixed": "3.2.1",
+     "introduced": "3.1.1"
+    }
+   ],
+   "title": "Malicious IPv6 redirect URI can cause denial of service in oauthlib URI validation",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2022-36551",
+   "package": "label-studio",
+   "ranges": [
+    {
+     "fixed": "1.6.0",
+     "introduced": "0"
+    },
+    {
+     "fixed": "1.5.0.post0",
+     "introduced": "0"
+    }
+   ],
+   "title": "SSRF in Label Studio Data Import allows arbitrary file access",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2022-38649",
+   "package": "apache-airflow",
+   "ranges": [
+    {
+     "fixed": "2.3.0",
+     "introduced": "0"
+    }
+   ],
+   "title": "OS command injection in the Apache Airflow Pinot Provider task execution context",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2022-39348",
+   "package": "twisted",
+   "ranges": [
+    {
+     "fixed": "22.10.0rc1",
+     "introduced": "0.9.4"
+    }
+   ],
+   "title": "Unescaped Host header reflected in NameVirtualHost 404 page enables HTML injection",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2022-40023",
+   "package": "mako",
+   "ranges": [
+    {
+     "fixed": "1.2.2",
+     "introduced": "0"
+    }
+   ],
+   "title": "Regular expression denial of service in Mako Lexer parsing before 1.2.2",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2022-40127",
+   "package": "apache-airflow",
+   "ranges": [
+    {
+     "fixed": "2.4.0",
+     "introduced": "0"
+    }
+   ],
+   "title": "Untrusted run_id in Airflow example DAGs enables command execution",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2022-40189",
+   "package": "apache-airflow",
+   "ranges": [
+    {
+     "fixed": "2.3.0",
+     "introduced": "0"
+    }
+   ],
+   "title": "OS command injection via Apache Airflow Pig Provider before 4.0.0",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2022-40754",
+   "package": "apache-airflow",
+   "ranges": [
+    {
+     "fixed": "2.4.0rc1",
+     "introduced": "2.3.0"
+    },
+    {
+     "fixed": "2.4.0b1",
+     "introduced": "2.3.0"
+    }
+   ],
+   "title": "Open redirect in the Apache Airflow webserver confirm endpoint",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2022-40897",
+   "package": "setuptools",
+   "ranges": [
+    {
+     "fixed": "65.5.1",
+     "introduced": "0"
+    }
+   ],
+   "title": "ReDoS in setuptools package_index when parsing untrusted index HTML",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2022-40954",
+   "package": "apache-airflow",
+   "ranges": [
+    {
+     "fixed": "2.3.0",
+     "introduced": "0"
+    }
+   ],
+   "title": "OS command injection in the Apache Airflow Spark Provider (CVE-2022-40954)",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2022-41323",
+   "package": "django",
+   "ranges": [
+    {
+     "fixed": "3.2.16",
+     "introduced": "3.2"
+    },
+    {
+     "fixed": "4.0.8",
+     "introduced": "4.0"
+    },
+    {
+     "fixed": "4.1.2",
+     "introduced": "4.1"
+    }
+   ],
+   "title": "Locale parameter in internationalized URLs interpreted as a regular expression (Django ReDoS)",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2022-41905",
+   "package": "wsgidav",
+   "ranges": [
+    {
+     "fixed": "4.1.0",
+     "introduced": "3.0.0a1"
+    },
+    {
+     "fixed": "4.1.0",
+     "introduced": "3.0.0"
+    }
+   ],
+   "title": "WsgiDAV directory browser can render untrusted data as cross site scripting",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2022-43982",
+   "package": "apache-airflow",
+   "ranges": [
+    {
+     "fixed": "2.4.2rc1",
+     "introduced": "0"
+    },
+    {
+     "fixed": "2.4.2",
+     "introduced": "0"
+    }
+   ],
+   "title": "Reflected XSS through the origin query argument on the Airflow Trigger DAG with config screen",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2022-43985",
+   "package": "apache-airflow",
+   "ranges": [
+    {
+     "fixed": "2.4.2rc1",
+     "introduced": "0"
+    },
+    {
+     "fixed": "2.4.2",
+     "introduced": "0"
+    }
+   ],
+   "title": "Open redirect in the Apache Airflow webserver confirm endpoint (CVE-2022-43985)",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2022-45402",
+   "package": "apache-airflow",
+   "ranges": [
+    {
+     "fixed": "2.4.3",
+     "introduced": "0"
+    }
+   ],
+   "title": "Open redirect in the Apache Airflow webserver login endpoint before 2.4.3",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2022-45582",
+   "package": "horizon",
+   "ranges": [
+    {
+     "fixed": "20.2.0",
+     "introduced": "19.4.0"
+    }
+   ],
+   "title": "Open redirect via the success_url parameter in Horizon Web Dashboard",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2022-47950",
+   "package": "swift",
+   "ranges": [
+    {
+     "fixed": "2.28.1",
+     "introduced": "0"
+    },
+    {
+     "fixed": "2.29.2",
+     "introduced": "2.29.0"
+    },
+    {
+     "fixed": "2.30.1",
+     "introduced": "2.30.0"
+    }
+   ],
+   "title": "XXE in OpenStack Swift S3 API allows arbitrary host file read via crafted XML",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2023-0488",
+   "package": "pyload-ng",
+   "ranges": [
+    {
+     "fixed": "0.5.0b3.dev42",
+     "introduced": "0"
+    }
+   ],
+   "title": "Stored cross-site scripting in pyload-ng before 0.5.0b3.dev42",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2023-1176",
+   "package": "mlflow",
+   "ranges": [
+    {
+     "fixed": "2.2.1",
+     "introduced": "0"
+    },
+    {
+     "fixed": "2.2.2",
+     "introduced": "0"
+    }
+   ],
+   "title": "Remote file existence check via absolute path traversal in mlflow server and mlflow ui",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2023-1177",
+   "package": "mlflow",
+   "ranges": [
+    {
+     "fixed": "2.2.1",
+     "introduced": "0"
+    }
+   ],
+   "title": "Path traversal in MLflow server and UI lets remote callers read files outside MLflow storage",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2023-22884",
+   "package": "apache-airflow",
+   "ranges": [
+    {
+     "fixed": "2.5.1",
+     "introduced": "0"
+    }
+   ],
+   "title": "Command injection from improper neutralization in Apache Airflow and the Airflow MySQL Provider",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2023-22884",
+   "package": "apache-airflow-providers-mysql",
+   "ranges": [
+    {
+     "fixed": "4.0.0",
+     "introduced": "0"
+    }
+   ],
+   "title": "Command injection from improper neutralization in Apache Airflow and the Airflow MySQL Provider",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2023-22887",
+   "package": "apache-airflow",
+   "ranges": [
+    {
+     "fixed": "2.6.3",
+     "introduced": "0"
+    }
+   ],
+   "title": "Path traversal through the run_id parameter in Apache Airflow before 2.6.3",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2023-2356",
+   "package": "mlflow",
+   "ranges": [
+    {
+     "fixed": "2.3.1",
+     "introduced": "0"
+    }
+   ],
+   "title": "Relative path traversal in mlflow versions prior to 2.3.1",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2023-24769",
+   "package": "changedetection-io",
+   "ranges": [
+    {
+     "fixed": "0.40.2",
+     "introduced": "0"
+    },
+    {
+     "fixed": "0.40.1.1",
+     "introduced": "0"
+    }
+   ],
+   "title": "Stored XSS through the watch URL field in changedetection.io",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2023-24816",
+   "package": "ipython",
+   "ranges": [
+    {
+     "fixed": "8.10.0",
+     "introduced": "0"
+    }
+   ],
+   "title": "Shell command injection through the terminal title helper in IPython on Windows without ctypes",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2023-27494",
+   "package": "streamlit",
+   "ranges": [
+    {
+     "fixed": "0.81.0",
+     "introduced": "0.63.0"
+    }
+   ],
+   "title": "Reflected XSS from URL payloads rendered as-is in hosted Streamlit apps",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2023-28370",
+   "package": "tornado",
+   "ranges": [
+    {
+     "fixed": "6.3.2",
+     "introduced": "0"
+    }
+   ],
+   "title": "Open redirect in Tornado 6.3.1 and earlier via a crafted URL",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2023-28836",
+   "package": "wagtail",
+   "ranges": [
+    {
+     "fixed": "4.1.4",
+     "introduced": "1.5"
+    },
+    {
+     "fixed": "4.2.2",
+     "introduced": "4.2"
+    }
+   ],
+   "title": "Stored XSS in Wagtail ModelAdmin parent chooser and document inspect views",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2023-29159",
+   "package": "starlette",
+   "ranges": [
+    {
+     "fixed": "0.27.0",
+     "introduced": "0.13.5"
+    }
+   ],
+   "title": "Starlette StaticFiles path traversal via character-wise prefix check",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2023-29247",
+   "package": "apache-airflow",
+   "ranges": [
+    {
+     "fixed": "2.6.0",
+     "introduced": "0"
+    }
+   ],
+   "title": "Stored XSS on the Airflow task instance details page (CVE-2023-29247)",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2023-30172",
+   "package": "mlflow",
+   "ranges": [
+    {
+     "fixed": "2.0.0rc0",
+     "introduced": "0"
+    },
+    {
+     "fixed": "2.0.1",
+     "introduced": "0"
+    }
+   ],
+   "title": "Directory traversal through the path parameter of the mlflow get-artifact endpoint",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2023-32786",
+   "package": "langchain",
+   "ranges": [
+    {
+     "fixed": "0.0.329",
+     "introduced": "0"
+    }
+   ],
+   "title": "Prompt-injected arbitrary URL retrieval (SSRF) in Langchain before 0.0.329",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2023-34540",
+   "package": "langchain",
+   "ranges": [
+    {
+     "fixed": "0.0.225",
+     "introduced": "0"
+    }
+   ],
+   "title": "Crafted input to the LangChain JIRA API wrapper can lead to OS command injection and remote code execution",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2023-36053",
+   "package": "django",
+   "ranges": [
+    {
+     "fixed": "3.2.20",
+     "introduced": "3.2a1"
+    },
+    {
+     "fixed": "4.1.10",
+     "introduced": "4.0a1"
+    },
+    {
+     "fixed": "4.2.3",
+     "introduced": "4.2a1"
+    },
+    {
+     "fixed": "4.2.3",
+     "introduced": "4.2"
+    },
+    {
+     "fixed": "4.1.10",
+     "introduced": "4.0"
+    },
+    {
+     "fixed": "3.2.20",
+     "introduced": "3.2"
+    }
+   ],
+   "title": "ReDoS in Django EmailValidator and URLValidator via many domain name labels",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2023-36189",
+   "package": "langchain",
+   "ranges": [
+    {
+     "fixed": "0.0.247",
+     "introduced": "0"
+    }
+   ],
+   "title": "SQL injection via SQLDatabaseChain in langchain before v0.0.247",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2023-36387",
+   "package": "apache-superset",
+   "ranges": [
+    {
+     "introduced": "0",
+     "last_affected": "2.1.0"
+    }
+   ],
+   "title": "Low-privilege role can test database connections through default REST API permission",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2023-36543",
+   "package": "apache-airflow",
+   "ranges": [
+    {
+     "fixed": "2.6.3",
+     "introduced": "0"
+    }
+   ],
+   "title": "Apache Airflow before 2.6.3: crafted input from an authenticated user makes a request hang",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2023-37379",
+   "package": "apache-airflow",
+   "ranges": [
+    {
+     "fixed": "2.7.0b1",
+     "introduced": "0"
+    },
+    {
+     "fixed": "2.7.0",
+     "introduced": "0"
+    }
+   ],
+   "title": "Airflow test connection feature abused by users with Connection edit privileges",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2023-3765",
+   "package": "mlflow",
+   "ranges": [
+    {
+     "fixed": "2.5.0",
+     "introduced": "0"
+    }
+   ],
+   "title": "Absolute path traversal in mlflow before 2.5.0 (CVE-2023-3765)",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2023-38673",
+   "package": "paddlepaddle",
+   "ranges": [
+    {
+     "fixed": "2.5.0",
+     "introduced": "0"
+    }
+   ],
+   "title": "Command injection in PaddlePaddle fs.py before version 2.5.0",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2023-39968",
+   "package": "jupyter-server",
+   "ranges": [
+    {
+     "fixed": "2.7.2",
+     "introduced": "0"
+    }
+   ],
+   "title": "Open redirect after login in Jupyter Server via crafted login links",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2023-40170",
+   "package": "jupyter-server",
+   "ranges": [
+    {
+     "fixed": "2.7.2",
+     "introduced": "0"
+    }
+   ],
+   "title": "Incomplete cross-site credential checks on the jupyter-server files endpoint",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2023-40267",
+   "package": "gitpython",
+   "ranges": [
+    {
+     "fixed": "3.1.32",
+     "introduced": "0"
+    }
+   ],
+   "title": "Unblocked non-multi options in GitPython clone and clone_from allow command injection",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2023-4033",
+   "package": "mlflow",
+   "ranges": [
+    {
+     "fixed": "2.6.0",
+     "introduced": "0"
+    }
+   ],
+   "title": "OS command injection in mlflow versions prior to 2.6.0 (CVE-2023-4033)",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2023-40587",
+   "package": "pyramid",
+   "ranges": [
+    {
+     "fixed": "2.0.2",
+     "introduced": "2.0.0"
+    }
+   ],
+   "title": "Static view path traversal up one directory through null-byte handling in Python 3.11 path normalization",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2023-41040",
+   "package": "gitpython",
+   "ranges": [
+    {
+     "fixed": "3.1.37",
+     "introduced": "0"
+    },
+    {
+     "fixed": "3.1.35",
+     "introduced": "0"
+    }
+   ],
+   "title": "Reference names joined to the .git directory can escape it and read arbitrary files",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2023-42458",
+   "package": "zope",
+   "ranges": [
+    {
+     "fixed": "4.8.10",
+     "introduced": "0"
+    },
+    {
+     "fixed": "5.8.5",
+     "introduced": "5.8.0"
+    }
+   ],
+   "title": "Stored XSS through uploaded SVG images in Zope",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2023-44389",
+   "package": "zope",
+   "ranges": [
+    {
+     "fixed": "4.8.11",
+     "introduced": "4.0.0"
+    },
+    {
+     "fixed": "5.8.6",
+     "introduced": "5.0.0"
+    },
+    {
+     "fixed": "5.8.6",
+     "introduced": "5.0"
+    },
+    {
+     "fixed": "4.8.11",
+     "introduced": "4.0"
+    }
+   ],
+   "title": "Stored XSS through the unquoted title property in Zope Management Interface breadcrumbs",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2023-46229",
+   "package": "langchain",
+   "ranges": [
+    {
+     "fixed": "0.0.317",
+     "introduced": "0"
+    }
+   ],
+   "title": "Recursive URL crawling must not pivot from an external server to an internal server",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2023-47115",
+   "package": "label-studio",
+   "ranges": [
+    {
+     "fixed": "1.9.2",
+     "introduced": "0"
+    }
+   ],
+   "title": "Stored XSS via uploaded avatar served with a file-extension-derived content type",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2023-47116",
+   "package": "label-studio",
+   "ranges": [
+    {
+     "fixed": "1.11.0",
+     "introduced": "0"
+    }
+   ],
+   "title": "SSRF filter bypass through one-time DNS check, redirects and DNS rebinding in URL import",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2023-47265",
+   "package": "apache-airflow",
+   "ranges": [
+    {
+     "fixed": "2.8.0b1",
+     "introduced": "2.6.0"
+    }
+   ],
+   "title": "Stored XSS through unsanitized DAG parameter descriptions in Apache Airflow",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2023-47890",
+   "package": "pyload-ng",
+   "ranges": [
+    {
+     "fixed": "0.5.0b3.dev75",
+     "introduced": "0"
+    }
+   ],
+   "title": "Unvalidated package folder on edit allows writing downloads outside the downloads directory",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2023-48022",
+   "package": "ray",
+   "ranges": [
+    {
+     "introduced": "0",
+     "last_affected": "2.49.2"
+    }
+   ],
+   "title": "Ray job submission API reachable by remote attackers allows arbitrary code execution",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2023-49736",
+   "package": "apache-superset",
+   "ranges": [
+    {
+     "fixed": "2.1.3",
+     "introduced": "0"
+    },
+    {
+     "fixed": "3.0.2",
+     "introduced": "3.0.0"
+    }
+   ],
+   "title": "SQL injection through a user-specified quote in the Superset where_in Jinja macro",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2023-50943",
+   "package": "apache-airflow",
+   "ranges": [
+    {
+     "fixed": "2.8.1rc1",
+     "introduced": "0"
+    },
+    {
+     "fixed": "2.8.1",
+     "introduced": "0"
+    }
+   ],
+   "title": "XCom pickle deserialization can be reached even when XCom pickling is disabled",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2023-5115",
+   "package": "ansible",
+   "ranges": [
+    {
+     "fixed": "8.5.0",
+     "introduced": "0"
+    }
+   ],
+   "title": "Symlink in a malicious Ansible role overwrites files outside the extraction path",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2023-51449",
+   "package": "gradio",
+   "ranges": [
+    {
+     "fixed": "4.11.0",
+     "introduced": "0"
+    }
+   ],
+   "title": "Arbitrary file read through the file route of a publicly exposed Gradio app",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2023-52310",
+   "package": "paddlepaddle",
+   "ranges": [
+    {
+     "fixed": "2.6.0",
+     "introduced": "0"
+    }
+   ],
+   "title": "Command injection in PaddlePaddle get_online_pass_interval (CVE-2023-52310)",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2023-52311",
+   "package": "paddlepaddle",
+   "ranges": [
+    {
+     "fixed": "2.6.0",
+     "introduced": "0"
+    }
+   ],
+   "title": "Command injection in PaddlePaddle _wget_download before version 2.6.0",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2023-52314",
+   "package": "paddlepaddle",
+   "ranges": [
+    {
+     "fixed": "2.6.0",
+     "introduced": "0"
+    }
+   ],
+   "title": "PaddlePaddle command injection in convert_shape_compare (CVE-2023-52314)",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2023-5752",
+   "package": "pip",
+   "ranges": [
+    {
+     "fixed": "23.3",
+     "introduced": "0"
+    }
+   ],
+   "title": "Mercurial revision in pip VCS URL injects options into hg clone",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2023-6015",
+   "package": "mlflow",
+   "ranges": [
+    {
+     "fixed": "2.8.1",
+     "introduced": "0"
+    }
+   ],
+   "title": "Arbitrary file upload via HTTP PUT to an MLflow server (path traversal class)",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2023-6018",
+   "package": "mlflow",
+   "ranges": [
+    {
+     "fixed": "2.9.2",
+     "introduced": "0"
+    }
+   ],
+   "title": "Unauthenticated arbitrary file overwrite in MLflow server leading to code execution",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2023-6568",
+   "package": "mlflow",
+   "ranges": [
+    {
+     "fixed": "2.9.0",
+     "introduced": "0"
+    },
+    {
+     "fixed": "2.9.1",
+     "introduced": "0"
+    }
+   ],
+   "title": "Reflected XSS from echoing the Content-Type header in MLflow auth server responses",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2023-6572",
+   "package": "gradio",
+   "ranges": [
+    {
+     "fixed": "4.14.0",
+     "introduced": "0"
+    }
+   ],
+   "title": "Gradio command injection and sensitive information exposure (CVE-2023-6572)",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2023-6730",
+   "package": "transformers",
+   "ranges": [
+    {
+     "fixed": "4.36.0",
+     "introduced": "0"
+    }
+   ],
+   "title": "Deserialization of untrusted data in transformers before 4.36.0",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2023-6753",
+   "package": "mlflow",
+   "ranges": [
+    {
+     "fixed": "2.9.2",
+     "introduced": "0"
+    }
+   ],
+   "title": "Path traversal in MLflow versions before 2.9.2",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2023-6831",
+   "package": "mlflow",
+   "ranges": [
+    {
+     "fixed": "2.9.2",
+     "introduced": "0"
+    }
+   ],
+   "title": "Backslash-style parent directory sequences in file names (MLflow before 2.9.2)",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2023-6940",
+   "package": "mlflow",
+   "ranges": [
+    {
+     "fixed": "2.9.2",
+     "introduced": "0"
+    }
+   ],
+   "title": "Command injection in mlflow through a downloaded malicious config",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2023-6974",
+   "package": "mlflow",
+   "ranges": [
+    {
+     "fixed": "2.9.2",
+     "introduced": "0"
+    }
+   ],
+   "title": "MLflow server-side request forgery exposing internal HTTP(s) servers",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2023-7018",
+   "package": "transformers",
+   "ranges": [
+    {
+     "fixed": "4.36.0",
+     "introduced": "0"
+    }
+   ],
+   "title": "Deserialization of untrusted data in huggingface transformers before 4.36",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2024-0243",
+   "package": "langchain",
+   "ranges": [
+    {
+     "fixed": "0.1.0",
+     "introduced": "0"
+    }
+   ],
+   "title": "Recursive URL crawler follows links to other hosts despite the outside-link restriction",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2024-0243",
+   "package": "langchain-exa",
+   "ranges": [
+    {
+     "fixed": "0.1.0",
+     "introduced": "0"
+    }
+   ],
+   "title": "Recursive URL crawler follows links to other hosts despite the outside-link restriction",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2024-0520",
+   "package": "mlflow",
+   "ranges": [
+    {
+     "fixed": "2.9.0",
+     "introduced": "0"
+    }
+   ],
+   "title": "Path traversal via remote filename when loading HTTP dataset sources",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2024-0815",
+   "package": "paddlepaddle",
+   "ranges": [
+    {
+     "introduced": "0",
+     "last_affected": "2.6.0"
+    },
+    {
+     "fixed": "3.0.0-beta0",
+     "introduced": "0"
+    }
+   ],
+   "title": "Filter bypass leads to command injection in the PaddlePaddle wget download helper",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2024-0817",
+   "package": "paddlepaddle",
+   "ranges": [
+    {
+     "introduced": "0",
+     "last_affected": "2.6.0"
+    },
+    {
+     "fixed": "3.0.0-beta0",
+     "introduced": "0"
+    }
+   ],
+   "title": "Command injection in the IrGraph.draw method of PaddlePaddle 2.6.0",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2024-0818",
+   "package": "paddlepaddle",
+   "ranges": [
+    {
+     "introduced": "0",
+     "last_affected": "2.6.0"
+    }
+   ],
+   "title": "Arbitrary file overwrite via path traversal in PaddlePaddle before 2.6",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2024-0964",
+   "package": "gradio",
+   "ranges": [
+    {
+     "fixed": "4.9.0",
+     "introduced": "0"
+    }
+   ],
+   "title": "Gradio path traversal: local file include via user-supplied JSON in an API request",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2024-11319",
+   "package": "django-cms",
+   "ranges": [
+    {
+     "fixed": "3.11.9",
+     "introduced": "3.11.7"
+    },
+    {
+     "fixed": "4.1.4",
+     "introduced": "4.1.2"
+    }
+   ],
+   "title": "Unneutralized input in generated pages in django CMS (CVE-2024-11319)",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2024-11392",
+   "package": "transformers",
+   "ranges": [
+    {
+     "fixed": "4.48.0",
+     "introduced": "0"
+    }
+   ],
+   "title": "Untrusted configuration files deserialized without validation in MobileViTV2 handling (CVE-2024-11392)",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2024-11393",
+   "package": "transformers",
+   "ranges": [
+    {
+     "fixed": "4.48.0",
+     "introduced": "0"
+    }
+   ],
+   "title": "Deserialization of untrusted model files in Hugging Face Transformers MaskFormer",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2024-11394",
+   "package": "transformers",
+   "ranges": [
+    {
+     "fixed": "4.48.0",
+     "introduced": "0"
+    }
+   ],
+   "title": "Untrusted Trax model files deserialized without validation in Transformers",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2024-1183",
+   "package": "gradio",
+   "ranges": [
+    {
+     "fixed": "4.10.0",
+     "introduced": "0"
+    }
+   ],
+   "title": "Gradio file parameter lets attackers probe internal ports through distinguishable responses",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2024-1240",
+   "package": "pyload-ng",
+   "ranges": [
+    {
+     "introduced": "0"
+    }
+   ],
+   "title": "Open redirect via unvalidated next parameter in login flow",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2024-12720",
+   "package": "transformers",
+   "ranges": [
+    {
+     "fixed": "4.48.0",
+     "introduced": "0"
+    }
+   ],
+   "title": "ReDoS in the Nougat fast tokenizer post-processing of transformers",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2024-12911",
+   "package": "llama-index",
+   "ranges": [
+    {
+     "fixed": "0.12.3",
+     "introduced": "0"
+    }
+   ],
+   "title": "SQL injection via prompt injection in the LlamaIndex JSON query engine",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2024-1728",
+   "package": "gradio",
+   "ranges": [
+    {
+     "fixed": "4.19.2",
+     "introduced": "0"
+    }
+   ],
+   "title": "Unvalidated file paths in Gradio upload requests allow arbitrary file read",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2024-1892",
+   "package": "scrapy",
+   "ranges": [
+    {
+     "fixed": "2.11.1",
+     "introduced": "2"
+    },
+    {
+     "fixed": "1.8.4",
+     "introduced": "0"
+    },
+    {
+     "fixed": "2.11.1",
+     "introduced": "0"
+    }
+   ],
+   "title": "ReDoS in Scrapy XML node iteration and open_in_browser from regex-based parsing of untrusted responses",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2024-2057",
+   "package": "langchain-community",
+   "ranges": [
+    {
+     "introduced": "0",
+     "last_affected": "0.0.26"
+    }
+   ],
+   "title": "Server-side request forgery in TFIDFRetriever load_local (langchain-community 0.0.26)",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2024-21485",
+   "package": "dash",
+   "ranges": [
+    {
+     "fixed": "2.15.0",
+     "introduced": "0"
+    },
+    {
+     "fixed": "2.13.0",
+     "introduced": "0"
+    },
+    {
+     "fixed": "2.15.0",
+     "introduced": "2.14.0"
+    }
+   ],
+   "title": "Stored XSS via attacker-controlled href on anchor elements in Dash apps",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2024-21485",
+   "package": "dash-core-components",
+   "ranges": [
+    {
+     "fixed": "2.0.0",
+     "introduced": "0"
+    }
+   ],
+   "title": "Stored XSS via attacker-controlled href on anchor elements in Dash apps",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2024-21485",
+   "package": "dash-html-components",
+   "ranges": [
+    {
+     "fixed": "2.0.0",
+     "introduced": "0"
+    }
+   ],
+   "title": "Stored XSS via attacker-controlled href on anchor elements in Dash apps",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2024-21520",
+   "package": "djangorestframework",
+   "ranges": [
+    {
+     "fixed": "3.15.2",
+     "introduced": "0"
+    }
+   ],
+   "title": "XSS in djangorestframework via the break_long_headers template filter",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2024-2206",
+   "package": "gradio",
+   "ranges": [
+    {
+     "fixed": "4.18.0",
+     "introduced": "0"
+    }
+   ],
+   "title": "Unvalidated client-supplied URLs added to proxy target set enable SSRF in gradio",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2024-22195",
+   "package": "jinja2",
+   "ranges": [
+    {
+     "fixed": "3.1.3",
+     "introduced": "0"
+    }
+   ],
+   "title": "HTML attribute injection through user-controlled keys in the Jinja xmlattr filter",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2024-22231",
+   "package": "salt",
+   "ranges": [
+    {
+     "fixed": "3005.5",
+     "introduced": "0"
+    },
+    {
+     "fixed": "3006.6",
+     "introduced": "3006.0"
+    }
+   ],
+   "title": "Directory traversal in Salt syndic cache directory creation",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2024-22232",
+   "package": "salt",
+   "ranges": [
+    {
+     "fixed": "3005.5",
+     "introduced": "0"
+    },
+    {
+     "fixed": "3006.6",
+     "introduced": "3006.0"
+    }
+   ],
+   "title": "Directory traversal through a crafted url in the Salt file server",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2024-22420",
+   "package": "jupyterlab",
+   "ranges": [
+    {
+     "fixed": "4.0.11",
+     "introduced": "4.0.0"
+    }
+   ],
+   "title": "Stored XSS through Markdown preview in JupyterLab (CVE-2024-22420)",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2024-22420",
+   "package": "notebook",
+   "ranges": [
+    {
+     "fixed": "7.0.7",
+     "introduced": "7.0.0"
+    }
+   ],
+   "title": "Stored XSS through Markdown preview in JupyterLab (CVE-2024-22420)",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2024-22421",
+   "package": "jupyterlab",
+   "ranges": [
+    {
+     "fixed": "4.0.11",
+     "introduced": "4.0.0"
+    },
+    {
+     "fixed": "3.6.7",
+     "introduced": "0"
+    }
+   ],
+   "title": "Token exposure through a malicious link in JupyterLab running with an older jupyter-server",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2024-22421",
+   "package": "notebook",
+   "ranges": [
+    {
+     "fixed": "7.0.7",
+     "introduced": "7.0.0"
+    }
+   ],
+   "title": "Token exposure through a malicious link in JupyterLab running with an older jupyter-server",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2024-23334",
+   "package": "aiohttp",
+   "ranges": [
+    {
+     "fixed": "3.9.2",
+     "introduced": "1.0.5"
+    }
+   ],
+   "title": "Directory traversal in aiohttp static routes when symlink following is enabled",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2024-24808",
+   "package": "pyload-ng",
+   "ranges": [
+    {
+     "fixed": "0.5.0b3.dev79",
+     "introduced": "0"
+    }
+   ],
+   "title": "Open redirect after login via URL that the parser treats as relative but the client normalizes to an external host",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2024-26152",
+   "package": "label-studio",
+   "ranges": [
+    {
+     "fixed": "1.11.0",
+     "introduced": "0"
+    }
+   ],
+   "title": "Unsanitized imported task data rendered in Choices or Labels tags enables stored XSS",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2024-27083",
+   "package": "flask-appbuilder",
+   "ranges": [
+    {
+     "fixed": "4.2.1",
+     "introduced": "4.1.4"
+    }
+   ],
+   "title": "Reflected XSS on the Flask-AppBuilder OAuth login page via crafted URL",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2024-27132",
+   "package": "mlflow",
+   "ranges": [
+    {
+     "fixed": "2.10.0",
+     "introduced": "0"
+    }
+   ],
+   "title": "Template variable XSS in MLflow recipe output escalating to client-side RCE in Jupyter",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2024-27133",
+   "package": "mlflow",
+   "ranges": [
+    {
+     "fixed": "2.10.0",
+     "introduced": "0"
+    }
+   ],
+   "title": "Unsanitized dataset table fields in MLflow recipes enable XSS and client-side RCE in Jupyter",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2024-27306",
+   "package": "aiohttp",
+   "ranges": [
+    {
+     "fixed": "3.9.4",
+     "introduced": "0"
+    }
+   ],
+   "title": "Unescaped file names in aiohttp static index pages enable XSS",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2024-27351",
+   "package": "django",
+   "ranges": [
+    {
+     "fixed": "3.2.25",
+     "introduced": "3.2"
+    },
+    {
+     "fixed": "4.2.11",
+     "introduced": "4.2"
+    },
+    {
+     "fixed": "5.0.3",
+     "introduced": "5.0"
+    }
+   ],
+   "title": "Regular expression denial of service in Django HTML-aware word truncation",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2024-28233",
+   "package": "jupyterhub",
+   "ranges": [
+    {
+     "fixed": "4.1.0",
+     "introduced": "0"
+    }
+   ],
+   "title": "Cookie tossing from a sibling subdomain turns self-XSS into session XSS in JupyterHub",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2024-28237",
+   "package": "octoprint",
+   "ranges": [
+    {
+     "fixed": "1.10.0rc3",
+     "introduced": "0"
+    },
+    {
+     "fixed": "1.10.0",
+     "introduced": "0"
+    }
+   ],
+   "title": "XSS from untrusted snapshot response data in a webcam snapshot test feature",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2024-2928",
+   "package": "mlflow",
+   "ranges": [
+    {
+     "fixed": "2.11.3",
+     "introduced": "0"
+    }
+   ],
+   "title": "Validate every URI component, including the fragment, for directory traversal",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2024-3095",
+   "package": "langchain-community",
+   "ranges": [
+    {
+     "fixed": "0.2.9",
+     "introduced": "0"
+    }
+   ],
+   "title": "SSRF through unrestricted fetching in the Web Research Retriever",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2024-32005",
+   "package": "nicegui",
+   "ranges": [
+    {
+     "fixed": "1.4.21",
+     "introduced": "1.4.6"
+    }
+   ],
+   "title": "NiceGUI leaflet resources route allows reading arbitrary local files",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2024-32077",
+   "package": "apache-airflow",
+   "ranges": [
+    {
+     "fixed": "2.9.1",
+     "introduced": "2.9.0"
+    },
+    {
+     "introduced": "0",
+     "last_affected": "2.9.0-NA"
+    }
+   ],
+   "title": "Stored XSS through injected task instance log data in Apache Airflow 2.9.0",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2024-34061",
+   "package": "changedetection-io",
+   "ranges": [
+    {
+     "fixed": "0.45.22",
+     "introduced": "0"
+    }
+   ],
+   "title": "Reflected XSS from unescaped notification URL values in changedetection.io validation errors",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2024-34064",
+   "package": "jinja2",
+   "ranges": [
+    {
+     "fixed": "3.1.4",
+     "introduced": "0"
+    }
+   ],
+   "title": "Attribute injection through user-controlled keys in the Jinja xmlattr filter",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2024-3568",
+   "package": "transformers",
+   "ranges": [
+    {
+     "fixed": "4.38.0",
+     "introduced": "0"
+    }
+   ],
+   "title": "Pickle deserialization of untrusted checkpoint data in TFPreTrainedModel repo checkpoint loading",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2024-3571",
+   "package": "langchain",
+   "ranges": [
+    {
+     "fixed": "0.0.353",
+     "introduced": "0"
+    }
+   ],
+   "title": "Path traversal in LocalFileStore key handling (CVE-2024-3571)",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2024-3848",
+   "package": "mlflow",
+   "ranges": [
+    {
+     "fixed": "2.12.1",
+     "introduced": "2.9.2"
+    },
+    {
+     "fixed": "2.12.1",
+     "introduced": "0"
+    }
+   ],
+   "title": "Unvalidated URL fragment lets artifact URLs bypass path checks and read arbitrary local files",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2024-38824",
+   "package": "salt",
+   "ranges": [
+    {
+     "fixed": "3007.4",
+     "introduced": "3007.0rc1"
+    },
+    {
+     "fixed": "3006.12",
+     "introduced": "3006.0rc1"
+    }
+   ],
+   "title": "Directory traversal in Salt recv_file method allows writes into the master cache directory",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2024-39124",
+   "package": "roundup",
+   "ranges": [
+    {
+     "fixed": "2.4.0",
+     "introduced": "0"
+    }
+   ],
+   "title": "Cross-site scripting in Roundup classhelper help template (CVE-2024-39124)",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2024-39125",
+   "package": "roundup",
+   "ranges": [
+    {
+     "fixed": "2.4.0",
+     "introduced": "0"
+    }
+   ],
+   "title": "Roundup XSS through a SCRIPT element in the HTTP Referer header",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2024-39126",
+   "package": "roundup",
+   "ranges": [
+    {
+     "fixed": "2.4.0",
+     "introduced": "0"
+    }
+   ],
+   "title": "Script in PDF, XML, and SVG documents enables XSS in Roundup before 2.4.0",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2024-39317",
+   "package": "wagtail",
+   "ranges": [
+    {
+     "fixed": "6.0.6",
+     "introduced": "6.0"
+    },
+    {
+     "fixed": "6.1.3",
+     "introduced": "6.1"
+    },
+    {
+     "fixed": "5.2.6",
+     "introduced": "2.0"
+    }
+   ],
+   "title": "Regular expression denial of service in Wagtail search query string parsing",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2024-39330",
+   "package": "django",
+   "ranges": [
+    {
+     "fixed": "5.0.7",
+     "introduced": "5.0"
+    },
+    {
+     "fixed": "4.2.14",
+     "introduced": "4.2"
+    }
+   ],
+   "title": "Django custom Storage save",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2024-39705",
+   "package": "nltk",
+   "ranges": [
+    {
+     "fixed": "3.9",
+     "introduced": "0"
+    }
+   ],
+   "title": "NLTK data package download can lead to code execution through pickled content",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2024-39863",
+   "package": "apache-airflow",
+   "ranges": [
+    {
+     "fixed": "2.9.3",
+     "introduced": "0"
+    }
+   ],
+   "title": "Malicious link injection during provider installation in Apache Airflow (CVE-2024-39863)",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2024-39887",
+   "package": "apache-superset",
+   "ranges": [
+    {
+     "fixed": "4.0.2",
+     "introduced": "0"
+    }
+   ],
+   "title": "Engine-specific SQL functions bypass query authorization in Apache Superset",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2024-41675",
+   "package": "ckan",
+   "ranges": [
+    {
+     "fixed": "2.10.5",
+     "introduced": "2.7.0"
+    }
+   ],
+   "title": "Unescaped DataStore record data in a table preview view enables XSS",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2024-41810",
+   "package": "twisted",
+   "ranges": [
+    {
+     "fixed": "24.7.0rc1",
+     "introduced": "0"
+    }
+   ],
+   "title": "HTML injection in the redirect body built by Twisted redirectTo",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2024-41937",
+   "package": "apache-airflow",
+   "ranges": [
+    {
+     "fixed": "2.10.0",
+     "introduced": "0"
+    }
+   ],
+   "title": "Provider documentation link XSS in Apache Airflow web UI",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2024-41991",
+   "package": "django",
+   "ranges": [
+    {
+     "fixed": "5.0.8",
+     "introduced": "5.0"
+    },
+    {
+     "fixed": "4.2.15",
+     "introduced": "4.2"
+    }
+   ],
+   "title": "Denial of service in Django urlize, urlizetrunc and AdminURLFieldWidget via very large Unicode inputs",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2024-42005",
+   "package": "django",
+   "ranges": [
+    {
+     "fixed": "5.0.8",
+     "introduced": "5.0"
+    },
+    {
+     "fixed": "4.2.15",
+     "introduced": "4.2"
+    }
+   ],
+   "title": "Django JSONField values values_list",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2024-42474",
+   "package": "streamlit",
+   "ranges": [
+    {
+     "fixed": "1.37.0",
+     "introduced": "0"
+    }
+   ],
+   "title": "Path traversal in Streamlit static file sharing on Windows",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2024-4253",
+   "package": "gradio",
+   "ranges": [
+    {
+     "fixed": "4.29.0",
+     "introduced": "0"
+    }
+   ],
+   "title": "Command injection via unsanitized GitHub context values echoed in a CI workflow",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2024-4325",
+   "package": "gradio",
+   "ranges": [
+    {
+     "introduced": "0",
+     "last_affected": "4.36.0"
+    }
+   ],
+   "title": "Gradio SSRF through unvalidated user-supplied URL fetched by the queue join endpoint",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2024-43371",
+   "package": "ckan",
+   "ranges": [
+    {
+     "fixed": "2.10.5",
+     "introduced": "0"
+    }
+   ],
+   "title": "SSRF through unrestricted resource URLs fetched by CKAN extensions",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2024-43805",
+   "package": "jupyterlab",
+   "ranges": [
+    {
+     "fixed": "3.6.8",
+     "introduced": "0"
+    },
+    {
+     "fixed": "4.2.5",
+     "introduced": "4.0.0"
+    }
+   ],
+   "title": "Untrusted Markdown HTML enabling DOM Clobbering in JupyterLab and Jupyter Notebook",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2024-43805",
+   "package": "notebook",
+   "ranges": [
+    {
+     "fixed": "7.2.2",
+     "introduced": "7.0.0"
+    }
+   ],
+   "title": "Untrusted Markdown HTML enabling DOM Clobbering in JupyterLab and Jupyter Notebook",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2024-47164",
+   "package": "gradio",
+   "ranges": [
+    {
+     "fixed": "5.0.0",
+     "introduced": "0"
+    }
+   ],
+   "title": "Directory containment check bypassed by parent-directory sequences in file paths",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2024-47821",
+   "package": "pyload-ng",
+   "ranges": [
+    {
+     "fixed": "0.5.0b3.dev87",
+     "introduced": "0"
+    },
+    {
+     "introduced": "0",
+     "last_affected": "0.5.0"
+    }
+   ],
+   "title": "pyLoad flashgot download into scripts folder leads to command execution",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2024-4890",
+   "package": "litellm",
+   "ranges": [
+    {
+     "introduced": "0",
+     "last_affected": "1.27.14"
+    }
+   ],
+   "title": "Blind SQL injection through user_id in litellm team update handling",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2024-49377",
+   "package": "octoprint",
+   "ranges": [
+    {
+     "fixed": "1.10.3",
+     "introduced": "0"
+    }
+   ],
+   "title": "Reflected XSS from Jinja2 templates without automatic escaping (OctoPrint login and application key dialogs)",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2024-4941",
+   "package": "gradio",
+   "ranges": [
+    {
+     "fixed": "4.31.3",
+     "introduced": "0"
+    },
+    {
+     "fixed": "4.31.4",
+     "introduced": "0"
+    }
+   ],
+   "title": "Local file inclusion via user-controlled JSON reaching file-caching traversal in gradio",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2024-49766",
+   "package": "werkzeug",
+   "ranges": [
+    {
+     "fixed": "3.0.6",
+     "introduced": "0"
+    }
+   ],
+   "title": "Werkzeug safe_join",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2024-51998",
+   "package": "changedetection-io",
+   "ranges": [
+    {
+     "fixed": "0.47.6",
+     "introduced": "0"
+    }
+   ],
+   "title": "File URI scheme check bypassed by omitting the double slashes",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2024-5225",
+   "package": "litellm",
+   "ranges": [
+    {
+     "fixed": "1.40.0",
+     "introduced": "0"
+    }
+   ],
+   "title": "SQL injection through an unvalidated api_key value concatenated into a spend logs query in litellm",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2024-53947",
+   "package": "apache-superset",
+   "ranges": [
+    {
+     "fixed": "4.1.0",
+     "introduced": "0"
+    }
+   ],
+   "title": "Incomplete engine-specific function checks let SQL bypass Superset authorization",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2024-56509",
+   "package": "changedetection-io",
+   "ranges": [
+    {
+     "fixed": "0.48.05",
+     "introduced": "0"
+    }
+   ],
+   "title": "Prefix-based file URL blocklist bypassed for local file read in watch URLs",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2024-5998",
+   "package": "langchain",
+   "ranges": [
+    {
+     "fixed": "0.2.9",
+     "introduced": "0"
+    }
+   ],
+   "title": "Pickle deserialization of untrusted bytes in FAISS.deserialize_from_bytes (CVE-2024-5998)",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2024-5998",
+   "package": "langchain-community",
+   "ranges": [
+    {
+     "fixed": "0.2.4",
+     "introduced": "0"
+    }
+   ],
+   "title": "Pickle deserialization of untrusted bytes in FAISS.deserialize_from_bytes (CVE-2024-5998)",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2024-6587",
+   "package": "litellm",
+   "ranges": [
+    {
+     "fixed": "1.44.8",
+     "introduced": "0"
+    }
+   ],
+   "title": "Client-chosen api_base sends server-held API key to attacker domain in litellm",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2024-6825",
+   "package": "litellm",
+   "ranges": [
+    {
+     "introduced": "1.40.3.dev2",
+     "last_affected": "1.40.12"
+    }
+   ],
+   "title": "Arbitrary callback names in litellm post_call_rules allow remote code execution",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2024-7044",
+   "package": "open-webui",
+   "ranges": [
+    {
+     "introduced": "0",
+     "last_affected": "0.3.8"
+    },
+    {
+     "fixed": "0.3.33",
+     "introduced": "0"
+    }
+   ],
+   "title": "Stored XSS through files uploaded in Open WebUI chat",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2024-8309",
+   "package": "langchain",
+   "ranges": [
+    {
+     "fixed": "0.2.0",
+     "introduced": "0"
+    }
+   ],
+   "title": "Prompt injection in GraphCypherQAChain leading to database injection",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2024-8309",
+   "package": "langchain-community",
+   "ranges": [
+    {
+     "fixed": "0.2.19",
+     "introduced": "0.2.0"
+    },
+    {
+     "fixed": "0.3.0",
+     "introduced": "0.2.0"
+    }
+   ],
+   "title": "Prompt injection in GraphCypherQAChain leading to database injection",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2024-8859",
+   "package": "mlflow",
+   "ranges": [
+    {
+     "fixed": "2.17.0rc0",
+     "introduced": "0"
+    }
+   ],
+   "title": "Local file read in MLflow dbfs handling when only the URL path is validated",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2025-11201",
+   "package": "mlflow",
+   "ranges": [
+    {
+     "fixed": "3.0.0",
+     "introduced": "3.0.0rc0"
+    },
+    {
+     "fixed": "2.22.4",
+     "introduced": "0"
+    }
+   ],
+   "title": "Unvalidated user-supplied model file path allows directory traversal in MLflow Tracking Server",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2025-1194",
+   "package": "transformers",
+   "ranges": [
+    {
+     "fixed": "4.50.0",
+     "introduced": "0"
+    }
+   ],
+   "title": "ReDoS in GPT-NeoX-Japanese subword tokenizer regular expressions",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2025-13372",
+   "package": "django",
+   "ranges": [
+    {
+     "fixed": "5.2.9",
+     "introduced": "5.2a1"
+    },
+    {
+     "fixed": "5.1.15",
+     "introduced": "5.1a1"
+    },
+    {
+     "fixed": "4.2.27",
+     "introduced": "4.2a1"
+    },
+    {
+     "fixed": "4.2.27",
+     "introduced": "4.2"
+    },
+    {
+     "fixed": "5.1.15",
+     "introduced": "5.1"
+    },
+    {
+     "fixed": "5.2.9",
+     "introduced": "5.2"
+    }
+   ],
+   "title": "Django PostgreSQL FilteredRelation aliases",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2025-15031",
+   "package": "mlflow",
+   "ranges": [
+    {
+     "fixed": "3.9.0rc0",
+     "introduced": "0"
+    }
+   ],
+   "title": "Tar archive path traversal in MLflow pyfunc extraction",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2025-15379",
+   "package": "mlflow",
+   "ranges": [
+    {
+     "fixed": "3.8.1",
+     "introduced": "0"
+    }
+   ],
+   "title": "Untrusted model dependency specs interpolated into a shell command in MLflow container setup",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2025-1750",
+   "package": "llama-index",
+   "ranges": [
+    {
+     "fixed": "0.12.21",
+     "introduced": "0.12.19"
+    }
+   ],
+   "title": "SQL injection in DuckDBVectorStore delete via ref_doc_id",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2025-1750",
+   "package": "llama-index-vector-stores-duckdb",
+   "ranges": [
+    {
+     "fixed": "0.12.21",
+     "introduced": "0.12.19"
+    }
+   ],
+   "title": "SQL injection in DuckDBVectorStore delete via ref_doc_id",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2025-1753",
+   "package": "llama-index",
+   "ranges": [
+    {
+     "introduced": "0",
+     "last_affected": "0.12.20"
+    }
+   ],
+   "title": "OS command injection via the files argument of the LlamaIndex CLI",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2025-1753",
+   "package": "llama-index-cli",
+   "ranges": [
+    {
+     "fixed": "0.4.1",
+     "introduced": "0"
+    }
+   ],
+   "title": "OS command injection via the files argument of the LlamaIndex CLI",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2025-1793",
+   "package": "llama-index",
+   "ranges": [
+    {
+     "fixed": "0.12.28",
+     "introduced": "0"
+    }
+   ],
+   "title": "SQL injection in llama-index vector store integrations (CVE-2025-1793)",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2025-2099",
+   "package": "transformers",
+   "ranges": [
+    {
+     "fixed": "4.50.0",
+     "introduced": "0"
+    },
+    {
+     "fixed": "4.49.0",
+     "introduced": "0"
+    }
+   ],
+   "title": "ReDoS from nested quantifiers in the docstring code block regex of preprocess_string()",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2025-22237",
+   "package": "salt",
+   "ranges": [
+    {
+     "fixed": "3006.12",
+     "introduced": "3006.0rc1"
+    },
+    {
+     "fixed": "3007.4",
+     "introduced": "3007.0rc1"
+    }
+   ],
+   "title": "Command injection on the master through a crafted git url in on-demand pillar",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2025-22238",
+   "package": "salt",
+   "ranges": [
+    {
+     "fixed": "3006.12",
+     "introduced": "3006.0rc1"
+    },
+    {
+     "fixed": "3007.4",
+     "introduced": "3007.0rc1"
+    }
+   ],
+   "title": "Directory traversal in Salt master minion file cache creation",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2025-22240",
+   "package": "salt",
+   "ranges": [
+    {
+     "fixed": "3007.4",
+     "introduced": "3007.0rc1"
+    },
+    {
+     "fixed": "3006.12",
+     "introduced": "3006.0rc1"
+    }
+   ],
+   "title": "Unvalidated tgt_env used to build a path in the Salt GitFS find_file method",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2025-24357",
+   "package": "vllm",
+   "ranges": [
+    {
+     "fixed": "0.7.0",
+     "introduced": "0"
+    }
+   ],
+   "title": "Remote model checkpoints loaded with torch.load and default pickle settings allow code execution (CVE-2025-24357)",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2025-24372",
+   "package": "ckan",
+   "ranges": [
+    {
+     "fixed": "2.10.7",
+     "introduced": "0"
+    },
+    {
+     "fixed": "2.11.2",
+     "introduced": "2.11.0"
+    }
+   ],
+   "title": "Stored XSS through user-uploaded images in CKAN group, organization and user profiles",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2025-25296",
+   "package": "label-studio",
+   "ranges": [
+    {
+     "fixed": "1.16.0",
+     "introduced": "0"
+    }
+   ],
+   "title": "Reflected XSS from unsanitized label config task data rendered on a GET example endpoint",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2025-25297",
+   "package": "label-studio",
+   "ranges": [
+    {
+     "fixed": "1.16.0",
+     "introduced": "0"
+    }
+   ],
+   "title": "SSRF through user-supplied S3 endpoint URL in storage connections",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2025-27520",
+   "package": "bentoml",
+   "ranges": [
+    {
+     "fixed": "1.4.3",
+     "introduced": "1.3.4"
+    }
+   ],
+   "title": "Unsafe pickle deserialization of HTTP request payloads in BentoML serde",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2025-2828",
+   "package": "langchain-community",
+   "ranges": [
+    {
+     "fixed": "0.0.28",
+     "introduced": "0"
+    }
+   ],
+   "title": "SSRF in langchain-community RequestsToolkit from unrestricted request destinations",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2025-29783",
+   "package": "vllm",
+   "ranges": [
+    {
+     "fixed": "0.8.0",
+     "introduced": "0.6.5"
+    }
+   ],
+   "title": "Untrusted network bytes passed to pickle in the vLLM Mooncake KV transfer pipe",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2025-3046",
+   "package": "llama-index",
+   "ranges": [
+    {
+     "fixed": "0.12.28",
+     "introduced": "0.12.23"
+    }
+   ],
+   "title": "Symlinks in an Obsidian vault let the reader open files outside the vault",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2025-3046",
+   "package": "llama-index-readers-obsidian",
+   "ranges": [
+    {
+     "fixed": "0.5.1",
+     "introduced": "0"
+    }
+   ],
+   "title": "Symlinks in an Obsidian vault let the reader open files outside the vault",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2025-3225",
+   "package": "llama-index",
+   "ranges": [
+    {
+     "fixed": "0.12.29",
+     "introduced": "0.12.21"
+    }
+   ],
+   "title": "Billion laughs XML entity expansion in the llama-index sitemap parser (CVE-2025-3225)",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2025-3225",
+   "package": "llama-index-readers-papers",
+   "ranges": [
+    {
+     "fixed": "0.3.2",
+     "introduced": "0"
+    }
+   ],
+   "title": "Billion laughs XML entity expansion in the llama-index sitemap parser (CVE-2025-3225)",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2025-32444",
+   "package": "vllm",
+   "ranges": [
+    {
+     "fixed": "0.8.5",
+     "introduced": "0.6.5"
+    }
+   ],
+   "title": "Pickle-based ZeroMQ receive on exposed sockets in vLLM Mooncake integration allows remote code execution",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2025-3262",
+   "package": "transformers",
+   "ranges": [
+    {
+     "fixed": "4.51.0",
+     "introduced": "4.49.0"
+    }
+   ],
+   "title": "ReDoS from backtracking-prone regular expression in transformers chat command",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2025-3263",
+   "package": "transformers",
+   "ranges": [
+    {
+     "fixed": "4.51.0",
+     "introduced": "0"
+    }
+   ],
+   "title": "Catastrophic regex backtracking in Transformers get_configuration_file",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2025-3264",
+   "package": "transformers",
+   "ranges": [
+    {
+     "fixed": "4.51.0",
+     "introduced": "0"
+    }
+   ],
+   "title": "ReDoS in get_imports() when filtering try/except blocks from loaded module source",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2025-32962",
+   "package": "flask-appbuilder",
+   "ranges": [
+    {
+     "fixed": "4.6.2",
+     "introduced": "0"
+    }
+   ],
+   "title": "Open redirect in Flask-AppBuilder via Host header manipulation",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2025-3933",
+   "package": "transformers",
+   "ranges": [
+    {
+     "fixed": "4.52.1",
+     "introduced": "0"
+    }
+   ],
+   "title": "ReDoS in DonutProcessor token2json via backtracking-prone regex",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2025-46571",
+   "package": "open-webui",
+   "ranges": [
+    {
+     "fixed": "0.6.6",
+     "introduced": "0"
+    }
+   ],
+   "title": "Stored XSS through uploaded HTML files served back for rendering in Open WebUI",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2025-46719",
+   "package": "open-webui",
+   "ranges": [
+    {
+     "fixed": "0.6.6",
+     "introduced": "0"
+    }
+   ],
+   "title": "Stored XSS from raw HTML rendering of chat markdown tokens in Open WebUI",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2025-47273",
+   "package": "setuptools",
+   "ranges": [
+    {
+     "fixed": "78.1.1",
+     "introduced": "0"
+    }
+   ],
+   "title": "Path traversal in setuptools PackageIndex download filename built from an untrusted URL",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2025-47277",
+   "package": "vllm",
+   "ranges": [
+    {
+     "fixed": "0.8.5",
+     "introduced": "0.6.5"
+    }
+   ],
+   "title": "Unauthenticated pickle deserialization on the PyNcclPipe control channel exposed through an unbound TCPStore",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2025-47783",
+   "package": "label-studio",
+   "ranges": [
+    {
+     "fixed": "1.18.0",
+     "introduced": "0"
+    }
+   ],
+   "title": "Reflected XSS via label_config in Label Studio upload-example endpoint",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2025-48067",
+   "package": "octoprint",
+   "ranges": [
+    {
+     "fixed": "1.11.2",
+     "introduced": "0"
+    }
+   ],
+   "title": "Internal-only upload form inputs let clients make the server move arbitrary host files",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2025-48887",
+   "package": "vllm",
+   "ranges": [
+    {
+     "fixed": "0.9.0",
+     "introduced": "0.6.4"
+    }
+   ],
+   "title": "Catastrophic backtracking in the vLLM pythonic tool call parser regex",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2025-50181",
+   "package": "urllib3",
+   "ranges": [
+    {
+     "fixed": "2.5.0",
+     "introduced": "0"
+    }
+   ],
+   "title": "urllib3 PoolManager redirect disabling",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2025-50182",
+   "package": "urllib3",
+   "ranges": [
+    {
+     "fixed": "2.5.0",
+     "introduced": "2.2.0"
+    }
+   ],
+   "title": "urllib3 redirect settings are ignored under Pyodide in browsers and Node.js",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2025-5197",
+   "package": "transformers",
+   "ranges": [
+    {
+     "fixed": "4.53.0",
+     "introduced": "0"
+    }
+   ],
+   "title": "Catastrophic regex backtracking in TensorFlow-to-PyTorch weight name conversion in Transformers",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2025-52558",
+   "package": "changedetection-io",
+   "ranges": [
+    {
+     "fixed": "0.50.4",
+     "introduced": "0"
+    }
+   ],
+   "title": "Unfiltered filter-error text in changedetection.io watch overview enables XSS",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2025-52967",
+   "package": "mlflow",
+   "ranges": [
+    {
+     "fixed": "3.1.0",
+     "introduced": "3.0.0rc0"
+    },
+    {
+     "fixed": "2.22.2",
+     "introduced": "0"
+    },
+    {
+     "fixed": "3.1.0",
+     "introduced": "0"
+    }
+   ],
+   "title": "SSRF through unvalidated gateway_path in MLflow gateway_proxy_handler",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2025-53354",
+   "package": "nicegui",
+   "ranges": [
+    {
+     "fixed": "3.0.0",
+     "introduced": "0"
+    }
+   ],
+   "title": "Unescaped user input rendered through NiceGUI ui.html() or HTML-mode ui.chat_message leads to XSS",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2025-53865",
+   "package": "roundup",
+   "ranges": [
+    {
+     "fixed": "2.5.0",
+     "introduced": "0"
+    }
+   ],
+   "title": "Roundup XSS via URL and tracker template interaction (CVE-2025-53865)",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2025-53890",
+   "package": "pyload-ng",
+   "ranges": [
+    {
+     "fixed": "0.20",
+     "introduced": "0"
+    }
+   ],
+   "title": "Unsafe dynamic evaluation of CAPTCHA responses in pyLoad web UI script",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2025-54140",
+   "package": "pyload-ng",
+   "ranges": [
+    {
+     "fixed": "0.5.0b3.dev90",
+     "introduced": "0.5.0b3.dev89"
+    }
+   ],
+   "title": "Path traversal through uploaded filename in pyLoad json/upload endpoint",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2025-54381",
+   "package": "bentoml",
+   "ranges": [
+    {
+     "fixed": "1.4.19",
+     "introduced": "1.4.0"
+    }
+   ],
+   "title": "SSRF via URL-based file upload fields in BentoML multipart and JSON handlers",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2025-54384",
+   "package": "ckan",
+   "ranges": [
+    {
+     "fixed": "2.11.4",
+     "introduced": "2.11.0"
+    },
+    {
+     "fixed": "2.10.9",
+     "introduced": "0"
+    }
+   ],
+   "title": "Stored XSS from insufficient sanitization in CKAN markdown_extract helper",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2025-54802",
+   "package": "pyload-ng",
+   "ranges": [
+    {
+     "fixed": "0.5.0b3.dev90",
+     "introduced": "0"
+    }
+   ],
+   "title": "Path traversal in pyLoad CNL addcrypted endpoint via the package parameter",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2025-55156",
+   "package": "pyload-ng",
+   "ranges": [
+    {
+     "fixed": "0.5.0b3.dev91",
+     "introduced": "0"
+    }
+   ],
+   "title": "SQL injection through string-built IN clause in pyLoad link info update",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2025-57833",
+   "package": "django",
+   "ranges": [
+    {
+     "fixed": "4.2.24",
+     "introduced": "0"
+    },
+    {
+     "fixed": "5.1.12",
+     "introduced": "5.0a1"
+    },
+    {
+     "fixed": "5.2.6",
+     "introduced": "5.2a1"
+    },
+    {
+     "fixed": "4.2.24",
+     "introduced": "4.2"
+    },
+    {
+     "fixed": "5.1.12",
+     "introduced": "5.1"
+    },
+    {
+     "fixed": "5.2.6",
+     "introduced": "5.2"
+    }
+   ],
+   "title": "Django FilteredRelation aliases",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2025-58180",
+   "package": "octoprint",
+   "ranges": [
+    {
+     "fixed": "1.11.3",
+     "introduced": "0"
+    }
+   ],
+   "title": "Command injection through uploaded filenames used in OctoPrint system event handler commands",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2025-59681",
+   "package": "django",
+   "ranges": [
+    {
+     "fixed": "4.2.25",
+     "introduced": "4.2"
+    },
+    {
+     "fixed": "5.1.13",
+     "introduced": "5.1"
+    },
+    {
+     "fixed": "5.2.7",
+     "introduced": "5.2"
+    }
+   ],
+   "title": "Django MySQL MariaDB column aliases",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2025-59682",
+   "package": "django",
+   "ranges": [
+    {
+     "fixed": "4.2.25",
+     "introduced": "4.2"
+    },
+    {
+     "fixed": "5.1.13",
+     "introduced": "5.1"
+    },
+    {
+     "fixed": "5.2.7",
+     "introduced": "5.2"
+    }
+   ],
+   "title": "Django archive extraction common prefix",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2025-6050",
+   "package": "mezzanine",
+   "ranges": [
+    {
+     "fixed": "6.1.1",
+     "introduced": "0"
+    }
+   ],
+   "title": "Stored XSS from unsanitized blog post titles in the Mezzanine admin displayable links endpoint",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2025-6051",
+   "package": "transformers",
+   "ranges": [
+    {
+     "fixed": "4.53.0",
+     "introduced": "0"
+    }
+   ],
+   "title": "ReDoS in Transformers EnglishNormalizer number normalization on long digit strings",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2025-61773",
+   "package": "pyload-ng",
+   "ranges": [
+    {
+     "fixed": "0.5.0b3.dev91",
+     "introduced": "0"
+    }
+   ],
+   "title": "Reflected XSS from unvalidated parameters in pyLoad CNL and captcha endpoints",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2025-6210",
+   "package": "llama-index",
+   "ranges": [
+    {
+     "fixed": "0.5.2",
+     "introduced": "0"
+    }
+   ],
+   "title": "Hardlink-based path traversal in the llama-index ObsidianReader",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2025-6210",
+   "package": "llama-index-readers-obsidian",
+   "ranges": [
+    {
+     "fixed": "0.5.2",
+     "introduced": "0"
+    }
+   ],
+   "title": "Hardlink-based path traversal in the llama-index ObsidianReader",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2025-62164",
+   "package": "vllm",
+   "ranges": [
+    {
+     "fixed": "0.11.1",
+     "introduced": "0.10.2"
+    }
+   ],
+   "title": "Unchecked sparse tensor loading from user prompt embeddings enables out-of-bounds write",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2025-62780",
+   "package": "changedetection-io",
+   "ranges": [
+    {
+     "fixed": "0.50.34",
+     "introduced": "0"
+    }
+   ],
+   "title": "Stored XSS via unvalidated watch URL scheme in the update API",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2025-64187",
+   "package": "octoprint",
+   "ranges": [
+    {
+     "fixed": "1.11.4",
+     "introduced": "0"
+    }
+   ],
+   "title": "HTML and script injection through printer-generated Action Command popups in OctoPrint",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2025-64459",
+   "package": "django",
+   "ranges": [
+    {
+     "fixed": "5.2.8",
+     "introduced": "5.2a1"
+    },
+    {
+     "fixed": "5.1.14",
+     "introduced": "5.0a1"
+    },
+    {
+     "fixed": "4.2.26",
+     "introduced": "0"
+    },
+    {
+     "fixed": "4.2.26",
+     "introduced": "4.2"
+    },
+    {
+     "fixed": "5.1.14",
+     "introduced": "5.1"
+    },
+    {
+     "fixed": "5.2.8",
+     "introduced": "5.2"
+    }
+   ],
+   "title": "Django Q _connector",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2025-64495",
+   "package": "open-webui",
+   "ranges": [
+    {
+     "fixed": "0.6.35",
+     "introduced": "0"
+    }
+   ],
+   "title": "Stored DOM XSS from unsanitised prompt body inserted as rich text via innerHTML",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2025-65958",
+   "package": "open-webui",
+   "ranges": [
+    {
+     "fixed": "0.6.37",
+     "introduced": "0"
+    }
+   ],
+   "title": "Unvalidated user-supplied URL fetched by server-side web loader (SSRF)",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2025-6638",
+   "package": "transformers",
+   "ranges": [
+    {
+     "fixed": "4.53.0",
+     "introduced": "0"
+    }
+   ],
+   "title": "ReDoS in MarianTokenizer remove_language_code() via malformed language code patterns",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2025-66469",
+   "package": "nicegui",
+   "ranges": [
+    {
+     "fixed": "3.4.0",
+     "introduced": "0"
+    }
+   ],
+   "title": "Reflected XSS through style injection in NiceGUI add_css, add_scss and add_sass",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2025-66470",
+   "package": "nicegui",
+   "ranges": [
+    {
+     "fixed": "3.4.0",
+     "introduced": "0"
+    }
+   ],
+   "title": "Unsanitized SVG content in NiceGUI interactive_image enables XSS",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2025-66645",
+   "package": "nicegui",
+   "ranges": [
+    {
+     "fixed": "3.4.0",
+     "introduced": "0"
+    }
+   ],
+   "title": "Path traversal in NiceGUI add_media_files allows arbitrary file read",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2025-67724",
+   "package": "tornado",
+   "ranges": [
+    {
+     "fixed": "6.5.3",
+     "introduced": "0"
+    }
+   ],
+   "title": "Untrusted reason phrase in Tornado set_status and HTTPError enables header injection and XSS",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2025-69226",
+   "package": "aiohttp",
+   "ranges": [
+    {
+     "fixed": "3.13.3",
+     "introduced": "0"
+    }
+   ],
+   "title": "Static file path normalization in aiohttp can reveal which absolute path components exist",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2025-6984",
+   "package": "langchain-community",
+   "ranges": [
+    {
+     "fixed": "0.3.27",
+     "introduced": "0"
+    }
+   ],
+   "title": "XXE in EverNoteLoader via etree.iterparse() on untrusted XML",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2026-0596",
+   "package": "mlflow",
+   "ranges": [
+    {
+     "fixed": "3.9.0",
+     "introduced": "0"
+    }
+   ],
+   "title": "Shell command injection via model_uri when serving MLflow models with MLServer enabled",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2026-0846",
+   "package": "nltk",
+   "ranges": [
+    {
+     "fixed": "3.9.3",
+     "introduced": "0"
+    },
+    {
+     "introduced": "0",
+     "last_affected": "3.9.2"
+    }
+   ],
+   "title": "Unvalidated user paths in nltk.util.filestring() allow arbitrary file read",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2026-102270",
+   "package": "pyjwt",
+   "ranges": [
+    {
+     "fixed": "2.14.0",
+     "introduced": "0"
+    }
+   ],
+   "title": "Quadratic regex backtracking when PyJWT checks whether key bytes look like PEM",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2026-102830",
+   "package": "jupyterlab",
+   "ranges": [
+    {
+     "fixed": "4.6.4",
+     "introduced": "4.6.0"
+    },
+    {
+     "fixed": "4.5.11",
+     "introduced": "3.0.0"
+    }
+   ],
+   "title": "Prefix-only validation of a language pack plural header lets appended JavaScript run",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2026-102830",
+   "package": "jupyterlite-core",
+   "ranges": [
+    {
+     "fixed": "0.8.4",
+     "introduced": "0"
+    }
+   ],
+   "title": "Prefix-only validation of a language pack plural header lets appended JavaScript run",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2026-102831",
+   "package": "jupyterlab",
+   "ranges": [
+    {
+     "fixed": "4.6.4",
+     "introduced": "4.6.0"
+    },
+    {
+     "fixed": "4.5.11",
+     "introduced": "4.5.0"
+    }
+   ],
+   "title": "XSS via trusted metadata in notebook cells pasted from the system clipboard",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2026-102831",
+   "package": "jupyterlite",
+   "ranges": [
+    {
+     "fixed": "0.8.4",
+     "introduced": "0.7.0"
+    }
+   ],
+   "title": "XSS via trusted metadata in notebook cells pasted from the system clipboard",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2026-102831",
+   "package": "jupyterlite-core",
+   "ranges": [
+    {
+     "fixed": "0.8.4",
+     "introduced": "0.7.0"
+    }
+   ],
+   "title": "XSS via trusted metadata in notebook cells pasted from the system clipboard",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2026-102831",
+   "package": "notebook",
+   "ranges": [
+    {
+     "fixed": "7.6.3",
+     "introduced": "7.5.0"
+    }
+   ],
+   "title": "XSS via trusted metadata in notebook cells pasted from the system clipboard",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2026-102991",
+   "package": "mako",
+   "ranges": [
+    {
+     "fixed": "1.4.2",
+     "introduced": "0"
+    }
+   ],
+   "title": "Mako TemplateLookup path traversal via drive-letter URI on Windows",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2026-106454",
+   "package": "twisted",
+   "ranges": [
+    {
+     "introduced": "0",
+     "last_affected": "26.4.0"
+    },
+    {
+     "introduced": "0",
+     "last_affected": "25.5.0"
+    }
+   ],
+   "title": "Unescaped IMAP LIST/LSUB wildcard patterns enable regex backtracking DoS in Twisted",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2026-112900",
+   "package": "pillow",
+   "ranges": [
+    {
+     "fixed": "13.0.0",
+     "introduced": "2.6.0"
+    }
+   ],
+   "title": "Ghostscript argument injection through unsanitized EPS filename in Pillow",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2026-112901",
+   "package": "pillow",
+   "ranges": [
+    {
+     "fixed": "13.0.0",
+     "introduced": "0"
+    }
+   ],
+   "title": "Catastrophic backtracking in Pillow XBM header regex during Image.open()",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2026-11332",
+   "package": "ansible-core",
+   "ranges": [
+    {
+     "fixed": "2.16.19rc1",
+     "introduced": "0"
+    },
+    {
+     "fixed": "2.18.18rc1",
+     "introduced": "2.17.0b1"
+    },
+    {
+     "fixed": "2.19.11rc1",
+     "introduced": "2.19.0b1"
+    },
+    {
+     "fixed": "2.20.7rc1",
+     "introduced": "2.20.0b1"
+    },
+    {
+     "fixed": "2.21.1rc1",
+     "introduced": "2.21.0b1"
+    }
+   ],
+   "title": "Argument injection through role dependency src field in ansible-galaxy role install",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2026-114140",
+   "package": "nbconvert",
+   "ranges": [
+    {
+     "fixed": "7.17.2",
+     "introduced": "5.4.0"
+    }
+   ],
+   "title": "Path traversal in nbconvert cell output filenames allows arbitrary file write",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2026-114614",
+   "package": "authlib",
+   "ranges": [
+    {
+     "fixed": "1.8.0",
+     "introduced": "0"
+    }
+   ],
+   "title": "Loopback HTTP exemption bypass via userinfo in Authlib transport-security check",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2026-114620",
+   "package": "authlib",
+   "ranges": [
+    {
+     "fixed": "1.9.0",
+     "introduced": "1.6.0"
+    }
+   ],
+   "title": "SSRF via unvalidated request_uri passed to the JAR fetch hook in Authlib",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2026-115355",
+   "package": "mistune",
+   "ranges": [
+    {
+     "fixed": "3.3.0",
+     "introduced": "0"
+    }
+   ],
+   "title": "Path traversal and unescaped output in the Mistune Include directive",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2026-115886",
+   "package": "mlflow",
+   "ranges": [
+    {
+     "fixed": "3.17.0",
+     "introduced": "3.12.0rc0"
+    }
+   ],
+   "title": "SSRF through attacker-chosen constructor arguments in MLflow third-party scorer deserialization",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2026-115912",
+   "package": "vllm",
+   "ranges": [
+    {
+     "fixed": "0.32.0",
+     "introduced": "0"
+    }
+   ],
+   "title": "Forged shared-memory handles in the multimodal cache reach worker pickle.loads()",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2026-116578",
+   "package": "tornado",
+   "ranges": [
+    {
+     "fixed": "6.6",
+     "introduced": "0"
+    }
+   ],
+   "title": "Open redirect through substitutions in RedirectHandler URL templates",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2026-116690",
+   "package": "mlflow",
+   "ranges": [
+    {
+     "fixed": "3.17.0",
+     "introduced": "3.10.0"
+    }
+   ],
+   "title": "Prompt model version source bypasses path validation and enables arbitrary file read",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2026-1207",
+   "package": "django",
+   "ranges": [
+    {
+     "fixed": "6.0.2",
+     "introduced": "6.0a1"
+    },
+    {
+     "fixed": "5.2.11",
+     "introduced": "5.2a1"
+    },
+    {
+     "fixed": "4.2.28",
+     "introduced": "4.2a1"
+    },
+    {
+     "fixed": "4.2.28",
+     "introduced": "4.2"
+    },
+    {
+     "fixed": "5.2.11",
+     "introduced": "5.2"
+    },
+    {
+     "fixed": "6.0.2",
+     "introduced": "6.0"
+    }
+   ],
+   "title": "SQL injection via band index in RasterField lookups on PostGIS",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2026-12372",
+   "package": "nltk",
+   "ranges": [
+    {
+     "fixed": "3.10.0",
+     "introduced": "0"
+    },
+    {
+     "introduced": "0",
+     "last_affected": "3.9.4"
+    }
+   ],
+   "title": "NLTK URL validation misses RFC 6598 shared address space (SSRF)",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2026-1287",
+   "package": "django",
+   "ranges": [
+    {
+     "fixed": "6.0.2",
+     "introduced": "6.0a1"
+    },
+    {
+     "fixed": "5.2.11",
+     "introduced": "5.2a1"
+    },
+    {
+     "fixed": "4.2.28",
+     "introduced": "4.2a1"
+    },
+    {
+     "fixed": "4.2.28",
+     "introduced": "4.2"
+    },
+    {
+     "fixed": "5.2.11",
+     "introduced": "5.2"
+    },
+    {
+     "fixed": "6.0.2",
+     "introduced": "6.0"
+    }
+   ],
+   "title": "SQL injection through crafted column alias names in FilteredRelation keyword expansion in Django",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2026-1312",
+   "package": "django",
+   "ranges": [
+    {
+     "fixed": "6.0.2",
+     "introduced": "6.0a1"
+    },
+    {
+     "fixed": "5.2.11",
+     "introduced": "5.2a1"
+    },
+    {
+     "fixed": "4.2.28",
+     "introduced": "4.2a1"
+    },
+    {
+     "fixed": "4.2.28",
+     "introduced": "4.2"
+    },
+    {
+     "fixed": "5.2.11",
+     "introduced": "5.2"
+    },
+    {
+     "fixed": "6.0.2",
+     "introduced": "6.0"
+    }
+   ],
+   "title": "Django order_by() SQL injection via dotted aliases reused in FilteredRelation",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2026-13346",
+   "package": "pip",
+   "ranges": [
+    {
+     "fixed": "26.2.0",
+     "introduced": "0"
+    },
+    {
+     "fixed": "26.2",
+     "introduced": "0"
+    }
+   ],
+   "title": "Doubly-encoded package URLs from an index can place downloaded files outside the target location in pip",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2026-15035",
+   "package": "bentoml",
+   "ranges": [
+    {
+     "introduced": "0",
+     "last_affected": "0.6.30"
+    }
+   ],
+   "title": "Command injection through the cmd argument of async_run_command in OpenLLM 0.6.30",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2026-1703",
+   "package": "pip",
+   "ranges": [
+    {
+     "fixed": "26.0",
+     "introduced": "0"
+    }
+   ],
+   "title": "Wheel extraction can write files outside the installation directory",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2026-1839",
+   "package": "transformers",
+   "ranges": [
+    {
+     "fixed": "5.0.0rc3",
+     "introduced": "0"
+    },
+    {
+     "fixed": "5.0.0",
+     "introduced": "0"
+    }
+   ],
+   "title": "Unsafe torch.load of RNG state checkpoint in Transformers Trainer enables code execution",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2026-2033",
+   "package": "mlflow",
+   "ranges": [
+    {
+     "fixed": "3.8.0rc0",
+     "introduced": "0"
+    }
+   ],
+   "title": "Unvalidated artifact file paths in MLflow Tracking Server allow directory traversal and code execution",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2026-22219",
+   "package": "chainlit",
+   "ranges": [
+    {
+     "fixed": "2.9.4",
+     "introduced": "0"
+    }
+   ],
+   "title": "Chainlit SSRF through user-controlled element url in the SQLAlchemy data layer",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2026-2393",
+   "package": "mlflow",
+   "ranges": [
+    {
+     "fixed": "3.9.0",
+     "introduced": "0"
+    }
+   ],
+   "title": "MLflow webhook URL accepted without validation allows server-side request forgery",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2026-24049",
+   "package": "wheel",
+   "ranges": [
+    {
+     "fixed": "0.46.2",
+     "introduced": "0.40.0"
+    }
+   ],
+   "title": "Post-extraction permission changes must not use unsanitized archive member names (wheel unpack)",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2026-24123",
+   "package": "bentoml",
+   "ranges": [
+    {
+     "fixed": "1.4.34",
+     "introduced": "0"
+    }
+   ],
+   "title": "Bentofile path fields can copy arbitrary host files into a bento",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2026-24486",
+   "package": "python-multipart",
+   "ranges": [
+    {
+     "fixed": "0.0.22",
+     "introduced": "0"
+    }
+   ],
+   "title": "Absolute client filename escapes upload directory in python-multipart when original filenames are kept",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2026-24779",
+   "package": "vllm",
+   "ranges": [
+    {
+     "fixed": "0.14.1",
+     "introduced": "0"
+    }
+   ],
+   "title": "SSRF allowlist bypass in vLLM MediaConnector through URL parser differences over backslashes",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2026-25527",
+   "package": "changedetection-io",
+   "ranges": [
+    {
+     "fixed": "0.53.2",
+     "introduced": "0"
+    }
+   ],
+   "title": "Static route group segment allows parent-directory traversal to application source files",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2026-25917",
+   "package": "apache-airflow",
+   "ranges": [
+    {
+     "fixed": "3.2.0",
+     "introduced": "0"
+    }
+   ],
+   "title": "Crafted XCom payloads can lead to code execution in the Airflow webserver",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2026-25917",
+   "package": "apache-airflow-core",
+   "ranges": [
+    {
+     "fixed": "3.2.0",
+     "introduced": "0"
+    }
+   ],
+   "title": "Crafted XCom payloads can lead to code execution in the Airflow webserver",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2026-25960",
+   "package": "vllm",
+   "ranges": [
+    {
+     "fixed": "0.17.0",
+     "introduced": "0.15.1"
+    }
+   ],
+   "title": "SSRF allowlist bypass from URL parser mismatch between validator and HTTP client",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2026-2614",
+   "package": "mlflow",
+   "ranges": [
+    {
+     "fixed": "3.10.0",
+     "introduced": "0"
+    }
+   ],
+   "title": "Client-supplied prompt tag bypasses model version source validation and enables arbitrary file read in MLflow",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2026-27156",
+   "package": "nicegui",
+   "ranges": [
+    {
+     "fixed": "3.8.0",
+     "introduced": "0"
+    }
+   ],
+   "title": "Client-side method name executed via eval fallback allows XSS in NiceGUI",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2026-27645",
+   "package": "changedetection-io",
+   "ranges": [
+    {
+     "fixed": "0.53.7",
+     "introduced": "0"
+    },
+    {
+     "fixed": "0.54.1",
+     "introduced": "0"
+    }
+   ],
+   "title": "Reflected XSS from an unescaped UUID path parameter in the changedetection.io RSS single-watch error responses",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2026-27696",
+   "package": "changedetection-io",
+   "ranges": [
+    {
+     "fixed": "0.54.1",
+     "introduced": "0"
+    }
+   ],
+   "title": "SSRF through watch URLs that are never checked against internal address ranges",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2026-27905",
+   "package": "bentoml",
+   "ranges": [
+    {
+     "fixed": "1.4.36",
+     "introduced": "0"
+    }
+   ],
+   "title": "Symlink target not validated in tar extraction allows arbitrary file write in BentoML",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2026-28414",
+   "package": "gradio",
+   "ranges": [
+    {
+     "fixed": "6.7.0",
+     "introduced": "0"
+    }
+   ],
+   "title": "Root-relative paths bypass absolute-path checks in Gradio on Windows with Python 3.13+",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2026-28415",
+   "package": "gradio",
+   "ranges": [
+    {
+     "fixed": "6.6.0",
+     "introduced": "0"
+    }
+   ],
+   "title": "Open redirect through unvalidated target URL parameter in Gradio OAuth logout and login callback",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2026-28416",
+   "package": "gradio",
+   "ranges": [
+    {
+     "fixed": "6.6.0",
+     "introduced": "0"
+    }
+   ],
+   "title": "SSRF through a remote Space proxy_url trusted by gr.load() in Gradio",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2026-28786",
+   "package": "open-webui",
+   "ranges": [
+    {
+     "fixed": "0.8.6",
+     "introduced": "0"
+    }
+   ],
+   "title": "Unsanitised upload filename and verbose error leak server path in transcription endpoint",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2026-29038",
+   "package": "changedetection-io",
+   "ranges": [
+    {
+     "fixed": "0.54.4",
+     "introduced": "0"
+    }
+   ],
+   "title": "Reflected XSS from unescaped path parameter in RSS tag not-found response",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2026-29065",
+   "package": "changedetection-io",
+   "ranges": [
+    {
+     "fixed": "0.54.4",
+     "introduced": "0"
+    }
+   ],
+   "title": "Zip Slip path traversal in changedetection.io backup restore",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2026-33230",
+   "package": "nltk",
+   "ranges": [
+    {
+     "fixed": "3.9.4",
+     "introduced": "0"
+    }
+   ],
+   "title": "Reflected XSS in NLTK WordNet Browser lookup route from unescaped word",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2026-33236",
+   "package": "nltk",
+   "ranges": [
+    {
+     "introduced": "0",
+     "last_affected": "3.9.2"
+    },
+    {
+     "fixed": "3.9.4",
+     "introduced": "0"
+    }
+   ],
+   "title": "NLTK downloader path traversal via unvalidated index subdir and id",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2026-33264",
+   "package": "apache-airflow",
+   "ranges": [
+    {
+     "fixed": "3.3.0",
+     "introduced": "0"
+    }
+   ],
+   "title": "Unrestricted class import when deserializing serialized DAGs in Airflow",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2026-33682",
+   "package": "streamlit",
+   "ranges": [
+    {
+     "fixed": "1.54.0",
+     "introduced": "0"
+    }
+   ],
+   "title": "Validate request paths before resolving them to avoid UNC-based SSRF on Windows",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2026-33858",
+   "package": "apache-airflow",
+   "ranges": [
+    {
+     "fixed": "3.2.0",
+     "introduced": "3.1.8"
+    }
+   ],
+   "title": "Unsafe deserialization of XCom values through legacy serialization keys in the Airflow webserver",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2026-33865",
+   "package": "mlflow",
+   "ranges": [
+    {
+     "fixed": "3.11.1",
+     "introduced": "0"
+    },
+    {
+     "fixed": "3.11.0rc0",
+     "introduced": "0"
+    }
+   ],
+   "title": "Stored XSS from unsafely parsed MLmodel YAML artifacts shown in the MLflow web UI",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2026-33992",
+   "package": "pyload-ng",
+   "ranges": [
+    {
+     "introduced": "0",
+     "last_affected": "0.5.0b3.dev96"
+    }
+   ],
+   "title": "SSRF through unvalidated download link submission in pyload-ng",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2026-34753",
+   "package": "vllm",
+   "ranges": [
+    {
+     "fixed": "0.19.0",
+     "introduced": "0.16.0"
+    }
+   ],
+   "title": "SSRF through unvalidated file URLs in the vLLM batch runner",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2026-34993",
+   "package": "aiohttp",
+   "ranges": [
+    {
+     "fixed": "3.14.0",
+     "introduced": "0"
+    }
+   ],
+   "title": "Arbitrary code execution from loading untrusted files with aiohttp CookieJar.load()",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2026-35459",
+   "package": "pyload-ng",
+   "ranges": [
+    {
+     "introduced": "0",
+     "last_affected": "0.5.0b3.dev96"
+    }
+   ],
+   "title": "SSRF filter bypass through automatic HTTP redirects in a download manager",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2026-35463",
+   "package": "pyload-ng",
+   "ranges": [
+    {
+     "introduced": "0",
+     "last_affected": "0.5.0b3.dev96"
+    },
+    {
+     "fixed": "0.5.0b3.dev97",
+     "introduced": "0"
+    }
+   ],
+   "title": "Admin-only guard skipped for plugin config lets non-admin users set an executable path",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2026-35464",
+   "package": "pyload-ng",
+   "ranges": [
+    {
+     "introduced": "0",
+     "last_affected": "0.5.0b3"
+    }
+   ],
+   "title": "Writable download folder redirected into a pickle-backed session store",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2026-39844",
+   "package": "nicegui",
+   "ranges": [
+    {
+     "fixed": "3.10.0",
+     "introduced": "0"
+    }
+   ],
+   "title": "Backslash filenames bypass upload name sanitization on Windows in NiceGUI",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2026-41205",
+   "package": "mako",
+   "ranges": [
+    {
+     "fixed": "1.3.11",
+     "introduced": "0"
+    }
+   ],
+   "title": "Mako TemplateLookup path traversal via double-slash URI prefix",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2026-41479",
+   "package": "authlib",
+   "ranges": [
+    {
+     "fixed": "1.6.10",
+     "introduced": "0"
+    },
+    {
+     "fixed": "1.7.1",
+     "introduced": "1.7.0"
+    }
+   ],
+   "title": "Open redirect via unsupported response_type in Authlib authorization endpoint",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2026-41486",
+   "package": "ray",
+   "ranges": [
+    {
+     "fixed": "2.55.0",
+     "introduced": "2.49.0"
+    },
+    {
+     "introduced": "0",
+     "last_affected": "2.54.0"
+    }
+   ],
+   "title": "Ray Data Arrow extension types unpickle Parquet schema metadata, enabling code execution",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2026-41486",
+   "package": "ve-ray",
+   "ranges": [
+    {
+     "introduced": "0",
+     "last_affected": "2.54.0"
+    }
+   ],
+   "title": "Ray Data Arrow extension types unpickle Parquet schema metadata, enabling code execution",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2026-42215",
+   "package": "gitpython",
+   "ranges": [
+    {
+     "fixed": "3.1.47",
+     "introduced": "3.1.30"
+    }
+   ],
+   "title": "GitPython unsafe-option check bypassed by underscore-form kwargs",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2026-42266",
+   "package": "jupyterlab",
+   "ranges": [
+    {
+     "fixed": "4.5.7",
+     "introduced": "4.0.0"
+    }
+   ],
+   "title": "PyPI Extension Manager allow-list not enforced for installs in JupyterLab before 4.5.7",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2026-42284",
+   "package": "gitpython",
+   "ranges": [
+    {
+     "fixed": "3.1.47",
+     "introduced": "0"
+    }
+   ],
+   "title": "GitPython clone validates multi_options before shlex.split rewrites them",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2026-42359",
+   "package": "apache-airflow",
+   "ranges": [
+    {
+     "fixed": "3.2.2",
+     "introduced": "3.2.0"
+    }
+   ],
+   "title": "XCom PATCH endpoint bypassed reserved-key validation and enabled deserialization RCE on the triggerer",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2026-4372",
+   "package": "transformers",
+   "ranges": [
+    {
+     "fixed": "5.3.0",
+     "introduced": "0"
+    }
+   ],
+   "title": "Config-supplied internal attention field triggers remote code download and execution in transformers",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2026-44307",
+   "package": "mako",
+   "ranges": [
+    {
+     "fixed": "1.3.12",
+     "introduced": "0"
+    }
+   ],
+   "title": "Backslash traversal in Mako TemplateLookup on Windows",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2026-44727",
+   "package": "jupyter-server",
+   "ranges": [
+    {
+     "fixed": "2.20.0",
+     "introduced": "0"
+    }
+   ],
+   "title": "Stored XSS in nbconvert HTML handlers from a missing sandbox CSP directive",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2026-44896",
+   "package": "mistune",
+   "ranges": [
+    {
+     "fixed": "3.2.1",
+     "introduced": "0"
+    }
+   ],
+   "title": "Unescaped figclass and figwidth options in Mistune Figure directive allow attribute injection XSS",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2026-44898",
+   "package": "mistune",
+   "ranges": [
+    {
+     "fixed": "3.2.1",
+     "introduced": "3.2.0"
+    },
+    {
+     "fixed": "3.2.1",
+     "introduced": "0"
+    }
+   ],
+   "title": "Unescaped heading IDs in mistune table-of-contents links allow HTML injection",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2026-45019",
+   "package": "chainlit",
+   "ranges": [
+    {
+     "fixed": "2.12.0",
+     "introduced": "2.4.0rc0"
+    }
+   ],
+   "title": "Blind SSRF via user-supplied MCP SSE and streamable-http connection URLs and headers",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2026-45347",
+   "package": "open-webui",
+   "ranges": [
+    {
+     "fixed": "0.5.11",
+     "introduced": "0"
+    }
+   ],
+   "title": "Blind SSRF through unescaped user input in PDF export HTML",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2026-45360",
+   "package": "apache-airflow",
+   "ranges": [
+    {
+     "fixed": "3.2.2",
+     "introduced": "3.2.0"
+    },
+    {
+     "fixed": "3.2.2",
+     "introduced": "0"
+    }
+   ],
+   "title": "Scheduler imports arbitrary class paths from DAG-author-controlled deadline reference state",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2026-4539",
+   "package": "pygments",
+   "ranges": [
+    {
+     "fixed": "2.20.0",
+     "introduced": "0"
+    }
+   ],
+   "title": "Pygments AdlLexer ReDoS from inefficient GUID-matching regular expression",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2026-48099",
+   "package": "wsgidav",
+   "ranges": [
+    {
+     "fixed": "4.3.4",
+     "introduced": "0"
+    }
+   ],
+   "title": "Encoded dot segments escape WsgiDAV filesystem share root via prefix-based containment check",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2026-48522",
+   "package": "pyjwt",
+   "ranges": [
+    {
+     "fixed": "2.13.0",
+     "introduced": "2.0.0"
+    },
+    {
+     "fixed": "2.13.0",
+     "introduced": "0"
+    }
+   ],
+   "title": "PyJWKClient fetches JWKS from any URL scheme urllib supports, including file, ftp and data",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2026-48818",
+   "package": "starlette",
+   "ranges": [
+    {
+     "fixed": "1.1.0",
+     "introduced": "0"
+    }
+   ],
+   "title": "Resolve static file paths without letting Windows UNC paths trigger outbound SMB",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2026-49119",
+   "package": "gradio",
+   "ranges": [
+    {
+     "fixed": "6.16.0",
+     "introduced": "0"
+    }
+   ],
+   "title": "Gradio FileExplorer preprocess path traversal escapes root_dir",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2026-49264",
+   "package": "oauthlib",
+   "ranges": [
+    {
+     "fixed": "4.0.0",
+     "introduced": "0.6.1"
+    }
+   ],
+   "title": "Unvalidated JSONP callback reflected into script responses by oauthlib RevocationEndpoint",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2026-50221",
+   "package": "swift",
+   "ranges": [
+    {
+     "fixed": "2.37.2",
+     "introduced": "0"
+    }
+   ],
+   "title": "Strip internal update headers from client requests before proxy forwards to object servers",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2026-53995",
+   "package": "mlflow",
+   "ranges": [
+    {
+     "fixed": "3.17.2",
+     "introduced": "0"
+    }
+   ],
+   "title": "Path traversal via crafted trace ID in MLflow FileStore trace creation",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2026-54293",
+   "package": "nltk",
+   "ranges": [
+    {
+     "fixed": "3.10.0",
+     "introduced": "0"
+    }
+   ],
+   "title": "Decode-after-check path traversal in nltk.data.load() via percent-encoded segments",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2026-55443",
+   "package": "langchain",
+   "ranges": [
+    {
+     "fixed": "1.3.9",
+     "introduced": "0"
+    }
+   ],
+   "title": "Path confinement gaps in LangChain file search and config loaders",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2026-55443",
+   "package": "langchain-anthropic",
+   "ranges": [
+    {
+     "fixed": "1.4.6",
+     "introduced": "0"
+    }
+   ],
+   "title": "Path confinement gaps in LangChain file search and config loaders",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2026-55509",
+   "package": "wsgidav",
+   "ranges": [
+    {
+     "fixed": "4.3.5",
+     "introduced": "0"
+    }
+   ],
+   "title": "SQL injection via URL record key in the WsgiDAV sample MySQL provider",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2026-55574",
+   "package": "vllm",
+   "ranges": [
+    {
+     "fixed": "0.24.0",
+     "introduced": "0"
+    }
+   ],
+   "title": "Unbounded regex compilation for structured outputs lets one request hang an inference worker",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2026-55798",
+   "package": "pillow",
+   "ranges": [
+    {
+     "fixed": "12.3.0",
+     "introduced": "0"
+    }
+   ],
+   "title": "Windows image viewer command injection through an unescaped file path in Pillow",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2026-56340",
+   "package": "vllm",
+   "ranges": [
+    {
+     "fixed": "0.13.0",
+     "introduced": "0.10.2"
+    }
+   ],
+   "title": "Missing sparse tensor validation in vLLM prompt embeddings enables DoS and memory corruption",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2026-57516",
+   "package": "ray",
+   "ranges": [
+    {
+     "fixed": "2.56.0",
+     "introduced": "0"
+    }
+   ],
+   "title": "Default WebDataset decoder deserializes pickle and torch payloads from untrusted tar archives",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2026-58076",
+   "package": "apache-airflow",
+   "ranges": [
+    {
+     "fixed": "3.3.1",
+     "introduced": "3.3.0"
+    }
+   ],
+   "title": "Unrestricted class import when deserializing exception nodes in Airflow serialized Dags",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2026-59220",
+   "package": "open-webui",
+   "ranges": [
+    {
+     "fixed": "0.10.0",
+     "introduced": "0.9.2"
+    }
+   ],
+   "title": "Overlapping quantifiers in skill-mention regexes cause quadratic backtracking",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2026-59242",
+   "package": "apache-airflow",
+   "ranges": [
+    {
+     "fixed": "3.3.1",
+     "introduced": "0"
+    }
+   ],
+   "title": "Reserved-key guard skipped for JSON string literals in Airflow XCom deserialization",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2026-59819",
+   "package": "litellm",
+   "ranges": [
+    {
+     "fixed": "1.83.10",
+     "introduced": "0"
+    }
+   ],
+   "title": "Request-supplied OIDC file references in LiteLLM connection tests allow local file read",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2026-59820",
+   "package": "litellm",
+   "ranges": [
+    {
+     "fixed": "1.83.7",
+     "introduced": "0"
+    }
+   ],
+   "title": "Path traversal in LiteLLM Skills ZIP archive extraction",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2026-59823",
+   "package": "litellm",
+   "ranges": [
+    {
+     "fixed": "1.83.9",
+     "introduced": "0"
+    }
+   ],
+   "title": "SSRF in LiteLLM Proxy via api_base nested in user_config",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2026-59922",
+   "package": "mistune",
+   "ranges": [
+    {
+     "fixed": "3.3.0",
+     "introduced": "0"
+    }
+   ],
+   "title": "Quadratic-time scanning in mistune strikethrough, mark and insert plugins",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2026-59923",
+   "package": "mistune",
+   "ranges": [
+    {
+     "fixed": "3.3.0",
+     "introduced": "0"
+    }
+   ],
+   "title": "Percent-encoded javascript scheme bypasses Mistune safe_url() link filtering",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2026-59924",
+   "package": "mistune",
+   "ranges": [
+    {
+     "fixed": "3.3.0",
+     "introduced": "0"
+    }
+   ],
+   "title": "Path traversal in mistune Include directive when reading markdown files",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2026-59925",
+   "package": "mistune",
+   "ranges": [
+    {
+     "fixed": "3.3.0",
+     "introduced": "0"
+    }
+   ],
+   "title": "Quadratic emphasis parsing in mistune inline parser on long runs of strong-emphasis pairs",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2026-59926",
+   "package": "mistune",
+   "ranges": [
+    {
+     "fixed": "3.3.0",
+     "introduced": "0"
+    }
+   ],
+   "title": "Attribute injection XSS via unescaped class option in mistune Admonition directive",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2026-59928",
+   "package": "mistune",
+   "ranges": [
+    {
+     "fixed": "3.3.0",
+     "introduced": "0"
+    }
+   ],
+   "title": "Quadratic parse time from many reference-link definitions in mistune",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2026-59929",
+   "package": "mistune",
+   "ranges": [
+    {
+     "fixed": "3.3.0",
+     "introduced": "0"
+    }
+   ],
+   "title": "Mistune safe_url denylist lets legacy and chained URL schemes reach href and src",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2026-62383",
+   "package": "nltk",
+   "ranges": [
+    {
+     "fixed": "3.10.2",
+     "introduced": "3.10.0"
+    }
+   ],
+   "title": "Symlink in corpus root bypasses path validation in IPIPANCorpusReader",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2026-62384",
+   "package": "nltk",
+   "ranges": [
+    {
+     "fixed": "3.10.2",
+     "introduced": "3.10.0"
+    }
+   ],
+   "title": "Symlink inside FrameNet corpus subdirectory escapes the corpus root in NLTK",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2026-62385",
+   "package": "nltk",
+   "ranges": [
+    {
+     "fixed": "3.10.0",
+     "introduced": "0"
+    }
+   ],
+   "title": "Corpus-root escape in NLTK FrameNet and NKJP readers via unsafe selectors or index state",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2026-63311",
+   "package": "nltk",
+   "ranges": [
+    {
+     "fixed": "3.10.0",
+     "introduced": "0"
+    }
+   ],
+   "title": "SSRF URL validation fails open when DNS resolution fails",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2026-63312",
+   "package": "nltk",
+   "ranges": [
+    {
+     "fixed": "3.10.0",
+     "introduced": "0"
+    }
+   ],
+   "title": "NLTK StreamBackedCorpusView skips pathsec.ENFORCE path validation",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2026-64849",
+   "package": "mlflow",
+   "ranges": [
+    {
+     "fixed": "3.15.0",
+     "introduced": "3.3.0"
+    },
+    {
+     "fixed": "3.15.0",
+     "introduced": "0"
+    }
+   ],
+   "title": "Webhook delivery SSRF via unvalidated redirects and unpinned DNS resolution",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2026-67260",
+   "package": "apache-airflow",
+   "ranges": [
+    {
+     "fixed": "3.3.1",
+     "introduced": "3.3.0"
+    }
+   ],
+   "title": "Scheduler deserializes human-in-the-loop next_kwargs without an allow-list",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2026-67323",
+   "package": "gitpython",
+   "ranges": [
+    {
+     "fixed": "3.1.51",
+     "introduced": "0"
+    }
+   ],
+   "title": "GitPython option injection via keyword arguments and dash-leading revisions",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2026-67325",
+   "package": "gitpython",
+   "ranges": [
+    {
+     "fixed": "3.1.51",
+     "introduced": "0"
+    }
+   ],
+   "title": "Option blocklist bypass through git long-option prefix abbreviation in GitPython",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2026-67587",
+   "package": "apache-airflow",
+   "ranges": [
+    {
+     "fixed": "3.3.1",
+     "introduced": "3.3.0"
+    }
+   ],
+   "title": "Callback deserialization imports attacker-named modules in the Airflow scheduler",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2026-70479",
+   "package": "open-webui",
+   "ranges": [
+    {
+     "fixed": "0.11.0",
+     "introduced": "0.9.6"
+    }
+   ],
+   "title": "SSRF through unvalidated sub-resource requests in a browser-based web loader",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2026-70480",
+   "package": "open-webui",
+   "ranges": [
+    {
+     "fixed": "0.11.0",
+     "introduced": "0.6.34"
+    }
+   ],
+   "title": "Client-side SSRF through the default Vega loader in chat chart rendering",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2026-70485",
+   "package": "open-webui",
+   "ranges": [
+    {
+     "fixed": "0.11.0",
+     "introduced": "0.9.0"
+    }
+   ],
+   "title": "SSRF filter bypass via IPv4 addresses embedded in NAT64 IPv6 literals",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2026-70486",
+   "package": "open-webui",
+   "ranges": [
+    {
+     "fixed": "0.11.0",
+     "introduced": "0.9.0"
+    }
+   ],
+   "title": "Sandboxed preview iframe must not combine script execution with same-origin access for files served from the app origin",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2026-70489",
+   "package": "open-webui",
+   "ranges": [
+    {
+     "fixed": "0.11.0",
+     "introduced": "0.9.0"
+    }
+   ],
+   "title": "Unbounded recurrence walk from a fixed far-past anchor stalls the event loop",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2026-70492",
+   "package": "open-webui",
+   "ranges": [
+    {
+     "fixed": "0.11.0",
+     "introduced": "0.10.0"
+    }
+   ],
+   "title": "Escape KaTeX fallback output so failed math renders as text, not HTML",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2026-70493",
+   "package": "open-webui",
+   "ranges": [
+    {
+     "fixed": "0.11.0",
+     "introduced": "0.9.6"
+    }
+   ],
+   "title": "Unbounded backtracking regex in knowledge file search stalls the worker",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2026-71211",
+   "package": "mlflow",
+   "ranges": [
+    {
+     "introduced": "3.13.0",
+     "last_affected": "3.15.2"
+    }
+   ],
+   "title": "Gateway secret api_base stored and fetched without SSRF validation",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2026-71513",
+   "package": "nltk",
+   "ranges": [
+    {
+     "fixed": "3.10.3",
+     "introduced": "3.10.0"
+    }
+   ],
+   "title": "Dotted-name bypass in NLTK AllowlistUnpickler enables code execution via untrusted parser models",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2026-71514",
+   "package": "nltk",
+   "ranges": [
+    {
+     "fixed": "3.10.3",
+     "introduced": "3.9.4"
+    }
+   ],
+   "title": "Absolute path in Crubadan table.txt escapes the corpus root in NLTK",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2026-72818",
+   "package": "nltk",
+   "ranges": [
+    {
+     "fixed": "3.10.1",
+     "introduced": "0"
+    }
+   ],
+   "title": "Catastrophic regex backtracking in NLTK TweetTokenizer naked-domain URL matching",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2026-73415",
+   "package": "jupyterlab",
+   "ranges": [
+    {
+     "fixed": "4.6.2",
+     "introduced": "4.6.0"
+    },
+    {
+     "fixed": "4.5.10",
+     "introduced": "0"
+    }
+   ],
+   "title": "Image viewer blob URL lifetime allows same-origin script from crafted SVG in JupyterLab",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2026-73417",
+   "package": "jupyterlab",
+   "ranges": [
+    {
+     "fixed": "4.6.2",
+     "introduced": "4.6.0"
+    },
+    {
+     "fixed": "4.5.10",
+     "introduced": "3.3.0"
+    }
+   ],
+   "title": "Unvalidated notebook margin settings from overrides.json allow script injection through style content in JupyterLab",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2026-73556",
+   "package": "vllm",
+   "ranges": [
+    {
+     "fixed": "0.26.0",
+     "introduced": "0"
+    }
+   ],
+   "title": "Unbounded regex compile in vLLM lm-format-enforcer backend enables ReDoS",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2026-73560",
+   "package": "vllm",
+   "ranges": [
+    {
+     "fixed": "0.26.0",
+     "introduced": "0"
+    }
+   ],
+   "title": "Model processor fetches user media strings directly, bypassing the media connector's SSRF and local-file checks",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2026-75526",
+   "package": "django-cms",
+   "ranges": [
+    {
+     "fixed": "5.0.9",
+     "introduced": "5.0.8"
+    }
+   ],
+   "title": "Stored XSS in django CMS edit-mode plugin exception heading",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2026-76217",
+   "package": "gitpython",
+   "ranges": [
+    {
+     "fixed": "3.1.58",
+     "introduced": "0"
+    }
+   ],
+   "title": "GitPython rm and checkout forward pathspec file options, letting callers read arbitrary files via error text",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2026-76218",
+   "package": "gitpython",
+   "ranges": [
+    {
+     "fixed": "3.1.58",
+     "introduced": "0"
+    }
+   ],
+   "title": "Unguarded option forwarding in GitPython Repo.init allows hook planting via template",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2026-76219",
+   "package": "gitpython",
+   "ranges": [
+    {
+     "fixed": "3.1.58",
+     "introduced": "0"
+    }
+   ],
+   "title": "Option injection into git read-tree via treeish arguments in GitPython IndexFile methods",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2026-76220",
+   "package": "gitpython",
+   "ranges": [
+    {
+     "fixed": "3.1.58",
+     "introduced": "0"
+    }
+   ],
+   "title": "GitPython unsafe-option guard bypass through joined short-option token when single-char splitting is disabled",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2026-78675",
+   "package": "gitpython",
+   "ranges": [
+    {
+     "fixed": "3.1.59",
+     "introduced": "0"
+    }
+   ],
+   "title": "Untrusted .gitmodules include directive leaks local file content through GitPython submodule enumeration",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2026-78677",
+   "package": "gitpython",
+   "ranges": [
+    {
+     "fixed": "3.1.59",
+     "introduced": "0"
+    }
+   ],
+   "title": "GitPython clone_from allows --separate-git-dir to place git metadata outside the destination",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2026-78682",
+   "package": "nltk",
+   "ranges": [
+    {
+     "fixed": "3.10.3",
+     "introduced": "0"
+    }
+   ],
+   "title": "SSRF bypass in NLTK pathsec when an HTTP proxy is configured",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2026-78683",
+   "package": "nltk",
+   "ranges": [
+    {
+     "fixed": "3.10.0",
+     "introduced": "0"
+    }
+   ],
+   "title": "Unrestricted pickle loading of NLTK TransitionParser model files allows code execution",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2026-79657",
+   "package": "nltk",
+   "ranges": [
+    {
+     "fixed": "3.10.3",
+     "introduced": "0"
+    }
+   ],
+   "title": "Allowlisted pickle loaders that trust whole module namespaces allow code execution",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2026-79674",
+   "package": "nltk",
+   "ranges": [
+    {
+     "fixed": "3.10.3",
+     "introduced": "0"
+    }
+   ],
+   "title": "Corpus reader constructors bypass the pathsec sandbox on caller-supplied roots",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2026-79675",
+   "package": "nltk",
+   "ranges": [
+    {
+     "fixed": "3.10.3",
+     "introduced": "0"
+    }
+   ],
+   "title": "Unvalidated per-call JVM options in NLTK Stanford wrappers allow JVM flag injection",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2026-79676",
+   "package": "nltk",
+   "ranges": [
+    {
+     "fixed": "3.10.3",
+     "introduced": "0"
+    }
+   ],
+   "title": "Corpus readers reopening root-derived paths with built-in open let symlinks escape the trusted root",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2026-80205",
+   "package": "nltk",
+   "ranges": [
+    {
+     "fixed": "3.10.0",
+     "introduced": "0"
+    }
+   ],
+   "title": "ReDoS in NLTK Text.findall and TokenSearcher.findall from unvalidated user-supplied regular expressions",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2026-80206",
+   "package": "nltk",
+   "ranges": [
+    {
+     "fixed": "3.10.3",
+     "introduced": "0"
+    }
+   ],
+   "title": "ReDoS in NLTK tgrep via user-supplied regex nodes",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2026-81725",
+   "package": "nltk",
+   "ranges": [
+    {
+     "fixed": "3.10.3",
+     "introduced": "0"
+    }
+   ],
+   "title": "Quadratic ReDoS in NLTK Pl196xCorpusReader on malformed TEI blocks",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2026-81726",
+   "package": "nltk",
+   "ranges": [
+    {
+     "introduced": "0",
+     "last_affected": "3.10.3"
+    },
+    {
+     "fixed": "3.10.3",
+     "introduced": "0"
+    }
+   ],
+   "title": "Model-artifact APIs in NLTK bypass pathsec containment by using raw file open on caller-chosen paths",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2026-81727",
+   "package": "nltk",
+   "ranges": [
+    {
+     "fixed": "3.10.3",
+     "introduced": "0"
+    }
+   ],
+   "title": "Pre-existing hardlinks in the install tree let NLTK downloader overwrite outside files",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2026-84377",
+   "package": "litellm",
+   "ranges": [
+    {
+     "fixed": "1.88.6",
+     "introduced": "0"
+    },
+    {
+     "fixed": "1.89.7",
+     "introduced": "1.89.0"
+    },
+    {
+     "fixed": "1.90.7",
+     "introduced": "1.90.0"
+    },
+    {
+     "fixed": "1.91.5",
+     "introduced": "1.91.0"
+    },
+    {
+     "fixed": "1.92.2",
+     "introduced": "1.92.0"
+    },
+    {
+     "fixed": "1.93.2",
+     "introduced": "1.93.0"
+    },
+    {
+     "fixed": "1.94.3",
+     "introduced": "1.94.0"
+    },
+    {
+     "fixed": "1.95.1",
+     "introduced": "1.95.0"
+    },
+    {
+     "fixed": "1.96.2",
+     "introduced": "1.96.0"
+    }
+   ],
+   "title": "Client-supplied routing and credential parameters redirect proxy provider calls and leak stored keys",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2026-8643",
+   "package": "pip",
+   "ranges": [
+    {
+     "fixed": "26.1.2",
+     "introduced": "0"
+    }
+   ],
+   "title": "Path traversal via console_scripts and gui_scripts entry point names in pip",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2026-87819",
+   "package": "gitpython",
+   "ranges": [
+    {
+     "fixed": "3.1.60",
+     "introduced": "0"
+    }
+   ],
+   "title": "ReDoS in GitPython actor parsing of commit author and committer headers",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2026-87995",
+   "package": "open-webui",
+   "ranges": [
+    {
+     "fixed": "0.11.1",
+     "introduced": "0.8.11"
+    }
+   ],
+   "title": "Same-origin sandbox grant in proxied terminal port preview iframe enables account takeover",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2026-87996",
+   "package": "open-webui",
+   "ranges": [
+    {
+     "fixed": "0.11.1",
+     "introduced": "0.9.6"
+    }
+   ],
+   "title": "DNS rebinding SSRF from double hostname resolution in the Open WebUI Playwright web loader",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2026-87999",
+   "package": "open-webui",
+   "ranges": [
+    {
+     "fixed": "0.11.1",
+     "introduced": "0"
+    }
+   ],
+   "title": "Server-side URL fetch treats globally routable as proof a destination is external",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2026-88001",
+   "package": "open-webui",
+   "ranges": [
+    {
+     "fixed": "0.11.1",
+     "introduced": "0.9.5"
+    }
+   ],
+   "title": "SSRF via unvalidated HTTP redirect destinations in server-side fetches",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2026-96747",
+   "package": "pymongo",
+   "ranges": [
+    {
+     "fixed": "4.18.2",
+     "introduced": "3.9.0"
+    }
+   ],
+   "title": "KMS endpoint ending in .sock is treated as a Unix domain socket path in PyMongo field level encryption",
+   "versions": []
+  },
+  {
+   "cve_id": "CVE-2026-9856",
+   "package": "transformers",
+   "ranges": [
+    {
+     "fixed": "5.10.0",
+     "introduced": "0"
+    }
+   ],
+   "title": "Chat template names used as filenames in save_pretrained allow path traversal",
+   "versions": []
+  }
+ ],
+ "note": "PyPI affected ranges from PYSEC and GHSA (CC-BY-4.0) for CVEs in the prevention pack.",
+ "schema_version": 1,
+ "sources": {
+  "ghsa": "f6cde28cd8549dd5a3caedbcfa7db1e90d06f895",
+  "pysec": "30d5858d4f168738a41c83bf5be1fe47726c0e47"
+ }
+}

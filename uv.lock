@@ -1065,6 +1065,7 @@ dependencies = [
     { name = "numpy", version = "2.4.6", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.12'" },
     { name = "numpy", version = "2.5.4", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.12'" },
     { name = "onnxruntime" },
+    { name = "packaging" },
     { name = "pymilvus" },
     { name = "tokenizers" },
 ]
@@ -1081,6 +1082,7 @@ requires-dist = [
     { name = "mcp", specifier = "==2.3.0" },
     { name = "numpy", specifier = ">=1.26,<3" },
     { name = "onnxruntime", specifier = ">=1.20,<2" },
+    { name = "packaging", specifier = ">=24" },
     { name = "pymilvus", specifier = "==2.6.17" },
     { name = "tokenizers", specifier = ">=0.21,<1" },
 ]

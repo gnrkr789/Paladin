@@ -6,7 +6,7 @@
   <img src="https://img.shields.io/badge/version-0.2.0a1-3451d1" alt="version 0.2.0a1">
   <img src="https://img.shields.io/badge/python-3.11%2B-3776ab" alt="python 3.11+">
   <img src="https://img.shields.io/badge/license-Apache--2.0-blue" alt="Apache-2.0">
-  <img src="https://img.shields.io/badge/tests-323%20passing-2fbf71" alt="323 unit tests passing">
+  <img src="https://img.shields.io/badge/tests-326%20passing-2fbf71" alt="326 unit tests passing">
 </p>
 
 Paladin stops AI coding agents from reintroducing known CVE patterns. It tells
@@ -18,7 +18,7 @@ the agent what the problem is and how to avoid it; the agent writes its own fix.
   a model (`patch_checked`); 23 remain `candidate`.
 - **Edit-time hook** for Claude Code and Codex, with no model or network call:
   an exact CVE match blocks the turn with the CVE, line, cause and fix
-  direction; 98 rules drafted from the cards add non-blocking review notes.
+  direction; 125 rules drafted from the cards add non-blocking review notes.
 - **Dependency check** (`paladin deps check`, MCP `check_dependencies`, and the hook
   when an agent edits a dependency file): pinned versions against the PyPI affected
   ranges of 520 collected CVEs, most of which are library-internal and have no code rule.
@@ -43,10 +43,10 @@ the agent what the problem is and how to avoid it; the agent writes its own fix.
 | Claude Code session, ported vulnerable code | blocked, agent fixed it |
 | Clean install from wheel | pass |
 | Search, fresh held-out questions (hit@5 / MRR) | 0.831 / 0.697 and 0.873 / 0.736 |
-| Review rules, first scan of 4,055 site-packages files | 89 of 98 rules silent; pickle.load 37 files |
+| Review rules, first scan of 4,055 site-packages files | 112 of 125 rules silent; pickle.load 37 files; 1 rule over 50 files not shipped |
 | Rewritten cards audited by a second model (Codex), sample of 30 | 30 better than the draft; 10 exact, 20 with a side claim to fix |
 | Same 207 cards after correction, Fable audit of a new sample of 30 | 29 exact, 1 with a minor omission |
-| Unit tests | 323 pass |
+| Unit tests | 326 pass |
 
 Evidence: [docs/evidence/private-alpha/final-report.md](docs/evidence/private-alpha/final-report.md).
 

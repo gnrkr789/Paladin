@@ -78,6 +78,20 @@ agent explained the CVE and proposed the one-line fix but left the file
 verbatim, following the prompt's "exactly as written, then stop". The hook
 informs and blocks the turn; it does not edit code itself.
 
+`docs/evidence/agent-e2e-v2/` (pack v2, 2026-11-03, scripts/run_agent_e2e.py): one
+task asked each agent to port the legacy Mercurial and pickle helpers, add a Flask
+YAML upload view, and use Paladin search. Claude Code (Sonnet 5.5): the hook blocked
+the first write with CVE-2022-24065 and a pickle review note; the agent added `--`,
+replaced pickle.loads with a restricted unpickler, used yaml.safe_load, called search
+7 times, and the final static check is clean. Codex (gpt-6.1-sol): MCP search and
+check_changes worked and the agent added `--` on its own, but the project hook never
+ran in three runs. Run 1 had no Windows sandbox (no files written); runs 2 and 3 did
+not load the project's `.codex/hooks.json` even with hook trust bypassed and the
+project marked trusted on the command line. The Codex hook path is still unproven in
+a real session; trusting it through `/hooks` in an interactive Codex session is the
+next thing to try. Its check_changes calls failed as unreadable paths because the MCP
+server served the Paladin checkout (for the search index), not the task folder.
+
 Set `PALADIN_HOOK_LOG` to a file path to append each hook decision as one JSON
 line (Claude Code's stream output does not include PostToolUse hook responses).
 

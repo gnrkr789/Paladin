@@ -36,11 +36,20 @@ check_dependencies, scan_cve_candidates) keep reading the project workspace. One
 - `paladin mcp --workspace <project> --home <home>`: search answered from the
   home's index while check_changes and check_dependencies read the project
   (C:/Users/user/Desktop/personal/paladin-codex-e2e).
-- Evidence, guidance and verified cases stay with the workspace: their source
-  snapshots live in the Paladin checkout's data folder, and `paladin cases` records
-  there, so get_prevention_guidance still finds them. get_knowledge_status takes index
-  readiness from the home and counts evidence snapshots in the workspace. Moving
-  these into the home is open (code review, 2026-11-03).
+- Evidence copies (CVE records, advisories, patches; 12.6 MB, 1,539 files) now ship
+  as the package paladin_evidence (data/ in the checkout), so get_pattern_evidence and
+  get_prevention_guidance work from any project and any install; the wheel is 4.4 MB.
+  The path check had also rejected every data/cve-expansion/sources path, so the
+  1,494 evidence entries of candidate and patch_checked cards never returned an
+  excerpt, even in the checkout; that group is now allowed.
+- Verified cases (`paladin cases`, cases.sqlite3 and its evidence folders) live in the
+  home, where get_prevention_guidance reads them. This machine's records were moved
+  from the checkout's .paladin, which is gone.
+- Clean wheel install (Python 3.12, locked versions): status ready on the shared home,
+  search, evidence excerpts from a temporary project, dependency check and hook all
+  work. On Python 3.11 the lock picks numpy 2.4.6 instead of 2.5.4, so the packaged
+  vectors do not apply and `patterns index` re-embeds; two installs with different
+  runtime versions on one home re-index over each other.
 - Found while testing: check_changes returned status "findings", which the MCP
   output schema does not allow, so clients rejected every result that had a
   finding. It now returns status "complete" with outcome "findings", like

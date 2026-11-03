@@ -18,7 +18,8 @@ download, indexing or Docker control. Prepare semantic retrieval with the
 explicit administrative commands in [knowledge](knowledge.md) first.
 
 `--workspace` is the project the check tools read (check_changes,
-check_dependencies, scan_cve_candidates, evidence and guidance). Search and status
+check_dependencies, scan_cve_candidates). Evidence excerpts and guidance come from
+the evidence copies shipped with Paladin; verified cases come from the home. Search and status
 read the Paladin home (`--home`, else `PALADIN_HOME`, else the per-user data
 folder), where `setup`, `model prepare` and `patterns index` put the index, so one
 setup serves every project.

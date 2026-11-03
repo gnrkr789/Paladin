@@ -79,6 +79,19 @@ class RuleDraftTests(unittest.TestCase):
         self.assertEqual(merged[1]["cve_ids"], ["CVE-2017-18342", "CVE-2020-1747"])
         self.assertEqual(len(merged[1]["examples"]["vulnerable"]), 2)
 
+    def test_a_rule_whose_calls_another_rule_covers_with_the_same_conditions_is_folded_into_it(self):
+        broad = json.loads(json.dumps(YAML_LOAD))
+        broad.update(rule_id="z-broad-v1", call=["yaml.load", "yaml.load_all"], cve_ids=["CVE-2021-0001"])
+        narrow = json.loads(json.dumps(YAML_LOAD))
+        narrow.update(rule_id="a-narrow-v1", call=["yaml.load"], cve_ids=["CVE-2021-0002"])
+        stricter = json.loads(json.dumps(narrow))
+        stricter.update(rule_id="b-stricter-v1", require=narrow["require"] + [{"arg": 0, "is": "non_constant"}], cve_ids=["CVE-2021-0003"])
+
+        merged = rule_draft.merge_rules([narrow, broad, stricter])
+
+        self.assertEqual([rule["rule_id"] for rule in merged], ["b-stricter-v1", "z-broad-v1"])
+        self.assertEqual(merged[1]["cve_ids"], ["CVE-2021-0001", "CVE-2021-0002"])
+
 
 if __name__ == "__main__":
     unittest.main()

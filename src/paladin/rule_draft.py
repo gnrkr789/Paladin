@@ -81,16 +81,37 @@ def _signature(rule):
     return json.dumps([sorted(rule["call"]), rule["require"]], sort_keys=True)
 
 
+def _absorb(target, rule):
+    target["cve_ids"] = sorted(set(target["cve_ids"]) | set(rule["cve_ids"]))
+    for role, items in rule["examples"].items():
+        target["examples"][role] += [item for item in items if item not in target["examples"][role]]
+
+
+def _covering(rule, rules):
+    """A different rule with the same conditions whose calls include all of this rule's calls."""
+    for other in rules:
+        if other is not rule and other["require"] == rule["require"] and set(rule["call"]) < set(other["call"]):
+            return other
+    return None
+
+
 def merge_rules(rules):
-    """One rule per matcher: CVE ids and examples combined; the lowest rule_id and its text kept."""
+    """One rule per matcher: CVE ids and examples combined; the lowest rule_id and its text kept.
+
+    A rule whose calls a broader rule with the same conditions also watches is folded into
+    that rule, so one line never reports the same finding twice.
+    """
     merged = {}
     for rule in sorted(rules, key=lambda item: item["rule_id"]):
         key = _signature(rule)
         if key not in merged:
             merged[key] = json.loads(json.dumps(rule))
             continue
-        target = merged[key]
-        target["cve_ids"] = sorted(set(target["cve_ids"]) | set(rule["cve_ids"]))
-        for role, items in rule["examples"].items():
-            target["examples"][role] += [item for item in items if item not in target["examples"][role]]
-    return sorted(merged.values(), key=lambda item: item["rule_id"])
+        _absorb(merged[key], rule)
+    kept = sorted(merged.values(), key=lambda item: len(item["call"]))
+    for rule in list(kept):
+        target = _covering(rule, kept)
+        if target is not None:
+            _absorb(target, rule)
+            kept.remove(rule)
+    return sorted(kept, key=lambda item: item["rule_id"])

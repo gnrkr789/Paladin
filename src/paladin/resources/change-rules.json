@@ -948,24 +948,11 @@
   },
   {
    "call": [
-    "mistune.directives.Include"
-   ],
-   "cve_ids": [
-    "CVE-2026-115355"
-   ],
-   "family": "path_traversal",
-   "fix": "Upgrade mistune to 3.3.0 or later, do not enable the Include directive for untrusted Markdown, and make sure resolved include paths stay inside the source directory and that included content and error messages are HTML-escaped.",
-   "require": [],
-   "rule_id": "mistune-include-directive-enabled-v1",
-   "severity": "review",
-   "title": "Mistune Include directive enabled; path traversal and unescaped output in versions before 3.3.0"
-  },
-  {
-   "call": [
     "mistune.directives.Include",
     "mistune.directives.include.Include"
    ],
    "cve_ids": [
+    "CVE-2026-115355",
     "CVE-2026-59924"
    ],
    "family": "path_traversal",
@@ -1477,6 +1464,7 @@
     "_pickle.load"
    ],
    "cve_ids": [
+    "CVE-2012-4406",
     "CVE-2018-8021"
    ],
    "family": "unsafe_deserialization",
@@ -1490,25 +1478,6 @@
    "rule_id": "pickle-load-non-constant-data-v1",
    "severity": "review",
    "title": "pickle load called on data that is not a constant"
-  },
-  {
-   "call": [
-    "pickle.loads"
-   ],
-   "cve_ids": [
-    "CVE-2012-4406"
-   ],
-   "family": "unsafe_deserialization",
-   "fix": "Store cached metadata in a data-only format such as JSON, parse it with a loader that cannot instantiate arbitrary objects, and validate the shape of the decoded structure before use.",
-   "require": [
-    {
-     "arg": 0,
-     "is": "non_constant"
-    }
-   ],
-   "rule_id": "pickle-loads-non-constant-data-v1",
-   "severity": "review",
-   "title": "pickle.loads called on data that is not a constant, such as bytes read from a shared cache"
   },
   {
    "call": [

@@ -67,3 +67,15 @@ have no severity yet.
   every sampled pickle, SQL and extractall match was safe in context. Library code is
   a pessimistic proxy for application code, but these rules cannot tell trusted from
   untrusted data.
+
+## Decision: severity plus precision (user, 2026-11-04)
+
+- A rule whose judged matches in real code showed no real risk is held at review,
+  whatever its CVE severity (severity.precision_holds; field precision_hold in the
+  shipped rules). Held now: 11 rules (archive extractall, commonprefix containment,
+  file scheme blocklist, Jinja2 autoescape, lxml entity resolution, two Mako lookups,
+  MCP client URL, os.system strings, pickle loads, SQL built strings).
+- Shipped: 107 block (CRITICAL 20, HIGH 42, MEDIUM 45), 7 LOW and 11 held advise.
+  Rules that never matched the corpus have no precision evidence and keep their
+  severity. A held rule can block again after its conditions are tightened and a new
+  judged sample shows real risks.

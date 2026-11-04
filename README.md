@@ -6,7 +6,7 @@
   <img src="https://img.shields.io/badge/version-0.2.0a1-3451d1" alt="version 0.2.0a1">
   <img src="https://img.shields.io/badge/python-3.11%2B-3776ab" alt="python 3.11+">
   <img src="https://img.shields.io/badge/license-Apache--2.0-blue" alt="Apache-2.0">
-  <img src="https://img.shields.io/badge/tests-355%20passing-2fbf71" alt="355 unit tests passing">
+  <img src="https://img.shields.io/badge/tests-356%20passing-2fbf71" alt="356 unit tests passing">
 </p>
 
 Paladin stops AI coding agents from reintroducing known CVE patterns. It tells
@@ -18,9 +18,10 @@ the agent what the problem is and how to avoid it; the agent writes its own fix.
   a model (`patch_checked`); 23 remain `candidate`.
 - **Edit-time hook** for Claude Code and Codex, with no model or network call:
   125 rules drafted from the cards block the turn when their CVE is MEDIUM,
-  HIGH or CRITICAL (118 rules) and advise for LOW (7; `hook install --block-low`
-  makes those block too), plus two exact CVE rules, each with the CVE, line and
-  fix direction.
+  HIGH or CRITICAL (107 rules), advise for LOW (7; `hook install --block-low`
+  makes those block too), and advise for 11 broad rules (pickle, SQL strings,
+  archive extraction and others) whose sampled matches in real code were not real
+  risks; two exact CVE rules also block. Each block names the CVE, line and fix.
 - **Dependency check** (`paladin deps check`, MCP `check_dependencies`, and the hook
   when an agent edits a dependency file): pinned versions against the PyPI affected
   ranges of 520 collected CVEs, most of which are library-internal and have no code rule.
@@ -48,7 +49,7 @@ the agent what the problem is and how to avoid it; the agent writes its own fix.
 | Review rules, first scan of 4,055 site-packages files | 112 of 125 rules silent; pickle.load 37 files; 1 rule over 50 files not shipped |
 | Rewritten cards audited by a second model (Codex), sample of 30 | 30 better than the draft; 10 exact, 20 with a side claim to fix |
 | Same 207 cards after correction, Fable audit of a new sample of 30 | 29 exact, 1 with a minor omission |
-| Unit tests | 355 pass |
+| Unit tests | 356 pass |
 
 Evidence: [docs/evidence/private-alpha/final-report.md](https://github.com/gnrkr789/Paladin/blob/main/docs/evidence/private-alpha/final-report.md).
 

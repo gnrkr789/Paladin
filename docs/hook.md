@@ -29,8 +29,8 @@ On each edit of a `.py` file inside the workspace:
 | Result | Hook output | Effect on the agent |
 |---|---|---|
 | Exact CVE rule match (CVE-2022-24065 checkout, CVE-2023-5752 pip revision) | `{"decision": "block", "reason": ...}` | The turn is blocked; the agent receives CVE, file:line, cause and fix |
-| One of 125 rules drafted from CVE cards whose CVE is MEDIUM, HIGH or CRITICAL (118), on a line the edit wrote | `{"decision": "block", "reason": ...}` | The turn is blocked with the CVE, its severity, line, fix and cards |
-| The same rules on lines the edit did not write, LOW rules (7; blocking with `hook install --block-low`), or the generalized Mercurial argv rule | `additionalContext` | Advisory note with the card id; not blocked |
+| One of 125 rules drafted from CVE cards whose CVE is MEDIUM, HIGH or CRITICAL and that is not held for precision (107), on a line the edit wrote | `{"decision": "block", "reason": ...}` | The turn is blocked with the CVE, its severity, line, fix and cards |
+| The same rules on lines the edit did not write, LOW rules (7; blocking with `hook install --block-low`), 11 rules held for precision, or the generalized Mercurial argv rule | `additionalContext` | Advisory note with the card id; not blocked |
 | Edited dependency file (requirements*.txt, pyproject.toml, uv.lock, poetry.lock, Pipfile.lock) with a pinned version in an advisory range | `additionalContext` | Review note with CVE, card title and fixed versions; not blocked |
 | Unsupported (outside the workspace, link, unreadable, non-ASCII path) | `additionalContext` | Explicit "not inspected" note; never a safe claim |
 | Paladin failure | `additionalContext` | "unavailable" note; never blocks |
@@ -119,6 +119,6 @@ the hook timeout. MCP results send rule guidance once and cap findings at 50.
 
 ## Limits
 
-Two exact CVE rules and 118 card rules (MEDIUM and above) block, 7 LOW card
-rules and one generalized Mercurial rule advise; single-file,
+Two exact CVE rules and 107 card rules (MEDIUM and above) block; 7 LOW card
+rules, 11 card rules held for precision and one generalized Mercurial rule advise; single-file,
 intraprocedural, syntactic matching. A clean result is not a security verdict.

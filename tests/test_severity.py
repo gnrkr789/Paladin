@@ -128,7 +128,7 @@ class HookTests(unittest.TestCase):
 class ShippedRuleTests(unittest.TestCase):
     def test_shipped_rules_follow_the_severity_criterion(self):
         index = severity.load_index()["levels"]
-        samples = sorted((Path(__file__).resolve().parents[1] / "docs/evidence/block-precision").glob("*.json"))
+        samples = sorted((Path(__file__).resolve().parents[1] / "data/block-precision").glob("*.json"))
         held = severity.precision_holds([item for path in samples
                                          for item in json.loads(path.read_text(encoding="utf-8"))["judged"]])
         for rule in change_check.load_data_rules():

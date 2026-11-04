@@ -1,0 +1,1459 @@
+{
+ "corpus": "33 open-source Flask and Django applications (see repositories), Python files only",
+ "block_rules": 118,
+ "matches": 1707,
+ "repositories": [
+  {
+   "repo": "https://github.com/CTFd/CTFd",
+   "commit": "a6a81ddd921cd74f8aabc07c0f7a71cdcf5365b6",
+   "python_files": 357
+  },
+  {
+   "repo": "https://github.com/getredash/redash",
+   "commit": "9342037995ac48ba1a1889ee17c8cf8d0e329443",
+   "python_files": 309
+  },
+  {
+   "repo": "https://github.com/searxng/searxng",
+   "commit": "cccbc9e158b0ac3bb2158e9841a647a5bec57b57",
+   "python_files": 0
+  },
+  {
+   "repo": "https://github.com/janeczku/calibre-web",
+   "commit": "6e840acbda8d62fdd159bf3855c01872d629a914",
+   "python_files": 101
+  },
+  {
+   "repo": "https://github.com/dgtlmoon/changedetection.io",
+   "commit": "5e086dddf83e6ff4f43751db2386a33e006b1e3b",
+   "python_files": 400
+  },
+  {
+   "repo": "https://github.com/spiral-project/ihatemoney",
+   "commit": "e66a7672e8e5c41549bf53c4a824c72c43ab9079",
+   "python_files": 46
+  },
+  {
+   "repo": "https://github.com/indico/indico",
+   "commit": "12dff35e617ab35d0e560e18b7c4f89cc7eb4481",
+   "python_files": 1300
+  },
+  {
+   "repo": "https://github.com/privacyidea/privacyidea",
+   "commit": "a653d6bbd8dd1fb2676d784d0fbb5ac683acfb88",
+   "python_files": 685
+  },
+  {
+   "repo": "https://github.com/Netflix/lemur",
+   "commit": "3a3c2c201d42db0eed06e79297eb8dc252c39288",
+   "python_files": 337
+  },
+  {
+   "repo": "https://github.com/flaskbb/flaskbb",
+   "commit": "737d76f14e8f8fa4a493f1424ab184c87aecc516",
+   "python_files": 239
+  },
+  {
+   "repo": "https://github.com/miguelgrinberg/microblog",
+   "commit": "a975ef64864354867c88e0ed3a17ba7d17dca752",
+   "python_files": 34
+  },
+  {
+   "repo": "https://github.com/mitre/caldera",
+   "commit": "cb8d6a8160e0f4990af323a7c071d5e8482b42c7",
+   "python_files": 188
+  },
+  {
+   "repo": "https://github.com/LibreTranslate/LibreTranslate",
+   "commit": "88932ba8e32b403fe3e8069b36f42751fb078264",
+   "python_files": 39
+  },
+  {
+   "repo": "https://github.com/netbox-community/netbox",
+   "commit": "16f6a4091f303d01baafa1b4294f4b21117c31c1",
+   "python_files": 1295
+  },
+  {
+   "repo": "https://github.com/healthchecks/healthchecks",
+   "commit": "930f239ca6559e79e1c0c79c881f39766dc519e4",
+   "python_files": 657
+  },
+  {
+   "repo": "https://github.com/paperless-ngx/paperless-ngx",
+   "commit": "8531d3e0c9098767cb7cf84c8ad71b25f95a3d52",
+   "python_files": 413
+  },
+  {
+   "repo": "https://github.com/saleor/saleor",
+   "commit": "d6bfad5a14528848e04457fc0ea27f40980ebef5",
+   "python_files": 4382
+  },
+  {
+   "repo": "https://github.com/ArchiveBox/ArchiveBox",
+   "commit": "ee80665df21054102cd6d6fa9f524f7924c1abef",
+   "python_files": 559
+  },
+  {
+   "repo": "https://github.com/WeblateOrg/weblate",
+   "commit": "adc8f96f93bd0cd6876dce4907322fae9358fed4",
+   "python_files": 1223
+  },
+  {
+   "repo": "https://github.com/kiwitcms/Kiwi",
+   "commit": "1fbc77d134f9c634972a8679692219aa84a6b6dc",
+   "python_files": 370
+  },
+  {
+   "repo": "https://github.com/inventree/InvenTree",
+   "commit": "ec5d6324f86d350cc516702e75d565a19aa20a5a",
+   "python_files": 699
+  },
+  {
+   "repo": "https://github.com/pretix/pretix",
+   "commit": "cbfc24dd648f6d1324dbfb2c77794b93b906a435",
+   "python_files": 1227
+  },
+  {
+   "repo": "https://github.com/babybuddy/babybuddy",
+   "commit": "2bd0461f5a7e407147bcfef363eb79dce6c9708d",
+   "python_files": 234
+  },
+  {
+   "repo": "https://github.com/taigaio/taiga-back",
+   "commit": "8ab6a4e3b5f6fbbfcbf108a6449011f07b7308aa",
+   "python_files": 932
+  },
+  {
+   "repo": "https://github.com/makeplane/plane",
+   "commit": "618d0eb74658329a6f6e92434ac54231422c5b96",
+   "python_files": 735
+  },
+  {
+   "repo": "https://github.com/HumanSignal/label-studio",
+   "commit": "a5b3125889f89929892b02e52c6988affb3e7e2f",
+   "python_files": 757
+  },
+  {
+   "repo": "https://github.com/wger-project/wger",
+   "commit": "93a2267a431e72745bbc19124951a4df50f98011",
+   "python_files": 752
+  },
+  {
+   "repo": "https://github.com/DefectDojo/django-DefectDojo",
+   "commit": "fb92592dd5973da52793adc357df1d835f9d0a41",
+   "python_files": 2534
+  },
+  {
+   "repo": "https://github.com/TandoorRecipes/recipes",
+   "commit": "cbb96e151fe0c57c16a4456fe1bd04230b1c1e5c",
+   "python_files": 415
+  },
+  {
+   "repo": "https://github.com/mathesar-foundation/mathesar",
+   "commit": "3833c3ae5714f164dd6870f4d28865e78d60a4cc",
+   "python_files": 235
+  },
+  {
+   "repo": "https://github.com/sissbruecker/linkding",
+   "commit": "27b7303baf41bb28babc610ac8eaa486e1ddfab5",
+   "python_files": 229
+  },
+  {
+   "repo": "https://github.com/goauthentik/authentik",
+   "commit": "4b4c69a17eb29a61a7ebe1c6a8f723fb28a3ea13",
+   "python_files": 2327
+  },
+  {
+   "repo": "https://github.com/nautobot/nautobot",
+   "commit": "4bb97523fbf80e48975ab91d6037250831738f7f",
+   "python_files": 1264
+  }
+ ],
+ "files_with_matches": 694,
+ "matches_per_rule": {
+  "aiohttp-static-route-review-v1": 2,
+  "archive-extractall-path-check-v1": 6,
+  "boto3-s3-custom-endpoint-url-v1": 10,
+  "commonprefix-path-containment-v1": 1,
+  "django-form-field-help-text-built-string-v1": 3,
+  "django-order-by-non-constant-v1": 608,
+  "django-stringagg-non-constant-delimiter-v1": 2,
+  "django-urlize-untrusted-text-v1": 1,
+  "django-values-built-json-key-alias-v1": 8,
+  "elementtree-parse-untrusted-xml-v1": 16,
+  "file-scheme-prefix-blocklist-v1": 10,
+  "gitpython-clone-from-untrusted-url-v1": 2,
+  "gitpython-dynamic-revision-option-injection-v1": 1,
+  "jinja2-environment-autoescape-not-enabled-v1": 8,
+  "lxml-html-cleaner-untrusted-html-v1": 1,
+  "lxml-xmlparser-entity-resolution-v1": 10,
+  "mako-lookup-get-template-dynamic-name-v1": 12,
+  "mako-lookup-get-template-nonconstant-uri-v1": 12,
+  "mark-safe-built-link-markup-v1": 78,
+  "markup-wraps-built-string-v1": 9,
+  "os-system-built-command-string-v1": 2,
+  "pickle-load-non-constant-data-v1": 23,
+  "pillow-image-open-untrusted-xbm-redos-v1": 118,
+  "redirect-target-unvalidated-scheme-v1": 547,
+  "send-from-directory-built-base-dir-v1": 2,
+  "sql-execute-built-string-v1": 160,
+  "sqlalchemy-order-by-built-string-v1": 8,
+  "storage-save-untrusted-name-v1": 11,
+  "werkzeug-safe-join-untrusted-path-v1": 20,
+  "yaml-load-without-safe-loader-v1": 16
+ },
+ "sample": {
+  "seed": 20261104,
+  "per_rule": 6,
+  "judge": "claude-fable-5-1",
+  "size": 137
+ },
+ "verdicts": {
+  "cannot_tell": 8,
+  "error": 0,
+  "real_risk": 17,
+  "safe_in_context": 112
+ },
+ "judged": [
+  {
+   "path": "mitre__caldera/app/api/rest_api.py",
+   "line": 34,
+   "rule_id": "aiohttp-static-route-review-v1",
+   "sha256": "e3dd521cdc9e4a7931ac1dbe7e22217c5b9a64bcef6f79b9da68021cb8c15000",
+   "cve_severity": "HIGH",
+   "verdict": "real_risk",
+   "reason": "The add_static call registers a publicly reachable static route on the aiohttp application, so attacker-controlled request paths are processed by aiohttp's static path normalization (the behavior the rule targets), and nothing in the excerpt shows a patched aiohttp version or a reverse proxy serving these files instead."
+  },
+  {
+   "path": "mitre__caldera/app/api/rest_api.py",
+   "line": 36,
+   "rule_id": "aiohttp-static-route-review-v1",
+   "sha256": "e3dd521cdc9e4a7931ac1dbe7e22217c5b9a64bcef6f79b9da68021cb8c15000",
+   "cve_severity": "HIGH",
+   "verdict": "real_risk",
+   "reason": "The flagged add_static call publicly exposes the 'static/' directory under /gui, so arbitrary client-supplied request paths reach aiohttp's static path normalization, which is exactly the surface the rule targets (the aiohttp version in use is not shown, so the mitigation cannot be confirmed)."
+  },
+  {
+   "path": "paperless-ngx__paperless-ngx/src/documents/management/commands/document_importer.py",
+   "line": 479,
+   "rule_id": "archive-extractall-path-check-v1",
+   "sha256": "fd7fc9858aed67e7f8e5664f902ecf85fc87d0d1744b69de674a84325eeb55ff",
+   "cve_severity": "HIGH",
+   "verdict": "safe_in_context",
+   "reason": "The archive is an operator-supplied file passed to an admin-only management command and is extracted into a fresh temp dir via stdlib ZipFile.extractall, which already strips absolute paths and '..' components and never creates symlinks, so no entry can escape the extraction directory."
+  },
+  {
+   "path": "privacyidea__privacyidea/privacyidea/cli/pimanage/backup.py",
+   "line": 291,
+   "rule_id": "archive-extractall-path-check-v1",
+   "sha256": "35e0e12badde99873560a860bf294d83cae70be10b3b4a52bff1a7a90ac31f24",
+   "cve_severity": "HIGH",
+   "verdict": "safe_in_context",
+   "reason": "The flagged call passes filter=\"data\", which performs per-entry destination validation (rejecting absolute paths, parent traversal, and escaping links), and the non-3.12 branch uses a _safe_members filter, so the admin-supplied backup tarball is extracted with path checks in place."
+  },
+  {
+   "path": "inventree__InvenTree/tasks.py",
+   "line": 2449,
+   "rule_id": "archive-extractall-path-check-v1",
+   "sha256": "6ac2be81ebdcabc20cc658ecff04b1f819225352da7bc15da34b082b3aec6c08",
+   "cve_severity": "HIGH",
+   "verdict": "real_risk",
+   "reason": "The archive comes from outside the program (downloaded from a remote URL via requests or a user-supplied file path for the invoke task) and is bulk-extracted with extractall() into static/web with no per-entry destination validation."
+  },
+  {
+   "path": "privacyidea__privacyidea/privacyidea/cli/pimanage/backup.py",
+   "line": 293,
+   "rule_id": "archive-extractall-path-check-v1",
+   "sha256": "35e0e12badde99873560a860bf294d83cae70be10b3b4a52bff1a7a90ac31f24",
+   "cve_severity": "HIGH",
+   "verdict": "safe_in_context",
+   "reason": "The call already applies per-entry validation via _safe_members() (and filter=\"data\" on 3.12+), and the archive is an operator-supplied backup restored by an admin CLI command rather than data from an untrusted remote source."
+  },
+  {
+   "path": "janeczku__calibre-web/cps/updater.py",
+   "line": 91,
+   "rule_id": "archive-extractall-path-check-v1",
+   "sha256": "a28f8dce15bcecba11356652e80d16834f75178d754ef65ad44d967abf8992b9",
+   "cve_severity": "HIGH",
+   "verdict": "real_risk",
+   "reason": "The zip is fetched over the network from a remote update source (requests.get) and bulk-extracted with extractall() into a temp dir without any per-entry destination path validation, so a malicious or tampered archive could place entries outside tmp_dir before they are copied into BASE_DIR."
+  },
+  {
+   "path": "WeblateOrg__weblate/weblate/trans/tests/utils.py",
+   "line": 178,
+   "rule_id": "archive-extractall-path-check-v1",
+   "sha256": "74a1ca0a9191fab0ea3f189fff287450f8b6ab00ce1a23dfaefff9e055dc75db",
+   "cve_severity": "HIGH",
+   "verdict": "safe_in_context",
+   "reason": "The archive is a fixed test fixture resolved via get_test_file() from the repository's own test data (e.g. 'test-base-repo.git.tar'), not user-supplied input, so no outside-controlled entries reach extractall()."
+  },
+  {
+   "path": "makeplane__plane/apps/api/plane/settings/storage.py",
+   "line": 59,
+   "rule_id": "boto3-s3-custom-endpoint-url-v1",
+   "sha256": "4062b99ab25869d6b2d1bafad601f85cf594cca4a391df18dba75d43b3abd70a",
+   "cve_severity": "HIGH",
+   "verdict": "safe_in_context",
+   "reason": "The flagged client (line 59, the non-MinIO branch) uses self.aws_s3_endpoint_url, a server-side configuration value loaded from settings/environment rather than from the request, unlike the sibling branch on line 54 that derives the host from request.get_host()."
+  },
+  {
+   "path": "makeplane__plane/apps/api/plane/bgtasks/export_task.py",
+   "line": 51,
+   "rule_id": "boto3-s3-custom-endpoint-url-v1",
+   "sha256": "0583f8df11bf17b7bbb093eb8b0bc6d75d7f8d1d71e4ef4227caa39aef076ad6",
+   "cve_severity": "HIGH",
+   "verdict": "safe_in_context",
+   "reason": "The endpoint_url comes from Django settings (settings.AWS_S3_ENDPOINT_URL), a deployment-time configuration value controlled by the operator rather than request or user input."
+  },
+  {
+   "path": "makeplane__plane/apps/api/plane/settings/storage.py",
+   "line": 49,
+   "rule_id": "boto3-s3-custom-endpoint-url-v1",
+   "sha256": "4062b99ab25869d6b2d1bafad601f85cf594cca4a391df18dba75d43b3abd70a",
+   "cve_severity": "HIGH",
+   "verdict": "real_risk",
+   "reason": "When USE_MINIO=1 and a request is passed, endpoint_url is built from request.scheme and request.get_host(), i.e. the client-supplied Host header, so an attacker can direct the S3 client (with the server's credentials) to an arbitrary host unless ALLOWED_HOSTS is tightly restricted."
+  },
+  {
+   "path": "makeplane__plane/apps/api/plane/bgtasks/export_task.py",
+   "line": 84,
+   "rule_id": "boto3-s3-custom-endpoint-url-v1",
+   "sha256": "0583f8df11bf17b7bbb093eb8b0bc6d75d7f8d1d71e4ef4227caa39aef076ad6",
+   "cve_severity": "HIGH",
+   "verdict": "safe_in_context",
+   "reason": "The endpoint_url comes from Django settings (settings.AWS_S3_ENDPOINT_URL), an operator-controlled deployment configuration value, not from request or user-supplied data."
+  },
+  {
+   "path": "CTFd__CTFd/CTFd/utils/uploads/uploaders.py",
+   "line": 148,
+   "rule_id": "boto3-s3-custom-endpoint-url-v1",
+   "sha256": "c2cfdbb78eb090861b31cedcd6b9dc75306f3506cac58b95c47fefce1ba4ef25",
+   "cve_severity": "HIGH",
+   "verdict": "safe_in_context",
+   "reason": "The endpoint_url comes from get_app_config(\"AWS_S3_ENDPOINT_URL\"), an administrator-controlled application config setting, not from request or user-supplied data."
+  },
+  {
+   "path": "makeplane__plane/apps/api/plane/db/management/commands/update_bucket.py",
+   "line": 19,
+   "rule_id": "boto3-s3-custom-endpoint-url-v1",
+   "sha256": "e1feb349e392757c35c93d6f34c02cfa18d507059adb1973add42a884cd036ab",
+   "cve_severity": "HIGH",
+   "verdict": "safe_in_context",
+   "reason": "The endpoint_url comes from the AWS_S3_ENDPOINT_URL environment variable set by the deployment operator in a Django management command, not from request or user-supplied data, so it is trusted deployment configuration."
+  },
+  {
+   "path": "LibreTranslate__LibreTranslate/libretranslate/security.py",
+   "line": 12,
+   "rule_id": "commonprefix-path-containment-v1",
+   "sha256": "20b01aaaff3122a9b1a23c268785d0159d22e16e90203ef90e24789fde90a520",
+   "cve_severity": "MEDIUM",
+   "verdict": "real_risk",
+   "reason": "This is the library's dedicated path-traversal guard taking an explicitly untrusted path, and the character-level commonprefix check accepts sibling paths like '/safe/dir_evil' when the safe path is '/safe/dir', so externally supplied paths can bypass containment."
+  },
+  {
+   "path": "pretix__pretix/src/pretix/plugins/stripe/payment.py",
+   "line": 384,
+   "rule_id": "django-form-field-help-text-built-string-v1",
+   "sha256": "07ede09ac6d34fb8043a550e6ab07959d72dee9cc9339b48d2cd2988fb47f996",
+   "cve_severity": "MEDIUM",
+   "verdict": "safe_in_context",
+   "reason": "The help_text is assembled solely from constant translated string literals via gettext with no user-supplied or external data interpolated, so the only HTML present is developer-authored markup."
+  },
+  {
+   "path": "pretix__pretix/src/pretix/plugins/stripe/payment.py",
+   "line": 295,
+   "rule_id": "django-form-field-help-text-built-string-v1",
+   "sha256": "07ede09ac6d34fb8043a550e6ab07959d72dee9cc9339b48d2cd2988fb47f996",
+   "cve_severity": "MEDIUM",
+   "verdict": "safe_in_context",
+   "reason": "The help_text is formatted only from a hardcoded docs URL and gettext-translated string constants internal to the plugin, with no externally sourced data reaching the call."
+  },
+  {
+   "path": "pretix__pretix/src/pretix/plugins/stripe/payment.py",
+   "line": 240,
+   "rule_id": "django-form-field-help-text-built-string-v1",
+   "sha256": "07ede09ac6d34fb8043a550e6ab07959d72dee9cc9339b48d2cd2988fb47f996",
+   "cve_severity": "MEDIUM",
+   "verdict": "safe_in_context",
+   "reason": "The help_text is composed entirely of constant translated string literals and a hardcoded URL with no externally sourced data."
+  },
+  {
+   "path": "flaskbb__flaskbb/flaskbb/management/views.py",
+   "line": 1002,
+   "rule_id": "django-order-by-non-constant-v1",
+   "sha256": "2cd10a4a96ea1a3bb8a4e33dcc80aff9ea3b6d26b1582877ba317211478f1cd9",
+   "cve_severity": "CRITICAL",
+   "verdict": "safe_in_context",
+   "reason": "The order_by argument is a hard-coded column expression Report.id.asc() in a Flask-SQLAlchemy app, not Django and not derived from any user input."
+  },
+  {
+   "path": "indico__indico/indico/modules/oauth/controllers.py",
+   "line": 252,
+   "rule_id": "django-order-by-non-constant-v1",
+   "sha256": "062809561798b2666c23e05f90af47763831da117a0c9a1708da49a86afd6439",
+   "cve_severity": "CRITICAL",
+   "verdict": "safe_in_context",
+   "reason": "The order_by argument is a constant SQLAlchemy expression db.func.lower(PersonalToken.name) built from a fixed model column, with no user input involved (and this is SQLAlchemy, not Django's QuerySet)."
+  },
+  {
+   "path": "indico__indico/indico/modules/rb/controllers/backend/locations.py",
+   "line": 23,
+   "rule_id": "django-order-by-non-constant-v1",
+   "sha256": "e8230f50086fe5da35c95b8cf2c93cae23fe02f479f8f56419d185b24ef04bfc",
+   "cve_severity": "CRITICAL",
+   "verdict": "safe_in_context",
+   "reason": "The order_by arguments are fixed SQLAlchemy column/function expressions (Location.name and a natsort of Room.full_name) with no user-supplied input, and this is SQLAlchemy rather than Django's vulnerable QuerySet.order_by."
+  },
+  {
+   "path": "indico__indico/indico/modules/events/abstracts/forms.py",
+   "line": 724,
+   "rule_id": "django-order-by-non-constant-v1",
+   "sha256": "bf72cbf5c1f5663ddd7900ab8cc1e38ffb7fb4107ca5e9e2780f75526c8b34e3",
+   "cve_severity": "CRITICAL",
+   "verdict": "safe_in_context",
+   "reason": "The order_by argument is the constant model column attribute Track.position (and this is SQLAlchemy, not Django), so no external data reaches the call."
+  },
+  {
+   "path": "flaskbb__flaskbb/flaskbb/management/views.py",
+   "line": 456,
+   "rule_id": "django-order-by-non-constant-v1",
+   "sha256": "2cd10a4a96ea1a3bb8a4e33dcc80aff9ea3b6d26b1582877ba317211478f1cd9",
+   "cve_severity": "CRITICAL",
+   "verdict": "safe_in_context",
+   "reason": "The order_by argument is the constant column expression Post.id on a SQLAlchemy select (not Django), with no user-controlled input involved."
+  },
+  {
+   "path": "indico__indico/indico/util/suggestions.py",
+   "line": 121,
+   "rule_id": "django-order-by-non-constant-v1",
+   "sha256": "9558f58825e3d6c193e74d3aa98ddc1fd3087d4fa1ebaec346814897d0f67629",
+   "cve_severity": "CRITICAL",
+   "verdict": "safe_in_context",
+   "reason": "The order_by arguments are fixed SQLAlchemy column attributes (Event.start_dt, Event.id) hard-coded by the developer, not Django ORM strings derived from external input, so no user-controlled ordering reaches the call."
+  },
+  {
+   "path": "DefectDojo__django-DefectDojo/dojo/product/ui/views.py",
+   "line": 359,
+   "rule_id": "django-stringagg-non-constant-delimiter-v1",
+   "sha256": "c9dfbad1868400a591dd6b4132f422328de6896fc2d8663b4f852b0f0e0fae4c",
+   "cve_severity": "CRITICAL",
+   "verdict": "safe_in_context",
+   "reason": "The delimiter is the local constant string literal \", \" assigned on line 353, not derived from the request or any external input."
+  },
+  {
+   "path": "DefectDojo__django-DefectDojo/dojo/components/views.py",
+   "line": 26,
+   "rule_id": "django-stringagg-non-constant-delimiter-v1",
+   "sha256": "03e622a9d48c4806cf7402f8923c01271389373c3f2584714e6ab228de0e3cff",
+   "cve_severity": "CRITICAL",
+   "verdict": "safe_in_context",
+   "reason": "The delimiter is the local constant string `\", \"` assigned at line 15 and never influenced by request data, so no outside value reaches the StringAgg delimiter."
+  },
+  {
+   "path": "WeblateOrg__weblate/weblate/trans/templatetags/translations.py",
+   "line": 886,
+   "rule_id": "django-urlize-untrusted-text-v1",
+   "sha256": "af2cc60061e59f4f63bda2337e9123c8d2aba7b17a88725f705208e2e5de6e1f",
+   "cve_severity": "MEDIUM",
+   "verdict": "real_risk",
+   "reason": "The filter is named urlize_ugc and is a template filter applied to user-generated content (e.g., comments, translation notes) of unbounded length, so attacker-controlled text plausibly reaches urlize without a length cap."
+  },
+  {
+   "path": "pretix__pretix/src/pretix/control/views/subevents.py",
+   "line": 1633,
+   "rule_id": "django-values-built-json-key-alias-v1",
+   "sha256": "a817e4dcb676b55b65e56e58c3a05e880d025a1d4c5eae98283a04107aae77a9",
+   "cve_severity": "CRITICAL",
+   "verdict": "safe_in_context",
+   "reason": "`k` iterates `rel_fields`, which in pretix's SubEventBulkEdit view is a hardcoded list of SubEvent datetime field names (e.g. presale_start/presale_end), so the `f'{k}_rel_min'` field argument is built from constants, not user-supplied JSON keys."
+  },
+  {
+   "path": "nautobot__nautobot/nautobot/core/tests/test_api.py",
+   "line": 1183,
+   "rule_id": "django-values-built-json-key-alias-v1",
+   "sha256": "35f1c73e2fa0a563cd92ba89a9fbfac7aac9a1b133841517c3a0d4c0278b083d",
+   "cve_severity": "CRITICAL",
+   "verdict": "safe_in_context",
+   "reason": "This is test code where field_name comes from a hardcoded class-level field_type_map of constant field names, not from any external request or user-supplied data."
+  },
+  {
+   "path": "nautobot__nautobot/nautobot/core/graphql/generators.py",
+   "line": 273,
+   "rule_id": "django-values-built-json-key-alias-v1",
+   "sha256": "8048c866a547ea4dbfe03f4ea629cc80079102b77a8f589c251d6a49e04a869b",
+   "cve_severity": "CRITICAL",
+   "verdict": "safe_in_context",
+   "reason": "The field argument is f\"{peer_side}_id\" where peer_side is an internal relationship side constant (\"source\"/\"destination\") derived from library code, not a user-supplied JSONField key."
+  },
+  {
+   "path": "nautobot__nautobot/nautobot/extras/customfields.py",
+   "line": 309,
+   "rule_id": "django-values-built-json-key-alias-v1",
+   "sha256": "0f4e7ad1957ae30f4acbb22fdcb0a26dbe085652e170750a182095b41ab09b36",
+   "cve_severity": "CRITICAL",
+   "verdict": "safe_in_context",
+   "reason": "field.key is a CustomField model attribute that Nautobot validates on save to a slug-like alphanumeric/underscore pattern (and is admin-managed, not request-derived), so it cannot carry SQL-injecting JSON key content into values_list()."
+  },
+  {
+   "path": "paperless-ngx__paperless-ngx/src/documents/permissions.py",
+   "line": 155,
+   "rule_id": "django-values-built-json-key-alias-v1",
+   "sha256": "2fbb14aa63a0297d9203aff142fc10b8a121110c1387a1644491ff0277a9fa7f",
+   "cve_severity": "CRITICAL",
+   "verdict": "safe_in_context",
+   "reason": "identity_field is an internal helper parameter that paperless-ngx callers pass as the literal strings \"user\" or \"group\" (paired with identity_model User/Group), not a value derived from request or JSON data."
+  },
+  {
+   "path": "nautobot__nautobot/nautobot/core/graphql/generators.py",
+   "line": 268,
+   "rule_id": "django-values-built-json-key-alias-v1",
+   "sha256": "8048c866a547ea4dbfe03f4ea629cc80079102b77a8f589c251d6a49e04a869b",
+   "cve_severity": "CRITICAL",
+   "verdict": "safe_in_context",
+   "reason": "peer_side comes from RelationshipSideChoices.OPPOSITE[side], a fixed internal mapping yielding only 'source' or 'destination', so the values_list field name is constrained to constants and not a user-controlled JSON key."
+  },
+  {
+   "path": "dgtlmoon__changedetection.io/changedetectionio/tests/test_rss_single_watch.py",
+   "line": 252,
+   "rule_id": "elementtree-parse-untrusted-xml-v1",
+   "sha256": "f407c27ade760465fba94433474471f1d7905e2e7020044ce4b44c2fdd58078d",
+   "cve_severity": "HIGH",
+   "verdict": "safe_in_context",
+   "reason": "This is a test file parsing the RSS output of the application's own test client (generated internally from test-created watches and tags), not externally sourced XML."
+  },
+  {
+   "path": "dgtlmoon__changedetection.io/changedetectionio/tests/test_rss_single_watch.py",
+   "line": 370,
+   "rule_id": "elementtree-parse-untrusted-xml-v1",
+   "sha256": "f407c27ade760465fba94433474471f1d7905e2e7020044ce4b44c2fdd58078d",
+   "cve_severity": "HIGH",
+   "verdict": "safe_in_context",
+   "reason": "This is a test file parsing the response from the application's own test client (locally generated RSS output from a watch the test itself configured), not externally sourced XML."
+  },
+  {
+   "path": "dgtlmoon__changedetection.io/changedetectionio/tests/test_rss.py",
+   "line": 277,
+   "rule_id": "elementtree-parse-untrusted-xml-v1",
+   "sha256": "39d706ce11a601ec4c261cbdd9ed4113380f763bc8279e6e78499da7ef7a339e",
+   "cve_severity": "HIGH",
+   "verdict": "safe_in_context",
+   "reason": "The XML is the application's own RSS output fetched by the Flask test client inside a test, generated from locally controlled fixture data rather than any external or attacker-supplied source."
+  },
+  {
+   "path": "dgtlmoon__changedetection.io/changedetectionio/tests/test_rss_single_watch.py",
+   "line": 335,
+   "rule_id": "elementtree-parse-untrusted-xml-v1",
+   "sha256": "f407c27ade760465fba94433474471f1d7905e2e7020044ce4b44c2fdd58078d",
+   "cve_severity": "HIGH",
+   "verdict": "safe_in_context",
+   "reason": "The XML parsed is the RSS response generated by the application's own test client in a unit test, not data from an external or untrusted source."
+  },
+  {
+   "path": "dgtlmoon__changedetection.io/changedetectionio/tests/test_rss_single_watch.py",
+   "line": 202,
+   "rule_id": "elementtree-parse-untrusted-xml-v1",
+   "sha256": "f407c27ade760465fba94433474471f1d7905e2e7020044ce4b44c2fdd58078d",
+   "cve_severity": "HIGH",
+   "verdict": "safe_in_context",
+   "reason": "This is a test file parsing an RSS response generated by the application's own test client from locally controlled watch data, not externally sourced XML."
+  },
+  {
+   "path": "pretix__pretix/src/pretix/base/services/tax.py",
+   "line": 318,
+   "rule_id": "elementtree-parse-untrusted-xml-v1",
+   "sha256": "77f51455dd9c7919fac398f19424a55ecd8a491c3482d285dc886d47cafdd605",
+   "cve_severity": "HIGH",
+   "verdict": "real_risk",
+   "reason": "The XML parsed by stdlib ElementTree.fromstring is the body of an HTTPS response from an external network peer (the EU VIES service), so a malicious or compromised/MITM response could deliver entity-expansion payloads exactly as the rule describes."
+  },
+  {
+   "path": "pretix__pretix/src/tests/api/test_order_change.py",
+   "line": 1307,
+   "rule_id": "file-scheme-prefix-blocklist-v1",
+   "sha256": "6141a13190724ddacae5ca1a1c9ee35cc4d62337f766c39f23565fba22c39922",
+   "cve_severity": "HIGH",
+   "verdict": "safe_in_context",
+   "reason": "This is a test assertion checking that a stored answer value begins with 'file://', not a security blocklist or scheme check on untrusted input."
+  },
+  {
+   "path": "dgtlmoon__changedetection.io/changedetectionio/content_fetchers/requests.py",
+   "line": 83,
+   "rule_id": "file-scheme-prefix-blocklist-v1",
+   "sha256": "c1203e847bc31d9b9fdbd6ba8238d63b77f8e1cf20505d4200a0baf9d74efa2a",
+   "cve_severity": "HIGH",
+   "verdict": "safe_in_context",
+   "reason": "The 'file://' prefix check is an opt-in gate for mounting the FileAdapter (failing closed on any variant that doesn't match), not a blocklist, and the URL is separately validated by a parser-based scheme allowlist in is_fetch_url_allowed before the request is made."
+  },
+  {
+   "path": "pretix__pretix/src/tests/api/test_checkin.py",
+   "line": 1097,
+   "rule_id": "file-scheme-prefix-blocklist-v1",
+   "sha256": "2f6ebf8a94b507ab9a50b9f0b273057a013f5d5b077197a0c1d336eb69be8251",
+   "cve_severity": "HIGH",
+   "verdict": "safe_in_context",
+   "reason": "This is a test assertion checking that a stored answer value begins with 'file://', not a security blocklist on untrusted URL input; it only verifies internal serialization format in a unit test."
+  },
+  {
+   "path": "pretix__pretix/src/pretix/base/models/event.py",
+   "line": 1196,
+   "rule_id": "file-scheme-prefix-blocklist-v1",
+   "sha256": "4eaf2e445ea6895601cf7e92b3b790caea278f894d63015cfc165dc5dc8a8f80",
+   "cve_severity": "HIGH",
+   "verdict": "safe_in_context",
+   "reason": "The 'file://' check is not a blocklist against outside URLs but pretix's own internal marker for File-typed settings stored via default_storage, gated by the declared setting type, so the pattern the rule targets (rejecting file URLs by raw prefix) does not apply here."
+  },
+  {
+   "path": "pretix__pretix/src/tests/api/test_checkinrpc.py",
+   "line": 790,
+   "rule_id": "file-scheme-prefix-blocklist-v1",
+   "sha256": "42ed63cafcef8e7a1ba4f42df28cd3b02e296e2f8c2cd78e8500ce272bf9ee27",
+   "cve_severity": "HIGH",
+   "verdict": "safe_in_context",
+   "reason": "This is a test assertion verifying that a stored answer value begins with 'file://' after a successful upload; it is not a security blocklist check on untrusted URLs, so no outside data reaches a scheme-filtering decision here."
+  },
+  {
+   "path": "pretix__pretix/src/tests/api/test_order_change.py",
+   "line": 1286,
+   "rule_id": "file-scheme-prefix-blocklist-v1",
+   "sha256": "6141a13190724ddacae5ca1a1c9ee35cc4d62337f766c39f23565fba22c39922",
+   "cve_severity": "HIGH",
+   "verdict": "safe_in_context",
+   "reason": "This is a test assertion checking that a stored answer value begins with 'file://' after an upload, not a security blocklist gating untrusted URLs, so no outside data reaches a prefix-based scheme check."
+  },
+  {
+   "path": "nautobot__nautobot/nautobot/core/utils/git.py",
+   "line": 136,
+   "rule_id": "gitpython-clone-from-untrusted-url-v1",
+   "sha256": "71226212ec6363f1303e47e9dca55b7ca5cebc75b9a2a250c4ad3df8086b428a",
+   "cve_severity": "CRITICAL",
+   "verdict": "cannot_tell",
+   "reason": "The excerpt only shows `url` as a constructor parameter (sanitized for logging, with `branch` validated against option injection) and does not show its origin; in Nautobot it typically comes from the admin-configured GitRepository.remote_url model field with scheme validation, but that caller and validation are not visible here."
+  },
+  {
+   "path": "nautobot__nautobot/nautobot/core/utils/git.py",
+   "line": 138,
+   "rule_id": "gitpython-clone-from-untrusted-url-v1",
+   "sha256": "71226212ec6363f1303e47e9dca55b7ca5cebc75b9a2a250c4ad3df8086b428a",
+   "cve_severity": "CRITICAL",
+   "verdict": "cannot_tell",
+   "reason": "The `url` is a constructor parameter passed straight to clone_from with only `branch` validated and `sanitize(url)` used just for logging, but the excerpt does not show where callers obtain the URL or whether scheme/host validation occurs upstream."
+  },
+  {
+   "path": "WeblateOrg__weblate/scripts/list-contributors.py",
+   "line": 128,
+   "rule_id": "gitpython-dynamic-revision-option-injection-v1",
+   "sha256": "43d488c7f5aec0035526729e306307b6cbf49bc48e5eb645b5de97967835e42c",
+   "cve_severity": "HIGH",
+   "verdict": "safe_in_context",
+   "reason": "The revision is built from a tag name read from the project's own local repository (filtered to names starting with \"weblate-\") in a maintainer script, so it cannot start with a dash and is not attacker-controlled outside data."
+  },
+  {
+   "path": "spiral-project__ihatemoney/ihatemoney/utils.py",
+   "line": 238,
+   "rule_id": "jinja2-environment-autoescape-not-enabled-v1",
+   "sha256": "8749c89e7e6179fbb504cbd1ed94f18c4f06d29f724ed63088dd9b5395f18674",
+   "cve_severity": "MEDIUM",
+   "verdict": "cannot_tell",
+   "reason": "The excerpt only shows a factory creating an Environment from a package template folder; it does not show which templates (HTML vs. plain-text email) are rendered or what external data is passed to them, so whether unescaped untrusted output occurs cannot be determined here."
+  },
+  {
+   "path": "netbox-community__netbox/netbox/dcim/management/commands/buildschema.py",
+   "line": 46,
+   "rule_id": "jinja2-environment-autoescape-not-enabled-v1",
+   "sha256": "d0c735b6d764638d2ea0aa7160c72514aa1c7de512533afa4961a7fb60d85c18",
+   "cve_severity": "MEDIUM",
+   "verdict": "safe_in_context",
+   "reason": "This is a management command rendering a JSON schema template from an internal, trusted template directory with context built only from the library's own hardcoded CHOICES_MAP constants, not HTML or any externally supplied data, so autoescaping is irrelevant here."
+  },
+  {
+   "path": "dgtlmoon__changedetection.io/changedetectionio/blueprint/ui/edit.py",
+   "line": 402,
+   "rule_id": "jinja2-environment-autoescape-not-enabled-v1",
+   "sha256": "3c2f22f07ecdd4e203ae655e768f25c35409acbebb7d3c1e4a24839b4b5421e1",
+   "cve_severity": "MEDIUM",
+   "verdict": "real_risk",
+   "reason": "The non-autoescaping Environment renders template_args containing watch/settings data (URLs, tags, etc.) that originate from user-supplied configuration (web form/API/import), and the resulting HTML is embedded into the edit page, so unescaped stored values can reach the browser."
+  },
+  {
+   "path": "paperless-ngx__paperless-ngx/src/paperless_ai/prompts/render.py",
+   "line": 29,
+   "rule_id": "jinja2-environment-autoescape-not-enabled-v1",
+   "sha256": "0e2005247ed62abcdf7873e54a517dd4adfc3c4784178db40dce82dddfc627c5",
+   "cve_severity": "MEDIUM",
+   "verdict": "safe_in_context",
+   "reason": "The environment renders package-bundled plain-text LLM prompt templates (not HTML) via get_template with context variable substitution only, so HTML autoescaping is irrelevant to the output's consumer and disabling it is intentional rather than the XSS weakness the rule targets."
+  },
+  {
+   "path": "flaskbb__flaskbb/flaskbb/cli/main.py",
+   "line": 392,
+   "rule_id": "jinja2-environment-autoescape-not-enabled-v1",
+   "sha256": "41888848abe1cf7a6f3a5da3e54898dc224bb0da21537796f777deb5add8da15",
+   "cve_severity": "MEDIUM",
+   "verdict": "safe_in_context",
+   "reason": "The Environment renders a bundled config.cfg.template from the app's own configs directory into a text config file (not HTML) in a CLI command, so HTML autoescaping is irrelevant and no untrusted web input reaches the template."
+  },
+  {
+   "path": "indico__indico/indico/legacy/pdfinterface/latex.py",
+   "line": 327,
+   "rule_id": "jinja2-environment-autoescape-not-enabled-v1",
+   "sha256": "2dea25c7958d2a79b5f711a51a54e5616720ab67039d6203351930f08553bacd",
+   "cve_severity": "MEDIUM",
+   "verdict": "safe_in_context",
+   "reason": "The environment renders LaTeX (not HTML) templates with custom delimiters and a LatexEscapeExtension/latex filter providing context-appropriate escaping, so HTML autoescape is irrelevant and intentionally disabled."
+  },
+  {
+   "path": "HumanSignal__label-studio/label_studio/data_import/uploader.py",
+   "line": 95,
+   "rule_id": "lxml-html-cleaner-untrusted-html-v1",
+   "sha256": "565edfb286a3f98fff41a8a76c04ac5c1d83629899e0f16d063dd93555429908",
+   "cve_severity": "MEDIUM",
+   "verdict": "real_risk",
+   "reason": "The function lives in the data_import uploader and sanitizes `dirty_xml` from user-uploaded files with lxml's Cleaner (with safe_attrs_only=False and remove_unknown_tags=False), so untrusted content reaches the vulnerable sanitizer exactly as the rule describes."
+  },
+  {
+   "path": "goauthentik__authentik/authentik/enterprise/providers/ws_federation/tests/test_metadata.py",
+   "line": 38,
+   "rule_id": "lxml-xmlparser-entity-resolution-v1",
+   "sha256": "f48d6ac12325c51db8cec3d3e29f4a2bd107589c5f869d73029070de4d57fd86",
+   "cve_severity": "MEDIUM",
+   "verdict": "safe_in_context",
+   "reason": "The parser reads a constant, repository-bundled schema path (\"schemas/ws-federation.xsd\") in test code, so no client-supplied XML reaches the XMLParser."
+  },
+  {
+   "path": "goauthentik__authentik/authentik/enterprise/providers/ws_federation/tests/test_sign_in.py",
+   "line": 76,
+   "rule_id": "lxml-xmlparser-entity-resolution-v1",
+   "sha256": "e80c0552df2f27034d25d3f8af528cea77704a36d16b5f4f54878fbaab4c6974",
+   "cve_severity": "MEDIUM",
+   "verdict": "safe_in_context",
+   "reason": "The parser is used on a constant, repository-bundled schema path (\"schemas/ws-trust.xsd\") in a test, not on client-supplied XML, so no outside data reaches the entity-resolving parser."
+  },
+  {
+   "path": "goauthentik__authentik/authentik/providers/saml/tests/test_schema.py",
+   "line": 83,
+   "rule_id": "lxml-xmlparser-entity-resolution-v1",
+   "sha256": "d9f4ca8a6e8821834d5a1bd9f3f0bc966541dd68585da9935543fe24c2408650",
+   "cve_severity": "MEDIUM",
+   "verdict": "safe_in_context",
+   "reason": "The parser consumes a constant, repository-bundled XSD file path in test code, not client-supplied XML, so no outside data reaches the entity-resolving parser."
+  },
+  {
+   "path": "goauthentik__authentik/authentik/enterprise/providers/ws_federation/tests/test_sign_in.py",
+   "line": 148,
+   "rule_id": "lxml-xmlparser-entity-resolution-v1",
+   "sha256": "e80c0552df2f27034d25d3f8af528cea77704a36d16b5f4f54878fbaab4c6974",
+   "cve_severity": "MEDIUM",
+   "verdict": "safe_in_context",
+   "reason": "The XMLParser parses a constant, repository-bundled schema file path (schemas/ws-trust.xsd) in a unit test, not client-supplied XML, so no outside data reaches the entity-resolving parser."
+  },
+  {
+   "path": "goauthentik__authentik/authentik/enterprise/providers/ws_federation/tests/test_sign_in.py",
+   "line": 162,
+   "rule_id": "lxml-xmlparser-entity-resolution-v1",
+   "sha256": "e80c0552df2f27034d25d3f8af528cea77704a36d16b5f4f54878fbaab4c6974",
+   "cve_severity": "MEDIUM",
+   "verdict": "safe_in_context",
+   "reason": "The parser is used in a test to parse a constant, repository-bundled XSD file path (\"schemas/oasis-sstc-saml-schema-assertion-1.1.xsd\"), not client-supplied XML, so no outside data reaches the XMLParser."
+  },
+  {
+   "path": "goauthentik__authentik/authentik/providers/saml/tests/test_schema.py",
+   "line": 59,
+   "rule_id": "lxml-xmlparser-entity-resolution-v1",
+   "sha256": "d9f4ca8a6e8821834d5a1bd9f3f0bc966541dd68585da9935543fe24c2408650",
+   "cve_severity": "MEDIUM",
+   "verdict": "safe_in_context",
+   "reason": "The XMLParser is used only to parse a hardcoded, repository-bundled schema file path in a test, not client-supplied XML, so no external data reaches the entity-resolving parser."
+  },
+  {
+   "path": "WeblateOrg__weblate/weblate/trans/tests/test_templatetags.py",
+   "line": 1485,
+   "rule_id": "mako-lookup-get-template-dynamic-name-v1",
+   "sha256": "09aadd81bf249e317f93849555206028d59cfdf43332263aad9dcfae0a12d6f7",
+   "cve_severity": "HIGH",
+   "verdict": "safe_in_context",
+   "reason": "This is Django's Engine.get_template (not Mako) called in a unit test with template names hardcoded by the test author, so no outside data reaches the lookup."
+  },
+  {
+   "path": "Netflix__lemur/lemur/plugins/lemur_email/plugin.py",
+   "line": 36,
+   "rule_id": "mako-lookup-get-template-dynamic-name-v1",
+   "sha256": "4f9796a3c895e25d48ceaddd6e9697825e2c074caaa5f933a799c767c4e6c85b",
+   "cve_severity": "HIGH",
+   "verdict": "safe_in_context",
+   "reason": "The `env` imported from lemur.plugins.lemur_email.templates.config is a Jinja2 Environment (not a Mako TemplateLookup), and `template_name` is supplied by the plugin's own send() with internal notification-type constants (e.g. \"expiration\", \"rotation\"), not request-controlled input."
+  },
+  {
+   "path": "getredash__redash/redash/utils/__init__.py",
+   "line": 242,
+   "rule_id": "mako-lookup-get-template-dynamic-name-v1",
+   "sha256": "9a026e5dc11b3bdc7cdee8edca80fbfaa20ef3f7a9f36959cd06920a50e87b1d",
+   "cve_severity": "HIGH",
+   "verdict": "safe_in_context",
+   "reason": "The call is Flask/Jinja2's `jinja_env.get_template`, not Mako's TemplateLookup, so the Mako backslash-traversal weakness does not apply, and in Redash this helper is invoked with hard-coded template paths (e.g. email templates) rather than request-derived names."
+  },
+  {
+   "path": "nautobot__nautobot/nautobot/core/views/__init__.py",
+   "line": 664,
+   "rule_id": "mako-lookup-get-template-dynamic-name-v1",
+   "sha256": "62a2f67c2133a29286d0af9ef9a6c5b1f755dcc67ef89771b289dd8979c36c63",
+   "cve_severity": "HIGH",
+   "verdict": "safe_in_context",
+   "reason": "template_name is a Django CSRF_FAILURE_VIEW handler parameter that defaults to a constant and is supplied by Django's internal middleware (or settings), not from request data, and this is Django's loader rather than a Mako TemplateLookup."
+  },
+  {
+   "path": "netbox-community__netbox/netbox/dcim/management/commands/buildschema.py",
+   "line": 47,
+   "rule_id": "mako-lookup-get-template-dynamic-name-v1",
+   "sha256": "d0c735b6d764638d2ea0aa7160c72514aa1c7de512533afa4961a7fb60d85c18",
+   "cve_severity": "HIGH",
+   "verdict": "safe_in_context",
+   "reason": "TEMPLATE_FILENAME is a module-level constant (and this is Jinja2's Environment, not Mako) used in a management command with no user-controlled input reaching get_template."
+  },
+  {
+   "path": "paperless-ngx__paperless-ngx/src/paperless_ai/prompts/render.py",
+   "line": 40,
+   "rule_id": "mako-lookup-get-template-dynamic-name-v1",
+   "sha256": "0e2005247ed62abcdf7873e54a517dd4adfc3c4784178db40dce82dddfc627c5",
+   "cve_severity": "HIGH",
+   "verdict": "safe_in_context",
+   "reason": "This is a Jinja2 Environment with a PackageLoader (not Mako), and the template name is derived from `context.template_name.value`, an enum-style member with `.value` that restricts names to a fixed internal set rather than user-controlled input."
+  },
+  {
+   "path": "inventree__InvenTree/src/backend/InvenTree/InvenTree/template.py",
+   "line": 91,
+   "rule_id": "mako-lookup-get-template-nonconstant-uri-v1",
+   "sha256": "e3acade1b63a4ceafa84a24170ddd91b1e0d5bb3549a704dca3426c92d6b50b5",
+   "cve_severity": "HIGH",
+   "verdict": "safe_in_context",
+   "reason": "The flagged call is Django's `BaseLoader.get_template(self, ...)` inside a Django template loader subclass (alongside `CachedLoader`), not a Mako `TemplateLookup`, so the Mako drive-letter URI traversal weakness the rule targets does not apply here."
+  },
+  {
+   "path": "inventree__InvenTree/src/backend/InvenTree/InvenTree/template.py",
+   "line": 85,
+   "rule_id": "mako-lookup-get-template-nonconstant-uri-v1",
+   "sha256": "e3acade1b63a4ceafa84a24170ddd91b1e0d5bb3549a704dca3426c92d6b50b5",
+   "cve_severity": "HIGH",
+   "verdict": "safe_in_context",
+   "reason": "The call is Django's CachedLoader.get_template on a Django template loader subclass, not a Mako TemplateLookup, so the Mako drive-letter URI traversal weakness does not apply regardless of the template_name source."
+  },
+  {
+   "path": "netbox-community__netbox/netbox/dcim/management/commands/buildschema.py",
+   "line": 47,
+   "rule_id": "mako-lookup-get-template-nonconstant-uri-v1",
+   "sha256": "d0c735b6d764638d2ea0aa7160c72514aa1c7de512533afa4961a7fb60d85c18",
+   "cve_severity": "HIGH",
+   "verdict": "safe_in_context",
+   "reason": "TEMPLATE_FILENAME is a module-level constant and the environment is Jinja2's Environment/FileSystemLoader (not Mako TemplateLookup) in a management command with no user-controlled input."
+  },
+  {
+   "path": "nautobot__nautobot/nautobot/core/views/__init__.py",
+   "line": 664,
+   "rule_id": "mako-lookup-get-template-nonconstant-uri-v1",
+   "sha256": "62a2f67c2133a29286d0af9ef9a6c5b1f755dcc67ef89771b289dd8979c36c63",
+   "cve_severity": "HIGH",
+   "verdict": "safe_in_context",
+   "reason": "template_name is a function parameter with a constant default, and Django's CSRF_FAILURE_VIEW invokes csrf_failure with only request and reason from framework settings, so the name is never derived from outside input; also loader is Django's template loader, not a Mako TemplateLookup."
+  },
+  {
+   "path": "netbox-community__netbox/netbox/netbox/views/errors.py",
+   "line": 49,
+   "rule_id": "mako-lookup-get-template-nonconstant-uri-v1",
+   "sha256": "3e830f6ba74657b1e975769fcced1222f3d01d5601505807e4cab47f6b9715f4",
+   "cve_severity": "HIGH",
+   "verdict": "safe_in_context",
+   "reason": "template_name defaults to the constant ERROR_500_TEMPLATE_NAME and is only set by Django's internal handler500 wiring (never from request data), and loader here is Django's template loader rather than a Mako TemplateLookup."
+  },
+  {
+   "path": "spiral-project__ihatemoney/ihatemoney/manage.py",
+   "line": 70,
+   "rule_id": "mako-lookup-get-template-nonconstant-uri-v1",
+   "sha256": "f7aeb0774a5473e718dabb04ce2e234a78bcaeb9fdc1d39081402507a62c557d",
+   "cve_severity": "HIGH",
+   "verdict": "safe_in_context",
+   "reason": "The env is a Jinja environment (create_jinja_env), not a Mako TemplateLookup, and config_file is a local CLI argument chosen by the operator (likely a click.Choice), so the Mako drive-letter traversal weakness does not apply."
+  },
+  {
+   "path": "pretix__pretix/src/pretix/base/context.py",
+   "line": 53,
+   "rule_id": "mark-safe-built-link-markup-v1",
+   "sha256": "0fb8b91ed048105c2e55e51dede029cda9878a7d3edc8ca6be2c618903f33610",
+   "cve_severity": "MEDIUM",
+   "verdict": "safe_in_context",
+   "reason": "The mark_safe on line 53 wraps a fixed attribute string whose href is the hardcoded constant 'https://pretix.eu' (optionally passed through the internal safelink helper), with no external data interpolated."
+  },
+  {
+   "path": "healthchecks__healthchecks/hc/front/templatetags/hc_extras.py",
+   "line": 322,
+   "rule_id": "mark-safe-built-link-markup-v1",
+   "sha256": "b8b03b8a1ba8acdd5ac3608d8fce10cbc46af6809aa04fafd896b1ab4365df5a",
+   "cve_severity": "MEDIUM",
+   "verdict": "safe_in_context",
+   "reason": "Although request.GET is outside data, QueryDict.urlencode() percent-encodes every key and value (including <, >, \", '), so the resulting query string cannot carry HTML or attribute-breaking characters into the marked-safe output."
+  },
+  {
+   "path": "ArchiveBox__ArchiveBox/archivebox/personas/forms.py",
+   "line": 23,
+   "rule_id": "mark-safe-built-link-markup-v1",
+   "sha256": "91771270bdbe15c542885f3e58e855d4c1e8e43dda2733ee429a568219ccb9f8",
+   "cve_severity": "MEDIUM",
+   "verdict": "cannot_tell",
+   "reason": "_mode_label interpolates its title and description parameters unescaped into mark_safe, but the excerpt shows no call sites, so whether they are developer constants (likely for form choice labels) or externally supplied values cannot be determined."
+  },
+  {
+   "path": "ArchiveBox__ArchiveBox/archivebox/core/admin_users.py",
+   "line": 152,
+   "rule_id": "mark-safe-built-link-markup-v1",
+   "sha256": "220f662bf0a1d104249deff628cce8959f3e8a733a5164b4115d065b24564112",
+   "cve_severity": "MEDIUM",
+   "verdict": "safe_in_context",
+   "reason": "All user-controllable fields (referenced_model, endpoint, ids) pass through format_html and are escaped, while the raw f-string only interpolates the integer primary key and a count into hardcoded admin URLs, so no unescaped external data reaches mark_safe."
+  },
+  {
+   "path": "netbox-community__netbox/netbox/extras/forms/model_forms.py",
+   "line": 230,
+   "rule_id": "mark-safe-built-link-markup-v1",
+   "sha256": "f5150a50251c3e68daf51803c6bef72b14054dc0f7b9578efadbc56b99ce62cd",
+   "cve_severity": "MEDIUM",
+   "verdict": "safe_in_context",
+   "reason": "The mark_safe argument is a constant translated help-text string with hardcoded <code> markup and no interpolation of external or user-supplied data."
+  },
+  {
+   "path": "taigaio__taiga-back/taiga/users/admin.py",
+   "line": 190,
+   "rule_id": "mark-safe-built-link-markup-v1",
+   "sha256": "fc4f48cdc8168e21fb92bd2ff952741c0080e927bf3f201ac82c864e7d04146a",
+   "cve_severity": "MEDIUM",
+   "verdict": "safe_in_context",
+   "reason": "The interpolated values are integers from .count() calls and SEPARATOR is a module constant, so no attacker-controlled strings or link targets reach mark_safe."
+  },
+  {
+   "path": "indico__indico/indico/modules/events/agreements/placeholders.py",
+   "line": 31,
+   "rule_id": "markup-wraps-built-string-v1",
+   "sha256": "6b775412de951f617bcaf3f2d9b764cce15bbdc81069e477103b5806b2da2c14",
+   "cve_severity": "HIGH",
+   "verdict": "safe_in_context",
+   "reason": "The string is built from url_for() output, which is a Flask-generated URL composed of a fixed endpoint, an internal agreement identifier, and a server-generated uuid, so no externally controlled text reaches the Markup wrapper."
+  },
+  {
+   "path": "dgtlmoon__changedetection.io/changedetectionio/model/Watch.py",
+   "line": 1660,
+   "rule_id": "markup-wraps-built-string-v1",
+   "sha256": "e90b666754f9f5f14971cb27930f6ecc9b10a6fc20a310f7d325c43bb3cc7280",
+   "cve_severity": "HIGH",
+   "verdict": "safe_in_context",
+   "reason": "The only outside-derived value, last_error, is passed through safe_jinja.render_fully_escaped before being composed into the Markup string, and the remaining parts are a constant anchor plus a url_for() result built from the watch's internal uuid."
+  },
+  {
+   "path": "flaskbb__flaskbb/flaskbb/utils/helpers.py",
+   "line": 496,
+   "rule_id": "markup-wraps-built-string-v1",
+   "sha256": "fb26e41bf0768d7100e0a07273d3e0f802ec5ca5f97522f5b52bd26f5c8c677e",
+   "cve_severity": "HIGH",
+   "verdict": "safe_in_context",
+   "reason": "All interpolated values are derived from a datetime object (isoformat, Babel-formatted date/time strings) and a validated internal literal (what_to_display), none of which can carry attacker-controlled markup, so no outside data reaches Markup() unescaped."
+  },
+  {
+   "path": "flaskbb__flaskbb/flaskbb/search/base.py",
+   "line": 136,
+   "rule_id": "markup-wraps-built-string-v1",
+   "sha256": "68bbc7e288d2afdbc1797e0c21df75a807c12bfb6990e0c57068726f78d06215",
+   "cve_severity": "HIGH",
+   "verdict": "safe_in_context",
+   "reason": "Every data-derived segment (before, matched, after) is passed through escape() before composition, and the only unescaped parts are constant literals (ellipsis and <mark> tags), so the Markup wrapper does not expose unescaped outside data."
+  },
+  {
+   "path": "indico__indico/indico/modules/events/surveys/placeholders.py",
+   "line": 32,
+   "rule_id": "markup-wraps-built-string-v1",
+   "sha256": "b1785c0a9148fafc5f63cdc348d1d1263435507aecf0e4a9c08c6c52c17f3d6f",
+   "cve_severity": "HIGH",
+   "verdict": "real_risk",
+   "reason": "The `param` value (the user-supplied placeholder argument from organizer-authored template text) is interpolated into the Markup string unescaped, so attacker-controlled characters like `<` bypass auto-escaping even though url and survey.title are handled safely."
+  },
+  {
+   "path": "dgtlmoon__changedetection.io/changedetectionio/model/Watch.py",
+   "line": 364,
+   "rule_id": "markup-wraps-built-string-v1",
+   "sha256": "e90b666754f9f5f14971cb27930f6ecc9b10a6fc20a310f7d325c43bb3cc7280",
+   "cve_severity": "HIGH",
+   "verdict": "real_risk",
+   "reason": "The watch `url` is user-supplied configuration (editable via the UI or imported lists) and is interpolated unescaped into a Markup() string that is flashed into the page, so an HTML-bearing URL would render as markup."
+  },
+  {
+   "path": "miguelgrinberg__microblog/app/cli.py",
+   "line": 20,
+   "rule_id": "os-system-built-command-string-v1",
+   "sha256": "a4e22995a2082983df7ce9b680477b19d502bff03dcb21d873ec39245b055a13",
+   "cve_severity": "HIGH",
+   "verdict": "safe_in_context",
+   "reason": "The `lang` value is a Click CLI argument typed by the local operator running `flask translate init`, who already has shell access, so no untrusted external data (request, user file, network peer) reaches the os.system call."
+  },
+  {
+   "path": "inventree__InvenTree/src/backend/InvenTree/script/update_icons.py",
+   "line": 22,
+   "rule_id": "os-system-built-command-string-v1",
+   "sha256": "0b6719cc17f1390c93b51d542046cc6a5bb639395cd072ba4e390bc8314238d8",
+   "cve_severity": "HIGH",
+   "verdict": "safe_in_context",
+   "reason": "TMP_FOLDER is derived from tempfile.gettempdir() and a constant subpath in a developer maintenance script, not from request, user, or network data, so no outside input reaches the shell command."
+  },
+  {
+   "path": "mitre__caldera/app/utility/base_planning_svc.py",
+   "line": 283,
+   "rule_id": "pickle-load-non-constant-data-v1",
+   "sha256": "9cfb18948d51f7ec2753402559ab0c81596267640dba77bd69d667d34dbde3a0",
+   "cve_severity": "CRITICAL",
+   "verdict": "safe_in_context",
+   "reason": "The bytes passed to pickle.loads are produced in the same expression by pickle.dumps(facts) as an in-process deep-copy idiom, so no externally supplied serialized data ever reaches the deserializer."
+  },
+  {
+   "path": "paperless-ngx__paperless-ngx/src/documents/classifier.py",
+   "line": 289,
+   "rule_id": "pickle-load-non-constant-data-v1",
+   "sha256": "7d78dc115f048249297fff8250d3eb92839012bc6e483c01835cdb283bd46e0e",
+   "cve_severity": "CRITICAL",
+   "verdict": "safe_in_context",
+   "reason": "In paperless-ngx this `data` is read from the application's own classifier model file (settings.MODEL_FILE in the internal data directory, written by this same class's save()), not from a request, user upload, or shared cache, so no external data crosses a trust boundary into pickle.loads."
+  },
+  {
+   "path": "mitre__caldera/app/utility/base_planning_svc.py",
+   "line": 125,
+   "rule_id": "pickle-load-non-constant-data-v1",
+   "sha256": "9cfb18948d51f7ec2753402559ab0c81596267640dba77bd69d667d34dbde3a0",
+   "cve_severity": "CRITICAL",
+   "verdict": "safe_in_context",
+   "reason": "The bytes passed to pickle.loads are produced in the same expression by pickle.dumps(link) on an in-memory object, so no externally supplied serialized data ever reaches the call; it is just a deep-copy idiom."
+  },
+  {
+   "path": "netbox-community__netbox/netbox/utilities/tests/test_choices.py",
+   "line": 57,
+   "rule_id": "pickle-load-non-constant-data-v1",
+   "sha256": "ca0bc65d2aa1545f7110b9a88c10702d790b3f2eb9141a2f359364fd9eeced03",
+   "cve_severity": "CRITICAL",
+   "verdict": "safe_in_context",
+   "reason": "The pickled bytes are produced in the same expression from a locally constructed Choice object in a unit test, so no external data reaches pickle.loads."
+  },
+  {
+   "path": "paperless-ngx__paperless-ngx/src/paperless/signed_pickle.py",
+   "line": 39,
+   "rule_id": "pickle-load-non-constant-data-v1",
+   "sha256": "aa392870c498e5642276e54fc71e3b2d0b6051c9974aa5c3d03fb8038d955043",
+   "cve_severity": "CRITICAL",
+   "verdict": "safe_in_context",
+   "reason": "The payload is authenticated with an HMAC-SHA256 over the pickled bytes using a secret signing key and compared with constant-time comparison before pickle.loads runs, which is exactly the mitigation the rule prescribes, so untampered data from outside cannot reach the deserializer."
+  },
+  {
+   "path": "goauthentik__authentik/packages/django-dramatiq-postgres/django_dramatiq_postgres/models.py",
+   "line": 188,
+   "rule_id": "pickle-load-non-constant-data-v1",
+   "sha256": "4e7850e87265f16861aad43be75e6eed83b8f0c2227d2c772cf2fa91ea0d2bac",
+   "cve_severity": "CRITICAL",
+   "verdict": "safe_in_context",
+   "reason": "The unpickled fields (args/kwargs/options) are columns of the library's own Schedule model that the application itself serializes when registering scheduled actors, so the data stays inside the app's trust boundary (its database) and does not originate from requests, user files, or external peers."
+  },
+  {
+   "path": "WeblateOrg__weblate/weblate/fonts/tests/test_utils.py",
+   "line": 421,
+   "rule_id": "pillow-image-open-untrusted-xbm-redos-v1",
+   "sha256": "bd8199604cbe270a0fee98b02a2dd92f65af50c3d972e4cc145d0fa6f495bcea",
+   "cve_severity": "MEDIUM",
+   "verdict": "safe_in_context",
+   "reason": "The bytes passed to Image.open are PNG data generated internally by figure_to_png from a figure the test itself draws, not from any external input."
+  },
+  {
+   "path": "indico__indico/indico/modules/events/layout/controllers/layout.py",
+   "line": 153,
+   "rule_id": "pillow-image-open-untrusted-xbm-redos-v1",
+   "sha256": "db5c249df644d8786b71040b94fb8c8c2dc74eca415b9b8c2ae529b0262a11fc",
+   "cve_severity": "MEDIUM",
+   "verdict": "real_risk",
+   "reason": "self.event.logo holds bytes uploaded by users via RHLayoutLogoUpload (request.files['logo']), and they are passed to Image.open without a formats allowlist, so a crafted XBM-like header can trigger the ReDoS."
+  },
+  {
+   "path": "WeblateOrg__weblate/weblate/fonts/tests/test_utils.py",
+   "line": 510,
+   "rule_id": "pillow-image-open-untrusted-xbm-redos-v1",
+   "sha256": "bd8199604cbe270a0fee98b02a2dd92f65af50c3d972e4cc145d0fa6f495bcea",
+   "cve_severity": "MEDIUM",
+   "verdict": "safe_in_context",
+   "reason": "The bytes passed to Image.open are PNG output generated internally by figure_to_png from a test-rendered figure, not data from outside the program."
+  },
+  {
+   "path": "paperless-ngx__paperless-ngx/src/documents/utils.py",
+   "line": 141,
+   "rule_id": "pillow-image-open-untrusted-xbm-redos-v1",
+   "sha256": "ffa6dd4923cda3e778e75e631b7c6d713468669458019fe73483b333d4ac0428",
+   "cve_severity": "MEDIUM",
+   "verdict": "real_risk",
+   "reason": "remove_alpha_channel in paperless-ngx takes a source Path that is the user-uploaded/consumed document image, so externally supplied bytes reach Image.open() with no formats allowlist and could trigger the XBM header regex backtracking in Pillow < 13.0.0."
+  },
+  {
+   "path": "WeblateOrg__weblate/weblate/fonts/tests/test_utils.py",
+   "line": 205,
+   "rule_id": "pillow-image-open-untrusted-xbm-redos-v1",
+   "sha256": "bd8199604cbe270a0fee98b02a2dd92f65af50c3d972e4cc145d0fa6f495bcea",
+   "cve_severity": "MEDIUM",
+   "verdict": "safe_in_context",
+   "reason": "crlf_buffer is a PNG rendered internally by _render_size from a hard-coded test string in a unit test, not data from an external source."
+  },
+  {
+   "path": "indico__indico/indico/modules/users/controllers.py",
+   "line": 474,
+   "rule_id": "pillow-image-open-untrusted-xbm-redos-v1",
+   "sha256": "ba5bd0c5c2dac1ee336af2e7a1a712e98b6fcc5af6912b880dee192254b10e85",
+   "cve_severity": "MEDIUM",
+   "verdict": "real_risk",
+   "reason": "Image.open(f) is called directly on a user-uploaded file from request.files['picture'] with no formats allowlist, so the format check on line 477 happens only after Pillow has already parsed the header and could hit the XBM regex backtracking."
+  },
+  {
+   "path": "makeplane__plane/apps/api/plane/authentication/views/space/gitlab.py",
+   "line": 50,
+   "rule_id": "redirect-target-unvalidated-scheme-v1",
+   "sha256": "d5d983f191e20aabc964b8921fdbefe595162d5bff76b5972e2b25d7af55aaf2",
+   "cve_severity": "CRITICAL",
+   "verdict": "safe_in_context",
+   "reason": "The redirect target is produced by GitLabOAuthProvider.get_auth_url(), which assembles the provider's authorization endpoint from admin-configured instance settings (GitLab host, client ID, callback URI) plus a server-generated state, so no request-controlled scheme reaches HttpResponseRedirect here."
+  },
+  {
+   "path": "makeplane__plane/apps/api/plane/authentication/views/app/email.py",
+   "line": 194,
+   "rule_id": "redirect-target-unvalidated-scheme-v1",
+   "sha256": "abbf3382e9ce9ecddb286cddcf16767c534b9ddd2b0c9ea32312fba9bceb5083",
+   "cve_severity": "CRITICAL",
+   "verdict": "safe_in_context",
+   "reason": "The target is produced by the library's own get_safe_redirect_url helper using a base URL from base_host (settings/request scheme and host, i.e. http/https) with next_path appended as a relative path, so a data: scheme cannot plausibly become the redirect scheme at this call."
+  },
+  {
+   "path": "makeplane__plane/apps/api/plane/authentication/views/space/github.py",
+   "line": 42,
+   "rule_id": "redirect-target-unvalidated-scheme-v1",
+   "sha256": "032eef7c9482e9256b8641d766d2a866c6c0e891097ca56d257369e4abc1e579",
+   "cve_severity": "CRITICAL",
+   "verdict": "cannot_tell",
+   "reason": "The redirect target is derived from user-controlled request.GET['next_path'] but passes through get_safe_redirect_url whose scheme/host validation logic is not shown in the excerpt, so whether a data: URL could survive cannot be determined here."
+  },
+  {
+   "path": "kiwitcms__Kiwi/tcms/testcases/admin.py",
+   "line": 66,
+   "rule_id": "redirect-target-unvalidated-scheme-v1",
+   "sha256": "4afd6721061a800d028aab7e2c130a85e7e96271e3d25fbab496107fe59ad3c2",
+   "cve_severity": "CRITICAL",
+   "verdict": "safe_in_context",
+   "reason": "The redirect target is reverse(\"testcases-new\"), a URL resolved from a constant internal route name with no request-derived input, so no attacker-controlled scheme can reach the response."
+  },
+  {
+   "path": "makeplane__plane/apps/api/plane/authentication/views/space/gitlab.py",
+   "line": 85,
+   "rule_id": "redirect-target-unvalidated-scheme-v1",
+   "sha256": "d5d983f191e20aabc964b8921fdbefe595162d5bff76b5972e2b25d7af55aaf2",
+   "cve_severity": "CRITICAL",
+   "verdict": "safe_in_context",
+   "reason": "The redirect target is built by get_safe_redirect_url from a server-derived base_url (base_host) with next_path appended as a path, so the scheme comes from the application's own host configuration and a data: URL cannot be injected via the request-supplied next_path."
+  },
+  {
+   "path": "WeblateOrg__weblate/weblate/accounts/views.py",
+   "line": 956,
+   "rule_id": "redirect-target-unvalidated-scheme-v1",
+   "sha256": "245dd02e549b6beefe13de2852c33696b2043ad08a940f51009a73538b16eb0e",
+   "cve_severity": "CRITICAL",
+   "verdict": "safe_in_context",
+   "reason": "The redirect target comes from the view's own get_success_url(), a server-computed internal destination (reverse/object URL) with a fixed fragment appended, not from request-supplied data."
+  },
+  {
+   "path": "dgtlmoon__changedetection.io/changedetectionio/flask_app.py",
+   "line": 1173,
+   "rule_id": "send-from-directory-built-base-dir-v1",
+   "sha256": "552dc10f2661e0f8a9d884dc384ac690b402719e0c5c6dd0555d648f6622b56c",
+   "cve_severity": "MEDIUM",
+   "verdict": "safe_in_context",
+   "reason": "The subdir component is checked against a fixed allowlist ['1x1', '4x3'] and the filename is restricted by regex to [a-z0-9-]+.svg before send_from_directory is called, so no attacker-controlled path segments reach the base directory."
+  },
+  {
+   "path": "dgtlmoon__changedetection.io/changedetectionio/flask_app.py",
+   "line": 1328,
+   "rule_id": "send-from-directory-built-base-dir-v1",
+   "sha256": "552dc10f2661e0f8a9d884dc384ac690b402719e0c5c6dd0555d648f6622b56c",
+   "cve_severity": "MEDIUM",
+   "verdict": "cannot_tell",
+   "reason": "The base directory is built from `group`, which is almost certainly a URL route parameter in this Flask view, but the excerpt does not show its definition or any converter/allow-list constraint (e.g. a length-2 string converter) that would prove whether a `..` segment is possible."
+  },
+  {
+   "path": "CTFd__CTFd/CTFd/utils/exports/__init__.py",
+   "line": 247,
+   "rule_id": "sql-execute-built-string-v1",
+   "sha256": "92be1c82dc6e327223d8c316f8ab241b01bf6a18f9ba04acd04cf87f540a2198",
+   "cve_severity": "HIGH",
+   "verdict": "safe_in_context",
+   "reason": "proc_id comes from the MySQL server's own SHOW PROCESSLIST output (an integer connection Id), not from a request or user-supplied data, so the formatted KILL statement cannot carry attacker-controlled SQL."
+  },
+  {
+   "path": "ArchiveBox__ArchiveBox/archivebox/core/admin_site.py",
+   "line": 185,
+   "rule_id": "sql-execute-built-string-v1",
+   "sha256": "22a377ae84dad41b2e04b36b652e21048fab43c18c54ebd3a39c83ae720529f2",
+   "cve_severity": "HIGH",
+   "verdict": "safe_in_context",
+   "reason": "The interpolated table name comes from models_by_table, which is derived from registered Django model metadata (db_table) rather than request input, and it is additionally escaped via connection.ops.quote_name, so no outside data reaches the statement."
+  },
+  {
+   "path": "wger-project__wger/wger/exercises/migrations/0037_replace_variation_with_uuid_field.py",
+   "line": 45,
+   "rule_id": "sql-execute-built-string-v1",
+   "sha256": "73bb604a45c180fcd5e2e573035ee5185949f22c491f998b7eda4578bbacc09c",
+   "cve_severity": "HIGH",
+   "verdict": "safe_in_context",
+   "reason": "The interpolated index_name comes from the database's own sqlite_master catalog filtered by a constant LIKE pattern during a migration, not from any external request or user-supplied input, so no outside data reaches the DROP INDEX statement."
+  },
+  {
+   "path": "indico__indico/indico/cli/database.py",
+   "line": 57,
+   "rule_id": "sql-execute-built-string-v1",
+   "sha256": "f50d3eb3787dcc1a8fdc03aa4f02a409bc3295ff6b8192cdb10bacd23460f2e0",
+   "cve_severity": "HIGH",
+   "verdict": "safe_in_context",
+   "reason": "The revision value is passed as a bound parameter and the only interpolated piece is the table name derived from a plugin identifier in an admin-run CLI command, not from untrusted external input."
+  },
+  {
+   "path": "ArchiveBox__ArchiveBox/archivebox/core/migrations/0023_upgrade_to_0_9_0.py",
+   "line": 154,
+   "rule_id": "sql-execute-built-string-v1",
+   "sha256": "3c26dd449ebe01dc98ea200788614d36ad4f81723e978a71f067c96b6866973d",
+   "cve_severity": "HIGH",
+   "verdict": "safe_in_context",
+   "reason": "The formatted fragment is a list of hardcoded column-name literals selected by schema checks in a migration, with no external or user-supplied data reaching the SQL text."
+  },
+  {
+   "path": "netbox-community__netbox/netbox/utilities/migration.py",
+   "line": 147,
+   "rule_id": "sql-execute-built-string-v1",
+   "sha256": "4d1b3f6ecb0818b32528921870f803b8bfbd31a0f3f24e757ac6c460687b65bf",
+   "cve_severity": "HIGH",
+   "verdict": "safe_in_context",
+   "reason": "The interpolated values (trigger_name, source_table, function_name, update_of, when_clause) are DDL identifiers set by the migration author in code at migration-definition time, not derived from requests, user files, or other external input."
+  },
+  {
+   "path": "inventree__InvenTree/src/backend/InvenTree/InvenTree/helpers_db.py",
+   "line": 79,
+   "rule_id": "sqlalchemy-order-by-built-string-v1",
+   "sha256": "db99430fbf9f6b3306690f629acbca0f5ad499bdc782722fcbea640b6e08799f",
+   "cve_severity": "CRITICAL",
+   "verdict": "safe_in_context",
+   "reason": "This is Django ORM (not SQLAlchemy) and `id_field` is an internal, caller-supplied model field name used by a bulk_create helper, which Django validates against the model's fields rather than interpolating as raw SQL, so no outside data reaches the call."
+  },
+  {
+   "path": "DefectDojo__django-DefectDojo/dojo/endpoint/utils.py",
+   "line": 550,
+   "rule_id": "sqlalchemy-order-by-built-string-v1",
+   "sha256": "6bac0d2253cee9256d7259bddaf2833c0c5fdc567e806c9d37a8cd6302f4b18b",
+   "cve_severity": "CRITICAL",
+   "verdict": "safe_in_context",
+   "reason": "This is a Django ORM order_by (not SQLAlchemy) whose string is built from `target`, a through-model field attname derived from Django model metadata in tag_through(), not from request or user-supplied data."
+  },
+  {
+   "path": "nautobot__nautobot/nautobot/core/tests/test_api.py",
+   "line": 1215,
+   "rule_id": "sqlalchemy-order-by-built-string-v1",
+   "sha256": "35f1c73e2fa0a563cd92ba89a9fbfac7aac9a1b133841517c3a0d4c0278b083d",
+   "cve_severity": "CRITICAL",
+   "verdict": "safe_in_context",
+   "reason": "This is a Django ORM call in a test file where field_name comes from a hardcoded class-level field_type_map, not from any external input, and the rule targets SQLAlchemy Query.order_by anyway."
+  },
+  {
+   "path": "saleor__saleor/saleor/product/managers.py",
+   "line": 243,
+   "rule_id": "sqlalchemy-order-by-built-string-v1",
+   "sha256": "e054b13f7128ca468f8d5e24769d9d9be2b2166388ea3ad474796e8ddfd8d258",
+   "cve_severity": "CRITICAL",
+   "verdict": "safe_in_context",
+   "reason": "The order_by strings are fixed column names with only a hardcoded '-' prefix chosen by a boolean descending flag, and this is a Django ORM queryset (not SQLAlchemy), so no outside-controlled text reaches the sort clause."
+  },
+  {
+   "path": "nautobot__nautobot/nautobot/data_validation/tables.py",
+   "line": 198,
+   "rule_id": "sqlalchemy-order-by-built-string-v1",
+   "sha256": "82de5b16b54af7f6f87443d9fbefffbbb775245b89843560cb623953433d298c",
+   "cve_severity": "CRITICAL",
+   "verdict": "safe_in_context",
+   "reason": "The order_by argument is a constant column name \"validated_object_str\" with only a hardcoded \"-\" prefix chosen by a boolean, so no outside data reaches the call (and this is a Django ORM queryset, not SQLAlchemy)."
+  },
+  {
+   "path": "pretix__pretix/src/pretix/control/views/subevents.py",
+   "line": 1633,
+   "rule_id": "sqlalchemy-order-by-built-string-v1",
+   "sha256": "a817e4dcb676b55b65e56e58c3a05e880d025a1d4c5eae98283a04107aae77a9",
+   "cve_severity": "CRITICAL",
+   "verdict": "safe_in_context",
+   "reason": "This is a Django QuerySet (not SQLAlchemy) and `k` iterates over `rel_fields`, an internal hardcoded list of model field names in the bulk-edit view, and Django's order_by resolves names against model fields rather than injecting raw SQL."
+  },
+  {
+   "path": "inventree__InvenTree/src/backend/InvenTree/common/models.py",
+   "line": 2219,
+   "rule_id": "storage-save-untrusted-name-v1",
+   "sha256": "38f59490edf72f1581392a0dbd134cfeaf733413763783ba477bfffcb6776acb",
+   "cve_severity": "MEDIUM",
+   "verdict": "real_risk",
+   "reason": "The filename comes from an externally supplied attachment rename, and the only guard is a lexical is_relative_to check (which does not reject '..' segments), so an unsanitized user-controlled name reaches default_storage.save."
+  },
+  {
+   "path": "pretix__pretix/src/pretix/api/serializers/settings.py",
+   "line": 90,
+   "rule_id": "storage-save-untrusted-name-v1",
+   "sha256": "14e647b094dcc45a0c3e4b54c872eecc813a8979393a1da57e358aa5482bbb18",
+   "cve_severity": "MEDIUM",
+   "verdict": "cannot_tell",
+   "reason": "The stored name is derived from the uploaded file's name via self.get_new_filename(), whose implementation (whether it generates a fresh name or merely passes the external name through) is not shown in the excerpt."
+  },
+  {
+   "path": "pretix__pretix/src/pretix/control/views/pdf.py",
+   "line": 175,
+   "rule_id": "storage-save-untrusted-name-v1",
+   "sha256": "f08964c328029d61097cedf82ab0b1f924c667c7d78838c74f4925551b63fb0e",
+   "cve_severity": "MEDIUM",
+   "verdict": "safe_in_context",
+   "reason": "The filename is built entirely from constant literals, the event's integer primary key, a server-defined settings key, and a server-generated random nonce, with no externally supplied name component."
+  },
+  {
+   "path": "wger-project__wger/wger/nutrition/sync.py",
+   "line": 478,
+   "rule_id": "storage-save-untrusted-name-v1",
+   "sha256": "a624dad030378ab7e9a8c9cbaaf183b8a370316371282187455df8a2d4d8093c",
+   "cve_severity": "MEDIUM",
+   "verdict": "safe_in_context",
+   "reason": "The filename is the module-level constant INGREDIENT_BULK_EXPORT_PATH, not externally supplied data, so no untrusted name reaches default_storage.save."
+  },
+  {
+   "path": "saleor__saleor/saleor/graphql/core/mutations.py",
+   "line": 1247,
+   "rule_id": "storage-save-untrusted-name-v1",
+   "sha256": "3b73c316a082bbbbaf6a8f0a3190fe2df7f98d34c8e83bbf7f6c279b192b7d08",
+   "cve_severity": "MEDIUM",
+   "verdict": "real_risk",
+   "reason": "The stored name is derived from the client-supplied upload filename (file_data.name) with only spaces replaced, so directory components such as '../' are not stripped and an externally controlled path reaches default_storage.save, matching the rule's described weakness."
+  },
+  {
+   "path": "wger-project__wger/wger/nutrition/management/commands/migrate-ingredient-image-paths.py",
+   "line": 172,
+   "rule_id": "storage-save-untrusted-name-v1",
+   "sha256": "d263011982a3bf42c95fdd27fadfefed91116c8afe70a0bb435295698eff3605",
+   "cve_severity": "MEDIUM",
+   "verdict": "safe_in_context",
+   "reason": "This is an admin-run management command that relocates existing stored files to a library-computed new_path (not request-supplied input), so the filename is internal to the migration rather than externally controlled."
+  },
+  {
+   "path": "indico__indico/indico/modules/events/static/offline.py",
+   "line": 199,
+   "rule_id": "werkzeug-safe-join-untrusted-path-v1",
+   "sha256": "32b57ca98e51f3b4d5e2e841001bcad1bdf187d1c190fdeb079a826b6e4569ec",
+   "cve_severity": "MEDIUM",
+   "verdict": "safe_in_context",
+   "reason": "file_path is restricted by re.match(r'static/custom/.*\\.css$') to start with 'static/custom/', so the segment cannot begin with a double slash or backslash and the UNC bypass is not reachable; the result is also only used as an in-archive zip path."
+  },
+  {
+   "path": "indico__indico/indico/modules/events/static/offline.py",
+   "line": 185,
+   "rule_id": "werkzeug-safe-join-untrusted-path-v1",
+   "sha256": "32b57ca98e51f3b4d5e2e841001bcad1bdf187d1c190fdeb079a826b6e4569ec",
+   "cve_severity": "MEDIUM",
+   "verdict": "safe_in_context",
+   "reason": "The path segment is derived from asset URLs collected while rendering the event's own static templates/CSS (internal references validated by regex and a registered plugin lookup), not from a request parameter, and Indico is deployed on Linux only, so the Windows UNC bypass is not reachable here."
+  },
+  {
+   "path": "indico__indico/indico/modules/events/static/offline.py",
+   "line": 209,
+   "rule_id": "werkzeug-safe-join-untrusted-path-v1",
+   "sha256": "32b57ca98e51f3b4d5e2e841001bcad1bdf187d1c190fdeb079a826b6e4569ec",
+   "cve_severity": "MEDIUM",
+   "verdict": "safe_in_context",
+   "reason": "The path segments come from `used_assets`, which Indico collects from server-side url_for() calls during rendering and from admin-managed customization CSS in CUSTOMIZATION_DIR, so the value is internal/trusted rather than attacker-supplied request data."
+  },
+  {
+   "path": "indico__indico/indico/modules/events/static/offline.py",
+   "line": 145,
+   "rule_id": "werkzeug-safe-join-untrusted-path-v1",
+   "sha256": "32b57ca98e51f3b4d5e2e841001bcad1bdf187d1c190fdeb079a826b6e4569ec",
+   "cve_severity": "MEDIUM",
+   "verdict": "safe_in_context",
+   "reason": "The segment at line 145 is filtered by re.match(r'static/dist/.*\\.css$'), which anchors the path to start with 'static/dist/', so it cannot begin with a double slash or backslash and the UNC bypass does not apply."
+  },
+  {
+   "path": "indico__indico/indico/modules/events/static/offline.py",
+   "line": 186,
+   "rule_id": "werkzeug-safe-join-untrusted-path-v1",
+   "sha256": "32b57ca98e51f3b4d5e2e841001bcad1bdf187d1c190fdeb079a826b6e4569ec",
+   "cve_severity": "MEDIUM",
+   "verdict": "safe_in_context",
+   "reason": "file_path has already been matched against `static/plugins/([^/]+)/(.+)` so it necessarily starts with `static/` (not `//` or `\\`), and it originates from URLs found in the server's own plugin CSS assets rather than from a request, so the UNC-bypass condition cannot be met."
+  },
+  {
+   "path": "CTFd__CTFd/CTFd/utils/uploads/uploaders.py",
+   "line": 106,
+   "rule_id": "werkzeug-safe-join-untrusted-path-v1",
+   "sha256": "c2cfdbb78eb090861b31cedcd6b9dc75306f3506cac58b95c47fefce1ba4ef25",
+   "cve_severity": "MEDIUM",
+   "verdict": "safe_in_context",
+   "reason": "In CTFd, delete() receives the stored Files.location value that was generated by upload() (secure_filename-sanitized name under a hexencoded or sanitized directory), not a raw request-supplied segment, so a leading '//' or backslash cannot reach safe_join here."
+  },
+  {
+   "path": "goauthentik__authentik/authentik/blueprints/v1/importer.py",
+   "line": 159,
+   "rule_id": "yaml-load-without-safe-loader-v1",
+   "sha256": "9620e4a413555d1a30c337ea4ac565f6e03f6058f86cf81d83e38a0decc202f7",
+   "cve_severity": "CRITICAL",
+   "verdict": "safe_in_context",
+   "reason": "The call passes an explicit custom Loader (BlueprintLoader), which in authentik's blueprints/v1/common.py subclasses yaml.SafeLoader and only adds constructors for blueprint-specific tags (!KeyOf, !Find, !Context, etc.), so arbitrary Python object construction is not enabled even though the YAML comes from user-supplied blueprints."
+  },
+  {
+   "path": "HumanSignal__label-studio/scripts/update_ml_tutorials.py",
+   "line": 89,
+   "rule_id": "yaml-load-without-safe-loader-v1",
+   "sha256": "f4657b2f6317f8a7a4db29bb2df0302c010b58c2387307f7e738a046efa263f7",
+   "cve_severity": "CRITICAL",
+   "verdict": "safe_in_context",
+   "reason": "The YAML comes from the repository's own docs file (ml_tutorials.html) located relative to the script, read by a developer maintenance script rather than from any external request, user-supplied file, or network peer, and FullLoader is used rather than the unsafe default Loader."
+  },
+  {
+   "path": "HumanSignal__label-studio/scripts/update_ml_tutorials.py",
+   "line": 74,
+   "rule_id": "yaml-load-without-safe-loader-v1",
+   "sha256": "f4657b2f6317f8a7a4db29bb2df0302c010b58c2387307f7e738a046efa263f7",
+   "cve_severity": "CRITICAL",
+   "verdict": "safe_in_context",
+   "reason": "This is a developer maintenance script that parses front-matter from README files in the repository's own docs/tutorial tree (not request, user-upload, or network input) and uses FullLoader rather than the unsafe default Loader, so no outside data plausibly reaches the call."
+  },
+  {
+   "path": "goauthentik__authentik/authentik/blueprints/v1/tasks.py",
+   "line": 129,
+   "rule_id": "yaml-load-without-safe-loader-v1",
+   "sha256": "29a4254f19ffdaaebd5e95391ea6f01a42759f3637a76f82f72c8296a6b757f2",
+   "cve_severity": "CRITICAL",
+   "verdict": "safe_in_context",
+   "reason": "The input is YAML files read from the admin-configured blueprints_dir on the local filesystem, and BlueprintLoader (authentik/blueprints/v1/common.py) is a SafeLoader subclass with custom tags, so this is not an unsafe full/unsafe loader on untrusted data."
+  },
+  {
+   "path": "goauthentik__authentik/authentik/blueprints/v1/hash.py",
+   "line": 49,
+   "rule_id": "yaml-load-without-safe-loader-v1",
+   "sha256": "807aa34b889d8fcbd8eb1c420c43df729413e478e58ba9536d0cafe9f330ebcf",
+   "cve_severity": "CRITICAL",
+   "verdict": "safe_in_context",
+   "reason": "The call passes an explicit loader, BlueprintLoader, which in authentik's blueprints/v1/common.py is a SafeLoader subclass that only adds constructors for the custom !Env/!File/etc. tags, so even user-supplied blueprint content cannot trigger arbitrary object construction."
+  },
+  {
+   "path": "mitre__caldera/app/utility/base_world.py",
+   "line": 87,
+   "rule_id": "yaml-load-without-safe-loader-v1",
+   "sha256": "291dcc702f5577d23523a1ad1d59cb15415c25be6a1add9bb4d01d230b1106fd",
+   "cve_severity": "CRITICAL",
+   "verdict": "cannot_tell",
+   "reason": "The call uses yaml.FullLoader (not SafeLoader, but hardened against arbitrary object construction since PyYAML 5.4) on a file whose path origin is not shown in the excerpt, so neither the PyYAML version nor whether the YAML file can be user-supplied can be determined here."
+  }
+ ],
+ "usage": {
+  "calls": 137,
+  "cost_usd": 5.912689999999998,
+  "input_tokens": 274,
+  "cache_creation_input_tokens": 216465,
+  "output_tokens": 31613
+ }
+}

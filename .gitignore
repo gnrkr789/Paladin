@@ -18,3 +18,6 @@ docs/evidence/m2/django-security.html
 
 # Machine-specific agent hook installs (paladin hook install)
 .codex/
+
+# Evaluation records stay local (not published)
+docs/evidence/

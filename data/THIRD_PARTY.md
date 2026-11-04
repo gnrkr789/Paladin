@@ -13,8 +13,8 @@ remains under its own license; the full license texts are in `licenses/`.
   and include their original author lines.
 - The PoC list entries come from nomi-sec/PoC-in-GitHub (CC0-1.0). The listed
   repositories themselves were never downloaded or redistributed.
-- Files under `docs/evidence/` may quote excerpts of the sources below in test
-  and evaluation records; the same licenses apply to those excerpts.
+- Test fixtures may quote excerpts of the sources below; the same licenses
+  apply to those excerpts.
 - Web page snapshots without a clear redistribution license are not included;
   `data/external-references.json` lists their URLs and the hashes of the bytes
   collected at the time.
@@ -29,9 +29,7 @@ remains under its own license; the full license texts are in `licenses/`.
   candidate cards in the prevention pack quote short excerpts of these files and
   were written from them by a model; no upstream fix code is included.
 - External projects used for validation (`.validation-cache/`) are not part of
-  this repository. Evaluation records under `docs/evidence/private-alpha/` quote
-  short excerpts of pip (MIT, `licenses/pip-MIT.txt`) and Cookiecutter
-  (BSD-3-Clause) sources and their Docker traces.
+  this repository; evaluation records are kept outside it.
 
 | File | Upstream | License | License text |
 |---|---|---|---|
@@ -104,4 +102,3 @@ remains under its own license; the full license texts are in `licenses/`.
 | `data/m2/sources/CVE-2025-59682.patch.patch` | django/django | BSD-3-Clause | [django-BSD-3-Clause.txt](../licenses/django-BSD-3-Clause.txt) |
 | `data/m2/sources/CVE-2025-64459.cve.json` | cveproject/cvelistv5 | CVE Terms of Use (MITRE) | [CVE-Terms-of-Use.txt](../licenses/CVE-Terms-of-Use.txt) |
 | `data/m2/sources/CVE-2025-64459.patch.patch` | django/django | BSD-3-Clause | [django-BSD-3-Clause.txt](../licenses/django-BSD-3-Clause.txt) |
-| `docs/evidence/patch-context-repair/reference.patch` | bentoml/bentoml | Apache-2.0 | [bentoml-Apache-2.0.txt](../licenses/bentoml-Apache-2.0.txt) |

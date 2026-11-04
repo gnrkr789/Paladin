@@ -6,7 +6,7 @@ Scans the corpus with the shipped rules whose CVE is MEDIUM and above (blocking 
 precision), draws a seeded sample
 of matches per rule, and asks a model, with the surrounding code, whether the match is the
 weakness the rule targets (data that can come from outside reaches the call) or safe in its
-context. Writes docs/evidence/block-precision/NAME.json; the code itself is not stored.
+context. Writes data/block-precision/NAME.json; the code itself is not stored.
 The manifest (repository URL and commit per corpus folder) is copied into the record.
 """
 import argparse
@@ -111,7 +111,7 @@ def main(argv=None):
               "sample": {"seed": args.seed, "per_rule": args.per_rule, "judge": args.model, "size": len(judged)},
               "verdicts": {v: sum(1 for j in judged if j["verdict"] == v) for v in sorted(VERDICTS | {"error"})},
               "judged": judged, "usage": claude.usage}
-    out = ROOT / "docs" / "evidence" / "block-precision"
+    out = ROOT / "data" / "block-precision"
     out.mkdir(parents=True, exist_ok=True)
     (out / (args.name + ".json")).write_text(json.dumps(record, indent=1) + "\n", encoding="utf-8", newline="\n")
     print(json.dumps({k: record[k] for k in ("block_rules", "matches", "files_with_matches", "verdicts", "usage")}))

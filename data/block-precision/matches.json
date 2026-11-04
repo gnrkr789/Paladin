@@ -1,0 +1,411 @@
+{
+ "corpus": ".venv/Lib/site-packages",
+ "block_rules": 118,
+ "matches": 267,
+ "files_with_matches": 63,
+ "matches_per_rule": {
+  "archive-extractall-path-check-v1": 29,
+  "commonprefix-path-containment-v1": 2,
+  "file-scheme-prefix-blocklist-v1": 1,
+  "jinja2-environment-autoescape-not-enabled-v1": 1,
+  "lxml-xmlparser-entity-resolution-v1": 3,
+  "mako-lookup-get-template-dynamic-name-v1": 4,
+  "mako-lookup-get-template-nonconstant-uri-v1": 4,
+  "mcp-client-user-controlled-url-v1": 4,
+  "os-system-built-command-string-v1": 4,
+  "pickle-load-non-constant-data-v1": 116,
+  "pillow-image-open-untrusted-xbm-redos-v1": 4,
+  "sql-execute-built-string-v1": 93,
+  "torch-load-without-weights-only-v1": 2
+ },
+ "sample": {
+  "seed": 20261104,
+  "per_rule": 4,
+  "judge": "claude-fable-5-1",
+  "size": 41
+ },
+ "verdicts": {
+  "cannot_tell": 4,
+  "error": 0,
+  "real_risk": 4,
+  "safe_in_context": 33
+ },
+ "judged": [
+  {
+   "path": "pandas/tests/strings/test_extract.py",
+   "line": 709,
+   "rule_id": "archive-extractall-path-check-v1",
+   "sha256": "464ce7890df4baa8371d4d02a19a65484df377b7077a245e9d7fc5b6148b9af8",
+   "cve_severity": "HIGH",
+   "verdict": "safe_in_context",
+   "reason": "This is pandas Series.str.extractall (regex match extraction on in-memory test strings), not an archive extractall, so no archive entries or filesystem paths are involved."
+  },
+  {
+   "path": "pandas/tests/strings/test_extract.py",
+   "line": 680,
+   "rule_id": "archive-extractall-path-check-v1",
+   "sha256": "464ce7890df4baa8371d4d02a19a65484df377b7077a245e9d7fc5b6148b9af8",
+   "cve_severity": "HIGH",
+   "verdict": "safe_in_context",
+   "reason": "The flagged call is pandas Series.str.extractall (a regex string extraction on an in-memory literal Series), not an archive extraction API, so no filesystem paths or archive entries are involved."
+  },
+  {
+   "path": "pandas/tests/strings/test_extract.py",
+   "line": 499,
+   "rule_id": "archive-extractall-path-check-v1",
+   "sha256": "464ce7890df4baa8371d4d02a19a65484df377b7077a245e9d7fc5b6148b9af8",
+   "cve_severity": "HIGH",
+   "verdict": "safe_in_context",
+   "reason": "The flagged call is pandas' Series.str.extractall (a regex group-extraction method) on an in-memory test Series of string literals, not an archive extraction, so no filesystem path traversal is possible."
+  },
+  {
+   "path": "pandas/tests/strings/test_extract.py",
+   "line": 572,
+   "rule_id": "archive-extractall-path-check-v1",
+   "sha256": "464ce7890df4baa8371d4d02a19a65484df377b7077a245e9d7fc5b6148b9af8",
+   "cve_severity": "HIGH",
+   "verdict": "safe_in_context",
+   "reason": "This is pandas' Series.str.extractall regex-matching method with a constant pattern in a test, not an archive extraction API, so no filesystem path handling is involved."
+  },
+  {
+   "path": "win32/lib/pywin32_testutil.py",
+   "line": 188,
+   "rule_id": "commonprefix-path-containment-v1",
+   "sha256": "3740109e363e7f67f3ef5e30d316ebb25dff0098e74675d6689b52d76d19ade5",
+   "cve_severity": "MEDIUM",
+   "verdict": "safe_in_context",
+   "reason": "The commonprefix check compares sys.argv[0] against site-packages directories only to decide whether to skip or fail a test fixture lookup; both inputs are local interpreter/installation paths rather than external data, and the outcome is a SkipTest vs RuntimeError message with no security-relevant containment decision."
+  },
+  {
+   "path": "huggingface_hub/hf_file_system.py",
+   "line": 581,
+   "rule_id": "commonprefix-path-containment-v1",
+   "sha256": "6fa7f224cef7167eeaa48d8753c0db3754c69528f15b7a18c4c85e76f2bbfa5a",
+   "cve_severity": "MEDIUM",
+   "verdict": "safe_in_context",
+   "reason": "commonprefix here only computes a shared ancestor of virtual repo paths to decide which dircache entries to refresh (with explicit handling to fall back to the parent directory when the prefix is not a path component), not to enforce a security containment boundary against outside input."
+  },
+  {
+   "path": "click/_termui_impl.py",
+   "line": 805,
+   "rule_id": "file-scheme-prefix-blocklist-v1",
+   "sha256": "88b97d9b7a5b947b10a16d8ab269837bc84c7e55c28ba72ea5f2fb339112336a",
+   "cve_severity": "HIGH",
+   "verdict": "safe_in_context",
+   "reason": "The 'file://' prefix check here is not a security blocklist but a convenience that strips the scheme and percent-decodes a path before handing it to the OS opener, so no allow/deny decision hinges on the raw-text prefix match the rule targets."
+  },
+  {
+   "path": "starlette/templating.py",
+   "line": 95,
+   "rule_id": "jinja2-environment-autoescape-not-enabled-v1",
+   "sha256": "cbe013950acd0e82cc66ce61ac7cd00536a9102043afdc0097e6ecf01964e63c",
+   "cve_severity": "MEDIUM",
+   "verdict": "safe_in_context",
+   "reason": "The Environment is created with autoescape=jinja2.select_autoescape(), which enables escaping for HTML/XML template extensions by default, so the rule's condition is not met."
+  },
+  {
+   "path": "pandas/io/xml.py",
+   "line": 557,
+   "rule_id": "lxml-xmlparser-entity-resolution-v1",
+   "sha256": "c2325f187b205f02c82af94be5f1a00f90fc0d8ad5f062821b868978dbc27e51",
+   "cve_severity": "MEDIUM",
+   "verdict": "safe_in_context",
+   "reason": "The flagged XMLParser is xml.etree.ElementTree's expat-based parser (imported at lines 544-547), not lxml's, and stdlib ElementTree does not resolve external entities or fetch network resources, so the lxml entity-expansion weakness the rule targets does not apply even though the XML input is user-supplied."
+  },
+  {
+   "path": "pandas/io/formats/xml.py",
+   "line": 562,
+   "rule_id": "lxml-xmlparser-entity-resolution-v1",
+   "sha256": "a169f69cfa90529010b87864d376e63c4f528012431e11d46e36c0f810302cdf",
+   "cve_severity": "MEDIUM",
+   "verdict": "safe_in_context",
+   "reason": "The parser is constructed with resolve_entities=\"internal\", which blocks expansion of external entities (and lxml defaults to no_network=True), so even a user-supplied stylesheet cannot pull in local files or remote resources through entity resolution."
+  },
+  {
+   "path": "pandas/io/xml.py",
+   "line": 669,
+   "rule_id": "lxml-xmlparser-entity-resolution-v1",
+   "sha256": "c2325f187b205f02c82af94be5f1a00f90fc0d8ad5f062821b868978dbc27e51",
+   "cve_severity": "MEDIUM",
+   "verdict": "safe_in_context",
+   "reason": "Although the XML comes from a user-supplied path/buffer, the parser is built with resolve_entities=\"internal\" (lxml's option that only expands internal entities and blocks external entity resolution) and lxml's default no_network=True, so external entities cannot pull in local files or remote resources."
+  },
+  {
+   "path": "starlette/templating.py",
+   "line": 148,
+   "rule_id": "mako-lookup-get-template-dynamic-name-v1",
+   "sha256": "cbe013950acd0e82cc66ce61ac7cd00536a9102043afdc0097e6ecf01964e63c",
+   "cve_severity": "HIGH",
+   "verdict": "safe_in_context",
+   "reason": "This is Starlette's Jinja2Templates wrapper (not Mako), where `name` is supplied by application code and Jinja2's loader rejects path separators/'..' segments, so the Mako backslash-traversal weakness does not apply here."
+  },
+  {
+   "path": "pandas/io/formats/style.py",
+   "line": 4065,
+   "rule_id": "mako-lookup-get-template-dynamic-name-v1",
+   "sha256": "dc94b9fa0df8f9ba9f9b7bff9f938ad6b0a6234004c56b628a1c0903a5bc869b",
+   "cve_severity": "HIGH",
+   "verdict": "safe_in_context",
+   "reason": "The call is jinja2.Environment.get_template, not Mako's TemplateLookup, so the Mako backslash-traversal weakness does not apply, and html_style is a developer-supplied argument to Styler.from_custom_template rather than external request/user data."
+  },
+  {
+   "path": "pandas/io/formats/style.py",
+   "line": 4063,
+   "rule_id": "mako-lookup-get-template-dynamic-name-v1",
+   "sha256": "dc94b9fa0df8f9ba9f9b7bff9f938ad6b0a6234004c56b628a1c0903a5bc869b",
+   "cve_severity": "HIGH",
+   "verdict": "safe_in_context",
+   "reason": "The call is jinja2.Environment.get_template, not Mako's TemplateLookup, and the name comes from a developer-supplied argument to Styler.from_custom_template (a public API parameter, not external request/file data), so the Mako backslash-traversal weakness does not apply."
+  },
+  {
+   "path": "starlette/templating.py",
+   "line": 115,
+   "rule_id": "mako-lookup-get-template-dynamic-name-v1",
+   "sha256": "cbe013950acd0e82cc66ce61ac7cd00536a9102043afdc0097e6ecf01964e63c",
+   "cve_severity": "HIGH",
+   "verdict": "safe_in_context",
+   "reason": "This is Starlette's thin wrapper around jinja2.Environment.get_template, not Mako's TemplateLookup, so the Mako backslash-traversal weakness does not apply, and the name is supplied by application code calling TemplateResponse rather than taken from the request."
+  },
+  {
+   "path": "pandas/io/formats/style.py",
+   "line": 4065,
+   "rule_id": "mako-lookup-get-template-nonconstant-uri-v1",
+   "sha256": "dc94b9fa0df8f9ba9f9b7bff9f938ad6b0a6234004c56b628a1c0903a5bc869b",
+   "cve_severity": "HIGH",
+   "verdict": "safe_in_context",
+   "reason": "The receiver is an explicitly constructed jinja2.Environment (not a Mako TemplateLookup), and html_style is a developer-supplied configuration argument to Styler.from_custom_template rather than request or user-file data, with Jinja2's FileSystemLoader additionally rejecting '..' path components."
+  },
+  {
+   "path": "starlette/templating.py",
+   "line": 115,
+   "rule_id": "mako-lookup-get-template-nonconstant-uri-v1",
+   "sha256": "cbe013950acd0e82cc66ce61ac7cd00536a9102043afdc0097e6ecf01964e63c",
+   "cve_severity": "HIGH",
+   "verdict": "safe_in_context",
+   "reason": "The receiver is a jinja2.Environment (typed at line 101/114 and loaded via Jinja2's own loader), not a Mako TemplateLookup, so the Mako drive-letter traversal weakness this rule targets does not apply to this call even though the name is a caller-supplied parameter."
+  },
+  {
+   "path": "starlette/templating.py",
+   "line": 148,
+   "rule_id": "mako-lookup-get-template-nonconstant-uri-v1",
+   "sha256": "cbe013950acd0e82cc66ce61ac7cd00536a9102043afdc0097e6ecf01964e63c",
+   "cve_severity": "HIGH",
+   "verdict": "safe_in_context",
+   "reason": "This is Starlette's Jinja2Templates.TemplateResponse, where get_template delegates to a Jinja2 Environment (not a Mako TemplateLookup) and `name` is a parameter supplied by the application developer's route code rather than taken from the request, so the Mako drive-letter traversal the rule targets does not apply here."
+  },
+  {
+   "path": "pandas/io/formats/style.py",
+   "line": 4063,
+   "rule_id": "mako-lookup-get-template-nonconstant-uri-v1",
+   "sha256": "dc94b9fa0df8f9ba9f9b7bff9f938ad6b0a6234004c56b628a1c0903a5bc869b",
+   "cve_severity": "HIGH",
+   "verdict": "safe_in_context",
+   "reason": "The call is on a jinja2.Environment (not a Mako TemplateLookup), and html_table is a developer-supplied parameter to Styler.from_custom_template used to configure a subclass, not external request/user data."
+  },
+  {
+   "path": "mcp/client/__main__.py",
+   "line": 53,
+   "rule_id": "mcp-client-user-controlled-url-v1",
+   "sha256": "e2c8aecb6e3876932ab153ed786dde038fc4634f8f0a14b7403b5e1d75988bb6",
+   "cve_severity": "HIGH",
+   "verdict": "safe_in_context",
+   "reason": "The URL is a command-line argument supplied by the local operator running this CLI tool whose stated purpose is to connect to a server they choose, so no untrusted remote party controls the endpoint."
+  },
+  {
+   "path": "mcp/client/client.py",
+   "line": 399,
+   "rule_id": "mcp-client-user-controlled-url-v1",
+   "sha256": "36c91f9dcfff52dcf2a4736db6d570f874d7958806f68331ff2bae3b29639031",
+   "cve_severity": "HIGH",
+   "verdict": "cannot_tell",
+   "reason": "The URL is `self.server`, a constructor parameter of this general-purpose client library, and the excerpt does not show whether callers populate it from constants/config or from external input such as a request."
+  },
+  {
+   "path": "mcp/client/session_group.py",
+   "line": 320,
+   "rule_id": "mcp-client-user-controlled-url-v1",
+   "sha256": "1038cf7a62e6c24a69576307122e9408d5438f12b48f269dfe6b0b772fcc8861",
+   "cve_severity": "HIGH",
+   "verdict": "cannot_tell",
+   "reason": "The URL comes from a caller-supplied SseServerParameters passed into this library API, and the excerpt does not show whether the embedding application derives it from a constant configuration or from external/untrusted input."
+  },
+  {
+   "path": "mcp/client/session_group.py",
+   "line": 337,
+   "rule_id": "mcp-client-user-controlled-url-v1",
+   "sha256": "1038cf7a62e6c24a69576307122e9408d5438f12b48f269dfe6b0b772fcc8861",
+   "cve_severity": "HIGH",
+   "verdict": "cannot_tell",
+   "reason": "The URL is taken from server_params passed by the library's caller through the ClientSessionGroup API, and the excerpt does not show whether that parameter originates from a trusted configuration or from external input."
+  },
+  {
+   "path": "fsspec/tests/abstract/mv.py",
+   "line": 36,
+   "rule_id": "os-system-built-command-string-v1",
+   "sha256": "93c79410122b46b18cb0163938e6835dd1a7414286c0321f43276e07a603dcdb",
+   "cve_severity": "HIGH",
+   "verdict": "safe_in_context",
+   "reason": "The command string is built from protected_path, which comes from pytest's tmpdir fixture (a test-controlled temporary directory path), not from any external or user-supplied input, and the code is a test helper."
+  },
+  {
+   "path": "win32/lib/win32serviceutil.py",
+   "line": 801,
+   "rule_id": "os-system-built-command-string-v1",
+   "sha256": "3ea780fdc7b92bfc7960fdc33b4d91e367c58c69056d7f12bc3af99bbf48a707",
+   "cve_severity": "HIGH",
+   "verdict": "safe_in_context",
+   "reason": "The interpolated values are the process's own command-line arguments (HandleCommandLine defaults to sys.argv), the service class name, and the service executable path read from the local registry, all controlled by the operator who already has shell access, so no external trust boundary is crossed."
+  },
+  {
+   "path": "fsspec/tests/abstract/mv.py",
+   "line": 55,
+   "rule_id": "os-system-built-command-string-v1",
+   "sha256": "93c79410122b46b18cb0163938e6835dd1a7414286c0321f43276e07a603dcdb",
+   "cve_severity": "HIGH",
+   "verdict": "safe_in_context",
+   "reason": "protected_path is a pytest tmp_path-derived directory created by the test fixture itself in a test file, not data from a request, user-supplied file, or network peer, so no outside data reaches the os.system call."
+  },
+  {
+   "path": "win32com/test/pippo_server.py",
+   "line": 51,
+   "rule_id": "os-system-built-command-string-v1",
+   "sha256": "4be5d08b68fdd410c96032af2d3bfc9ff35119280d35aeb93eec665c842ea922",
+   "cve_severity": "HIGH",
+   "verdict": "safe_in_context",
+   "reason": "The command string is built only from the module's own file path (os.path.dirname(__file__) joined with a hardcoded filename), not from any request, user-supplied, or external input."
+  },
+  {
+   "path": "pandas/tests/io/test_pickle.py",
+   "line": 687,
+   "rule_id": "pickle-load-non-constant-data-v1",
+   "sha256": "daa7542ca20a94097e8ea8f8dfa3359ca94bf85458db1a3b38e17b7d229a2aa8",
+   "cve_severity": "CRITICAL",
+   "verdict": "safe_in_context",
+   "reason": "The data passed to pickle.loads is produced in the same test function by pickle.dumps on a locally constructed Series, so no external or untrusted input reaches the call."
+  },
+  {
+   "path": "numpy/ma/tests/test_core.py",
+   "line": 733,
+   "rule_id": "pickle-load-non-constant-data-v1",
+   "sha256": "9229ae796056e9fc93a1dc630165dfd6853f74bf10f82b79c5b4fe900160871c",
+   "cve_severity": "CRITICAL",
+   "verdict": "safe_in_context",
+   "reason": "The pickled bytes are produced in the same line by pickle.dumps on a locally constructed test array, so no external data crosses a trust boundary."
+  },
+  {
+   "path": "pandas/tests/io/test_pickle.py",
+   "line": 201,
+   "rule_id": "pickle-load-non-constant-data-v1",
+   "sha256": "daa7542ca20a94097e8ea8f8dfa3359ca94bf85458db1a3b38e17b7d229a2aa8",
+   "cve_severity": "CRITICAL",
+   "verdict": "safe_in_context",
+   "reason": "This is a test helper in pandas' test suite that unpickles files the test itself just wrote via python_pickler to a temporary path, so no externally supplied data crosses a trust boundary."
+  },
+  {
+   "path": "numpy/_core/tests/test_ufunc.py",
+   "line": 224,
+   "rule_id": "pickle-load-non-constant-data-v1",
+   "sha256": "9098e02a442a6b0dc9ef0311af3e738414057205a689ab9964f58a8b192aa417",
+   "cve_severity": "CRITICAL",
+   "verdict": "safe_in_context",
+   "reason": "The pickled bytes are produced in-process by pickle.dumps of a module-internal ufunc immediately before loading in a round-trip unit test, so no external data reaches pickle.loads."
+  },
+  {
+   "path": "onnxruntime/transformers/models/stable_diffusion/demo_utils.py",
+   "line": 776,
+   "rule_id": "pillow-image-open-untrusted-xbm-redos-v1",
+   "sha256": "0e6fceeb2810fca36acbd1eb4d95af21dfddf73f677b28494f02e70d94dae776",
+   "cve_severity": "MEDIUM",
+   "verdict": "real_risk",
+   "reason": "Image.open() is called on paths from args.controlnet_image, a command-line argument pointing to user-supplied image files, so untrusted bytes reach the XBM header regex without a formats allowlist."
+  },
+  {
+   "path": "onnxruntime/transformers/models/stable_diffusion/demo_utils.py",
+   "line": 657,
+   "rule_id": "pillow-image-open-untrusted-xbm-redos-v1",
+   "sha256": "0e6fceeb2810fca36acbd1eb4d95af21dfddf73f677b28494f02e70d94dae776",
+   "cve_severity": "MEDIUM",
+   "verdict": "safe_in_context",
+   "reason": "The image path comes from a command-line argument chosen by the local operator running this demo script, so the only party who could supply a malicious XBM file is the user themselves (self-DoS), not an external untrusted source."
+  },
+  {
+   "path": "huggingface_hub/inference/_common.py",
+   "line": 249,
+   "rule_id": "pillow-image-open-untrusted-xbm-redos-v1",
+   "sha256": "d08efea20394996dd19e9fa627990218e3ee3f956b40b6b2ae075466f988dff7",
+   "cve_severity": "MEDIUM",
+   "verdict": "real_risk",
+   "reason": "The bytes are the raw body of an HTTP response from a remote inference server (a network peer) and are passed to Image.open() without a formats allowlist, so a malicious or compromised server could supply a crafted XBM header to trigger the regex backtracking."
+  },
+  {
+   "path": "huggingface_hub/inference/_common.py",
+   "line": 218,
+   "rule_id": "pillow-image-open-untrusted-xbm-redos-v1",
+   "sha256": "d08efea20394996dd19e9fa627990218e3ee3f956b40b6b2ae075466f988dff7",
+   "cve_severity": "MEDIUM",
+   "verdict": "real_risk",
+   "reason": "_b64_to_image decodes a base64 string that comes from an inference API response body (network peer) and passes it directly to Image.open with no formats allowlist, so untrusted bytes can reach the XBM header regex."
+  },
+  {
+   "path": "adodbapi/test/adodbapitest.py",
+   "line": 764,
+   "rule_id": "sql-execute-built-string-v1",
+   "sha256": "678e2f35232ec761dd782ce9484ff6bfe82b499d48adecab1796f80ec8570e67",
+   "cve_severity": "HIGH",
+   "verdict": "safe_in_context",
+   "reason": "The only formatted value is config.tmp, a test-suite configuration table-name suffix in a unit test file, while the user-facing data (fldId) is passed via bound parameters, so no outside data reaches the SQL text."
+  },
+  {
+   "path": "adodbapi/test/dbapi20.py",
+   "line": 442,
+   "rule_id": "sql-execute-built-string-v1",
+   "sha256": "1d2386d14d9d2f2f23deadf234108f832c6231b50a84818b3c745a18853ea4c1",
+   "cve_severity": "HIGH",
+   "verdict": "safe_in_context",
+   "reason": "The only formatted value is self.table_prefix, a test-fixture constant set by the DB-API 2.0 test suite class, not data from a request, user file, or network peer."
+  },
+  {
+   "path": "adodbapi/test/adodbapitest.py",
+   "line": 810,
+   "rule_id": "sql-execute-built-string-v1",
+   "sha256": "678e2f35232ec761dd782ce9484ff6bfe82b499d48adecab1796f80ec8570e67",
+   "cve_severity": "HIGH",
+   "verdict": "safe_in_context",
+   "reason": "The only formatted-in value is config.tmp, a test-suite configuration constant used as a table-name suffix, while the data value fldId is passed as a bound parameter; this is test code with no external input reaching the statement."
+  },
+  {
+   "path": "adodbapi/test/adodbapitest.py",
+   "line": 663,
+   "rule_id": "sql-execute-built-string-v1",
+   "sha256": "678e2f35232ec761dd782ce9484ff6bfe82b499d48adecab1796f80ec8570e67",
+   "cve_severity": "HIGH",
+   "verdict": "safe_in_context",
+   "reason": "The formatted value is config.tmp, a test-suite configuration constant used as a temporary table name suffix in a unit test, not data from a request, user file, or network peer."
+  },
+  {
+   "path": "huggingface_hub/serialization/_torch.py",
+   "line": 753,
+   "rule_id": "torch-load-without-weights-only-v1",
+   "sha256": "ab4f447e44bc516e458854e3deef60a6724a2fdce6070432a0dc475622d7d8ae",
+   "cve_severity": "HIGH",
+   "verdict": "real_risk",
+   "reason": "This helper loads arbitrary caller-supplied checkpoint files (typically Hub-downloaded) and forwards the caller's weights_only flag, so whenever it is False or torch is <1.13 the unrestricted unpickler runs on outside data, which the code itself acknowledges by warning rather than refusing."
+  },
+  {
+   "path": "onnxruntime/transformers/models/t5/t5_helper.py",
+   "line": 32,
+   "rule_id": "torch-load-without-weights-only-v1",
+   "sha256": "bc1914b46b062c5f01cac0c26de92dca9e0fcb661287d4fba02f3543319fdf2d",
+   "cve_severity": "HIGH",
+   "verdict": "cannot_tell",
+   "reason": "The flagged line is only a fallback when weights_only is unsupported by the installed PyTorch, and the excerpt does not show where the `path` argument originates (it could be a user-supplied checkpoint or an internally produced file), so the exposure cannot be determined from this context."
+  }
+ ],
+ "usage": {
+  "calls": 41,
+  "cost_usd": 1.6916900000000006,
+  "input_tokens": 82,
+  "cache_creation_input_tokens": 63086,
+  "output_tokens": 8583
+ }
+}

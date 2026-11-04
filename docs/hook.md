@@ -69,42 +69,13 @@ An empty request returns `unsupported` without inspecting anything.
 
 ## Real host check
 
-`docs/evidence/change-hook/host-run-2.jsonl`: a Claude Code session was asked to
-port a legacy function verbatim. It wrote `['hg', 'checkout', branch]`; the hook
-blocked the turn with CVE-2022-24065; the agent changed it to
-`['hg', 'checkout', '--', branch]` and explained the change (4 turns). In
-`host-run-1.jsonl` the model wrote the protected form on its own, so the hook had
-nothing to report. `host-run-3.jsonl` repeats run 2 with `PALADIN_HOOK_LOG` set;
-`host-run-3.hook-log.jsonl` records Paladin's own block output. In that run the
-agent explained the CVE and proposed the one-line fix but left the file
-verbatim, following the prompt's "exactly as written, then stop". The hook
-informs and blocks the turn; it does not edit code itself.
-
-`docs/evidence/agent-e2e-v2/` (pack v2, 2026-11-03, scripts/run_agent_e2e.py): one
-task asked each agent to port the legacy Mercurial and pickle helpers, add a Flask
-YAML upload view, and use Paladin search. Claude Code (Sonnet 5.5): the hook blocked
-the first write with CVE-2022-24065 and a pickle review note; the agent added `--`,
-replaced pickle.loads with a restricted unpickler, used yaml.safe_load, called search
-7 times, and the final static check is clean. Codex (gpt-6.1-sol): runs 1-3 never ran the project hook: a new folder's
-`.codex/hooks.json` runs only after the user trusts it (trust is stored per hooks
-file in the user's Codex config), and those runs used a fresh folder each time.
-Run 4 used this checkout's trusted hook; it fired on every edit but refused, as
-designed, because Paladin is imported from that workspace. Run 5 used a folder
-outside the checkout whose hook the user trusted with `/hooks`, with the user's
-own Codex config and no trust bypass: the hook blocked the first patch with
-CVE-2022-24065 plus a pickle review note, the agent added `--`, used
-yaml.safe_load, and kept pickle.loads documented as trusted-only. In both hosts
-the MCP check tools reported the task files as unreadable, because the MCP server
-was started on the Paladin checkout (where the search index lives), not on the task
-folder; search itself worked.
-
-Installed registration (2026-11-03, `--installed-mcp`): Claude Code run 3 and Codex
-run 7 read Paladin's MCP entry from the files `paladin mcp install` wrote (.mcp.json,
-enabled the way approving it records; .codex/config.toml in the trusted folder), with no
-MCP configuration passed on the command line. Both connected, searched, and ran
-check_changes on the task folder (Codex also check_dependencies). Claude Code was blocked
-on CVE-2022-24065 and fixed it; Codex wrote the `--` form itself and got the pickle
-review note.
+Claude Code and Codex sessions were asked to port legacy Mercurial and pickle
+helpers and add a Flask YAML upload view. The hook blocked unsafe writes
+(CVE-2022-24065, yaml.load) and gave a review note for pickle.loads; the agents
+added `--`, switched to yaml.safe_load and restricted or authenticated the pickle
+load. With the hook and MCP entries written by `hook install` and `mcp install`,
+both hosts connected, searched and ran the check tools on the task folder. A new
+folder's `.codex/hooks.json` runs only after the user trusts it in Codex.
 
 Set `PALADIN_HOOK_LOG` to a file path to append each hook decision as one JSON
 line (Claude Code's stream output does not include PostToolUse hook responses).

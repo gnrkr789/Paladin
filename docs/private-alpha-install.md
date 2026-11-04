@@ -30,7 +30,8 @@ that must reuse the authenticated case. Project source trees are hashed before
 and after. This needs a running Docker daemon.
 The temporary environment is removed after verification.
 
-Evidence is saved in `docs/evidence/private-alpha/package/`: command exit codes,
+Validation output is written locally (not tracked) to
+`docs/evidence/private-alpha/package/`: command exit codes,
 stdout and stderr logs, the frozen dependency requirements, source/resource
 hashes, artifact hashes, module origins, scan results, and MCP tool discovery.
 Only `report.json` with `status: PASS` confirms complete packaging validation.

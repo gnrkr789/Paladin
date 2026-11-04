@@ -53,9 +53,19 @@ hooks are installed; a client can ignore or bypass advisory tools.
 | `check_dependencies` | Optional `paths` (workspace-relative dependency files) | Pinned versions in requirements*.txt, pyproject.toml, uv.lock, poetry.lock or Pipfile.lock that fall in a collected PyPI advisory range, with CVE, card title and fixed versions; unpinned requirements are listed, not judged |
 | `get_prevention_guidance` | Required `pattern_id`, `pack_sha256`, `guidance_sha256`; optional `include_patch_context` | Conditional correction, verified patch context on request, and policy-checked local case references when present |
 
-`paladin mcp install` also writes the `paladin` skill (`.claude/skills/paladin/` for
-Claude Code, `.agents/skills/paladin/` for Codex): `/paladin` or `$paladin` runs
-`check_project` and `check_dependencies` and reports the findings without editing code.
+`paladin mcp install --user` registers Paladin once for every project: Claude Code
+through `claude mcp add-json --scope user`, Codex in a managed block of
+`~/.codex/config.toml` (or `CODEX_HOME`). The user server has no fixed workspace; the
+host starts it in the open project, and `check_project` refuses a home folder or drive
+root. It also writes the `paladin` skill (`~/.claude/skills/paladin/`,
+`~/.agents/skills/paladin/`), which runs only when called: `disable-model-invocation`
+for Claude Code, `allow_implicit_invocation: false` for Codex. `/paladin` or `$paladin`
+runs `check_project` and `check_dependencies` and reports the findings without editing
+code. `paladin mcp uninstall --user` removes both.
+
+Without `--user`, `paladin mcp install --workspace DIR` registers a server fixed to
+that project (`.mcp.json`, `.codex/config.toml`) with the skill in the project's
+`.claude/skills/` or `.agents/skills/`.
 
 Discovery publishes input/output schemas and read-only annotations. Annotations
 describe intent; code restrictions establish access. Results provide structured

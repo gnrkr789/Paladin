@@ -21,3 +21,7 @@ docs/evidence/m2/django-security.html
 
 # Evaluation records stay local (not published)
 docs/evidence/
+
+# Machine-specific MCP registration and skill (paladin mcp install)
+.mcp.json
+.claude/

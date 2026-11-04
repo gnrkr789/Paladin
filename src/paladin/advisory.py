@@ -340,6 +340,12 @@ def get_guidance(home, args):
     return result
 
 
+def _not_a_project(root):
+    # Resolve both: dispatch gets a resolved root, and a profile may be reached through a junction.
+    folder = Path(root).resolve()
+    return folder == Path.home().resolve() or folder == Path(folder.anchor)
+
+
 def dispatch(root, name, arguments, home=None):
     """root is the project workspace; home holds search state (defaults to root)."""
     home = Path(home) if home is not None else root
@@ -347,6 +353,9 @@ def dispatch(root, name, arguments, home=None):
         validate_arguments(name, arguments)
     except RequestError:
         return failure("invalid_arguments", "invalid_request")
+    if name in {"check_project", "scan_cve_candidates"} and _not_a_project(root):
+        # A user-scope server starts in whatever folder the host opened; never walk a home or drive.
+        return {**failure("not_a_project_folder", "unsupported"), "inspection_performed": False}
     try:
         if name == "check_changes":
             if not arguments.get("paths"):

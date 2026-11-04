@@ -6,7 +6,7 @@
   <img src="https://img.shields.io/badge/version-0.2.0a1-3451d1" alt="version 0.2.0a1">
   <img src="https://img.shields.io/badge/python-3.11%2B-3776ab" alt="python 3.11+">
   <img src="https://img.shields.io/badge/license-Apache--2.0-blue" alt="Apache-2.0">
-  <img src="https://img.shields.io/badge/tests-372%20passing-2fbf71" alt="372 unit tests passing">
+  <img src="https://img.shields.io/badge/tests-384%20passing-2fbf71" alt="384 unit tests passing">
 </p>
 
 Paladin stops AI coding agents from reintroducing known CVE patterns. It tells
@@ -38,7 +38,7 @@ the agent what the problem is and how to avoid it; the agent writes its own fix.
 | Proof loop on real CVEs (Cookiecutter CVE-2022-24065, pip CVE-2023-5752) | reproduced, repaired, verified; 0 false alarms on fixed versions |
 | Claude Code and Codex sessions, ported vulnerable code | blocked, agent fixed it |
 | Search, fresh held-out questions (hit@5 / MRR) | 0.831 / 0.697 and 0.873 / 0.736 |
-| Unit tests | 372 pass |
+| Unit tests | 384 pass |
 
 ## How it works
 
@@ -65,29 +65,27 @@ A clone has no database. `setup` starts Milvus in Docker under `%USERPROFILE%\.p
 and `patterns index` fills it; every project shares it. Only search needs it: the
 hook and the checks work without Docker.
 
-**2. Connect a project**
-
-Claude Code:
+**2. Add Paladin to Claude Code and Codex (once per user)**
 
 ```powershell
-.\.venv\Scripts\paladin.exe hook install --workspace C:/projects/app
-.\.venv\Scripts\paladin.exe mcp install --workspace C:/projects/app
+.\.venv\Scripts\paladin.exe mcp install --user                 # Claude Code
+.\.venv\Scripts\paladin.exe mcp install --user --host codex    # Codex
 ```
 
-Approve the `paladin` MCP server when Claude Code asks, then run `/paladin`.
+Open any project in a new session and run `/paladin` (Claude Code) or `$paladin`
+(Codex). It checks the whole project and its pinned dependencies, explains each
+finding and edits nothing until you ask. It runs only when you call it.
 
-Codex:
+**3. Optional: block unsafe edits in a project**
 
 ```powershell
-.\.venv\Scripts\paladin.exe hook install --host codex --workspace C:/projects/app
-.\.venv\Scripts\paladin.exe mcp install --host codex --workspace C:/projects/app
+.\.venv\Scripts\paladin.exe hook install --workspace C:/projects/app                # Claude Code
+.\.venv\Scripts\paladin.exe hook install --host codex --workspace C:/projects/app   # Codex
 ```
 
-Trust the project in Codex (and the hook with `/hooks`), then run `$paladin`.
-
-The hook checks every edit the agent makes. `/paladin` or `$paladin` checks the
-whole project and its pinned dependencies and explains each finding; it does not
-edit code until you ask.
+The hook checks every edit the agent makes in that project and blocks known CVE
+patterns. Codex runs it after you trust it with `/hooks`. Remove the user install
+with `paladin mcp uninstall --user` (add `--host codex` for Codex).
 
 ## Limits
 

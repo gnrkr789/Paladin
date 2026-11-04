@@ -70,9 +70,11 @@ def main(argv=None):
     deps.add_argument("action", choices=["check"])
     deps.add_argument("paths", nargs="*", help="workspace-relative dependency files (default: discover)")
     mcp = commands.add_parser("mcp", help="serve bounded advisory tools over stdio")
-    mcp.add_argument("action", nargs="?", choices=["serve", "install"], default="serve",
-                     help="serve over stdio (default) or register Paladin in the project's agent settings")
-    mcp.add_argument("--workspace", type=Path, default=Path.cwd())
+    mcp.add_argument("action", nargs="?", choices=["serve", "install", "uninstall"], default="serve",
+                     help="serve over stdio (default), or register Paladin and its skill in an agent host")
+    mcp.add_argument("--user", action="store_true",
+                     help="install for every project of this user (the skill runs only when called)")
+    mcp.add_argument("--workspace", type=Path)
     mcp.add_argument("--host", choices=["claude-code", "codex"], default="claude-code")
     mcp.add_argument("--home", type=Path, help="Paladin home with the search index (default: PALADIN_HOME or "
                                                "the per-user data folder)")
@@ -107,11 +109,22 @@ def main(argv=None):
             return 1
         print(json.dumps(result, indent=2))
         return 0
-    if args.command == "mcp" and args.action == "install":
+    if args.command == "mcp" and args.action in {"install", "uninstall"}:
         from paladin import mcp_install
+        # -I: isolated mode, as for the hook, so the project cannot shadow Paladin's modules.
+        command = [sys.executable, "-I", "-m", "paladin.cli"]
         try:
-            # -I: isolated mode, as for the hook, so the project cannot shadow Paladin's modules.
-            result = mcp_install.install(args.workspace, [sys.executable, "-I", "-m", "paladin.cli"], args.host)
+            if args.user and args.workspace is not None:
+                raise ValueError("user_scope_has_no_workspace")
+            args.workspace = args.workspace or Path.cwd()
+            if args.action == "uninstall":
+                if not args.user:
+                    raise ValueError("uninstall_supports_user_scope_only")
+                result = mcp_install.uninstall_user(args.host)
+            elif args.user:
+                result = mcp_install.install_user(command, args.host)
+            else:
+                result = mcp_install.install(args.workspace, command, args.host)
         except (OSError, ValueError) as exc:
             print(json.dumps({"status": "unavailable", "error": str(exc).split(":", 1)[0][:200]}, indent=2))
             return 1
@@ -119,7 +132,7 @@ def main(argv=None):
         return 0
     if args.command == "mcp":
         from paladin.mcp_server import main as serve_mcp
-        serve_mcp(args.workspace, args.home or default_home())
+        serve_mcp(args.workspace or Path.cwd(), args.home or default_home())
         return 0
     try:
         if args.command == "setup":

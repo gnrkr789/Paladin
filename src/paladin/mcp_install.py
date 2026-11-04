@@ -1,10 +1,14 @@
 """Project-scoped MCP registration for Claude Code (.mcp.json) and Codex (.codex/config.toml).
 
+Each host also gets the paladin skill, which runs a whole-project check through these tools:
+/paladin in Claude Code (.claude/skills), $paladin in Codex (.agents/skills).
+
 User-level agent settings are never touched. The server reads the project for checks and the
 Paladin home for search, so one registration per project is enough.
 """
 import json
 import os
+from importlib import resources
 from pathlib import Path
 import tomllib
 
@@ -12,6 +16,7 @@ from paladin.settings_files import replace_text, safe_file
 
 BEGIN = "# BEGIN paladin (managed by paladin mcp install)"
 END = "# END paladin"
+SKILL_DIRS = {"claude-code": Path(".claude") / "skills", "codex": Path(".agents") / "skills"}
 
 
 def _server(workspace, command):
@@ -53,11 +58,19 @@ def _codex(workspace, executable, args):
     return path, "Codex reads a project's .codex/config.toml only for a trusted project; trust it in Codex first."
 
 
+def _skill(workspace, host):
+    path = safe_file(workspace, SKILL_DIRS[host] / "paladin" / "SKILL.md")
+    replace_text(path, resources.files("paladin").joinpath("resources", "paladin-skill.md").read_text(encoding="utf-8"))
+    return path
+
+
 def install(workspace, command, host):
     if not Path(workspace).is_dir():
         raise ValueError("invalid_workspace")
     workspace = Path(workspace).resolve()
     executable, args = _server(workspace, command)
+    skill = _skill(workspace, host)  # First: a refused skills folder leaves no half-done registration.
     path, next_step = (_claude_code if host == "claude-code" else _codex)(workspace, executable, args)
-    return {"status": "installed", "host": host, "settings": str(path), "command": [executable, *args],
-            "next_step": next_step}
+    return {"status": "installed", "host": host, "settings": str(path), "skill": str(skill),
+            "command": [executable, *args], "next_step": next_step,
+            "usage": "/paladin" if host == "claude-code" else "$paladin"}

@@ -91,6 +91,31 @@ class McpInstallTests(unittest.TestCase):
         data = tomllib.loads((project / ".codex" / "config.toml").read_text(encoding="utf-8"))
         self.assertEqual(data["mcp_servers"]["paladin"]["args"][-1], project.resolve().as_posix())
 
+    def test_each_host_gets_the_paladin_skill_where_it_reads_project_skills(self):
+        for host, folder in (("claude-code", ".claude/skills/paladin"), ("codex", ".agents/skills/paladin")):
+            mcp_install.install(self.root, COMMAND, host)
+            result = mcp_install.install(self.root, COMMAND, host)
+
+            skill = (self.root / folder / "SKILL.md").read_text(encoding="utf-8")
+            self.assertTrue(skill.startswith("---\nname: paladin\ndescription: "), host)
+            for tool in ("check_project", "check_dependencies", "search_prevention_patterns"):
+                self.assertIn(tool, skill)
+            self.assertEqual(Path(result["skill"]), self.root / folder / "SKILL.md")
+
+    @unittest.skipUnless(hasattr(os, "symlink"), "symlinks")
+    def test_a_linked_skills_folder_is_refused(self):
+        outside = self.root / "outside"
+        outside.mkdir()
+        (self.root / ".claude").mkdir()
+        try:
+            (self.root / ".claude" / "skills").symlink_to(outside, target_is_directory=True)
+        except OSError:
+            self.skipTest("symlinks need privileges here")
+        with self.assertRaisesRegex(ValueError, "unsafe_settings_directory"):
+            mcp_install.install(self.root, COMMAND, "claude-code")
+        self.assertEqual(list(outside.iterdir()), [])
+        self.assertFalse((self.root / ".mcp.json").exists())
+
     def test_the_cli_installs_and_reports_errors_as_json(self):
         import contextlib, io
         from paladin.cli import main

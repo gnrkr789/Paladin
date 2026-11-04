@@ -28,7 +28,7 @@ listener. Stdout carries protocol messages only. Launch performs no setup,
 download, indexing or Docker control. Prepare semantic retrieval with the
 explicit administrative commands in [knowledge](knowledge.md) first.
 
-`--workspace` is the project the check tools read (check_changes,
+`--workspace` is the project the check tools read (check_changes, check_project,
 check_dependencies, scan_cve_candidates). Evidence excerpts and guidance come from
 the evidence copies shipped with Paladin; verified cases come from the home. Search and status
 read the Paladin home (`--home`, else `PALADIN_HOME`, else the per-user data
@@ -47,10 +47,15 @@ hooks are installed; a client can ignore or bypass advisory tools.
 | `search_prevention_patterns` | Required `intent`; optional `stack=python_web`, `family`, `limit=5` | Ranked advisory cards, prerequisites, prevention, limitations, evidence IDs and semantic manifest |
 | `get_pattern_evidence` | Required `pattern_id`, `pack_sha256`; optional `evidence_ids`, `include_excerpt=false`, `max_excerpt_bytes=4096` | Linked provenance, source review and fixture specifications; optional verified local excerpts |
 | `get_knowledge_status` | Empty object | Pack identity/date, supported scope, text policy, semantic readiness, separate diagnostic/DB checks and source-content availability |
-| `check_changes` | Empty object | `unsupported`, `reason=rules_not_validated`, `inspection_performed=false`; no receipt or safety judgment |
+| `check_changes` | Required `paths` (up to 20 workspace-relative Python files) | Static findings per file (block or review), with CVE, severity, line and fix; `outcome` is `findings` or `clean` |
+| `check_project` | Empty object | The same checks on every project Python file (virtual environments, installed packages and hidden folders skipped): `checked_files`, `totals`, files with findings (blocking first), each rule's title and fix once under `rules`; trimmed to the response budget when large |
 | `scan_cve_candidates` | Empty object; configured workspace is the scan root | Source locations for the supported CVE-2022-24065 checkout rule; partial coverage is explicit; candidates require verification |
 | `check_dependencies` | Optional `paths` (workspace-relative dependency files) | Pinned versions in requirements*.txt, pyproject.toml, uv.lock, poetry.lock or Pipfile.lock that fall in a collected PyPI advisory range, with CVE, card title and fixed versions; unpinned requirements are listed, not judged |
 | `get_prevention_guidance` | Required `pattern_id`, `pack_sha256`, `guidance_sha256`; optional `include_patch_context` | Conditional correction, verified patch context on request, and policy-checked local case references when present |
+
+`paladin mcp install` also writes the `paladin` skill (`.claude/skills/paladin/` for
+Claude Code, `.agents/skills/paladin/` for Codex): `/paladin` or `$paladin` runs
+`check_project` and `check_dependencies` and reports the findings without editing code.
 
 Discovery publishes input/output schemas and read-only annotations. Annotations
 describe intent; code restrictions establish access. Results provide structured

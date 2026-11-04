@@ -15,15 +15,17 @@ def linked(path):
 
 
 def safe_file(workspace, relative):
-    """A settings file inside an existing workspace; its folder is created, links are refused."""
+    """A settings file inside an existing workspace; its folders are created, links are refused."""
     workspace = Path(workspace)
     if not workspace.is_dir() or linked(workspace):
         raise ValueError("invalid_workspace")
     path = workspace / relative
-    directory = path.parent
-    if os.path.lexists(directory) and (linked(directory) or not directory.is_dir()):
-        raise ValueError("unsafe_settings_directory")
-    directory.mkdir(exist_ok=True)
+    directory = workspace
+    for part in Path(relative).parent.parts:  # Each level is checked before anything is created in it.
+        directory = directory / part
+        if os.path.lexists(directory) and (linked(directory) or not directory.is_dir()):
+            raise ValueError("unsafe_settings_directory")
+        directory.mkdir(exist_ok=True)
     if not directory.resolve().is_relative_to(workspace.resolve()):
         raise ValueError("unsafe_settings_directory")
     if os.path.lexists(path) and (linked(path) or not path.is_file()):

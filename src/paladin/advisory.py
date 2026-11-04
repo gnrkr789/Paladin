@@ -45,6 +45,7 @@ INPUT_SCHEMAS = {
                   "description": "Workspace-relative Python files to check statically."},
     }),
     "scan_cve_candidates": object_schema(),
+    "check_project": object_schema(),
     "check_dependencies": object_schema({
         "paths": {"type": "array", "minItems": 1, "maxItems": 20,
                   "items": {"type": "string", "minLength": 1, "maxLength": 1024},
@@ -122,6 +123,12 @@ def tool_result(result):
             "resultType": "complete"}
 
 
+def _checked_files(result):
+    """Per-file check entries (check_changes, check_project), not dependency file names."""
+    files = result.get("files")
+    return files if files and all(isinstance(item, dict) and "findings" in item for item in files) else None
+
+
 def bounded(result):
     result = copy.deepcopy(result)
     result.update(FLAGS)
@@ -134,10 +141,14 @@ def bounded(result):
             result["status"] = "partial"
             continue
         items = (result.get("matches") or result.get("evidence") or result.get("candidates")
-                 or result.get("unsupported_patterns"))
+                 or result.get("unsupported_patterns") or _checked_files(result))
         if not items:
             return failure("response_budget_exceeded")
-        items.pop()
+        # Drop the last file without a blocking finding first, so a block is the last thing to go.
+        keep = [index for index, item in enumerate(items) if isinstance(item, dict)
+                and any(finding.get("severity") == "block" for finding in item.get("findings", []))]
+        drop = next((index for index in reversed(range(len(items))) if index not in keep), len(items) - 1)
+        items.pop(drop)
         result["status"] = "partial"
         result["omitted_count"] = result.get("omitted_count", 0) + 1
         result["budget_reason"] = "response_byte_limit"
@@ -343,6 +354,13 @@ def dispatch(root, name, arguments, home=None):
             from paladin.change_check import check_paths
             result = check_paths(root, arguments["paths"])
             # The tool contract has no "findings" or "clean" status: those become the outcome.
+            outcome = result["status"]
+            result.update(outcome=outcome, status="complete" if outcome in {"findings", "clean"} else outcome,
+                          inspection_performed=True, judgment="static_pattern_findings_only")
+            return bounded(result)
+        if name == "check_project":
+            from paladin.change_check import check_project
+            result = check_project(root)
             outcome = result["status"]
             result.update(outcome=outcome, status="complete" if outcome in {"findings", "clean"} else outcome,
                           inspection_performed=True, judgment="static_pattern_findings_only")

@@ -17,6 +17,11 @@ RULE_ID = "CVE-2022-24065:mercurial-checkout-v1"
 MAX_FILES = 5000
 MAX_FILE_BYTES = 1_000_000
 MAX_TOTAL_BYTES = 20_000_000
+# The exact checkout rule needs a constant "checkout"; the generalized rule an "hg" constant or
+# an hg/mercurial name; the pip rule a Mercurial class. Files without these bytes are skipped.
+# A literal split or escaped on purpose ('h' 'g', '\x68g') can evade this; that is deliberate
+# self-evasion, which a static check does not claim to catch.
+MERCURIAL_TOKENS = (b"checkout", b"hg", b"mercurial")
 
 
 def _reparse(info):
@@ -123,7 +128,14 @@ def scan_source(rel, data):
         for line, cve in hg_argv_rule.token_findings(data) or []:
             candidates.append(_general(rel, line, cve, digest, "token"))
         return candidates, unsupported
+    lowered = data.lower()
+    mercurial = any(token in lowered for token in MERCURIAL_TOKENS)
+    if not mercurial and b"subprocess" not in lowered:
+        return candidates, unsupported  # No rule below can match or report a coverage gap.
     lines, unknown = _analyze(tree)
+    if not mercurial:  # Only the coverage notes for dynamic argv can apply.
+        unsupported.extend(rel + ": " + message for message in unknown)
+        return candidates, unsupported
     unsupported.extend(rel + ": " + message for message in unknown)
     for line in lines:
         identity = "\0".join((RULE_ID, rel, str(line), digest)).encode("ascii")

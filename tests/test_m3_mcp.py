@@ -212,7 +212,7 @@ class ProtocolContracts(unittest.IsolatedAsyncioTestCase):
                 self.assertEqual({t.name for t in tools}, {"search_prevention_patterns", "get_pattern_evidence",
                                                            "get_knowledge_status", "check_changes",
                                                            "get_prevention_guidance", "scan_cve_candidates",
-                                                           "check_dependencies"})
+                                                           "check_dependencies", "check_project"})
                 for tool in tools:
                     self.assertTrue(tool.annotations.read_only_hint)
                     self.assertFalse(tool.annotations.open_world_hint)
@@ -337,7 +337,7 @@ class ProtocolContracts(unittest.IsolatedAsyncioTestCase):
                         self.assertLessEqual(len(json.dumps(result["result"]).encode()), 65536)
                         self.assertEqual(result["result"]["structuredContent"]["status"], "invalid_request")
                     else:
-                        self.assertEqual(len(result["result"]["tools"]), 7)
+                        self.assertEqual(len(result["result"]["tools"]), 8)
                 process.stdin.close()
                 await asyncio.wait_for(process.wait(), 5)
                 self.assertEqual(await process.stdout.read(), b"")

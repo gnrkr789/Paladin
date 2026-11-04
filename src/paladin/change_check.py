@@ -12,6 +12,7 @@ from pathlib import Path, PurePosixPath
 import stat
 
 from paladin import data_rules
+from paladin.settings_files import linked
 from paladin.candidate_scan import MAX_FILE_BYTES, RULE_ID, scan_source
 from paladin.hg_argv_rule import RULE_ID as GENERAL_RULE_ID
 from paladin.pip_case_adapter import RULE_ID as PIP_RULE_ID
@@ -19,6 +20,11 @@ from paladin.pip_case_adapter import RULE_ID as PIP_RULE_ID
 MAX_PATHS = 20
 # Bounded response: guidance text is sent once per rule, findings are capped.
 MAX_FINDINGS = 50
+MAX_PROJECT_FILES = 5000
+MAX_PROJECT_DIRS = 5000
+MAX_NOTES_PER_FILE = 5
+# Folders that hold installed or generated code, not the project's own sources.
+SKIP_DIRS = {"__pycache__", "node_modules", "site-packages", "build", "dist"}
 PARSE_FAILURE = "source unreadable or unsupported syntax"
 GUIDANCE = {
     RULE_ID: {
@@ -163,7 +169,88 @@ def check_paths(root, paths, block_low=False):
     """Check up to MAX_PATHS files; the overall status never upgrades partial results."""
     if not isinstance(paths, list) or not paths or len(paths) > MAX_PATHS:
         return {"status": "invalid_request", "files": []}
-    files = [check_file(root, raw, block_low) for raw in paths]
+    return _report([check_file(root, raw, block_low) for raw in paths])
+
+
+def project_files(root):
+    """Workspace-relative Python sources of the project, sorted; (paths, notes).
+
+    Linked folders (symlinks and Windows junctions, which os.walk would follow) are not walked.
+    """
+    root = Path(os.path.abspath(root))
+    found, notes, directories = [], [], 0
+
+    def walk_error(error):
+        notes.append("directory inaccessible: " + _project_relative(root, getattr(error, "filename", None)))
+
+    for directory, dirs, names in os.walk(root, topdown=True, followlinks=False, onerror=walk_error):
+        here = Path(directory)
+        directories += 1
+        if directories > MAX_PROJECT_DIRS:
+            notes.append("directory limit of {} reached; remaining folders not checked".format(MAX_PROJECT_DIRS))
+            return found, notes
+        kept = []
+        for name in sorted(dirs):
+            if name.startswith(".") or name in SKIP_DIRS:
+                continue
+            try:
+                if linked(here / name):
+                    notes.append("link directory skipped: " + _project_relative(root, here / name))
+                    continue
+                if (here / name / "pyvenv.cfg").exists():
+                    continue
+            except OSError:
+                notes.append("directory inaccessible: " + _project_relative(root, here / name))
+                continue
+            kept.append(name)
+        dirs[:] = kept
+        for name in sorted(names):
+            if not name.endswith(".py"):
+                continue
+            if len(found) == MAX_PROJECT_FILES:
+                notes.append("file limit of {} reached; remaining files not checked".format(MAX_PROJECT_FILES))
+                return found, notes
+            found.append((here / name).relative_to(root).as_posix())
+    return found, notes
+
+
+def _project_relative(root, path):
+    try:
+        text = Path(path).relative_to(root).as_posix()
+    except (TypeError, ValueError):
+        return "<unknown>"
+    return text if all(0x20 <= ord(char) < 0x7F for char in text) else "<non-ASCII path>"
+
+
+def check_project(root, block_low=False):
+    """Check every project Python file. Only files that are not clean are listed, those with
+    blocking findings first; each rule's title and fix appear once under "rules"."""
+    paths, notes = project_files(root)
+    checked = [check_file(root, raw, block_low) for raw in paths]
+    totals = {level: sum(finding["severity"] == level for item in checked for finding in item["findings"])
+              for level in ("block", "review")}
+    result = _report(checked)
+    rules = {}
+    for item in result["files"]:
+        for finding in item["findings"]:
+            text = {key: finding.pop(key) for key in ("title", "fix") if key in finding}
+            if finding["rule_id"] in GUIDANCE:  # The three built-in Mercurial rules keep fix text here.
+                text["fix"] = GUIDANCE[finding["rule_id"]]["fix"]
+            rules.setdefault(finding["rule_id"], dict(text, cve_ids=finding.get("cve_ids", [finding["cve_id"]])))
+            finding.pop("line_sha", None)
+    result["files"] = sorted((item for item in result["files"] if item["status"] != "clean"),
+                             key=lambda item: not any(f["severity"] == "block" for f in item["findings"]))
+    if notes and result["status"] == "clean":
+        result["status"] = "partial"
+    result.update(checked_files=len(paths), totals=totals, rules=rules, notes=notes)
+    return result
+
+
+def _report(files):
+    for item in files:  # Coverage notes are unbounded per file (one per dynamic call); keep a few.
+        if len(item["notes"]) > MAX_NOTES_PER_FILE:
+            hidden = len(item["notes"]) - MAX_NOTES_PER_FILE
+            item["notes"] = item["notes"][:MAX_NOTES_PER_FILE] + ["{} more notes not shown".format(hidden)]
     remaining, truncated = MAX_FINDINGS, False
     # Exact CVE blocks take the budget first, then card-rule blocks, then review notes, so neither
     # review noise nor card blocks on old lines (which the hook demotes) can hide an exact block.

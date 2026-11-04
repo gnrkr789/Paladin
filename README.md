@@ -6,7 +6,7 @@
   <img src="https://img.shields.io/badge/version-0.2.0a1-3451d1" alt="version 0.2.0a1">
   <img src="https://img.shields.io/badge/python-3.11%2B-3776ab" alt="python 3.11+">
   <img src="https://img.shields.io/badge/license-Apache--2.0-blue" alt="Apache-2.0">
-  <img src="https://img.shields.io/badge/tests-356%20passing-2fbf71" alt="356 unit tests passing">
+  <img src="https://img.shields.io/badge/tests-372%20passing-2fbf71" alt="372 unit tests passing">
 </p>
 
 Paladin stops AI coding agents from reintroducing known CVE patterns. It tells
@@ -38,7 +38,7 @@ the agent what the problem is and how to avoid it; the agent writes its own fix.
 | Proof loop on real CVEs (Cookiecutter CVE-2022-24065, pip CVE-2023-5752) | reproduced, repaired, verified; 0 false alarms on fixed versions |
 | Claude Code and Codex sessions, ported vulnerable code | blocked, agent fixed it |
 | Search, fresh held-out questions (hit@5 / MRR) | 0.831 / 0.697 and 0.873 / 0.736 |
-| Unit tests | 356 pass |
+| Unit tests | 372 pass |
 
 ## How it works
 
@@ -48,39 +48,46 @@ the agent what the problem is and how to avoid it; the agent writes its own fix.
 
 ## Quick start
 
-Windows only for now (Linux and macOS are untested). Python 3.12 recommended (on 3.11 the
-first `patterns index` re-embeds the cards, about 90 s), [uv](https://docs.astral.sh/uv/), Docker Desktop.
+Windows, Python 3.12, [uv](https://docs.astral.sh/uv/) and Docker Desktop.
 
-Once per user (search state goes to the Paladin home: `PALADIN_HOME`, or
-`%USERPROFILE%\.paladin` on Windows, `~/.local/share/paladin` elsewhere):
+**1. Install and build the search database (once per machine)**
 
 ```powershell
-uv --cache-dir .cache/uv sync --locked
-.\.venv\Scripts\paladin.exe setup --json
-.\.venv\Scripts\paladin.exe model prepare --json      # 487 MB, embeds search queries
-.\.venv\Scripts\paladin.exe patterns index --json     # uses packaged vectors
+git clone https://github.com/gnrkr789/Paladin
+cd Paladin
+uv sync --locked
+.\.venv\Scripts\paladin.exe setup --json           # starts a local Milvus in Docker
+.\.venv\Scripts\paladin.exe model prepare --json   # downloads the search model (487 MB)
+.\.venv\Scripts\paladin.exe patterns index --json  # loads the CVE cards into Milvus
 ```
 
-Per project (hook, dependency check and MCP checks read the project; MCP search
-reads the home):
+A clone has no database. `setup` starts Milvus in Docker under `%USERPROFILE%\.paladin`
+and `patterns index` fills it; every project shares it. Only search needs it: the
+hook and the checks work without Docker.
+
+**2. Connect a project**
+
+Claude Code:
 
 ```powershell
-.\.venv\Scripts\paladin.exe hook install --workspace C:/projects/example
-.\.venv\Scripts\paladin.exe hook install --host codex --workspace C:/projects/example
-.\.venv\Scripts\paladin.exe deps check --workspace C:/projects/example
-.\.venv\Scripts\paladin.exe mcp install --workspace C:/projects/example
-.\.venv\Scripts\paladin.exe mcp install --host codex --workspace C:/projects/example
+.\.venv\Scripts\paladin.exe hook install --workspace C:/projects/app
+.\.venv\Scripts\paladin.exe mcp install --workspace C:/projects/app
 ```
 
-`mcp install` writes the project's `.mcp.json` (Claude Code asks once to approve it) or a
-managed block in `.codex/config.toml`. Codex runs a project's hook and reads its config
-only after you trust the project (`/hooks` for the hook).
+Approve the `paladin` MCP server when Claude Code asks, then run `/paladin`.
 
-Packaged vectors match the locked onnxruntime, tokenizers and numpy versions; a
-plain `pip install` of the wheel gets newer ones, and `patterns index` then
-embeds the cards locally (about 90 s). The hook needs no model, index or Docker.
+Codex:
 
-Proof loop: `cases runtime-build`, then `cases auto --project <dir> --workspace <dir>`.
+```powershell
+.\.venv\Scripts\paladin.exe hook install --host codex --workspace C:/projects/app
+.\.venv\Scripts\paladin.exe mcp install --host codex --workspace C:/projects/app
+```
+
+Trust the project in Codex (and the hook with `/hooks`), then run `$paladin`.
+
+The hook checks every edit the agent makes. `/paladin` or `$paladin` checks the
+whole project and its pinned dependencies and explains each finding; it does not
+edit code until you ask.
 
 ## Limits
 

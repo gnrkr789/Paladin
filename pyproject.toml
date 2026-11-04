@@ -44,7 +44,7 @@ packages = ["paladin", "paladin_evidence"]
 package-dir = {"paladin" = "src/paladin", "paladin_evidence" = "data"}
 
 [tool.setuptools.package-data]
-paladin = ["resources/*.yaml", "resources/*.json", "resources/sandbox/*"]
+paladin = ["resources/*.yaml", "resources/*.json", "resources/*.md", "resources/sandbox/*"]
 paladin_evidence = ["THIRD_PARTY.md", "m0/sources/*", "m2/sources/*", "cve-expansion/sources/*"]
 
 [dependency-groups]

@@ -29,7 +29,8 @@ On each edit of a `.py` file inside the workspace:
 | Result | Hook output | Effect on the agent |
 |---|---|---|
 | Exact CVE rule match (CVE-2022-24065 checkout, CVE-2023-5752 pip revision) | `{"decision": "block", "reason": ...}` | The turn is blocked; the agent receives CVE, file:line, cause and fix |
-| Generalized Mercurial argv rule or one of 125 data rules drafted from CVE cards (review) | `additionalContext` | Advisory note with the card id, only for lines the edit wrote; not blocked |
+| One of 125 rules drafted from CVE cards whose CVE is MEDIUM, HIGH or CRITICAL (118), on a line the edit wrote | `{"decision": "block", "reason": ...}` | The turn is blocked with the CVE, its severity, line, fix and cards |
+| The same rules on lines the edit did not write, LOW rules (7; blocking with `hook install --block-low`), or the generalized Mercurial argv rule | `additionalContext` | Advisory note with the card id; not blocked |
 | Edited dependency file (requirements*.txt, pyproject.toml, uv.lock, poetry.lock, Pipfile.lock) with a pinned version in an advisory range | `additionalContext` | Review note with CVE, card title and fixed versions; not blocked |
 | Unsupported (outside the workspace, link, unreadable, non-ASCII path) | `additionalContext` | Explicit "not inspected" note; never a safe claim |
 | Paladin failure | `additionalContext` | "unavailable" note; never blocks |
@@ -118,6 +119,6 @@ the hook timeout. MCP results send rule guidance once and cap findings at 50.
 
 ## Limits
 
-Two exact CVE rules (blocking), one generalized Mercurial rule and 125 data
-rules (review); single-file,
+Two exact CVE rules and 118 card rules (MEDIUM and above) block, 7 LOW card
+rules and one generalized Mercurial rule advise; single-file,
 intraprocedural, syntactic matching. A clean result is not a security verdict.

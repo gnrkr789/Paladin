@@ -6,7 +6,7 @@
   <img src="https://img.shields.io/badge/version-0.2.0a1-3451d1" alt="version 0.2.0a1">
   <img src="https://img.shields.io/badge/python-3.11%2B-3776ab" alt="python 3.11+">
   <img src="https://img.shields.io/badge/license-Apache--2.0-blue" alt="Apache-2.0">
-  <img src="https://img.shields.io/badge/tests-344%20passing-2fbf71" alt="344 unit tests passing">
+  <img src="https://img.shields.io/badge/tests-355%20passing-2fbf71" alt="355 unit tests passing">
 </p>
 
 Paladin stops AI coding agents from reintroducing known CVE patterns. It tells
@@ -17,8 +17,10 @@ the agent what the problem is and how to avoid it; the agent writes its own fix.
   471 were drafted from advisory text and then checked against the fix diff by
   a model (`patch_checked`); 23 remain `candidate`.
 - **Edit-time hook** for Claude Code and Codex, with no model or network call:
-  an exact CVE match blocks the turn with the CVE, line, cause and fix
-  direction; 125 rules drafted from the cards add non-blocking review notes.
+  125 rules drafted from the cards block the turn when their CVE is MEDIUM,
+  HIGH or CRITICAL (118 rules) and advise for LOW (7; `hook install --block-low`
+  makes those block too), plus two exact CVE rules, each with the CVE, line and
+  fix direction.
 - **Dependency check** (`paladin deps check`, MCP `check_dependencies`, and the hook
   when an agent edits a dependency file): pinned versions against the PyPI affected
   ranges of 520 collected CVEs, most of which are library-internal and have no code rule.
@@ -46,7 +48,7 @@ the agent what the problem is and how to avoid it; the agent writes its own fix.
 | Review rules, first scan of 4,055 site-packages files | 112 of 125 rules silent; pickle.load 37 files; 1 rule over 50 files not shipped |
 | Rewritten cards audited by a second model (Codex), sample of 30 | 30 better than the draft; 10 exact, 20 with a side claim to fix |
 | Same 207 cards after correction, Fable audit of a new sample of 30 | 29 exact, 1 with a minor omission |
-| Unit tests | 344 pass |
+| Unit tests | 355 pass |
 
 Evidence: [docs/evidence/private-alpha/final-report.md](https://github.com/gnrkr789/Paladin/blob/main/docs/evidence/private-alpha/final-report.md).
 
@@ -94,8 +96,8 @@ Proof loop: `cases runtime-build`, then `cases auto --project <dir> --workspace 
 
 ## Limits
 
-Two exact CVE rules block; the other rules only advise. Single-file static
-checks. Patch checks are model reviews, not human review. A clean result is
+Card rules block by CVE severity on the lines an edit writes; they are static
+pattern matches, so a block can be a false positive. Single-file static checks. Patch checks are model reviews, not human review. A clean result is
 not a security verdict. Project text is English ASCII.
 
 ## Docs

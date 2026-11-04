@@ -1,8 +1,9 @@
 """Claude Code PostToolUse hook adapter for change-time checks.
 
-Exact CVE rule matches block the turn so the agent fixes them; review-level
-findings and unsupported or failed checks are reported as additional context and
-never block. Output contains fixed Paladin text, paths and line numbers only.
+Exact CVE rule matches block the turn so the agent fixes them; rules drafted from CVE
+cards block by CVE severity (MEDIUM and above, LOW with --block-low) on the lines an
+edit wrote. Other findings and unsupported or failed checks are reported as additional
+context and never block. Output contains fixed Paladin text, paths and line numbers only.
 """
 import datetime
 import json
@@ -30,6 +31,10 @@ def _context(text):
 
 def _describe(entry, finding, guidance):
     advice = guidance.get(finding["rule_id"], {})
+    if "cve_ids" in finding:  # A rule drafted from CVE cards: its own fix, severity and cards.
+        return "- {path}:{line} {cve} ({level}) [{rule}] {title}\n  Fix: {fix}\n  Cards: {cards}".format(
+            path=entry["path"], line=finding["line"], cve=finding["cve_id"], level=finding.get("cve_severity"),
+            rule=finding["rule_id"], title=finding["title"], fix=finding["fix"], cards=", ".join(finding["cve_ids"]))
     return ("- {path}:{line} {cve} [{rule}] {title}\n  Why: {cause}\n  Fix: {fix}".format(
         path=entry["path"], line=finding["line"], cve=finding["cve_id"], rule=finding["rule_id"],
         title=finding["title"], cause=advice.get("cause", ""), fix=advice.get("fix", "")))
@@ -57,14 +62,20 @@ def _respond(entries, guidance, written=None):
     """Shared PostToolUse output for one or more checked files; None means allow silently.
 
     written lists, per entry, digests of the lines this edit wrote (None: the whole file).
-    Review findings are reported only on those lines; blocking findings always are.
+    Review findings are reported only on those lines. Exact CVE rules block on any line; card
+    rules block on written lines and are reported as review on the others.
     """
     written = written or [None] * len(entries)
     unsupported = [entry for entry in entries if entry["status"] == "unsupported"]
-    blocking = [(entry, finding) for entry in entries for finding in entry["findings"]
-                if finding["severity"] == "block"]
+    def wrote(lines, finding):
+        return lines is None or finding.get("line_sha") in lines
+
+    # Exact CVE rules block wherever they match; card rules block only on lines this edit wrote,
+    # so old code in a file does not stop every later edit (it is reported as review instead).
+    blocking = [(entry, finding) for entry, lines in zip(entries, written) for finding in entry["findings"]
+                if finding["severity"] == "block" and ("cve_ids" not in finding or wrote(lines, finding))]
     review = [(entry, finding) for entry, lines in zip(entries, written) for finding in entry["findings"]
-              if finding["severity"] != "block" and (lines is None or finding.get("line_sha") in lines)]
+              if (entry, finding) not in blocking and (wrote(lines, finding) or finding["severity"] == "block")]
     notes = ["Not inspected (unsupported): {} ({}).".format(entry["path"] or "unsupported path",
                                              "; ".join(entry["notes"]) or "unsupported")
              for entry in unsupported]
@@ -92,9 +103,9 @@ def _written(texts):
     return {line_digest(line) for text in texts if isinstance(text, str) for line in text.splitlines()}
 
 
-def _check(workspace, paths, written=None):
+def _check(workspace, paths, written=None, block_low=False):
     try:
-        result = check_paths(Path(workspace), paths)
+        result = check_paths(Path(workspace), paths, block_low)
         return _respond(result["files"], result["guidance"], written)
     except Exception as exc:  # The hook must never break the agent turn.
         return _context("Paladin change check unavailable ({}); no result for this edit.".format(
@@ -131,7 +142,7 @@ def _combine(first, second):
     return _context(text)
 
 
-def claude_code_hook(payload, workspace):
+def claude_code_hook(payload, workspace, block_low=False):
     """Claude Code Write/Edit/MultiEdit payload."""
     if not isinstance(payload, dict) or payload.get("tool_name") not in EDIT_TOOLS:
         return None
@@ -146,7 +157,7 @@ def claude_code_hook(payload, workspace):
     edits = tool_input.get("edits") if payload["tool_name"] == "MultiEdit" else [tool_input]
     texts = [edit.get("new_string") for edit in edits or [] if isinstance(edit, dict)]
     known = payload["tool_name"] != "Write" and any(isinstance(text, str) for text in texts)
-    return _check(workspace, [raw], [_written(texts) if known else None])
+    return _check(workspace, [raw], [_written(texts) if known else None], block_low)
 
 
 PATCH_PATH = re.compile(r"^\*\*\* (?:Add File|Update File|Move to): (.+?)\s*$", re.M)
@@ -185,7 +196,7 @@ def _absolute(base, path):
     return path if Path(path).is_absolute() else str(Path(base) / path)
 
 
-def codex_hook(payload, workspace):
+def codex_hook(payload, workspace, block_low=False):
     """Codex apply_patch payload: the patch text is tool_input.command."""
     if not isinstance(payload, dict) or payload.get("tool_name") != "apply_patch":
         return None
@@ -204,7 +215,7 @@ def codex_hook(payload, workspace):
         return _combine(_context("Paladin change check covered the first 20 of {} Python files.".format(len(paths))),
                         found)
     written = patch_written(patch)
-    return _combine(_check(workspace, paths, [written.get(path, set()) for path in named]), found)
+    return _combine(_check(workspace, paths, [written.get(path, set()) for path in named], block_low), found)
 
 
 HOSTS = {"claude-code": claude_code_hook, "codex": codex_hook}
@@ -236,7 +247,7 @@ def _loaded_from(workspace):
         return False
 
 
-def main(workspace, stream_in, stream_out, host="claude-code"):
+def main(workspace, stream_in, stream_out, host="claude-code", block_low=False):
     """Hook entry point: always exit 0; malformed input is reported, never silently allowed."""
     raw = stream_in.read(MAX_PAYLOAD + 1)
     payload = None
@@ -247,7 +258,7 @@ def main(workspace, stream_in, stream_out, host="claude-code"):
     else:
         try:
             payload = json.loads(raw)
-            output = HOSTS[host](payload, workspace)
+            output = HOSTS[host](payload, workspace, block_low)
         except (ValueError, UnicodeError):
             output = _context("Paladin change check unavailable (invalid hook payload); no result for this edit.")
     if os.environ.get(LOG_VARIABLE):
@@ -265,7 +276,7 @@ def install_claude_code(workspace, command):
     return install_hook(workspace, command, "claude-code")
 
 
-def install_hook(workspace, command, host):
+def install_hook(workspace, command, host, block_low=False):
     """Add one project-scoped PostToolUse hook entry; user-level settings are never touched."""
     folder, filename, matcher = INSTALL_TARGETS[host]
     workspace = Path(workspace).resolve()
@@ -280,7 +291,7 @@ def install_hook(workspace, command, host):
     # cmd and PowerShell alike; anything else is quoted POSIX-style.
     parts = [Path(part).as_posix() if os.path.isabs(str(part)) else str(part) for part in command]
     line = (" ".join(shlex.quote(part) for part in parts) + " hook " + host
-            + " --workspace " + shlex.quote(workspace.as_posix()))
+            + " --workspace " + shlex.quote(workspace.as_posix()) + (" --block-low" if block_low else ""))
     hooks = data.setdefault("hooks", {})
     groups = hooks.get("PostToolUse", [])
     if not isinstance(groups, list):

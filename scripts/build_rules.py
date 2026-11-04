@@ -14,7 +14,7 @@ import sys
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 
-from paladin import data_rules, rule_draft  # noqa: E402
+from paladin import data_rules, rule_draft, severity  # noqa: E402
 
 DATA = ROOT / "data" / "cve-expansion"
 MAX_BYTES = 1_000_000
@@ -64,8 +64,15 @@ def main(argv=None):
               "rules": merged}
     (DATA / "rules.json").write_text(json.dumps(record, indent=1, sort_keys=True) + "\n", encoding="utf-8",
                                      newline="\n")
-    runtime = {"schema_version": 1,
-               "rules": [{key: value for key, value in rule.items() if key != "examples"} for rule in shipped]}
+    # Severity criterion (user, 2026-11-04): a rule's highest CVE severity decides; MEDIUM and
+    # above block, LOW and unknown advise (LOW blocks only with hook install --block-low).
+    levels = {cve: item["severity"] for cve, item in severity.load_index()["levels"].items()}
+    runtime_rules = []
+    for rule in shipped:
+        level = severity.rule_level(rule["cve_ids"], levels)
+        runtime_rules.append(dict({key: value for key, value in rule.items() if key != "examples"},
+                                  severity=severity.rule_severity(level), cve_severity=level))
+    runtime = {"schema_version": 1, "rules": runtime_rules}
     data_rules.load_runtime(runtime)
     (ROOT / "src" / "paladin" / "resources" / "change-rules.json").write_text(
         json.dumps(runtime, indent=1, sort_keys=True) + "\n", encoding="ascii", newline="\n")

@@ -64,6 +64,8 @@ def main(argv=None):
     hook.add_argument("action", choices=["claude-code", "codex", "install"])
     hook.add_argument("--workspace", type=Path, default=Path.cwd())
     hook.add_argument("--host", choices=["claude-code", "codex"], default="claude-code")
+    hook.add_argument("--block-low", action="store_true",
+                      help="also block rules whose CVE severity is LOW (MEDIUM and above always block)")
     deps = commands.add_parser("deps", help="check pinned dependency versions against collected advisories")
     deps.add_argument("action", choices=["check"])
     deps.add_argument("paths", nargs="*", help="workspace-relative dependency files (default: discover)")
@@ -94,10 +96,12 @@ def main(argv=None):
     if args.command == "hook":
         from paladin import agent_hook
         if args.action in agent_hook.HOSTS:
-            return agent_hook.main(args.workspace, sys.stdin, sys.stdout, host=args.action)
+            return agent_hook.main(args.workspace, sys.stdin, sys.stdout, host=args.action,
+                                   block_low=args.block_low)
         try:
             # -I: isolated mode, so modules in the hooked workspace cannot shadow Paladin.
-            result = agent_hook.install_hook(args.workspace, [sys.executable, "-I", "-m", "paladin.cli"], args.host)
+            result = agent_hook.install_hook(args.workspace, [sys.executable, "-I", "-m", "paladin.cli"], args.host,
+                                             block_low=args.block_low)
         except (OSError, ValueError) as exc:
             print(json.dumps({"status": "unavailable", "error": str(exc).split(":", 1)[0][:200]}, indent=2))
             return 1

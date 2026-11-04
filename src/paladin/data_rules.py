@@ -134,7 +134,8 @@ def scan(compiled, source):
                 if key not in seen:
                     seen.add(key)
                     findings.append({"rule_id": rule["rule_id"], "cve_ids": rule["cve_ids"], "line": node.lineno,
-                                     "severity": rule["severity"], "title": rule["title"], "fix": rule["fix"]})
+                                     "severity": rule["severity"], "cve_severity": rule.get("cve_severity"),
+                                     "title": rule["title"], "fix": rule["fix"]})
     return sorted(findings, key=lambda item: (item["line"], item["rule_id"])), []
 
 
@@ -161,7 +162,8 @@ def _condition_errors(condition):
 
 
 def _shape_errors(rule, runtime=False):
-    keys = RULE_KEYS - {"examples"} if runtime else RULE_KEYS
+    # Shipped rules carry the CVE severity that decides block or review; drafts do not.
+    keys = (RULE_KEYS - {"examples"}) | {"cve_severity"} if runtime else RULE_KEYS
     if not isinstance(rule, dict) or set(rule) != keys:
         return ["rule: keys must be exactly " + ", ".join(sorted(keys))]
     errors = []
@@ -170,7 +172,11 @@ def _shape_errors(rule, runtime=False):
     if not (isinstance(rule["cve_ids"], list) and rule["cve_ids"] and all(
             isinstance(cve, str) and CVE_ID.match(cve) for cve in rule["cve_ids"])):
         errors.append("cve_ids: need CVE ids")
-    if rule["severity"] != "review":
+    if runtime and (rule["cve_severity"] not in {None, "LOW", "MEDIUM", "HIGH", "CRITICAL"}
+                    or rule["severity"] != ("block" if rule["cve_severity"] in {"MEDIUM", "HIGH", "CRITICAL"}
+                                            else "review")):
+        errors.append("severity: block exactly for MEDIUM, HIGH and CRITICAL CVEs, else review")
+    elif not runtime and rule["severity"] != "review":
         errors.append("severity: drafted rules start as review")
     for name in ("family", "title", "fix"):
         try:

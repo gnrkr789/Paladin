@@ -75,7 +75,8 @@ def _finding(item, lines):
     found = {"rule_id": item["rule_id"], "cve_id": item["cve_ids"][0] if "cve_ids" in item else item["cve_id"],
              "line": line, "line_sha": line_digest(lines[line - 1] if 0 < line <= len(lines) else "")}
     if "cve_ids" in item:
-        found.update(cve_ids=item["cve_ids"], severity=item["severity"], title=item["title"], fix=item["fix"])
+        found.update(cve_ids=item["cve_ids"], severity=item["severity"], cve_severity=item.get("cve_severity"),
+                     title=item["title"], fix=item["fix"])
     else:
         found.update(severity=GUIDANCE[item["rule_id"]]["severity"], title=GUIDANCE[item["rule_id"]]["title"])
     return found
@@ -122,7 +123,7 @@ def _resolve(root, raw):
     return relative.as_posix(), absolute
 
 
-def check_file(root, raw):
+def check_file(root, raw, block_low=False):
     root = Path(os.path.abspath(root))
     try:
         rel, path = _resolve(root, raw)
@@ -150,22 +151,29 @@ def check_file(root, raw):
     candidates += data_rules.scan(_data_rules(), data)[0]  # Parse failures are already in notes.
     lines = data.decode("utf-8", "replace").splitlines()
     findings = [_finding(item, lines) for item in sorted(candidates, key=lambda item: (item["line"], item["rule_id"]))]
+    if block_low:  # LOW-severity CVE rules block only when the project opted in.
+        findings = [dict(f, severity="block") if f.get("cve_severity") == "LOW" else f for f in findings]
     status = "findings" if findings else ("partial" if notes else "clean")
     entry = _entry(rel, status, notes, hashlib.sha256(data).hexdigest(), findings)
     entry["parse_failed"] = any(note.startswith(PARSE_FAILURE) for note in notes)
     return entry
 
 
-def check_paths(root, paths):
+def check_paths(root, paths, block_low=False):
     """Check up to MAX_PATHS files; the overall status never upgrades partial results."""
     if not isinstance(paths, list) or not paths or len(paths) > MAX_PATHS:
         return {"status": "invalid_request", "files": []}
-    files = [check_file(root, raw) for raw in paths]
+    files = [check_file(root, raw, block_low) for raw in paths]
     remaining, truncated = MAX_FINDINGS, False
-    # Blocking findings take the budget first, so review noise can never hide a block.
-    for blocking in (True, False):
+    # Exact CVE blocks take the budget first, then card-rule blocks, then review notes, so neither
+    # review noise nor card blocks on old lines (which the hook demotes) can hide an exact block.
+    def tier(finding):
+        return 0 if finding["severity"] == "block" and "cve_ids" not in finding else (
+            1 if finding["severity"] == "block" else 2)
+
+    for level in (0, 1, 2):
         for item in files:
-            group = [finding for finding in item["findings"] if (finding["severity"] == "block") == blocking]
+            group = [finding for finding in item["findings"] if tier(finding) == level]
             if len(group) > remaining:
                 dropped = group[remaining:]
                 item["findings"] = [finding for finding in item["findings"] if finding not in dropped]
@@ -183,6 +191,6 @@ def check_paths(root, paths):
     return {"status": status, "files": files, "truncated": truncated,
             "guidance": {rule: {"cause": GUIDANCE[rule]["cause"], "fix": GUIDANCE[rule]["fix"]}
                          for rule in sorted(used) if rule in GUIDANCE},
-            "limitations": ["Static, single-file checks: blocking rules for two Mercurial CVE shapes and "
-                            "review-level rules drafted from CVE cards.",
+            "limitations": ["Static, single-file checks: two exact Mercurial CVE rules, and rules drafted from "
+                            "CVE cards that block for MEDIUM, HIGH and CRITICAL CVEs and advise for LOW.",
                             "A clean result is not a security verdict."]}

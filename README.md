@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/gnrkr789/Paladin/main/docs/assets/paladin-hero.svg" alt="Paladin: CVE-grounded prevention and proof for AI coding agents" width="100%">
+  <img src="https://github.com/gnrkr789/Paladin/raw/main/docs/assets/paladin-hero.svg" alt="Paladin: CVE-grounded prevention and proof for AI coding agents" width="100%">
 </p>
 
 <p align="center">
@@ -31,7 +31,7 @@ the agent what the problem is and how to avoid it; the agent writes its own fix.
 ## Tested
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/gnrkr789/Paladin/main/docs/assets/evaluation.svg" alt="Measured results" width="100%">
+  <img src="https://github.com/gnrkr789/Paladin/raw/main/docs/assets/evaluation.svg" alt="Measured results" width="100%">
 </p>
 
 | Test | Result |
@@ -56,7 +56,7 @@ Evidence: [docs/evidence/private-alpha/final-report.md](https://github.com/gnrkr
 ## How it works
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/gnrkr789/Paladin/main/docs/assets/case-loop.svg" alt="Scan, reproduce, repair, verify, promote" width="100%">
+  <img src="https://github.com/gnrkr789/Paladin/raw/main/docs/assets/case-loop.svg" alt="Scan, reproduce, repair, verify, promote" width="100%">
 </p>
 
 ## Quick start

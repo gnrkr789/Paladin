@@ -51,3 +51,19 @@ have no severity yet.
   blocks, so 50 or more card matches on old lines can no longer push an exact block
   out; card blocks on lines the edit did not write are reported as review notes (they
   had been dropped); shipped rule data must pair block with MEDIUM and above.
+
+## Real sessions and precision sample (2026-11-04)
+
+- Claude Code run 4: blocked on CVE-2022-24065 and the pickle rule (CRITICAL) in one
+  message; the agent fixed both and the final check is clean.
+- Codex run 8: blocked on the pickle rule; the agent added HMAC authentication before
+  pickle.loads, which is the fix the card names, but the rule cannot see it, so the
+  line is still flagged (a review note on later edits). Neither agent got stuck.
+- Precision sample (scripts/audit_block_matches.py, docs/evidence/block-precision/):
+  the 118 block rules match 267 times in 63 of 4,055 site-packages files (pickle 116,
+  SQL built strings 93, archive extractall 29). A Fable judge on 41 seeded matches
+  (up to 4 per rule): 4 real risk (10%), 33 safe in context, 4 cannot tell. The 4 real
+  ones are Pillow Image.open on network or user bytes and torch.load on caller files;
+  every sampled pickle, SQL and extractall match was safe in context. Library code is
+  a pessimistic proxy for application code, but these rules cannot tell trusted from
+  untrusted data.

@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="docs/assets/paladin-hero.svg" alt="Paladin: CVE-grounded prevention and proof for AI coding agents" width="100%">
+  <img src="https://raw.githubusercontent.com/gnrkr789/Paladin/main/docs/assets/paladin-hero.svg" alt="Paladin: CVE-grounded prevention and proof for AI coding agents" width="100%">
 </p>
 
 <p align="center">
@@ -28,7 +28,7 @@ the agent what the problem is and how to avoid it; the agent writes its own fix.
 ## Tested
 
 <p align="center">
-  <img src="docs/assets/evaluation.svg" alt="Measured results" width="100%">
+  <img src="https://raw.githubusercontent.com/gnrkr789/Paladin/main/docs/assets/evaluation.svg" alt="Measured results" width="100%">
 </p>
 
 | Test | Result |
@@ -48,12 +48,12 @@ the agent what the problem is and how to avoid it; the agent writes its own fix.
 | Same 207 cards after correction, Fable audit of a new sample of 30 | 29 exact, 1 with a minor omission |
 | Unit tests | 344 pass |
 
-Evidence: [docs/evidence/private-alpha/final-report.md](docs/evidence/private-alpha/final-report.md).
+Evidence: [docs/evidence/private-alpha/final-report.md](https://github.com/gnrkr789/Paladin/blob/main/docs/evidence/private-alpha/final-report.md).
 
 ## How it works
 
 <p align="center">
-  <img src="docs/assets/case-loop.svg" alt="Scan, reproduce, repair, verify, promote" width="100%">
+  <img src="https://raw.githubusercontent.com/gnrkr789/Paladin/main/docs/assets/case-loop.svg" alt="Scan, reproduce, repair, verify, promote" width="100%">
 </p>
 
 ## Quick start
@@ -100,10 +100,10 @@ not a security verdict. Project text is English ASCII.
 
 ## Docs
 
-[Hook](docs/hook.md) | [Case loop](docs/case-loop.md) | [MCP](docs/mcp.md) |
-[Setup](docs/setup.md) | [Plans](docs/plans/)
+[Hook](https://github.com/gnrkr789/Paladin/blob/main/docs/hook.md) | [Case loop](https://github.com/gnrkr789/Paladin/blob/main/docs/case-loop.md) | [MCP](https://github.com/gnrkr789/Paladin/blob/main/docs/mcp.md) |
+[Setup](https://github.com/gnrkr789/Paladin/blob/main/docs/setup.md) | [Plans](https://github.com/gnrkr789/Paladin/blob/main/docs/plans/)
 
 ## License
 
 Apache-2.0. Bundled CVE records, patches and advisory data keep their own
-licenses: [data/THIRD_PARTY.md](data/THIRD_PARTY.md), [NOTICE](NOTICE).
+licenses: [data/THIRD_PARTY.md](https://github.com/gnrkr789/Paladin/blob/main/data/THIRD_PARTY.md), [NOTICE](https://github.com/gnrkr789/Paladin/blob/main/NOTICE).

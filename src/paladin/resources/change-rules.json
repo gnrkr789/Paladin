@@ -11,6 +11,7 @@
    "cve_severity": "LOW",
    "family": "open_redirect",
    "fix": "Upgrade aiohttp to 3.7.4 or later, or stop using normalize_path_middleware if upgrading is not possible.",
+   "precision_hold": false,
    "require": [],
    "rule_id": "aiohttp-normalize-path-middleware-open-redirect-v1",
    "severity": "review",
@@ -29,6 +30,7 @@
    "cve_severity": "HIGH",
    "family": "path_traversal",
    "fix": "Upgrade aiohttp to 3.13.3 or later, and in production serve static files from a reverse proxy or dedicated file server instead of the aiohttp static route.",
+   "precision_hold": false,
    "require": [],
    "rule_id": "aiohttp-static-route-review-v1",
    "severity": "block",
@@ -45,6 +47,7 @@
    "cve_severity": "HIGH",
    "family": "command_injection",
    "fix": "Keep bash_command a fixed string and pass run_id or other untrusted values through the operator's environment variables, validating them first, so their content is never parsed as shell text.",
+   "precision_hold": false,
    "require": [
     {
      "is": "built_string",
@@ -66,6 +69,7 @@
    "cve_severity": "HIGH",
    "family": "command_injection",
    "fix": "Keep the bash command a fixed string and pass untrusted values such as DAG run configuration through the operator's env dictionary, then expand them as double-quoted shell variables inside the command.",
+   "precision_hold": false,
    "require": [
     {
      "arg": 0,
@@ -87,9 +91,10 @@
    "cve_severity": "HIGH",
    "family": "path_traversal",
    "fix": "Do not bulk-extract untrusted archives; resolve each entry's destination to a real path, confirm it stays inside the extraction directory, reject the whole archive if any entry escapes, and extract entries one at a time.",
+   "precision_hold": true,
    "require": [],
    "rule_id": "archive-extractall-path-check-v1",
-   "severity": "block",
+   "severity": "review",
    "title": "Bulk extractall() on an archive without per-entry destination path validation"
   },
   {
@@ -102,6 +107,7 @@
    "cve_severity": "LOW",
    "family": "open_redirect",
    "fix": "Parse the URL and check the real scheme and host, accepting https or http only for a loopback host and rejecting any userinfo component, and upgrade Authlib to 1.8.0 or later.",
+   "precision_hold": false,
    "require": [
     {
      "arg": 0,
@@ -122,6 +128,7 @@
    "cve_severity": "HIGH",
    "family": "path_traversal",
    "fix": "Upgrade Babel to 2.9.1 or later, and check any externally supplied locale name against a fixed allow-list of known locale identifiers before loading it, rejecting separators and parent directory references.",
+   "precision_hold": false,
    "require": [
     {
      "arg": 0,
@@ -144,6 +151,7 @@
    "cve_severity": "MEDIUM",
    "family": "xss",
    "fix": "Upgrade Bleach to 3.3.0 or later and leave comment stripping on. If comments must be kept, do not allow svg or math together with p or br and raw-text tags such as style, title, noscript, script, textarea, noframes, iframe or xmp.",
+   "precision_hold": false,
    "require": [
     {
      "equals": false,
@@ -165,6 +173,7 @@
    "cve_severity": "HIGH",
    "family": "ssrf",
    "fix": "Validate the endpoint against an allowlist of permitted S3 hosts and HTTPS only before creating the client, and keep error responses from the target out of user-facing messages.",
+   "precision_hold": false,
    "require": [
     {
      "arg": 0,
@@ -193,6 +202,7 @@
    "cve_severity": "MEDIUM",
    "family": "path_traversal",
    "fix": "Do not use character-level prefix comparison to decide whether a path is inside a directory; normalize both paths to absolute form, compute the common path with a component-aware function, and accept only when it equals the destination directory.",
+   "precision_hold": true,
    "require": [
     {
      "arg": 0,
@@ -200,7 +210,7 @@
     }
    ],
    "rule_id": "commonprefix-path-containment-v1",
-   "severity": "block",
+   "severity": "review",
    "title": "Character-level commonprefix used where a path containment check may be intended"
   },
   {
@@ -213,6 +223,7 @@
    "cve_severity": "CRITICAL",
    "family": "command_injection",
    "fix": "Upgrade cookiecutter to 2.1.1 or later, and only accept checkout values that look like plain revision, branch or tag names, rejecting anything that starts with a dash.",
+   "precision_hold": false,
    "require": [
     {
      "arg": 1,
@@ -235,6 +246,7 @@
    "cve_severity": "MEDIUM",
    "family": "xss",
    "fix": "Upgrade dash to 2.15.0 or later, upgrade dash-core-components and dash-html-components to the fixed releases, and do not set an anchor href from user-supplied or stored data such as saved views.",
+   "precision_hold": false,
    "require": [
     {
      "is": "non_constant",
@@ -256,6 +268,7 @@
    "cve_severity": "MEDIUM",
    "family": "path_traversal",
    "fix": "Upgrade Django to 2.2.18, 3.0.12, 3.1.6 or later, and only extract archives from trusted sources, checking that each member's resolved destination stays inside the target directory.",
+   "precision_hold": false,
    "require": [
     {
      "arg": 0,
@@ -281,6 +294,7 @@
    "cve_severity": "MEDIUM",
    "family": "xss",
    "fix": "Escape any externally sourced text, such as a template description, with Django's HTML escaping helper before it becomes a form field help_text, or render it only through an auto-escaping context.",
+   "precision_hold": false,
    "require": [
     {
      "is": "built_string",
@@ -317,6 +331,7 @@
    "cve_severity": "HIGH",
    "family": "sql_injection",
    "fix": "Upgrade Django to 1.11.29, 2.2.11, 3.0.4 or later, and pass tolerance only as a numeric value chosen by the application, or convert and validate user input to a number first.",
+   "precision_hold": false,
    "require": [
     {
      "is": "non_constant",
@@ -338,6 +353,7 @@
    "cve_severity": "MEDIUM",
    "family": "xss",
    "fix": "Upgrade Django to a patched release (1.4.20, 1.6.11, 1.7.7, 1.8c1 or later), and reject or strip control characters from the redirect URL before checking it, then validate the scheme and host of the normalized value.",
+   "precision_hold": false,
    "require": [
     {
      "arg": 0,
@@ -359,6 +375,7 @@
    "cve_severity": "CRITICAL",
    "family": "sql_injection",
    "fix": "Upgrade Django to 3.1.13, 3.2.5 or later, and map any user-chosen sort option to a fixed developer-defined set of ordering strings, rejecting anything outside that set, before calling order_by.",
+   "precision_hold": false,
    "require": [
     {
      "arg": 0,
@@ -379,6 +396,7 @@
    "cve_severity": "CRITICAL",
    "family": "sql_injection",
    "fix": "Upgrade Django to 1.11.28, 2.2.10, 3.0.3 or later, and map any user-chosen delimiter to a small set of fixed, developer-defined values instead of passing the raw request value.",
+   "precision_hold": false,
    "require": [
     {
      "arg": 1,
@@ -401,6 +419,7 @@
    "cve_severity": "CRITICAL",
    "family": "sql_injection",
    "fix": "Upgrade Django to 3.2.14 or 4.0.6 or later, and check the kind or lookup name against a fixed allow-list before it reaches Trunc or Extract, rejecting anything not on the list.",
+   "precision_hold": false,
    "require": [
     {
      "arg": 1,
@@ -422,6 +441,7 @@
    "cve_severity": "MEDIUM",
    "family": "redos",
    "fix": "Upgrade Django to 3.2.25, 4.2.11, 5.0.3 or later, and cap the length of untrusted text before passing it to HTML-aware word truncation.",
+   "precision_hold": false,
    "require": [
     {
      "equals": true,
@@ -444,6 +464,7 @@
    "cve_severity": "MEDIUM",
    "family": "redos",
    "fix": "Upgrade Django to 5.0.8 or later (5.0 series) or 4.2.15 or later (4.2 series), and cap the length of untrusted text before passing it to urlize or urlizetrunc.",
+   "precision_hold": false,
    "require": [
     {
      "arg": 0,
@@ -466,6 +487,7 @@
    "cve_severity": "CRITICAL",
    "family": "sql_injection",
    "fix": "Upgrade Django to 5.0.8 or 4.2.15 or later, and check any user-supplied JSON key against a fixed allowlist of names before building the field argument.",
+   "precision_hold": false,
    "require": [
     {
      "arg": 0,
@@ -486,6 +508,7 @@
    "cve_severity": "MEDIUM",
    "family": "xxe",
    "fix": "Upgrade to a Django release that includes the hardened XML deserializer, and avoid deserializing XML from untrusted sources by using a different format or validating input first.",
+   "precision_hold": false,
    "require": [
     {
      "arg": 0,
@@ -512,6 +535,7 @@
    "cve_severity": "MEDIUM",
    "family": "redos",
    "fix": "Upgrade transformers to 4.52.1 or later, and until then avoid passing untrusted or unbounded-length strings to token2json, or process them in isolated workers with limits.",
+   "precision_hold": false,
    "require": [
     {
      "arg": 0,
@@ -533,6 +557,7 @@
    "cve_severity": "LOW",
    "family": "xss",
    "fix": "Upgrade djangorestframework to 3.15.2 or later, and escape untrusted text for HTML before splitting it and joining the pieces with line break tags, instead of passing raw header values to this filter.",
+   "precision_hold": false,
    "require": [
     {
      "arg": 0,
@@ -555,6 +580,7 @@
    "cve_severity": "HIGH",
    "family": "xxe",
    "fix": "Parse externally sourced XML such as sitemaps or API responses with the defusedxml equivalent of ElementTree, which rejects entity expansion, instead of the standard library parser.",
+   "precision_hold": false,
    "require": [
     {
      "arg": 0,
@@ -575,6 +601,7 @@
    "cve_severity": "MEDIUM",
    "family": "redos",
    "fix": "Upgrade transformers to 4.53.0 or later, and treat number normalization of untrusted text as a CPU-sensitive path until the upgrade is deployed.",
+   "precision_hold": false,
    "require": [
     {
      "arg": 0,
@@ -597,6 +624,7 @@
    "cve_severity": "HIGH",
    "family": "xxe",
    "fix": "Upgrade langchain-community to 0.3.27 or later, and do not pass untrusted or user-supplied export files to EverNoteLoader.",
+   "precision_hold": false,
    "require": [
     {
      "arg": 0,
@@ -621,6 +649,7 @@
    "cve_severity": "HIGH",
    "family": "unsafe_deserialization",
    "fix": "Do not load index bytes that an outside party can supply or alter; rebuild the index from the original documents with a trusted embedding step, load only bytes your own application produced and stored where outsiders cannot write, and upgrade to langchain 0.2.4 or later.",
+   "precision_hold": false,
    "require": [
     {
      "arg": 0,
@@ -642,6 +671,7 @@
    "cve_severity": "HIGH",
    "family": "path_traversal",
    "fix": "Parse the URL with a real parser and allow only the web schemes the feature needs, rejecting every other scheme, instead of matching a blocked prefix in the raw text.",
+   "precision_hold": true,
    "require": [
     {
      "arg": 0,
@@ -649,7 +679,7 @@
     }
    ],
    "rule_id": "file-scheme-prefix-blocklist-v1",
-   "severity": "block",
+   "severity": "review",
    "title": "Blocklist of file URLs done by checking for a 'file://' text prefix"
   },
   {
@@ -662,6 +692,7 @@
    "cve_severity": "MEDIUM",
    "family": "xss",
    "fix": "Upgrade to a Flask-Admin release that normalizes backslashes, whitespace, control characters and extra slashes before parsing, and prefer relative redirect paths or an allowlist of known targets over request-supplied URLs.",
+   "precision_hold": false,
    "require": [
     {
      "arg": 0,
@@ -684,6 +715,7 @@
    "cve_severity": "CRITICAL",
    "family": "command_injection",
    "fix": "Upgrade GitPython to 3.1.32 or later, validate the URL against permitted schemes and hosts before cloning, and never let untrusted input choose git options.",
+   "precision_hold": false,
    "require": [
     {
      "arg": 0,
@@ -706,6 +738,7 @@
    "cve_severity": "HIGH",
    "family": "command_injection",
    "fix": "Upgrade GitPython to 3.1.47 or later and keep untrusted text out of multi_options, using only fixed, hard-coded option strings.",
+   "precision_hold": false,
    "require": [
     {
      "is": "non_constant",
@@ -729,6 +762,7 @@
    "cve_severity": "HIGH",
    "family": "path_traversal",
    "fix": "Upgrade GitPython to 3.1.59 or later, do not forward caller-influenced values as separate_git_dir to clone calls, and keep allow_unsafe_options at its default of False.",
+   "precision_hold": false,
    "require": [
     {
      "is": "non_constant",
@@ -750,6 +784,7 @@
    "cve_severity": "HIGH",
    "family": "command_injection",
    "fix": "Reject any revision that starts with a dash and check that it resolves to a real ref or object name before calling iter_commits or blame, and upgrade GitPython to 3.1.51 or later.",
+   "precision_hold": false,
    "require": [
     {
      "arg": 0,
@@ -773,6 +808,7 @@
    "cve_severity": "HIGH",
    "family": "command_injection",
    "fix": "Upgrade GitPython to 3.1.58 or later, and reject treeish values starting with a dash or validate them as real revisions (for example by resolving them to a commit hash first) before passing them in.",
+   "precision_hold": false,
    "require": [
     {
      "arg": 1,
@@ -795,6 +831,7 @@
    "cve_severity": "HIGH",
    "family": "command_injection",
    "fix": "Upgrade GitPython to 3.1.47 or later and never pass caller-influenced values or option dictionaries as upload_pack kwargs; use a fixed, developer-chosen value or omit the option.",
+   "precision_hold": false,
    "require": [
     {
      "is": "non_constant",
@@ -816,6 +853,7 @@
    "cve_severity": "MEDIUM",
    "family": "path_traversal",
    "fix": "Upgrade GitPython to 3.1.58 or later, do not forward caller-influenced keyword options to index remove or head checkout, allowlist expected options, reject the pathspec-from-file option, and keep raw Git error output away from untrusted users.",
+   "precision_hold": false,
    "require": [
     {
      "is": "non_constant",
@@ -841,6 +879,7 @@
    "cve_severity": "HIGH",
    "family": "command_injection",
    "fix": "Do not pass externally influenced values as the template option to Repo.init; build init options from a fixed allowlist, reject template and separate-git-dir, and upgrade GitPython to 3.1.58 or later.",
+   "precision_hold": false,
    "require": [
     {
      "is": "non_constant",
@@ -861,6 +900,7 @@
    "cve_severity": "MEDIUM",
    "family": "path_traversal",
    "fix": "Upgrade GitPython to 3.1.37 or later, and validate revision strings from users against a strict reference-name pattern, rejecting parent-directory segments and absolute paths, before passing them to repository lookups.",
+   "precision_hold": false,
    "require": [
     {
      "arg": 0,
@@ -886,6 +926,7 @@
    "cve_severity": "HIGH",
    "family": "command_injection",
    "fix": "Upgrade GitPython to 3.1.58 or later, stop disabling single-character option splitting where possible, and never forward untrusted keyword dictionaries into these git methods.",
+   "precision_hold": false,
    "require": [
     {
      "equals": false,
@@ -906,6 +947,7 @@
    "cve_severity": "MEDIUM",
    "family": "path_traversal",
    "fix": "Upgrade Gradio to 5.0 or later, and resolve the path to a normalized absolute form and reject malformed input before any containment check against the resolved allowed directory.",
+   "precision_hold": false,
    "require": [
     {
      "arg": 0,
@@ -927,6 +969,7 @@
    "cve_severity": "HIGH",
    "family": "ssrf",
    "fix": "Upgrade Gradio to 6.6.0 or later, and only load Spaces from an operator-chosen fixed allowlist rather than from names supplied at runtime.",
+   "precision_hold": false,
    "require": [
     {
      "arg": 0,
@@ -953,6 +996,7 @@
    "cve_severity": "LOW",
    "family": "sql_injection",
    "fix": "Do not opt in to dangerous requests for chains that take untrusted prompts; upgrade to a patched release and give the chain a read-only database account scoped to the calling tenant, with authorization enforced in the database layer.",
+   "precision_hold": false,
    "require": [
     {
      "equals": true,
@@ -973,6 +1017,7 @@
    "cve_severity": "MEDIUM",
    "family": "redos",
    "fix": "Do not pass client-supplied LIST or LSUB patterns to wildcardToRegexp, since it leaves regex syntax unescaped; build the regex yourself by escaping every character except the asterisk and percent wildcards, or match without regular expressions, and upgrade Twisted once a fixed release is available.",
+   "precision_hold": false,
    "require": [
     {
      "arg": 0,
@@ -994,6 +1039,7 @@
    "cve_severity": "LOW",
    "family": "command_injection",
    "fix": "Upgrade IPython to a patched release and do not pass attacker-influenced text such as directory names, paths or user labels as the terminal title; use a fixed string or strictly filtered input.",
+   "precision_hold": false,
    "require": [
     {
      "arg": 0,
@@ -1015,6 +1061,7 @@
    "cve_severity": "MEDIUM",
    "family": "xss",
    "fix": "Enable automatic escaping for the whole Jinja2 environment so output is escaped by default, and mark a value as safe only where unescaped output is intended and the value is trusted.",
+   "precision_hold": true,
    "require": [
     {
      "absent_or_not_in": [
@@ -1025,7 +1072,7 @@
     }
    ],
    "rule_id": "jinja2-environment-autoescape-not-enabled-v1",
-   "severity": "block",
+   "severity": "review",
    "title": "Jinja2 Environment created without automatic escaping enabled"
   },
   {
@@ -1039,6 +1086,7 @@
    "cve_severity": "HIGH",
    "family": "ssrf",
    "fix": "Take api_base from operator-controlled configuration, or check any request-supplied value against an operator-defined allowlist of trusted destinations before the call, and never send server-held keys to unapproved addresses.",
+   "precision_hold": false,
    "require": [
     {
      "is": "non_constant",
@@ -1062,6 +1110,7 @@
    "cve_severity": "HIGH",
    "family": "sql_injection",
    "fix": "Upgrade llama-index to a release newer than the fixed version (at least 0.12.3), and until then keep this engine away from untrusted prompts or replace it with a query path that does not execute model-written SQL.",
+   "precision_hold": false,
    "require": [],
    "rule_id": "llama-index-jsonalyze-query-engine-prompt-sql-injection-v1",
    "severity": "block",
@@ -1080,6 +1129,7 @@
    "cve_severity": "MEDIUM",
    "family": "xss",
    "fix": "Upgrade lxml to a release containing the upstream fix, or replace the lxml cleaner with a maintained allowlist sanitizer, and keep output escaping and a restrictive Content-Security-Policy as extra layers.",
+   "precision_hold": false,
    "require": [],
    "rule_id": "lxml-html-cleaner-untrusted-html-v1",
    "severity": "block",
@@ -1095,6 +1145,7 @@
    "cve_severity": "MEDIUM",
    "family": "xxe",
    "fix": "Construct the parser with entity resolution turned off and network access disabled, or use a hardened XML library, so client-supplied XML can never pull in local files or remote resources.",
+   "precision_hold": true,
    "require": [
     {
      "absent_or_not_in": [
@@ -1104,7 +1155,7 @@
     }
    ],
    "rule_id": "lxml-xmlparser-entity-resolution-v1",
-   "severity": "block",
+   "severity": "review",
    "title": "lxml XMLParser built without disabling entity resolution can expand external entities in client XML"
   },
   {
@@ -1117,6 +1168,7 @@
    "cve_severity": "MEDIUM",
    "family": "xxe",
    "fix": "Do not enable entity resolution on parsers that handle untrusted XML; set entity resolution off and disable network access, or reject documents that declare entities.",
+   "precision_hold": false,
    "require": [
     {
      "equals": true,
@@ -1137,6 +1189,7 @@
    "cve_severity": "HIGH",
    "family": "redos",
    "fix": "Upgrade Mako to 1.2.2 or later, and do not pass template text from untrusted sources to the Lexer class.",
+   "precision_hold": false,
    "require": [
     {
      "arg": 0,
@@ -1158,6 +1211,7 @@
    "cve_severity": "HIGH",
    "family": "path_traversal",
    "fix": "Upgrade Mako to 1.3.12 or later, and avoid passing user-controlled names to the template lookup; map input to an allow-list of known template names, or convert backslashes to forward slashes before the lookup.",
+   "precision_hold": true,
    "require": [
     {
      "arg": 0,
@@ -1165,7 +1219,7 @@
     }
    ],
    "rule_id": "mako-lookup-get-template-dynamic-name-v1",
-   "severity": "block",
+   "severity": "review",
    "title": "Non-constant template name passed to get_template (Mako backslash traversal on Windows)"
   },
   {
@@ -1179,6 +1233,7 @@
    "cve_severity": "HIGH",
    "family": "path_traversal",
    "fix": "Upgrade Mako to 1.4.2 or later, and avoid passing untrusted input as template names. Map user choices to a fixed allowlist of template names, or normalize the name by converting backslashes to forward slashes and stripping leading slashes and drive designators before lookup.",
+   "precision_hold": true,
    "require": [
     {
      "arg": 0,
@@ -1187,7 +1242,7 @@
     }
    ],
    "rule_id": "mako-lookup-get-template-nonconstant-uri-v1",
-   "severity": "block",
+   "severity": "review",
    "title": "Non-constant template name passed to get_template, which may be a Mako TemplateLookup (path traversal via drive-letter URI on Windows)"
   },
   {
@@ -1200,6 +1255,7 @@
    "cve_severity": "MEDIUM",
    "family": "redos",
    "fix": "Upgrade transformers to 4.53.0 or later, where the regex is replaced by linear-time string prefix and search operations, and avoid passing unbounded untrusted text to this method on older versions.",
+   "precision_hold": false,
    "require": [
     {
      "arg": 0,
@@ -1221,6 +1277,7 @@
    "cve_severity": "MEDIUM",
    "family": "xss",
    "fix": "Build the markup with format_html or a template so every interpolated value is escaped, and derive link targets from reversed application routes rather than from names supplied in templates or other external data.",
+   "precision_hold": false,
    "require": [
     {
      "arg": 0,
@@ -1242,6 +1299,7 @@
    "cve_severity": "HIGH",
    "family": "xss",
    "fix": "Escape every data-derived value before it is composed into markup, or return plain text and let template auto-escaping handle it, and do not mark data-derived strings as safe.",
+   "precision_hold": false,
    "require": [
     {
      "arg": 0,
@@ -1264,6 +1322,7 @@
    "cve_severity": "HIGH",
    "family": "ssrf",
    "fix": "Do not let clients choose the MCP endpoint; connect only to URLs that match a default-deny allowlist of scheme, host, port and path prefix, strip sensitive client headers, disable redirects, and require authentication on the endpoint.",
+   "precision_hold": true,
    "require": [
     {
      "arg": 0,
@@ -1272,7 +1331,7 @@
     }
    ],
    "rule_id": "mcp-client-user-controlled-url-v1",
-   "severity": "block",
+   "severity": "review",
    "title": "MCP SSE or streamable-http client opened with a non-constant URL"
   },
   {
@@ -1286,6 +1345,7 @@
    "cve_severity": "MEDIUM",
    "family": "xss",
    "fix": "Upgrade Mistune to 3.2.1 or later, or do not enable the Figure directive for untrusted Markdown, and make sure every directive option placed in an HTML attribute is escaped.",
+   "precision_hold": false,
    "require": [],
    "rule_id": "mistune-figure-directive-enabled-v1",
    "severity": "block",
@@ -1303,6 +1363,7 @@
    "cve_severity": "HIGH",
    "family": "path_traversal",
    "fix": "Upgrade mistune to 3.3.0 or later, or leave the Include directive disabled for untrusted markdown; if include paths are resolved in your own code, resolve the final path to its real location and refuse to open it unless it lies inside a trusted base directory.",
+   "precision_hold": false,
    "require": [],
    "rule_id": "mistune-include-directive-enabled-v1",
    "severity": "block",
@@ -1319,6 +1380,7 @@
    "cve_severity": "MEDIUM",
    "family": "xss",
    "fix": "Upgrade mistune to 3.2.1 or later and make sure heading ids come from a restricted safe slug or sequential identifiers, not raw user-supplied heading text.",
+   "precision_hold": false,
    "require": [
     {
      "arg": 0,
@@ -1341,6 +1403,7 @@
    "cve_severity": "HIGH",
    "family": "path_traversal",
    "fix": "Parse the artifact location and reject any URI with a fragment, query or parent-directory sequences, or restrict it to an allowlist of base locations, and upgrade mlflow to 2.11.3 or later.",
+   "precision_hold": false,
    "require": [
     {
      "arg": 1,
@@ -1367,6 +1430,7 @@
    "cve_severity": "MEDIUM",
    "family": "xss",
    "fix": "Upgrade NiceGUI to 3.4.0 or later, and never build the style text from request data such as URL parameters; use fixed styles or validate values against a strict allowlist.",
+   "precision_hold": false,
    "require": [
     {
      "arg": 0,
@@ -1389,6 +1453,7 @@
    "cve_severity": "HIGH",
    "family": "path_traversal",
    "fix": "Upgrade NiceGUI to 3.4.0 or later; if a version before 3.4.0 must stay, replace the call with a custom route that resolves the joined path to its canonical form and rejects anything outside the served directory with a not-found response.",
+   "precision_hold": false,
    "require": [],
    "rule_id": "nicegui-add-media-files-traversal-v1",
    "severity": "block",
@@ -1407,6 +1472,7 @@
    "cve_severity": "MEDIUM",
    "family": "xss",
    "fix": "Upgrade NiceGUI to 3.8.0 or later and keep method and property names fixed in code rather than taken from user input such as query parameters; use ui.run_javascript with developer-written script if arbitrary JavaScript is truly needed.",
+   "precision_hold": false,
    "require": [
     {
      "arg": 0,
@@ -1427,6 +1493,7 @@
    "cve_severity": "MEDIUM",
    "family": "xss",
    "fix": "Do not pass untrusted values to ui.html(); show them with a text-only component such as ui.label, or HTML-escape them first, and upgrade NiceGUI to 3.0.0 or later.",
+   "precision_hold": false,
    "require": [
     {
      "arg": 0,
@@ -1448,6 +1515,7 @@
    "cve_severity": "MEDIUM",
    "family": "xss",
    "fix": "Upgrade NiceGUI to 3.4.0 or later, and until then keep user-controlled data out of the content property of interactive_image, or sanitize or escape it before use.",
+   "precision_hold": false,
    "require": [
     {
      "is": "non_constant",
@@ -1469,6 +1537,7 @@
    "cve_severity": "HIGH",
    "family": "redos",
    "fix": "Upgrade nltk to 3.10.1 or later, which bounds the domain-label repetition, and limit the length of untrusted text before tokenizing it.",
+   "precision_hold": false,
    "require": [
     {
      "arg": 0,
@@ -1493,6 +1562,7 @@
    "cve_severity": "HIGH",
    "family": "path_traversal",
    "fix": "Upgrade NLTK to 3.10.3 or later, and validate any externally influenced corpus root against the allowed data roots before building the reader, or use a fixed trusted root.",
+   "precision_hold": false,
    "require": [
     {
      "arg": 0,
@@ -1515,6 +1585,7 @@
    "cve_severity": "HIGH",
    "family": "path_traversal",
    "fix": "Upgrade NLTK to 3.10.0 or later and map user input to a fixed allowlist of known corpus file identifiers instead of passing raw strings as the fileid.",
+   "precision_hold": false,
    "require": [
     {
      "arg": 0,
@@ -1537,6 +1608,7 @@
    "cve_severity": "CRITICAL",
    "family": "path_traversal",
    "fix": "Upgrade NLTK to 3.10.0-rc1 or later, and never pass untrusted resource identifiers to nltk.data.load; map user choices to a fixed allowlist of resource names, or reject input containing percent-encoded separators, dots, or absolute paths after decoding.",
+   "precision_hold": false,
    "require": [
     {
      "arg": 0,
@@ -1559,6 +1631,7 @@
    "cve_severity": "HIGH",
    "family": "unsafe_deserialization",
    "fix": "Do not fetch NLTK data packages from an origin you do not control; use the default trusted index or pre-vetted packages stored in a controlled location, and verify their integrity before anything loads them.",
+   "precision_hold": false,
    "require": [
     {
      "arg": 0,
@@ -1580,6 +1653,7 @@
    "cve_severity": "HIGH",
    "family": "path_traversal",
    "fix": "Do not pass externally supplied strings to filestring; resolve the input against a fixed allowlist of permitted files or a fixed base directory, reject absolute and traversal paths before opening, and upgrade to a fixed nltk release.",
+   "precision_hold": false,
    "require": [
     {
      "arg": 0,
@@ -1601,6 +1675,7 @@
    "cve_severity": "HIGH",
    "family": "path_traversal",
    "fix": "Upgrade NLTK to 3.10.0 or later, and until then check frame names against the known frame list or a strict name pattern that rejects path separators and parent-directory parts before calling the reader.",
+   "precision_hold": false,
    "require": [
     {
      "arg": 0,
@@ -1624,6 +1699,7 @@
    "cve_severity": "HIGH",
    "family": "ssrf",
    "fix": "Upgrade NLTK to 3.10.0 or later so the connection stage resolves and validates addresses itself, and do not treat the early URL pre-check as the only protection for attacker-influenced destinations, for example by also restricting allowed hosts.",
+   "precision_hold": false,
    "require": [
     {
      "arg": 0,
@@ -1651,6 +1727,7 @@
    "cve_severity": "CRITICAL",
    "family": "command_injection",
    "fix": "Upgrade NLTK to 3.10.3 or later and pass only a fixed set of JVM options chosen by the application, never values taken from user input, config files or environment variables; reject agent-loading, remote debugging and at-sign argument-file flags.",
+   "precision_hold": false,
    "require": [
     {
      "is": "non_constant",
@@ -1673,6 +1750,7 @@
    "cve_severity": "HIGH",
    "family": "redos",
    "fix": "Upgrade NLTK to 3.10.3 or later, use only fixed or trusted tgrep patterns, reject regex nodes in external input, and run any remaining untrusted regex matching in a separate process that can be terminated on timeout.",
+   "precision_hold": false,
    "require": [
     {
      "arg": 0,
@@ -1695,6 +1773,7 @@
    "cve_severity": "MEDIUM",
    "family": "xss",
    "fix": "Upgrade oauthlib to 4.0.0 or later and turn JSONP off in favor of CORS; if JSONP must stay, only allow callback values that fully match a strict JavaScript identifier pattern.",
+   "precision_hold": false,
    "require": [
     {
      "arg": 2,
@@ -1718,6 +1797,7 @@
    "cve_severity": "MEDIUM",
    "family": "open_redirect",
    "fix": "Upgrade oauthlib to 3.2.2 or later, and keep any validation of user-supplied redirect URIs cheap and bounded before it reaches these helpers.",
+   "precision_hold": false,
    "require": [
     {
      "arg": 0,
@@ -1738,6 +1818,7 @@
    "cve_severity": "MEDIUM",
    "family": "command_injection",
    "fix": "Pass the program and each argument as separate list items instead of building one command string, and check externally supplied names such as repository or directory names against a strict allowlist before they reach the helper.",
+   "precision_hold": false,
    "require": [
     {
      "arg": 0,
@@ -1759,6 +1840,7 @@
    "cve_severity": "HIGH",
    "family": "command_injection",
    "fix": "Avoid building a shell command string from variable data; run the program through an API that takes the program and its arguments as separate items without a shell, and treat the value only as data such as a file path.",
+   "precision_hold": true,
    "require": [
     {
      "arg": 0,
@@ -1767,7 +1849,7 @@
     }
    ],
    "rule_id": "os-system-built-command-string-v1",
-   "severity": "block",
+   "severity": "review",
    "title": "os.system called with a command string built from data"
   },
   {
@@ -1781,6 +1863,7 @@
    "cve_severity": "CRITICAL",
    "family": "command_injection",
    "fix": "Upgrade PaddlePaddle to 2.6.0 or later, which removes this helper, and map comparison operators to functions through a fixed allow-list instead of passing operator strings built from data.",
+   "precision_hold": false,
    "require": [
     {
      "arg": 1,
@@ -1801,6 +1884,7 @@
    "cve_severity": "CRITICAL",
    "family": "path_traversal",
    "fix": "Upgrade PaddlePaddle to 2.6 or later, use only fixed literal module names, and if a name must come from input, validate it against a strict allowlist and confirm the resolved destination stays inside the data directory.",
+   "precision_hold": false,
    "require": [
     {
      "arg": 1,
@@ -1822,6 +1906,7 @@
    "cve_severity": "CRITICAL",
    "family": "command_injection",
    "fix": "Upgrade PaddlePaddle to 2.6.0 or later, and avoid passing untrusted values to this function; compute pass intervals in plain code instead.",
+   "precision_hold": false,
    "require": [],
    "rule_id": "paddle-get-online-pass-interval-call-v1",
    "severity": "block",
@@ -1838,6 +1923,7 @@
    "cve_severity": "CRITICAL",
    "family": "command_injection",
    "fix": "Upgrade PaddlePaddle to 2.6.0 or later, and avoid calling the private download helper with externally supplied values; fetch files with a direct HTTP client or an argument-list process call instead of a shell command string.",
+   "precision_hold": false,
    "require": [
     {
      "arg": 0,
@@ -1859,6 +1945,7 @@
    "cve_severity": "MEDIUM",
    "family": "ssrf",
    "fix": "HTML-escape every user-controlled value before placing it in the HTML template passed to the PDF renderer, so injected image tags are rendered as text and never fetched.",
+   "precision_hold": false,
    "require": [
     {
      "is": "built_string",
@@ -1885,6 +1972,7 @@
    "cve_severity": "CRITICAL",
    "family": "unsafe_deserialization",
    "fix": "Do not unpickle data that crosses a trust boundary; use a data-only format such as JSON, or authenticate the payload (for example with an HMAC) before loading it.",
+   "precision_hold": true,
    "require": [
     {
      "arg": 0,
@@ -1892,7 +1980,7 @@
     }
    ],
    "rule_id": "pickle-load-non-constant-data-v1",
-   "severity": "block",
+   "severity": "review",
    "title": "pickle load called on data that is not a constant"
   },
   {
@@ -1905,6 +1993,7 @@
    "cve_severity": "MEDIUM",
    "family": "redos",
    "fix": "Upgrade Pillow to 13.0.0 or later, or pass an explicit formats allowlist that excludes XBM when opening untrusted bytes.",
+   "precision_hold": false,
    "require": [
     {
      "arg": 0,
@@ -1926,6 +2015,7 @@
    "cve_severity": "CRITICAL",
    "family": "command_injection",
    "fix": "Upgrade the Pinot provider to 4.0.0 or later and do not pass a computed executable path; rely on the fixed default pinot-admin.sh resolved through a protected PATH.",
+   "precision_hold": false,
    "require": [
     {
      "arg": 1,
@@ -1948,6 +2038,7 @@
    "cve_severity": "MEDIUM",
    "family": "redos",
    "fix": "Upgrade NLTK to 3.10.3 or later, and do not read untrusted or malformed PL196X/TEI files with this reader on older versions; pre-validate input or parse it with a linear XML parser instead.",
+   "precision_hold": false,
    "require": [],
    "rule_id": "pl196x-reader-untrusted-corpus-v1",
    "severity": "block",
@@ -1964,6 +2055,7 @@
    "cve_severity": "MEDIUM",
    "family": "sql_injection",
    "fix": "Keep the SQL text a fixed constant with numbered placeholders and pass request-supplied values such as api_key as separate bound arguments, validating their expected shape first.",
+   "precision_hold": false,
    "require": [
     {
      "arg": 0,
@@ -1985,6 +2077,7 @@
    "cve_severity": "LOW",
    "family": "redos",
    "fix": "Upgrade pygments to 2.20.0 or later, and where text may come from untrusted sources, run highlighting under a CPU time limit or in a separate worker process.",
+   "precision_hold": false,
    "require": [],
    "rule_id": "pygments-adl-lexer-redos-review-v1",
    "severity": "review",
@@ -2008,6 +2101,7 @@
    "cve_severity": "CRITICAL",
    "family": "command_injection",
    "fix": "Upgrade Pygments past 2.0.2, and never let untrusted input choose the font name; use a fixed value or check it against an allow-list of known font names.",
+   "precision_hold": false,
    "require": [
     {
      "arg": 0,
@@ -2030,6 +2124,7 @@
    "cve_severity": "MEDIUM",
    "family": "ssrf",
    "fix": "Upgrade PyJWT to 2.13.0 or later, and use a fixed operator-configured JWKS URL or check the URL against a trusted issuer list and allow only the https scheme before creating the client.",
+   "precision_hold": false,
    "require": [
     {
      "arg": 0,
@@ -2051,6 +2146,7 @@
    "cve_severity": "HIGH",
    "family": "unsafe_deserialization",
    "fix": "Upgrade Ray to 2.56.0 or later and read only archives from trusted sources; otherwise avoid the default decoder and read raw members with a custom routine that handles only known-safe formats and rejects pickle and torch members.",
+   "precision_hold": false,
    "require": [
     {
      "absent_or_not_in": [
@@ -2076,6 +2172,7 @@
    "cve_severity": "CRITICAL",
    "family": "xss",
    "fix": "Check the scheme of any non-constant redirect target against an allowlist such as http and https, or redirect only to known internal destinations, and upgrade Django to 1.3.2 or 1.4.1 or later.",
+   "precision_hold": false,
    "require": [
     {
      "arg": 0,
@@ -2097,6 +2194,7 @@
    "cve_severity": "HIGH",
    "family": "ssrf",
    "fix": "Upgrade langchain-community to 0.0.28 or later. Do not let untrusted input choose request targets. Wrap requests in a wrapper that checks the resolved destination against an allowlist and refuses local, private and cloud metadata addresses.",
+   "precision_hold": false,
    "require": [
     {
      "equals": true,
@@ -2117,6 +2215,7 @@
    "cve_severity": "HIGH",
    "family": "redos",
    "fix": "Upgrade Scrapy to 2.11.1 (or 1.8.4 on the 1.8 line), or iterate nodes with the lxml-based xmliter_lxml instead of the regex-based xmliter when parsing untrusted responses.",
+   "precision_hold": false,
    "require": [
     {
      "arg": 0,
@@ -2138,6 +2237,7 @@
    "cve_severity": "MEDIUM",
    "family": "path_traversal",
    "fix": "Keep the base directory fixed or chosen from a known list of allowed names, reject segments made only of dots, and resolve the final path and confirm it is still inside the intended static root before serving.",
+   "precision_hold": false,
    "require": [
     {
      "arg": 0,
@@ -2162,6 +2262,7 @@
    "cve_severity": "HIGH",
    "family": "ssrf",
    "fix": "Leave the same-domain restriction enabled so remote sitemap entries on a different scheme or network location are skipped, and use URL filter patterns for any extra allowed hosts.",
+   "precision_hold": false,
    "require": [
     {
      "equals": false,
@@ -2182,6 +2283,7 @@
    "cve_severity": "MEDIUM",
    "family": "command_injection",
    "fix": "Pass only a fixed literal binary name from an allowlist (spark-submit or spark2-submit) and upgrade the Spark provider to 4.0.0 or later, which enforces the allowlist and rejects the spark-home extra.",
+   "precision_hold": false,
    "require": [
     {
      "is": "non_constant",
@@ -2202,6 +2304,7 @@
    "cve_severity": "HIGH",
    "family": "sql_injection",
    "fix": "Keep the SQL text constant, generate one bound placeholder per value for IN lists, and pass the values separately as the driver's parameters instead of joining or formatting them into the statement.",
+   "precision_hold": true,
    "require": [
     {
      "arg": 0,
@@ -2209,7 +2312,7 @@
     }
    ],
    "rule_id": "sql-execute-built-string-v1",
-   "severity": "block",
+   "severity": "review",
    "title": "SQL statement built from data by string formatting and passed to execute"
   },
   {
@@ -2222,6 +2325,7 @@
    "cve_severity": "CRITICAL",
    "family": "sql_injection",
    "fix": "Upgrade SQLAlchemy to 1.3.0b3 or later, and map outside sort choices to an allowlist of column objects instead of building order_by text from input.",
+   "precision_hold": false,
    "require": [
     {
      "arg": 0,
@@ -2243,6 +2347,7 @@
    "cve_severity": "CRITICAL",
    "family": "sql_injection",
    "fix": "Upgrade SQLAlchemy to 0.7.0b4 or later, and convert pagination values to integers at the application boundary, rejecting non-numeric input, before they reach the select construct.",
+   "precision_hold": false,
    "require": [
     {
      "is": "non_constant",
@@ -2270,6 +2375,7 @@
    "cve_severity": "HIGH",
    "family": "sql_injection",
    "fix": "Avoid running model-generated SQL on untrusted input; if it is required, parse and validate each statement as a single read-only select before execution, covering any query-checker rewrite, and connect with a read-only account limited to the needed tables.",
+   "precision_hold": false,
    "require": [],
    "rule_id": "sqldatabasechain-executes-generated-sql-v1",
    "severity": "block",
@@ -2285,6 +2391,7 @@
    "cve_severity": "MEDIUM",
    "family": "path_traversal",
    "fix": "Upgrade Django to 2.2.26, 3.2.11, 4.0.1 or later, and have the application generate or strictly validate the stored name instead of passing externally supplied filenames to storage.",
+   "precision_hold": false,
    "require": [
     {
      "arg": 0,
@@ -2306,6 +2413,7 @@
    "cve_severity": "LOW",
    "family": "unsafe_deserialization",
    "fix": "Upgrade transformers to a release that fixes CVE-2024-3568, load checkpoints only from sources you control or can verify, and prefer a weight format that does not execute code on load, such as safetensors.",
+   "precision_hold": false,
    "require": [
     {
      "arg": 0,
@@ -2327,6 +2435,7 @@
    "cve_severity": "MEDIUM",
    "family": "redos",
    "fix": "Upgrade transformers to 4.53.0 or later, and do not run TensorFlow-to-PyTorch weight name conversion on names from untrusted sources in a shared service.",
+   "precision_hold": false,
    "require": [
     {
      "arg": 0,
@@ -2348,6 +2457,7 @@
    "cve_severity": "MEDIUM",
    "family": "ssrf",
    "fix": "Upgrade langchain-community to 0.0.27 or later, and only opt in to dangerous deserialization for retriever files from a trusted, integrity-checked source; never load untrusted files.",
+   "precision_hold": false,
    "require": [
     {
      "equals": true,
@@ -2369,6 +2479,7 @@
    "cve_severity": "HIGH",
    "family": "unsafe_deserialization",
    "fix": "Pass weights_only=True when calling torch.load, load checkpoints only from trusted sources, and upgrade Transformers and PyTorch to patched versions.",
+   "precision_hold": false,
    "require": [
     {
      "absent_or_not_in": [
@@ -2392,6 +2503,7 @@
    "cve_severity": "MEDIUM",
    "family": "xss",
    "fix": "Upgrade Tornado to 6.5.3 or newer, and use a fixed literal reason or omit it; put variable text in log_message instead of reason.",
+   "precision_hold": false,
    "require": [
     {
      "is": "non_constant",
@@ -2412,6 +2524,7 @@
    "cve_severity": "MEDIUM",
    "family": "redos",
    "fix": "Upgrade transformers to 4.50.0 or later, and do not pass untrusted multi-line text to preprocess_string or code paths that call it.",
+   "precision_hold": false,
    "require": [
     {
      "arg": 0,
@@ -2433,6 +2546,7 @@
    "cve_severity": "HIGH",
    "family": "unsafe_deserialization",
    "fix": "Upgrade transformers to 4.36 or later, avoid the legacy index for untrusted or unverified index files, and use a non-pickle index type or a verified source instead.",
+   "precision_hold": false,
    "require": [
     {
      "equals": "legacy",
@@ -2454,6 +2568,7 @@
    "cve_severity": "CRITICAL",
    "family": "unsafe_deserialization",
    "fix": "Upgrade transformers to 4.36.0 or later, leave the trust opt-in disabled, and only load Transformer-XL vocabulary files from sources you control and have verified.",
+   "precision_hold": false,
    "require": [
     {
      "arg": 0,
@@ -2475,6 +2590,7 @@
    "cve_severity": "MEDIUM",
    "family": "xss",
    "fix": "Upgrade Twisted to 24.7.0rc1 or later, and make sure the redirect target is never chosen directly by request data unless it has been checked against an allowlist of expected destinations.",
+   "precision_hold": false,
    "require": [
     {
      "arg": 0,
@@ -2496,6 +2612,7 @@
    "cve_severity": "MEDIUM",
    "family": "xss",
    "fix": "When returning user-uploaded files, force a download by setting the content disposition type to attachment (or serve from a separate origin) so the browser never renders uploaded HTML or script inline.",
+   "precision_hold": false,
    "require": [
     {
      "arg": 0,
@@ -2523,6 +2640,7 @@
    "cve_severity": "MEDIUM",
    "family": "open_redirect",
    "fix": "Upgrade urllib3 to 2.5.0 or later, and until then disable redirects on each request call instead of relying on the pool-level retries setting.",
+   "precision_hold": false,
    "require": [
     {
      "equals": false,
@@ -2543,6 +2661,7 @@
    "cve_severity": "HIGH",
    "family": "redos",
    "fix": "Upgrade vLLM to 0.24.0 or later, and avoid passing untrusted regular expressions to structured outputs without a compile deadline or a check that rejects nested quantifier patterns.",
+   "precision_hold": false,
    "require": [
     {
      "is": "non_constant",
@@ -2563,6 +2682,7 @@
    "cve_severity": "HIGH",
    "family": "redos",
    "fix": "Upgrade Wagtail to 5.2.6, 6.0.6 or 6.1.3 or later; where an upgrade is not possible, cap the length of untrusted search text before passing it to parse_query_string.",
+   "precision_hold": false,
    "require": [
     {
      "arg": 0,
@@ -2589,6 +2709,7 @@
    "cve_severity": "MEDIUM",
    "family": "ssrf",
    "fix": "Do not enable the dangerous-requests opt-in unless the host's outbound traffic goes through a proxy or egress filter that blocks loopback, private and cloud metadata addresses, and keep the retriever away from untrusted input.",
+   "precision_hold": false,
    "require": [
     {
      "equals": true,
@@ -2610,6 +2731,7 @@
    "cve_severity": "MEDIUM",
    "family": "path_traversal",
    "fix": "Upgrade Werkzeug to 3.0.6 or later, or run on Python 3.11 or later; also reject user-supplied segments that start with a double slash or backslash before calling safe_join.",
+   "precision_hold": false,
    "require": [
     {
      "arg": 1,
@@ -2630,6 +2752,7 @@
    "cve_severity": "HIGH",
    "family": "path_traversal",
    "fix": "Upgrade wheel to 0.46.2 or later, and do not unpack wheel files from untrusted sources without first rejecting member names that resolve outside the destination directory.",
+   "precision_hold": false,
    "require": [
     {
      "arg": 0,
@@ -2652,6 +2775,7 @@
    "cve_severity": "CRITICAL",
    "family": "unsafe_deserialization",
    "fix": "Parse untrusted YAML with yaml.safe_load (or pass a safe loader such as SafeLoader), and upgrade PyYAML to 5.1 or later.",
+   "precision_hold": false,
    "require": [
     {
      "arg": 0,
@@ -2681,6 +2805,7 @@
    "cve_severity": "CRITICAL",
    "family": "unsafe_deserialization",
    "fix": "Receive raw bytes or JSON and decode them with a data-only format plus validation instead of recv_pyobj, bind sockets only to the interface actually needed, and upgrade vLLM to 0.8.5 or later.",
+   "precision_hold": false,
    "require": [],
    "rule_id": "zmq-recv-pyobj-implicit-pickle-v1",
    "severity": "block",

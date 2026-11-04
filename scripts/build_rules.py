@@ -21,6 +21,7 @@ MAX_BYTES = 1_000_000
 # A rule that fires in more corpus files than this on its first scan is too noisy to ship.
 # It stays in rules.json under not_shipped, with its scan count, and is never tuned to pass.
 MAX_FILES_HIT = 50
+PRECISION = ROOT / "docs" / "evidence" / "block-precision" / "matches.json"
 
 
 def corpus_scan(rules, roots):
@@ -66,12 +67,16 @@ def main(argv=None):
                                      newline="\n")
     # Severity criterion (user, 2026-11-04): a rule's highest CVE severity decides; MEDIUM and
     # above block, LOW and unknown advise (LOW blocks only with hook install --block-low).
+    # Precision (user, 2026-11-04): a rule whose judged matches in real code showed no real
+    # risk stays review (docs/evidence/block-precision, scripts/audit_block_matches.py).
     levels = {cve: item["severity"] for cve, item in severity.load_index()["levels"].items()}
+    held = severity.precision_holds(json.loads(PRECISION.read_text(encoding="utf-8"))["judged"])
     runtime_rules = []
     for rule in shipped:
-        level = severity.rule_level(rule["cve_ids"], levels)
+        level, hold = severity.rule_level(rule["cve_ids"], levels), rule["rule_id"] in held
         runtime_rules.append(dict({key: value for key, value in rule.items() if key != "examples"},
-                                  severity=severity.rule_severity(level), cve_severity=level))
+                                  severity=severity.rule_severity(level, hold), cve_severity=level,
+                                  precision_hold=hold))
     runtime = {"schema_version": 1, "rules": runtime_rules}
     data_rules.load_runtime(runtime)
     (ROOT / "src" / "paladin" / "resources" / "change-rules.json").write_text(

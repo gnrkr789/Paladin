@@ -1,5 +1,8 @@
 """CVE severity for the blocking criterion: MEDIUM and above block, LOW is opt-in.
 
+A rule is held at review when its judged matches in real code showed no real risk
+(user decision, 2026-11-04: severity plus precision), whatever its severity.
+
 Levels come from the pinned GitHub advisory (database_specific.severity, where MODERATE
 means MEDIUM), else the CVE record's CVSS base severity. They are packaged as data.
 """
@@ -40,8 +43,19 @@ def rule_level(cve_ids, levels):
     return highest(levels.get(cve) for cve in cve_ids)
 
 
-def rule_severity(level):
-    return "block" if level in BLOCKING else "review"
+def rule_severity(level, held=False):
+    return "block" if level in BLOCKING and not held else "review"
+
+
+def precision_holds(judged):
+    """Rules with judged matches of which none was a real risk (judge errors do not count)."""
+    seen, real = set(), set()
+    for item in judged:
+        if item.get("verdict") in {"real_risk", "safe_in_context", "cannot_tell"}:
+            seen.add(item["rule_id"])
+            if item["verdict"] == "real_risk":
+                real.add(item["rule_id"])
+    return seen - real
 
 
 @lru_cache(maxsize=1)

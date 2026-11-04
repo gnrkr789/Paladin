@@ -99,12 +99,12 @@ class DataRuleHookTests(unittest.TestCase):
 
 
 class BundledRulesTests(unittest.TestCase):
-    def test_bundled_rule_data_loads_and_only_low_or_unknown_cves_stay_review(self):
-        # Severity criterion (user, 2026-11-04); tests/test_severity.py checks each rule's level.
+    def test_bundled_rule_data_loads_and_only_low_unknown_or_held_rules_stay_review(self):
+        # Severity plus precision (user, 2026-11-04); tests/test_severity.py checks each rule's level.
         rules = change_check.load_data_rules()
 
-        self.assertTrue(all((rule["severity"] == "review") == (rule["cve_severity"] in {None, "LOW"})
-                            for rule in rules))
+        self.assertTrue(all((rule["severity"] == "review")
+                            == (rule["cve_severity"] in {None, "LOW"} or rule["precision_hold"]) for rule in rules))
 
 
 GUARD = r"""

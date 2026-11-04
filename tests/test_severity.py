@@ -9,7 +9,7 @@ from paladin import change_check, data_rules, severity
 from paladin.agent_hook import claude_code_hook
 from tests.test_data_rules import YAML_LOAD
 
-RUNTIME = {key: value for key, value in YAML_LOAD.items() if key != "examples"}
+RUNTIME = dict({key: value for key, value in YAML_LOAD.items() if key != "examples"}, precision_hold=False)
 UNSAFE = "import yaml\n\ndef read(data):\n    return yaml.load(data)\n"
 
 
@@ -28,6 +28,13 @@ class LevelTests(unittest.TestCase):
         self.assertEqual(severity.rule_level(["CVE-2020-0009"], levels), None)
         self.assertEqual([severity.rule_severity(level) for level in ("CRITICAL", "HIGH", "MEDIUM", "LOW", None)],
                          ["block", "block", "block", "review", "review"])
+        self.assertEqual(severity.rule_severity("CRITICAL", held=True), "review")
+
+    def test_a_rule_is_held_when_its_judged_matches_show_no_real_risk(self):
+        judged = [{"rule_id": "a-v1", "verdict": "safe_in_context"}, {"rule_id": "a-v1", "verdict": "cannot_tell"},
+                  {"rule_id": "b-v1", "verdict": "safe_in_context"}, {"rule_id": "b-v1", "verdict": "real_risk"}]
+
+        self.assertEqual(severity.precision_holds(judged), {"a-v1"})
 
     def test_the_packaged_index_covers_the_pack(self):
         index = severity.load_index()["levels"]
@@ -100,10 +107,10 @@ class HookTests(unittest.TestCase):
         self.assertNotIn("decision", self.edit(UNSAFE, block_low=True))
 
     def test_shipped_data_cannot_pair_block_with_low_or_unknown(self):
-        for level in ("LOW", None):
+        for level, held in (("LOW", False), (None, False), ("HIGH", True)):
             with self.assertRaises(ValueError):
-                data_rules.load_runtime({"schema_version": 1,
-                                         "rules": [dict(RUNTIME, severity="block", cve_severity=level)]})
+                data_rules.load_runtime({"schema_version": 1, "rules": [
+                    dict(RUNTIME, severity="block", cve_severity=level, precision_hold=held)]})
 
     def test_install_can_opt_in_to_low_blocking(self):
         from paladin.agent_hook import install_hook
@@ -116,11 +123,16 @@ class HookTests(unittest.TestCase):
 class ShippedRuleTests(unittest.TestCase):
     def test_shipped_rules_follow_the_severity_criterion(self):
         index = severity.load_index()["levels"]
+        sample = json.loads((Path(__file__).resolve().parents[1] / "docs/evidence/block-precision/matches.json")
+                            .read_text(encoding="utf-8"))
+        held = severity.precision_holds(sample["judged"])
         for rule in change_check.load_data_rules():
             levels = {cve: index[cve]["severity"] for cve in rule["cve_ids"] if cve in index}
             expected = severity.rule_level(rule["cve_ids"], levels)
-            self.assertEqual((rule["cve_severity"], rule["severity"]), (expected, severity.rule_severity(expected)),
-                             rule["rule_id"])
+            self.assertEqual((rule["cve_severity"], rule["precision_hold"], rule["severity"]),
+                             (expected, rule["rule_id"] in held,
+                              severity.rule_severity(expected, rule["rule_id"] in held)), rule["rule_id"])
+        self.assertIn("pickle-load-non-constant-data-v1", held)
 
 
 if __name__ == "__main__":

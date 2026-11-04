@@ -163,7 +163,7 @@ def _condition_errors(condition):
 
 def _shape_errors(rule, runtime=False):
     # Shipped rules carry the CVE severity that decides block or review; drafts do not.
-    keys = (RULE_KEYS - {"examples"}) | {"cve_severity"} if runtime else RULE_KEYS
+    keys = (RULE_KEYS - {"examples"}) | {"cve_severity", "precision_hold"} if runtime else RULE_KEYS
     if not isinstance(rule, dict) or set(rule) != keys:
         return ["rule: keys must be exactly " + ", ".join(sorted(keys))]
     errors = []
@@ -173,9 +173,10 @@ def _shape_errors(rule, runtime=False):
             isinstance(cve, str) and CVE_ID.match(cve) for cve in rule["cve_ids"])):
         errors.append("cve_ids: need CVE ids")
     if runtime and (rule["cve_severity"] not in {None, "LOW", "MEDIUM", "HIGH", "CRITICAL"}
+                    or not isinstance(rule["precision_hold"], bool)
                     or rule["severity"] != ("block" if rule["cve_severity"] in {"MEDIUM", "HIGH", "CRITICAL"}
-                                            else "review")):
-        errors.append("severity: block exactly for MEDIUM, HIGH and CRITICAL CVEs, else review")
+                                            and not rule["precision_hold"] else "review")):
+        errors.append("severity: block exactly for MEDIUM, HIGH and CRITICAL CVEs not held for precision")
     elif not runtime and rule["severity"] != "review":
         errors.append("severity: drafted rules start as review")
     for name in ("family", "title", "fix"):

@@ -21,7 +21,7 @@ MAX_BYTES = 1_000_000
 # A rule that fires in more corpus files than this on its first scan is too noisy to ship.
 # It stays in rules.json under not_shipped, with its scan count, and is never tuned to pass.
 MAX_FILES_HIT = 50
-PRECISION = ROOT / "docs" / "evidence" / "block-precision" / "matches.json"
+PRECISION = ROOT / "docs" / "evidence" / "block-precision"
 
 
 def corpus_scan(rules, roots):
@@ -70,7 +70,9 @@ def main(argv=None):
     # Precision (user, 2026-11-04): a rule whose judged matches in real code showed no real
     # risk stays review (docs/evidence/block-precision, scripts/audit_block_matches.py).
     levels = {cve: item["severity"] for cve, item in severity.load_index()["levels"].items()}
-    held = severity.precision_holds(json.loads(PRECISION.read_text(encoding="utf-8"))["judged"])
+    # Every judged sample counts: a rule is held only if no sample found a real risk.
+    held = severity.precision_holds([item for path in sorted(PRECISION.glob("*.json"))
+                                     for item in json.loads(path.read_text(encoding="utf-8"))["judged"]])
     runtime_rules = []
     for rule in shipped:
         level, hold = severity.rule_level(rule["cve_ids"], levels), rule["rule_id"] in held

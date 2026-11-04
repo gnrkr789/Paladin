@@ -1,7 +1,8 @@
 """CVE severity for the blocking criterion: MEDIUM and above block, LOW is opt-in.
 
-A rule is held at review when its judged matches in real code showed no real risk
-(user decision, 2026-11-04: severity plus precision), whatever its severity.
+A rule is held at review when at least MIN_JUDGED of its matches in real code were judged
+and none was a real risk (user decision, 2026-11-04: severity plus precision), whatever its
+severity. Rules in ALWAYS_BLOCK are never held: the unsafe call is the hazard itself.
 
 Levels come from the pinned GitHub advisory (database_specific.severity, where MODERATE
 means MEDIUM), else the CVE record's CVSS base severity. They are packaged as data.
@@ -13,6 +14,8 @@ import json
 RESOURCE = "cve-severity.json"
 LEVELS = ("LOW", "MEDIUM", "HIGH", "CRITICAL")
 BLOCKING = {"MEDIUM", "HIGH", "CRITICAL"}
+MIN_JUDGED = 4
+ALWAYS_BLOCK = {"yaml-load-without-safe-loader-v1"}
 
 
 def normalize(level):
@@ -48,14 +51,14 @@ def rule_severity(level, held=False):
 
 
 def precision_holds(judged):
-    """Rules with judged matches of which none was a real risk (judge errors do not count)."""
-    seen, real = set(), set()
+    """Rules with at least MIN_JUDGED judged matches, none a real risk (judge errors do not count)."""
+    counts, real = {}, set()
     for item in judged:
         if item.get("verdict") in {"real_risk", "safe_in_context", "cannot_tell"}:
-            seen.add(item["rule_id"])
+            counts[item["rule_id"]] = counts.get(item["rule_id"], 0) + 1
             if item["verdict"] == "real_risk":
                 real.add(item["rule_id"])
-    return seen - real
+    return {rule for rule, count in counts.items() if count >= MIN_JUDGED} - real - ALWAYS_BLOCK
 
 
 @lru_cache(maxsize=1)

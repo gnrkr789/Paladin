@@ -79,3 +79,20 @@ have no severity yet.
   Rules that never matched the corpus have no precision evidence and keep their
   severity. A held rule can block again after its conditions are tightened and a new
   judged sample shows real risks.
+
+## Application corpus and minimum sample (user, 2026-11-04)
+
+- Corpus: 33 open-source Flask and Django applications, Python files only (25,274),
+  shallow clones pinned by commit in docs/evidence/block-precision/apps.json. Rules with a
+  MEDIUM or higher CVE (blocking or held) matched 1,707 times in 694 files; 30 rules hit,
+  most often Django order_by (608) and redirect targets (547).
+- Fable judged a seeded sample of up to 6 matches per rule: 137 matches, 17 real risk,
+  112 safe in context, 8 cannot tell, 0 errors ($5.91).
+- Every judged sample counts together. A rule is held only with at least 4 judged matches
+  (severity.MIN_JUDGED) and no real risk; fewer matches are too little evidence to stop
+  blocking. yaml-load-without-safe-loader-v1 always blocks (severity.ALWAYS_BLOCK): the
+  unsafe loader is the hazard whatever the input.
+- Real risks found in the applications released archive extractall and Jinja2 autoescape
+  from hold. Newly held: Django order_by, Django values JSON alias, mark_safe link markup,
+  redirect targets, SQLAlchemy order_by, Werkzeug safe_join.
+- Shipped: 104 block (CRITICAL 16, HIGH 43, MEDIUM 45); 7 LOW and 14 held advise.

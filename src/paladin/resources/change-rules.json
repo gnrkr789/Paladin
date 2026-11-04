@@ -91,10 +91,10 @@
    "cve_severity": "HIGH",
    "family": "path_traversal",
    "fix": "Do not bulk-extract untrusted archives; resolve each entry's destination to a real path, confirm it stays inside the extraction directory, reject the whole archive if any entry escapes, and extract entries one at a time.",
-   "precision_hold": true,
+   "precision_hold": false,
    "require": [],
    "rule_id": "archive-extractall-path-check-v1",
-   "severity": "review",
+   "severity": "block",
    "title": "Bulk extractall() on an archive without per-entry destination path validation"
   },
   {
@@ -202,7 +202,7 @@
    "cve_severity": "MEDIUM",
    "family": "path_traversal",
    "fix": "Do not use character-level prefix comparison to decide whether a path is inside a directory; normalize both paths to absolute form, compute the common path with a component-aware function, and accept only when it equals the destination directory.",
-   "precision_hold": true,
+   "precision_hold": false,
    "require": [
     {
      "arg": 0,
@@ -210,7 +210,7 @@
     }
    ],
    "rule_id": "commonprefix-path-containment-v1",
-   "severity": "review",
+   "severity": "block",
    "title": "Character-level commonprefix used where a path containment check may be intended"
   },
   {
@@ -375,7 +375,7 @@
    "cve_severity": "CRITICAL",
    "family": "sql_injection",
    "fix": "Upgrade Django to 3.1.13, 3.2.5 or later, and map any user-chosen sort option to a fixed developer-defined set of ordering strings, rejecting anything outside that set, before calling order_by.",
-   "precision_hold": false,
+   "precision_hold": true,
    "require": [
     {
      "arg": 0,
@@ -383,7 +383,7 @@
     }
    ],
    "rule_id": "django-order-by-non-constant-v1",
-   "severity": "block",
+   "severity": "review",
    "title": "Non-constant value passed to QuerySet.order_by (CVE-2021-35042 SQL injection on Django before 3.1.13 / 3.2.5)"
   },
   {
@@ -487,7 +487,7 @@
    "cve_severity": "CRITICAL",
    "family": "sql_injection",
    "fix": "Upgrade Django to 5.0.8 or 4.2.15 or later, and check any user-supplied JSON key against a fixed allowlist of names before building the field argument.",
-   "precision_hold": false,
+   "precision_hold": true,
    "require": [
     {
      "arg": 0,
@@ -495,7 +495,7 @@
     }
    ],
    "rule_id": "django-values-built-json-key-alias-v1",
-   "severity": "block",
+   "severity": "review",
    "title": "Django values()/values_list() given a field name built from data, which may carry an untrusted JSONField key"
   },
   {
@@ -1061,7 +1061,7 @@
    "cve_severity": "MEDIUM",
    "family": "xss",
    "fix": "Enable automatic escaping for the whole Jinja2 environment so output is escaped by default, and mark a value as safe only where unescaped output is intended and the value is trusted.",
-   "precision_hold": true,
+   "precision_hold": false,
    "require": [
     {
      "absent_or_not_in": [
@@ -1072,7 +1072,7 @@
     }
    ],
    "rule_id": "jinja2-environment-autoescape-not-enabled-v1",
-   "severity": "review",
+   "severity": "block",
    "title": "Jinja2 Environment created without automatic escaping enabled"
   },
   {
@@ -1277,7 +1277,7 @@
    "cve_severity": "MEDIUM",
    "family": "xss",
    "fix": "Build the markup with format_html or a template so every interpolated value is escaped, and derive link targets from reversed application routes rather than from names supplied in templates or other external data.",
-   "precision_hold": false,
+   "precision_hold": true,
    "require": [
     {
      "arg": 0,
@@ -1285,7 +1285,7 @@
     }
    ],
    "rule_id": "mark-safe-built-link-markup-v1",
-   "severity": "block",
+   "severity": "review",
    "title": "mark_safe applied to HTML assembled from data, such as a link built from a resource name"
   },
   {
@@ -2172,7 +2172,7 @@
    "cve_severity": "CRITICAL",
    "family": "xss",
    "fix": "Check the scheme of any non-constant redirect target against an allowlist such as http and https, or redirect only to known internal destinations, and upgrade Django to 1.3.2 or 1.4.1 or later.",
-   "precision_hold": false,
+   "precision_hold": true,
    "require": [
     {
      "arg": 0,
@@ -2181,7 +2181,7 @@
     }
    ],
    "rule_id": "redirect-target-unvalidated-scheme-v1",
-   "severity": "block",
+   "severity": "review",
    "title": "Django redirect response built with a non-constant target that may carry a data: URL"
   },
   {
@@ -2325,7 +2325,7 @@
    "cve_severity": "CRITICAL",
    "family": "sql_injection",
    "fix": "Upgrade SQLAlchemy to 1.3.0b3 or later, and map outside sort choices to an allowlist of column objects instead of building order_by text from input.",
-   "precision_hold": false,
+   "precision_hold": true,
    "require": [
     {
      "arg": 0,
@@ -2333,7 +2333,7 @@
     }
    ],
    "rule_id": "sqlalchemy-order-by-built-string-v1",
-   "severity": "block",
+   "severity": "review",
    "title": "Query.order_by called with a string built from data (CVE-2019-7164)"
   },
   {
@@ -2731,7 +2731,7 @@
    "cve_severity": "MEDIUM",
    "family": "path_traversal",
    "fix": "Upgrade Werkzeug to 3.0.6 or later, or run on Python 3.11 or later; also reject user-supplied segments that start with a double slash or backslash before calling safe_join.",
-   "precision_hold": false,
+   "precision_hold": true,
    "require": [
     {
      "arg": 1,
@@ -2739,7 +2739,7 @@
     }
    ],
    "rule_id": "werkzeug-safe-join-untrusted-path-v1",
-   "severity": "block",
+   "severity": "review",
    "title": "Werkzeug safe_join called with a non-constant path segment (UNC bypass on Windows, Python before 3.11)"
   },
   {

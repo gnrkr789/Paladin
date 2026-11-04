@@ -31,10 +31,15 @@ class LevelTests(unittest.TestCase):
         self.assertEqual(severity.rule_severity("CRITICAL", held=True), "review")
 
     def test_a_rule_is_held_when_its_judged_matches_show_no_real_risk(self):
-        judged = [{"rule_id": "a-v1", "verdict": "safe_in_context"}, {"rule_id": "a-v1", "verdict": "cannot_tell"},
-                  {"rule_id": "b-v1", "verdict": "safe_in_context"}, {"rule_id": "b-v1", "verdict": "real_risk"}]
+        def judged(rule, *verdicts):
+            return [{"rule_id": rule, "verdict": verdict} for verdict in verdicts]
 
-        self.assertEqual(severity.precision_holds(judged), {"a-v1"})
+        sample = (judged("a-v1", "safe_in_context", "safe_in_context", "cannot_tell", "safe_in_context")
+                  + judged("b-v1", "safe_in_context", "safe_in_context", "safe_in_context", "real_risk")
+                  + judged("c-v1", "safe_in_context", "safe_in_context", "safe_in_context", "error")
+                  + judged("yaml-load-without-safe-loader-v1", *["safe_in_context"] * 6))
+
+        self.assertEqual(severity.precision_holds(sample), {"a-v1"})
 
     def test_the_packaged_index_covers_the_pack(self):
         index = severity.load_index()["levels"]
@@ -123,9 +128,9 @@ class HookTests(unittest.TestCase):
 class ShippedRuleTests(unittest.TestCase):
     def test_shipped_rules_follow_the_severity_criterion(self):
         index = severity.load_index()["levels"]
-        sample = json.loads((Path(__file__).resolve().parents[1] / "docs/evidence/block-precision/matches.json")
-                            .read_text(encoding="utf-8"))
-        held = severity.precision_holds(sample["judged"])
+        samples = sorted((Path(__file__).resolve().parents[1] / "docs/evidence/block-precision").glob("*.json"))
+        held = severity.precision_holds([item for path in samples
+                                         for item in json.loads(path.read_text(encoding="utf-8"))["judged"]])
         for rule in change_check.load_data_rules():
             levels = {cve: index[cve]["severity"] for cve in rule["cve_ids"] if cve in index}
             expected = severity.rule_level(rule["cve_ids"], levels)
@@ -133,6 +138,7 @@ class ShippedRuleTests(unittest.TestCase):
                              (expected, rule["rule_id"] in held,
                               severity.rule_severity(expected, rule["rule_id"] in held)), rule["rule_id"])
         self.assertIn("pickle-load-non-constant-data-v1", held)
+        self.assertNotIn("yaml-load-without-safe-loader-v1", held)
 
 
 if __name__ == "__main__":

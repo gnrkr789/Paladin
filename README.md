@@ -18,10 +18,10 @@ the agent what the problem is and how to avoid it; the agent writes its own fix.
   a model (`patch_checked`); 23 remain `candidate`.
 - **Edit-time hook** for Claude Code and Codex, with no model or network call:
   125 rules drafted from the cards block the turn when their CVE is MEDIUM,
-  HIGH or CRITICAL (107 rules), advise for LOW (7; `hook install --block-low`
-  makes those block too), and advise for 11 broad rules (pickle, SQL strings,
-  archive extraction and others) whose sampled matches in real code were not real
-  risks; two exact CVE rules also block. Each block names the CVE, line and fix.
+  HIGH or CRITICAL (104 rules), advise for LOW (7; `hook install --block-low`
+  makes those block too), and advise for 14 broad rules (pickle, SQL strings,
+  Django order_by, redirects and others) of which at least four sampled matches in
+  real code were judged and none was a real risk; two exact CVE rules also block. Each block names the CVE, line and fix.
 - **Dependency check** (`paladin deps check`, MCP `check_dependencies`, and the hook
   when an agent edits a dependency file): pinned versions against the PyPI affected
   ranges of 520 collected CVEs, most of which are library-internal and have no code rule.

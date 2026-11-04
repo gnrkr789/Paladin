@@ -1,10 +1,13 @@
 """Precision sample for blocking card rules on real code the rules were not drafted from.
 
 Usage: python -B scripts/audit_block_matches.py CORPUS_DIR [--per-rule 4] [--seed 20261104]
-Scans the corpus with the shipped rules that block (MEDIUM and above), draws a seeded sample
+       [--name matches] [--manifest REPOS.json]
+Scans the corpus with the shipped rules whose CVE is MEDIUM and above (blocking or held for
+precision), draws a seeded sample
 of matches per rule, and asks a model, with the surrounding code, whether the match is the
 weakness the rule targets (data that can come from outside reaches the call) or safe in its
-context. Writes docs/evidence/block-precision/matches.json; the code itself is not stored.
+context. Writes docs/evidence/block-precision/NAME.json; the code itself is not stored.
+The manifest (repository URL and commit per corpus folder) is copied into the record.
 """
 import argparse
 import hashlib
@@ -19,7 +22,7 @@ sys.path.insert(0, str(ROOT / "src"))
 sys.path.insert(0, str(ROOT / "scripts"))
 
 from headless_claude import Claude  # noqa: E402
-from paladin import change_check, data_rules  # noqa: E402
+from paladin import change_check, data_rules, severity  # noqa: E402
 from paladin.card_draft import parse_answer  # noqa: E402
 
 MAX_BYTES = 1_000_000
@@ -74,8 +77,11 @@ def main(argv=None):
     parser.add_argument("--per-rule", type=int, default=4)
     parser.add_argument("--seed", type=int, default=20261104)
     parser.add_argument("--model", default="claude-fable-5-1")
+    parser.add_argument("--name", default="matches")
+    parser.add_argument("--manifest", type=Path)
     args = parser.parse_args(argv)
-    rules = {rule["rule_id"]: rule for rule in change_check.load_data_rules() if rule["severity"] == "block"}
+    rules = {rule["rule_id"]: rule for rule in change_check.load_data_rules()
+             if rule["cve_severity"] in severity.BLOCKING}
     found = matches(args.corpus, list(rules.values()))
     by_rule = {}
     for match in found:
@@ -100,13 +106,14 @@ def main(argv=None):
             print(match["rule_id"], match["path"], match["line"], answer["verdict"], flush=True)
     files = len({m["path"] for m in found})
     record = {"corpus": args.corpus.as_posix(), "block_rules": len(rules), "matches": len(found),
+              "repositories": json.loads(args.manifest.read_text(encoding="utf-8")) if args.manifest else None,
               "files_with_matches": files, "matches_per_rule": {k: len(v) for k, v in sorted(by_rule.items())},
               "sample": {"seed": args.seed, "per_rule": args.per_rule, "judge": args.model, "size": len(judged)},
               "verdicts": {v: sum(1 for j in judged if j["verdict"] == v) for v in sorted(VERDICTS | {"error"})},
               "judged": judged, "usage": claude.usage}
     out = ROOT / "docs" / "evidence" / "block-precision"
     out.mkdir(parents=True, exist_ok=True)
-    (out / "matches.json").write_text(json.dumps(record, indent=1) + "\n", encoding="utf-8", newline="\n")
+    (out / (args.name + ".json")).write_text(json.dumps(record, indent=1) + "\n", encoding="utf-8", newline="\n")
     print(json.dumps({k: record[k] for k in ("block_rules", "matches", "files_with_matches", "verdicts", "usage")}))
     return 0
 

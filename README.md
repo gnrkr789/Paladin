@@ -53,23 +53,23 @@ Windows, Python 3.12, [uv](https://docs.astral.sh/uv/) and Docker Desktop.
 **1. Install and build the search database (once per machine)**
 
 ```powershell
-git clone https://github.com/gnrkr789/Paladin
-cd Paladin
-uv sync --locked
-.\.venv\Scripts\paladin.exe setup --json           # starts a local Milvus in Docker
-.\.venv\Scripts\paladin.exe model prepare --json   # downloads the search model (487 MB)
-.\.venv\Scripts\paladin.exe patterns index --json  # loads the CVE cards into Milvus
+uv tool install CVEPaladin
+paladin setup --json           # starts a local Milvus in Docker
+paladin model prepare --json   # downloads the search model (487 MB)
+paladin patterns index --json  # loads the CVE cards into Milvus
 ```
 
-A clone has no database. `setup` starts Milvus in Docker under `%USERPROFILE%\.paladin`
-and `patterns index` fills it; every project shares it. Only search needs it: the
-hook and the checks work without Docker.
+The package has no database. `setup` starts Milvus in Docker under
+`%USERPROFILE%\.paladin` and `patterns index` fills it; every project shares it.
+Only search needs it: the hook and the checks work without Docker. Run
+`patterns index` again after upgrading Paladin. To work on Paladin itself, clone
+the repository, run `uv sync --locked` and use `.\.venv\Scripts\paladin.exe`.
 
 **2. Add Paladin to Claude Code and Codex (once per user)**
 
 ```powershell
-.\.venv\Scripts\paladin.exe mcp install --user                 # Claude Code
-.\.venv\Scripts\paladin.exe mcp install --user --host codex    # Codex
+paladin mcp install --user                 # Claude Code
+paladin mcp install --user --host codex    # Codex
 ```
 
 Open any project in a new session and run `/paladin` (Claude Code) or `$paladin`
@@ -79,8 +79,8 @@ finding and edits nothing until you ask. It runs only when you call it.
 **3. Optional: block unsafe edits in a project**
 
 ```powershell
-.\.venv\Scripts\paladin.exe hook install --workspace C:/projects/app                # Claude Code
-.\.venv\Scripts\paladin.exe hook install --host codex --workspace C:/projects/app   # Codex
+paladin hook install --workspace C:/projects/app                # Claude Code
+paladin hook install --host codex --workspace C:/projects/app   # Codex
 ```
 
 The hook checks every edit the agent makes in that project and blocks known CVE
